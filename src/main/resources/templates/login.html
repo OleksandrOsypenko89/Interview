@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link th:href="buttons.css" rel="stylesheet"/>
+    <link th:href="different.css" rel="stylesheet"/>
+    <link th:href="forms.css" rel="stylesheet"/>
+    <link th:href="styleText.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div id="left">
+    <div class="p1">
+        <div class="c1">
+            <div class="text-center">
+                <h1 class="text-bold title_color big-text">Interview</h1>
+            </div>
+            <br>
+            <div class="container">
+                <h3 class="text-normal">
+                    Добро пожаловать в мой пет-проект, созданный начинающим программистом с
+                    большой страстью к технологиям и желанием найти свою первую роботу, а также помочь каждому взлететь
+                    в карьере!
+                    <br><br> Собеседования могут быть сложными, особенно когда только начинаешь свой путь в мире
+                    программирования. Но сервис сделает этот опыт увлекательным и успешным! Мой проект предлагает
+                    доступные
+                    материалы и тесты, которые помогут тебе подготовиться к собеседованиям и проявить себя с лучшей
+                    стороны.
+                    <br><br> Этот проект создан с любовью и заботой, и я всегда готов ответить на твои вопросы и помочь
+                    тебе
+                    преодолеть трудности. Вместе мы подготовимся к интервью, чтобы ты чувствовал уверенность и
+                    готовность к вызовам реального мира программирования.
+                    <br><br> Ты не одинок в своем пути — мы здесь, чтобы поддержать друг друга и достичь новых вершин.
+                    Вместе
+                    мы станем настоящей командой, готовой покорить программирование и достичь мечты о работе в топовых
+                    компаниях.
+                    <br><br> Так что давай начнем этот увлекательный путь вместе! Добро пожаловать в мой пет-проект для
+                    будущих программистов, где каждый шаг важен, и каждый прогресс — это повод для радости. Вперед, к
+                    успеху и
+                    новым возможностям!
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="right" class="wrapper-col text-center">
+    <div class="p1">
+        <div class="c2">
+            <form th:action="@{/userpage}" method="post">
+                <div class="wave-group">
+                    <!--suppress HtmlFormInputWithoutLabel -->
+                    <input name="email" required type="email" class="input">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0">E</span>
+                        <span class="label-char" style="--index: 1">m</span>
+                        <span class="label-char" style="--index: 2">a</span>
+                        <span class="label-char" style="--index: 3">i</span>
+                        <span class="label-char" style="--index: 4">l</span>
+                    </label>
+                </div>
+                <br>
+                <div class="wave-group">
+                    <!--suppress HtmlFormInputWithoutLabel -->
+                    <input name="password" required type="password" class="input">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0">P</span>
+                        <span class="label-char" style="--index: 1">a</span>
+                        <span class="label-char" style="--index: 2">s</span>
+                        <span class="label-char" style="--index: 3">s</span>
+                        <span class="label-char" style="--index: 4">w</span>
+                        <span class="label-char" style="--index: 5">o</span>
+                        <span class="label-char" style="--index: 6">r</span>
+                        <span class="label-char" style="--index: 7">d</span>
+                    </label>
+                </div>
+                <br>
+                <button type="submit" class="buttonGreen">Войти</button>
+            </form>
+            <br>
+            <p>Don't have an account? <a th:href="registration">Sign up!</a></p>
+            <p><a th:href="forgotpassword">Forgot password?</a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
