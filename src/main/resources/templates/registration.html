@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link th:href="@{/buttons.css}" rel="stylesheet">
+    <link th:href="@{/different.css}" rel="stylesheet">
+    <link th:href="@{/forms.css}" rel="stylesheet">
+    <link th:href="@{/styleText.css}" rel="stylesheet">
+</head>
+
+<body>
+<div id="left">
+    <th:block th:replace="~{layout/block}"/>
+</div>
+<div id="right" class="wrapper-col text-center">
+    <div class="p1">
+        <div class="c3">
+            <form th:action="@{/login}" method="post" th:object="${newUser}">
+                <div class="wave-group">
+                    <!--suppress HtmlFormInputWithoutLabel -->
+                    <input name="firstname" required type="text" class="input" th:field="*{firstName}">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0">F</span>
+                        <span class="label-char" style="--index: 1">i</span>
+                        <span class="label-char" style="--index: 2">r</span>
+                        <span class="label-char" style="--index: 3">s</span>
+                        <span class="label-char" style="--index: 4">t</span>
+                        <span class="label-char" style="--index: 5">_</span>
+                        <span class="label-char" style="--index: 6">n</span>
+                        <span class="label-char" style="--index: 7">a</span>
+                        <span class="label-char" style="--index: 8">m</span>
+                        <span class="label-char" style="--index: 9">e</span>
+                    </label>
+                </div>
+                <br>
+                <div class="wave-group">
+                    <!--suppress HtmlFormInputWithoutLabel -->
+                    <input name="lastname" required type="text" class="input" th:field="*{lastName}">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0">L</span>
+                        <span class="label-char" style="--index: 1">a</span>
+                        <span class="label-char" style="--index: 2">s</span>
+                        <span class="label-char" style="--index: 3">t</span>
+                        <span class="label-char" style="--index: 4">_</span>
+                        <span class="label-char" style="--index: 5">n</span>
+                        <span class="label-char" style="--index: 6">a</span>
+                        <span class="label-char" style="--index: 7">m</span>
+                        <span class="label-char" style="--index: 8">e</span>
+                    </label>
+                </div>
+                <br>
+                <div class="wave-group">
+                    <!--suppress HtmlFormInputWithoutLabel -->
+                    <input name="email" required type="email" class="input" th:field="*{email}">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0">E</span>
+                        <span class="label-char" style="--index: 1">m</span>
+                        <span class="label-char" style="--index: 2">a</span>
+                        <span class="label-char" style="--index: 3">i</span>
+                        <span class="label-char" style="--index: 4">l</span>
+                    </label>
+                </div>
+                <br>
+                <div class="wave-group">
+                    <!--suppress HtmlFormInputWithoutLabel -->
+                    <input name="password" required type="password" class="input" th:field="*{password}">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0">P</span>
+                        <span class="label-char" style="--index: 1">a</span>
+                        <span class="label-char" style="--index: 2">s</span>
+                        <span class="label-char" style="--index: 3">s</span>
+                        <span class="label-char" style="--index: 4">w</span>
+                        <span class="label-char" style="--index: 5">o</span>
+                        <span class="label-char" style="--index: 6">r</span>
+                        <span class="label-char" style="--index: 7">d</span>
+                    </label>
+                </div>
+                <br>
+                <button type="submit" class="buttonGreen">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
