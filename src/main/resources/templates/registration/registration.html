@@ -16,10 +16,10 @@
 <div id="right" class="wrapper-col text-center">
     <div class="p1">
         <div class="c3">
-            <form th:action="@{/login}" method="post" th:object="${newUser}">
+            <form th:action="@{/login}" method="post">
                 <div class="wave-group">
                     <!--suppress HtmlFormInputWithoutLabel -->
-                    <input name="firstname" required type="text" class="input" th:field="*{firstName}">
+                    <input name="firstName" required type="text" class="input">
                     <span class="bar"></span>
                     <label class="label">
                         <span class="label-char" style="--index: 0">F</span>
@@ -37,7 +37,7 @@
                 <br>
                 <div class="wave-group">
                     <!--suppress HtmlFormInputWithoutLabel -->
-                    <input name="lastname" required type="text" class="input" th:field="*{lastName}">
+                    <input name="lastName" required type="text" class="input">
                     <span class="bar"></span>
                     <label class="label">
                         <span class="label-char" style="--index: 0">L</span>
@@ -54,7 +54,7 @@
                 <br>
                 <div class="wave-group">
                     <!--suppress HtmlFormInputWithoutLabel -->
-                    <input name="email" required type="email" class="input" th:field="*{email}">
+                    <input name="email" required type="email" class="input">
                     <span class="bar"></span>
                     <label class="label">
                         <span class="label-char" style="--index: 0">E</span>
@@ -67,7 +67,7 @@
                 <br>
                 <div class="wave-group">
                     <!--suppress HtmlFormInputWithoutLabel -->
-                    <input name="password" required type="password" class="input" th:field="*{password}">
+                    <input name="password" required type="password" class="input">
                     <span class="bar"></span>
                     <label class="label">
                         <span class="label-char" style="--index: 0">P</span>
@@ -81,9 +81,7 @@
                     </label>
                 </div>
                 <br>
-                <button type="submit" class="buttonGreen">
-                    Submit
-                </button>
+                <button type="submit" class="buttonGreen">Submit</button>
             </form>
         </div>
     </div>

@@ -1,4 +1,4 @@
-package com.osypenko.controllers;
+package com.osypenko.controllers.userOperations.recoveryPassword;
 
 import com.osypenko.services.MailService;
 import jakarta.servlet.http.HttpSession;
@@ -7,24 +7,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import static com.osypenko.constant.Constant.PASSWORD_CHANGE_CODE;
+
 @Controller
 @RequiredArgsConstructor
-public class ForgotPasswordController {
+public class PasswordRecoveryController {
 
     private final MailService mailService;
     private final HttpSession session;
 
-    @GetMapping("/forgotpassword")
+    @GetMapping("/passwordrecovery")
     public String forgotPassword() {
-        return "forgotpassword";
+        return "passwordrecovery/passwordrecovery";
     }
 
-    @PostMapping("/code")
+    @PostMapping("/confirmationcode")
     public String newPassword(String email) {
         int code = mailService.generatedRandomCode();
         session.setAttribute("code", code);
         session.setAttribute("email", email);
-        mailService.sendSimpleMessage(email, "Код для зміни пароля - " + code);
-        return "redirect:/code";
+        mailService.sendSimpleMessage(email, PASSWORD_CHANGE_CODE + code);
+        return "redirect:/coderecoverypassword";
     }
 }

@@ -15,10 +15,7 @@ public class UserService {
     public List<User> getAll() {
         return userRepo.findAll();
     }
-    public void newUser(User user) {
+    public void createAndUpdateUser(User user) {
         userRepo.save(user);
-    }
-    public Long size() {
-        return (long) getAll().size();
     }
 }

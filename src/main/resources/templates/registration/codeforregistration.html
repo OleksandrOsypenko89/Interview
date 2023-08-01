@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration code</title>
+    <link th:href="@{/buttons.css}" rel="stylesheet">
+    <link th:href="@{/different.css}" rel="stylesheet">
+    <link th:href="@{/forms.css}" rel="stylesheet">
+    <link th:href="@{/styleText.css}" rel="stylesheet">
+</head>
+
+<body>
+<div id="left">
+    <th:block th:replace="~{layout/block}"/>
+</div>
+<div id="right" class="wrapper-col text-center">
+    <div class="p1">
+        <div class="c4">
+            <p class="title_color">Для завершения регистрации введите код, который получите на email!</p>
+            <br>
+            <form th:action="@{/newuser}" method="post">
+                <div class="wave-group">
+                    <!--suppress HtmlFormInputWithoutLabel -->
+                    <input name="codeUser" required type="number" class="input">
+                    <span class="bar"></span>
+                    <label class="label">
+                        <span class="label-char" style="--index: 0">C</span>
+                        <span class="label-char" style="--index: 1">o</span>
+                        <span class="label-char" style="--index: 2">d</span>
+                        <span class="label-char" style="--index: 3">e</span>
+                    </label>
+                </div>
+                <br>
+                <button type="submit" class="buttonGreen">Check the code</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

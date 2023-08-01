@@ -1,4 +1,4 @@
-package com.osypenko.controllers;
+package com.osypenko.controllers.userOperations;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.UserService;
@@ -25,8 +25,8 @@ public class LoginController {
         List<User> userList = userService.getAll();
         for (User user : userList) {
             if (user.getEmail().equals(email)) {
-                if (user.getPassword().equals(password)) {
-                    log.info("Authorization: " + user.getFirstName() + " " + user.getLastName());
+                String hash = String.valueOf(password.hashCode());
+                if (user.getPassword().equals(hash)) {
                     return "redirect:/userpage";
                 }
             }
