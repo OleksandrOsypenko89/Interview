@@ -39,11 +39,25 @@ p {
     transform: translate(-60%, 110%);
 }
 
+.c2_2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60%, 80%);
+}
+
 .c3 {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-60%, 105%);
+}
+
+.c3_3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60%, 65%);
 }
 
 .c4 {
@@ -53,8 +67,26 @@ p {
     transform: translate(-60%, 170%);
 }
 
+.c4_4 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60%, 100%);
+}
+
+.c5 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 400%);
+}
+
 .title_color {
     color: #009087;
+}
+
+.alert_color {
+    color: #ea868f;
 }
 
 body {

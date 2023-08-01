@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="formLogin">
+    <form th:action="@{/userpage}" method="post">
+        <div class="wave-group">
+            <!--suppress HtmlFormInputWithoutLabel -->
+            <input name="email" required type="email" class="input">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">E</span>
+                <span class="label-char" style="--index: 1">m</span>
+                <span class="label-char" style="--index: 2">a</span>
+                <span class="label-char" style="--index: 3">i</span>
+                <span class="label-char" style="--index: 4">l</span>
+            </label>
+        </div>
+        <br>
+        <div class="wave-group">
+            <!--suppress HtmlFormInputWithoutLabel -->
+            <input name="password" required type="password" class="input">
+            <span class="bar"></span>
+            <label class="label">
+                <span class="label-char" style="--index: 0">P</span>
+                <span class="label-char" style="--index: 1">a</span>
+                <span class="label-char" style="--index: 2">s</span>
+                <span class="label-char" style="--index: 3">s</span>
+                <span class="label-char" style="--index: 4">w</span>
+                <span class="label-char" style="--index: 5">o</span>
+                <span class="label-char" style="--index: 6">r</span>
+                <span class="label-char" style="--index: 7">d</span>
+            </label>
+        </div>
+        <br>
+        <button type="submit" class="buttonGreen">Sing in</button>
+    </form>
+    <br>
+    <p>Don't have an account? <a th:href="registration">Sign up!</a></p>
+    <p><a th:href="passwordrecovery">Forgot password?</a></p>
+</th:block>

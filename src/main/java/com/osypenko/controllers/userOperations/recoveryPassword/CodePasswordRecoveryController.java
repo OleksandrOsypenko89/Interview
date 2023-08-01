@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class CodeRecoveryPasswordController {
+public class CodePasswordRecoveryController {
 
     private final HttpSession session;
-    @GetMapping("/coderecoverypassword")
+    @GetMapping("/codepasswordrecovery")
     public String code() {
-        return "passwordrecovery/coderecoverypassword";
+        return "passwordrecovery/codepasswordrecovery";
     }
     @PostMapping("/newpassword")
     public String newPassword(int codeUser) {
@@ -22,6 +22,6 @@ public class CodeRecoveryPasswordController {
         if (codeSystem == codeUser) {
             return "redirect:/newpassword";
         }
-        return "redirect:/coderecoverypassword";
+        return "redirect:/codepasswordrecovery";
     }
 }

@@ -2,11 +2,14 @@ package com.osypenko.controllers.userOperations.registration;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.MailService;
+import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 import static com.osypenko.constant.Constant.TO_COMPLETE_THE_REGISTRATION_ENTER_THE_CODE;
 
@@ -16,8 +19,10 @@ public class RegistrationController {
 
     private final MailService mailService;
     private final HttpSession session;
+    private final UserService userService;
     @GetMapping("/registration")
     public String registration() {
+        session.removeAttribute("loginFlag");
         return "registration/registration";
     }
 
@@ -29,6 +34,13 @@ public class RegistrationController {
             , String email
             , String password
     ) {
+        List<User> all = userService.getAll();
+        for (User human : all) {
+            if (human.getEmail().equals(email)) {
+                session.setAttribute("registrationFlag", false);
+                return "redirect:/registration";
+            }
+        }
         String hashPassword = String.valueOf(password.hashCode());
         user.setFirstName(firstName);
         user.setLastName(lastName);
@@ -39,6 +51,7 @@ public class RegistrationController {
 
         int code = mailService.generatedRandomCode();
         session.setAttribute("codeRegistration", code);
+        session.removeAttribute("registrationFlag");
         mailService.sendSimpleMessage(email, TO_COMPLETE_THE_REGISTRATION_ENTER_THE_CODE + code);
         return "redirect:/codeforregistration";
     }

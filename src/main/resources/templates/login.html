@@ -7,51 +7,27 @@
     <link th:href="different.css" rel="stylesheet"/>
     <link th:href="forms.css" rel="stylesheet"/>
     <link th:href="styleText.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 <div id="left">
-    <th:block th:replace="~{layout/block}"/>
+    <th:block th:replace="~{layout/title}"/>
 </div>
 <div id="right" class="wrapper-col text-center">
-    <div class="p1">
-        <div class="c2">
-            <form th:action="@{/userpage}" method="post">
-                <div class="wave-group">
-                    <!--suppress HtmlFormInputWithoutLabel -->
-                    <input name="email" required type="email" class="input">
-                    <span class="bar"></span>
-                    <label class="label">
-                        <span class="label-char" style="--index: 0">E</span>
-                        <span class="label-char" style="--index: 1">m</span>
-                        <span class="label-char" style="--index: 2">a</span>
-                        <span class="label-char" style="--index: 3">i</span>
-                        <span class="label-char" style="--index: 4">l</span>
-                    </label>
-                </div>
+    <div th:if="${session.loginFlag != false}">
+        <div class="p1">
+            <div class="c2">
+                <th:block th:replace="~{layout/formlogin}"/>
+            </div>
+        </div>
+    </div>
+    <div th:if="${session.loginFlag == false}">
+        <div class="p1">
+            <div class="c2_2">
+                <p class="alert_color">Не правильно введен логин или пароль!</p>
                 <br>
-                <div class="wave-group">
-                    <!--suppress HtmlFormInputWithoutLabel -->
-                    <input name="password" required type="password" class="input">
-                    <span class="bar"></span>
-                    <label class="label">
-                        <span class="label-char" style="--index: 0">P</span>
-                        <span class="label-char" style="--index: 1">a</span>
-                        <span class="label-char" style="--index: 2">s</span>
-                        <span class="label-char" style="--index: 3">s</span>
-                        <span class="label-char" style="--index: 4">w</span>
-                        <span class="label-char" style="--index: 5">o</span>
-                        <span class="label-char" style="--index: 6">r</span>
-                        <span class="label-char" style="--index: 7">d</span>
-                    </label>
-                </div>
-                <br>
-                <button type="submit" class="buttonGreen">Войти</button>
-            </form>
-            <br>
-            <p>Don't have an account? <a th:href="registration">Sign up!</a></p>
-            <p><a th:href="passwordrecovery">Forgot password?</a></p>
+                <th:block th:replace="~{layout/formlogin}"/>
+            </div>
         </div>
     </div>
 </div>
