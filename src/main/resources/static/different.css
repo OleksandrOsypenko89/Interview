@@ -21,6 +21,10 @@ p {
     width: 40%;
 }
 
+body {
+    background-color: #FAFAFA;
+}
+
 .p1 {
     position: relative;
 }
@@ -82,11 +86,11 @@ p {
 }
 
 .title_color {
-    color: #009087;
+    color: #9641B0;
 }
 
 .alert_color {
-    color: #ea868f;
+    color: red;
 }
 
 body {

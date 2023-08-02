@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,16 +26,15 @@ public class NewPasswordController {
     public String redirectLogin(String passwordOne, String passwordTwo) {
         String email = (String) session.getAttribute("email");
 
-        List<User> all = userService.getAll();
         if (passwordOne.equals(passwordTwo)) {
-            for (User user : all) {
-                if (user.getEmail().equals(email)) {
-                    String hash = String.valueOf(passwordOne.hashCode());
-
-                    user.setPassword(hash);
-                    userService.createAndUpdateUser(user);
-                    return "redirect:/";
-                }
+            Long id = userService.hashMails().get(email);
+            Optional<User> optionalUser = userService.findById(id);
+            if (optionalUser.isPresent()) {
+                User user = optionalUser.get();
+                String hash = String.valueOf(passwordOne.hashCode());
+                user.setPassword(hash);
+                userService.createAndUpdateUser(user);
+                return "redirect:/";
             }
         }
         return "redirect:/newpassword";

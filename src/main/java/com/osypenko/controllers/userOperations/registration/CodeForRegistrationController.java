@@ -25,6 +25,7 @@ public class CodeForRegistrationController {
         if (codeSystem == codeUser) {
             User user = (User) session.getAttribute("user");
             userService.createAndUpdateUser(user);
+            userService.hashMails().put(user.getEmail(), user.getId());
             return "redirect:/";
         }
         return "redirect:/codeforregistration";

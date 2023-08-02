@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
 import static com.osypenko.constant.Constant.TO_COMPLETE_THE_REGISTRATION_ENTER_THE_CODE;
 
 @Controller
@@ -20,6 +18,7 @@ public class RegistrationController {
     private final MailService mailService;
     private final HttpSession session;
     private final UserService userService;
+
     @GetMapping("/registration")
     public String registration() {
         session.removeAttribute("loginFlag");
@@ -34,13 +33,12 @@ public class RegistrationController {
             , String email
             , String password
     ) {
-        List<User> all = userService.getAll();
-        for (User human : all) {
-            if (human.getEmail().equals(email)) {
-                session.setAttribute("registrationFlag", false);
-                return "redirect:/registration";
-            }
+        Long id = userService.hashMails().get(email);
+        if (id != null) {
+            session.setAttribute("registrationFlag", false);
+            return "redirect:/registration";
         }
+
         String hashPassword = String.valueOf(password.hashCode());
         user.setFirstName(firstName);
         user.setLastName(lastName);
