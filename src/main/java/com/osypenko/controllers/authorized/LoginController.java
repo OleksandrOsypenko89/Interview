@@ -1,4 +1,4 @@
-package com.osypenko.controllers.userOperations;
+package com.osypenko.controllers.authorized;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.UserService;

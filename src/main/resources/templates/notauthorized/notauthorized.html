@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Not Authorized</title>
-    <link th:href="different.css" rel="stylesheet"/>
-    <link th:href="styleText.css" rel="stylesheet"/>
+    <th:block th:replace="~{layout/linksstyles}"/>
 </head>
 <body>
-<div class="p1">
-    <div class="c5">
-        <div class="alert_color big-text">
-            Not Authorized
-        </div>
+<div class="centered">
+    <div class="alert_color big-text">
+        Not Authorized
     </div>
 </div>
 </body>

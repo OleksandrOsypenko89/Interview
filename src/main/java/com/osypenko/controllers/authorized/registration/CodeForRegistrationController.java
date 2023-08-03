@@ -1,4 +1,4 @@
-package com.osypenko.controllers.userOperations.registration;
+package com.osypenko.controllers.authorized.registration;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.UserService;

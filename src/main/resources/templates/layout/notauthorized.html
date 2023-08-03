@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="notAuthized">
+  <div th:if="${session.context != session.userPageContext}">
+    <th:block th:replace="~{notauthorized/notauthorized}"/>
+  </div>
+</th:block>

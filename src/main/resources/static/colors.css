@@ -1,0 +1,21 @@
+body {
+    background-color: #FAFAFA;
+}
+
+.alert_color {
+    color: red;
+}
+
+body {
+    color: #333333;
+}
+
+.container {
+    width: 600px;
+    padding: 20px 30px;
+    background: #fbfbfb;
+}
+
+.title_color {
+    color: #9641B0;
+}

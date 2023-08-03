@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Page</title>
+    <th:block th:replace="~{layout/linksstyles}"/>
+</head>
+<body>
+<div th:if="${session.context == session.userPageContext}">
+    <div id="left_user_page">
+        statistic
+    </div>
+    <div id="right_user_page">
+        <div id="up_user_page">
+            <br>
+            <form th:action="@{/interview}" method="post">
+                <button type="submit" class="button">Interview</button>
+            </form>
+            <br>
+            <form th:action="@{/testing}" method="post">
+                <button type="submit" class="button">Testing</button>
+            </form>
+        </div>
+        <div id="down_user_page">
+            Низ
+        </div>
+    </div>
+</div>
+
+<th:block th:replace="~{layout/notauthorized}"/>
+</body>
+</html>
