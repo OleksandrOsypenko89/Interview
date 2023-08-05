@@ -1,6 +1,7 @@
-package com.osypenko.controllers.authorized.registration;
+package com.osypenko.controllers.registration;
 
 import com.osypenko.model.users.User;
+import com.osypenko.services.MailService;
 import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ public class CodeForRegistrationController {
 
     private final HttpSession session;
     private final UserService userService;
+    private final MailService mailService;
     @GetMapping("/codeforregistration")
     public String codeUser() {
         return "registration/codeforregistration";
@@ -26,6 +28,7 @@ public class CodeForRegistrationController {
             User user = (User) session.getAttribute("user");
             userService.createAndUpdateUser(user);
             userService.hashMails().put(user.getEmail(), user.getId());
+            mailService.sendSimpleMessage("Oleksandrosipenk@gmail.com", "Зареєстрований новий користувач " + user.getFirstName() + " " + user.getLastName());
             return "redirect:/";
         }
         return "redirect:/codeforregistration";

@@ -9,6 +9,28 @@
     padding-top: 20px;
 }
 
+/* Split the screen in half */
+.split_user_page_left {
+    height: 100%;
+    width: 15%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 26px;
+}
+
+/* Split the screen in half */
+.split_user_page_right {
+    height: 100%;
+    width: 85%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 30px;
+}
+
 /* Control the left side */
 .left {
     left: 0;
@@ -28,6 +50,17 @@
     /*text-align: center;*/
 }
 
+/* Style the image inside the centered container, if needed */
+.centered img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+/* Line parameters */
+.line {
+    border-bottom: 1px solid #090909;
+}
+
 .centered {
     position: absolute;
     top: 50%;
@@ -36,8 +69,6 @@
     text-align: center;
 }
 
-/* Style the image inside the centered container, if needed */
-.centered img {
-    width: 150px;
-    border-radius: 50%;
+.center {
+    text-align: center
 }

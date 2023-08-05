@@ -19,3 +19,7 @@ body {
 .title_color {
     color: #9641B0;
 }
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}

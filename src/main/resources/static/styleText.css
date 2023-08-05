@@ -6,8 +6,20 @@
     font-weight: bold;
 }
 
-.big-text {
+.big-text_1 {
     font-size: 55px;
+}
+
+.big-text_2 {
+    font-size: 30px;
+}
+
+.big-text_3 {
+    font-size: 25px;
+}
+
+.big-text_4 {
+    font-size: 20px;
 }
 
 .text-center {

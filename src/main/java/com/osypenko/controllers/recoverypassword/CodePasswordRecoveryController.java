@@ -1,4 +1,4 @@
-package com.osypenko.controllers.authorized.recoverypassword;
+package com.osypenko.controllers.recoverypassword;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

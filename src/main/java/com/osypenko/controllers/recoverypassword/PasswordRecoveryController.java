@@ -1,4 +1,4 @@
-package com.osypenko.controllers.authorized.recoverypassword;
+package com.osypenko.controllers.recoverypassword;
 
 import com.osypenko.services.MailService;
 import com.osypenko.services.UserService;

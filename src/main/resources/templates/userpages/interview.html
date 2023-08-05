@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interview</title>
+    <th:block th:replace="~{layout/linksstyles}"/>
+</head>
+
+<body>
+<div id="overlay" onclick="off()">
+    <div id="text">1. Пул строк. Так как строки в Java хранятся в пуле строк, то ваш пароль в виде обычного текста будет
+        доступен в памяти, пока сборщик мусора не очистит её. И поскольку String используются в String pool для
+        повторного использования, существует довольно высокая вероятность того, что пароль останется в памяти надолго,
+        что совсем не безопасно. <p>2. Рекомендации авторов. Java сама по себе рекомендует использовать метод
+            getPassword() из класса JPasswordField, который возвращает char[].
+        <p>3. Случайная печать в логах. С типом String всегда существует опасность того, что текст, хранящийся в строке
+            будет напечатан в файле логов или в консоли. В то же время в случае использования Array, вы не будете
+            печатать содержимое массива, а только его расположение в памяти.
+    </div>
+</div>
+
+<div class="centered" style="padding:20px">
+    <h2>Почему строки не рекомендуется использовать для хранения паролей?</h2>
+    <br>
+    <div class="container-buttons">
+        <button class="buttonGreen">Знаю ответ</button>
+        <button class="buttonGrey" onclick="on()">Посмотреть ответ</button>
+        <button class="buttonRed">Не знаю ответ</button>
+    </div>
+</div>
+
+<script>
+    function on() {
+        document.getElementById("overlay").style.display = "block";
+    }
+
+    function off() {
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
+</body>
+</html>

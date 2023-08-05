@@ -69,3 +69,8 @@
 .wave-group .input:focus ~ .bar:after {
     width: 50%;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}

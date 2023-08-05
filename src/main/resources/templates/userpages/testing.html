@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing Page</title>
+    <th:block th:replace="~{layout/linksstyles}"/>
+</head>
+<body>
+<div th:if="${session.context == session.userPageContext}">
+    Testing Page
+</div>
+<th:block th:replace="~{layout/notauthorized}"/>
+</body>
+</html>

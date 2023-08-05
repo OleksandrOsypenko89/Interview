@@ -1,4 +1,4 @@
-package com.osypenko.controllers.authorized;
+package com.osypenko.controllers;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.UserService;
@@ -32,6 +32,7 @@ public class LoginController {
                 String hash = String.valueOf(password.hashCode());
                 if (user.getPassword().equals(hash)) {
                     session.setAttribute("context", session.getServletContext());
+                    session.setAttribute("user", user);
                     session.removeAttribute("loginFlag");
                     return "redirect:/userpage";
                 }
