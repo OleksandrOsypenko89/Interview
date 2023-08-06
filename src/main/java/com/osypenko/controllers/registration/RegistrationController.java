@@ -33,7 +33,7 @@ public class RegistrationController {
             , String email
             , String password
     ) {
-        Long id = userService.hashMails().get(email);
+        Long id = userService.userHashMap().get(email);
         if (id != null) {
             session.setAttribute("registrationFlag", false);
             return "redirect:/registration";

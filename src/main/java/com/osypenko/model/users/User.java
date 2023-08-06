@@ -1,9 +1,11 @@
 package com.osypenko.model.users;
 
 import com.osypenko.model.interview.QuestionInterview;
+import com.osypenko.model.statistic.Statistic;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -50,4 +52,7 @@ public class User {
     @Column(name = "list_testing")
     private Integer listTesting;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Statistic> statistic;
 }

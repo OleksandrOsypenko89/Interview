@@ -24,7 +24,7 @@ public class LoginController {
 
     @PostMapping("/userpage")
     public String getUserPage(String email, String password) {
-        Long id = userService.hashMails().get(email);
+        Long id = userService.userHashMap().get(email);
         if (id != null) {
             Optional<User> optionalUser = userService.findById(id);
             if (optionalUser.isPresent()) {

@@ -26,7 +26,8 @@ public class UserService {
     public Optional<User> findById(Long id) {
         return userRepo.findById(id);
     }
-    public HashMap<String, Long> hashMails() {
+
+    public HashMap<String, Long> userHashMap() {
         if (hashMail == null) {
             hashMail = new HashMap<>();
             List<User> allUsers = getAll();

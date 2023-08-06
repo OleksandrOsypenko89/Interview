@@ -13,29 +13,13 @@
     <div class="line"></div>
     <h1 class="text-bold title_color big-text_2 text-center">Statistic</h1>
     <table class="center table_statistic">
-        <tr>
-            <td>12.04.22</td>
-            <td>87%</td>
-        </tr>
-        <tr>
-            <td>15.06.22</td>
-            <td>62%</td>
-        </tr>
-        <tr>
-            <td>23.07.23</td>
-            <td>57%</td>
-        </tr>
-        <tr>
-            <td>22.06.23</td>
-            <td>77%</td>
-        </tr>
-        <tr>
-            <td>18.01.23</td>
-            <td>90%</td>
-        </tr>
-        <tr>
-            <td>30.08.23</td>
-            <td>90%</td>
+        <tr th:each="statistic : ${session.user.getStatistic()}">
+            <td>
+                <p th:text="${statistic.getDate()}"/>
+            </td>
+            <td>
+                <p th:text="${statistic.getResult()}"/>
+            </td>
         </tr>
     </table>
 </div>

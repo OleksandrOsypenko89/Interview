@@ -26,7 +26,7 @@ public class PasswordRecoveryController {
 
     @PostMapping("/confirmationcode")
     public String newPassword(String email) {
-        Long id = userService.hashMails().get(email);
+        Long id = userService.userHashMap().get(email);
         if (id != null) {
             int code = mailService.generatedRandomCode();
             session.setAttribute("code", code);

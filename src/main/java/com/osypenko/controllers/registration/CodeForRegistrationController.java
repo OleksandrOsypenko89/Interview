@@ -27,7 +27,7 @@ public class CodeForRegistrationController {
         if (codeSystem == codeUser) {
             User user = (User) session.getAttribute("user");
             userService.createAndUpdateUser(user);
-            userService.hashMails().put(user.getEmail(), user.getId());
+            userService.userHashMap().put(user.getEmail(), user.getId());
             mailService.sendSimpleMessage("Oleksandrosipenk@gmail.com", "Зареєстрований новий користувач " + user.getFirstName() + " " + user.getLastName());
             return "redirect:/";
         }

@@ -27,7 +27,7 @@ public class NewPasswordController {
         String email = (String) session.getAttribute("email");
 
         if (passwordOne.equals(passwordTwo)) {
-            Long id = userService.hashMails().get(email);
+            Long id = userService.userHashMap().get(email);
             Optional<User> optionalUser = userService.findById(id);
             if (optionalUser.isPresent()) {
                 User user = optionalUser.get();
