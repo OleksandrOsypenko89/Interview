@@ -61,4 +61,13 @@ public class QuestionService {
         }
         userService.createAndUpdateUser(user);
     }
+
+    public void deleteStudyQuestions(User user, Integer id) {
+        Set<QuestionInterview> listStudyQuestion = user.getListStudyQuestion();
+        Optional<QuestionInterview> questionInterview = get(id);
+        if (questionInterview.isPresent()) {
+            QuestionInterview question = questionInterview.get();
+            listStudyQuestion.remove(question);
+        }
+    }
 }

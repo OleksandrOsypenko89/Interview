@@ -15,6 +15,8 @@ public class UrlID {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String text;
+
     private String link;
 }

@@ -13,7 +13,6 @@ import static com.osypenko.constant.Constant.PASSWORD_CHANGE_CODE;
 @Controller
 @RequiredArgsConstructor
 public class PasswordRecoveryController {
-
     private final MailService mailService;
     private final HttpSession session;
     private final UserService userService;

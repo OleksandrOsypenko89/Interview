@@ -5,7 +5,6 @@ import com.osypenko.model.statistic.Statistic;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -17,7 +16,6 @@ import java.util.Set;
 @Table(name = "users")
 @ToString
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,6 +33,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
 
+    @ToString.Exclude
     @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "list_question_interviews",
@@ -42,6 +41,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "question_id", referencedColumnName = "id"))
     private Set<QuestionInterview> listQuestionInterviews;
 
+    @ToString.Exclude
     @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "list_study_questions",
@@ -49,10 +49,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "question_id", referencedColumnName = "id"))
     private Set<QuestionInterview> listStudyQuestion;
 
-    @Column(name = "list_testing")
-    private Integer listTesting;
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private List<Statistic> statistic;
+    private Set<Statistic> statistic;
 }

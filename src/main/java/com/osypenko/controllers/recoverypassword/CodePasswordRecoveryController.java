@@ -1,24 +1,25 @@
 package com.osypenko.controllers.recoverypassword;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 @RequiredArgsConstructor
 public class CodePasswordRecoveryController {
 
-    private final HttpSession session;
     @GetMapping("/codepasswordrecovery")
     public String code() {
         return "passwordrecovery/codepasswordrecovery";
     }
-    @PostMapping("/newpassword")
-    public String newPassword(int codeUser) {
-        int codeSystem = (int) session.getAttribute("code");
 
+    @PostMapping("/newpassword")
+    public String newPassword(
+            @SessionAttribute(name = "code") int codeSystem
+            , int codeUser
+    ) {
         if (codeSystem == codeUser) {
             return "redirect:/newpassword";
         }

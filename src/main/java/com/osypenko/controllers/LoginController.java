@@ -1,6 +1,7 @@
 package com.osypenko.controllers;
 
 import com.osypenko.model.users.User;
+import com.osypenko.services.QuestionService;
 import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +14,9 @@ import java.util.Optional;
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
-
     private final UserService userService;
     private final HttpSession session;
+    private final QuestionService questionService;
 
     @GetMapping("/")
     public String login() {
@@ -33,6 +34,7 @@ public class LoginController {
                 if (user.getPassword().equals(hash)) {
                     session.setAttribute("context", session.getServletContext());
                     session.setAttribute("user", user);
+                    questionService.fillingInAListWithAQuestionToTheUser(user);
                     session.removeAttribute("loginFlag");
                     return "redirect:/userpage";
                 }

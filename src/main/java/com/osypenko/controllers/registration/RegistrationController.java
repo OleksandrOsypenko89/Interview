@@ -14,7 +14,6 @@ import static com.osypenko.constant.Constant.TO_COMPLETE_THE_REGISTRATION_ENTER_
 @Controller
 @RequiredArgsConstructor
 public class RegistrationController {
-
     private final MailService mailService;
     private final HttpSession session;
     private final UserService userService;
@@ -38,7 +37,6 @@ public class RegistrationController {
             session.setAttribute("registrationFlag", false);
             return "redirect:/registration";
         }
-
         String hashPassword = String.valueOf(password.hashCode());
         user.setFirstName(firstName);
         user.setLastName(lastName);

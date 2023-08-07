@@ -17,10 +17,11 @@ public class Statistic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Timestamp date = new Timestamp(System.currentTimeMillis());
+
     private Integer result;
-    @Enumerated(EnumType.STRING)
-    private Type type;
+
     @Column(name = "user_id")
     private Long userId;
 }
