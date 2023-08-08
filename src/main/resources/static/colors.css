@@ -2,8 +2,12 @@ body {
     background-color: #FAFAFA;
 }
 
-.alert_color {
+.red_color {
     color: red;
+}
+
+.green_color {
+    color: green;
 }
 
 body {

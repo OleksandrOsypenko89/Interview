@@ -14,7 +14,7 @@
             <th:block th:replace="~{layout/formregistration}"/>
         </div>
         <div th:if="${session.registrationFlag == false}">
-            <p class="alert_color">Такой пользователь уже зарегистрирован!</p>
+            <p class="red_color">Такой пользователь уже зарегистрирован!</p>
             <br>
             <th:block th:replace="~{layout/formregistration}"/>
         </div>

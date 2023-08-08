@@ -14,7 +14,7 @@
             <th:block th:replace="~{layout/formlogin}"/>
         </div>
         <div th:if="${session.loginFlag == false}">
-            <p class="alert_color">Не правильно введен логин или пароль!</p>
+            <p class="red_color">Не правильно введен логин или пароль!</p>
             <br>
             <th:block th:replace="~{layout/formlogin}"/>
         </div>
