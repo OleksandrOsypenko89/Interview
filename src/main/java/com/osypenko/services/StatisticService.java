@@ -35,4 +35,8 @@ public class StatisticService {
         LocalDateTime resultDateTime = localDateTime.minusDays(7);
         return Timestamp.valueOf(resultDateTime);
     }
+
+    public void addStatistic(Statistic statistic) {
+        statisticRepo.save(statistic);
+    }
 }

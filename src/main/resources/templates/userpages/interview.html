@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Interview</title>
@@ -8,25 +8,26 @@
 
 <body>
 <div id="overlay" onclick="off()">
-    <div id="text">1. Пул строк. Так как строки в Java хранятся в пуле строк, то ваш пароль в виде обычного текста будет
-        доступен в памяти, пока сборщик мусора не очистит её. И поскольку String используются в String pool для
-        повторного использования, существует довольно высокая вероятность того, что пароль останется в памяти надолго,
-        что совсем не безопасно. <p>2. Рекомендации авторов. Java сама по себе рекомендует использовать метод
-            getPassword() из класса JPasswordField, который возвращает char[].
-        <p>3. Случайная печать в логах. С типом String всегда существует опасность того, что текст, хранящийся в строке
-            будет напечатан в файле логов или в консоли. В то же время в случае использования Array, вы не будете
-            печатать содержимое массива, а только его расположение в памяти.
+    <div id="text">
+        <p th:text="${session.question.getAnswer()}"/>
     </div>
 </div>
 
 <div class="centered" style="padding:20px">
-    <h2>Почему строки не рекомендуется использовать для хранения паролей?</h2>
+    <p th:text="${session.question.getId}"/>
+    <p class="text-bold big-text_1 title_color" th:text="${session.question.getQuestion()}"/>
     <br>
     <div class="container-buttons">
-        <button class="buttonGreen">Знаю ответ</button>
+        <form th:action="@{/knowAnswer}" method="post" th:object="${session.question}">
+            <button class="buttonGreen">Знаю ответ</button>
+        </form>
         <button class="buttonGrey" onclick="on()">Посмотреть ответ</button>
-        <button class="buttonRed">Не знаю ответ</button>
+        <form th:action="@{/noAnswer}" method="post" th:object="${session.question}">
+            <button class="buttonRed">Не знаю ответ</button>
+        </form>
     </div>
+    <br>
+
 </div>
 
 <script>

@@ -51,7 +51,7 @@ public class QuestionService {
             Random random = new Random();
             int randomNum = random.nextInt((size - 1) + 1) + 1;
             integerSet.add(randomNum);
-        } while (integerSet.size() < 15);
+        } while (integerSet.size() < 20);
     }
 
     public void fillingInAListWithAQuestionToTheUser(User user) {

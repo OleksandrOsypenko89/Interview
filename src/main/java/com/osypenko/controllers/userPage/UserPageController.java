@@ -4,6 +4,7 @@ import com.osypenko.model.users.User;
 import com.osypenko.services.QuestionService;
 import com.osypenko.services.StatisticService;
 import com.osypenko.services.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ public class UserPageController {
     private final QuestionService questionService;
     private final StatisticService statisticService;
     private final UserService userService;
+    private final HttpSession session;
 
     @GetMapping("/userpage")
     public String userPage(
@@ -27,6 +29,8 @@ public class UserPageController {
 
     @PostMapping("/interview")
     public String interviewPage() {
+        session.setAttribute("index", 0);
+        session.setAttribute("know", 0);
         return "redirect:/interview";
     }
 
