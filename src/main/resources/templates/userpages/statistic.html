@@ -2,10 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Testing Page</title>
+    <title>Statistic</title>
     <th:block th:replace="~{layout/linksstyles}"/>
 </head>
+
 <body>
-    Testing Page
+<form th:action="@{/userPage}" method="post">
+    <button type="submit" class="buttonSerene">Home page</button>
+</form>
 </body>
 </html>

@@ -51,15 +51,7 @@ public class QuestionService {
             Random random = new Random();
             int randomNum = random.nextInt((size - 1) + 1) + 1;
             integerSet.add(randomNum);
-        } while (integerSet.size() < 20);
-    }
-
-    public void fillingInAListWithAQuestionToTheUser(User user) {
-        Set<QuestionInterview> listQuestionInterviews = user.getListQuestionInterviews();
-        if (listQuestionInterviews.isEmpty()) {
-            user.setListQuestionInterviews(createListQuestion());
-        }
-        userService.createAndUpdateUser(user);
+        } while (integerSet.size() < 15);
     }
 
     public void deleteStudyQuestions(User user, Integer id) {
@@ -69,5 +61,6 @@ public class QuestionService {
             QuestionInterview question = questionInterview.get();
             listStudyQuestion.remove(question);
         }
+        userService.createAndUpdateUser(user);
     }
 }
