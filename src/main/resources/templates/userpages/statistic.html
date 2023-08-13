@@ -8,7 +8,35 @@
 
 <body>
 <form th:action="@{/userPage}" method="post">
-    <button type="submit" class="buttonSerene">Home page</button>
+    <h1 class="text-bold title_color big-text_1 text-center">Statistic</h1>
+    <div class="center">
+        <table class="padding">
+            <tr th:each="statistic : ${session.statisticList}">
+                <td>
+                    <p th:text="${statistic.getDate()}"/>
+                </td>
+                <td>
+                    <div th:if="${statistic.getResult()} < 60">
+                        <p class="red_color text-bold" th:text="${statistic.getResult()} + '%'"/>
+                    </div>
+                    <div th:if="${statistic.getResult()} > 90">
+                        <p class="green_color text-bold" th:text="${statistic.getResult()} + '%'"/>
+                    </div>
+                    <div th:if="${statistic.getResult()} < 90 AND ${statistic.getResult()} > 60">
+                        <p class="text-bold" th:text="${statistic.getResult()} + '%'"/>
+                    </div>
+                </td>
+                <td>
+                    <p th:text="${statistic.getType()}"/>
+                </td>
+            </tr>
+        </table>
+        <br>
+    </div>
+    <div class="center">
+        <button type="submit" class="buttonSerene">Home page</button>
+    </div>
+    <br>
 </form>
 </body>
 </html>

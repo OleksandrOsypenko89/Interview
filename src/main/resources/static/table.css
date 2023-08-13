@@ -4,7 +4,7 @@
 }
 
 .table_statistic {
-    width: 97%;
+    width: 40%;
     border-collapse: collapse;
 }
 
@@ -16,6 +16,11 @@ table th {
 table td {
     border: 1px dashed black;
     padding: 5px;
+}
+
+.padding {
+    padding-left: 30%;
+    padding-right: 30%;
 }
 
 .padding {

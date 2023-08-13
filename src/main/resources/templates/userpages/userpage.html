@@ -27,7 +27,7 @@
             </td>
             <td>
                 <form th:action="@{/delete}" method="post">
-                    <input type="hidden" th:name="${'id'}" th:value="${question.id}"/>
+                    <input type="hidden" th:name="${'idQuestion'}" th:value="${question.id}"/>
                     <button type="submit" class="buttonDelete">🗑️</button>
                 </form>
             </td>
@@ -35,8 +35,8 @@
     </table>
     <br>
 </div>
-<div th:if="${session.user.listStudyQuestion.isEmpty()}">
 
+<div th:if="${session.user.listStudyQuestion.isEmpty()}">
     <div class="container-buttons centered">
         <form th:action="@{/interview}" method="post">
             <button type="submit" class="buttonSerene">Interview</button>
@@ -45,7 +45,8 @@
             <button type="submit" class="buttonSerene">Testing</button>
         </form>
     </div>
+    <div class="center">
+    </div>
 </div>
-
 </body>
 </html>

@@ -6,13 +6,15 @@ import com.osypenko.services.QuestionService;
 import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import java.util.Set;
+import java.util.*;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class UserPageController {
@@ -21,7 +23,12 @@ public class UserPageController {
     private final HttpSession session;
 
     @GetMapping("/userpage")
-    public String userPage() {
+    public String userPage(
+            @SessionAttribute(name = "userId") Long id
+    ) {
+        User user = userService.getUser(id);
+        questionService.sortStudyQuestion(user);
+        session.setAttribute("user", user);
         return "userpages/userpage";
     }
 
@@ -29,11 +36,14 @@ public class UserPageController {
     public String interviewPage(
             @SessionAttribute(name = "user") User user
     ) {
-        Set<QuestionInterview> questionInterviews = user.getListQuestionInterviews();
-        if (questionInterviews.isEmpty()) {
+        if (user.getListQuestionInterviews().isEmpty()) {
             user.setListQuestionInterviews(questionService.createListQuestion());
             userService.createAndUpdateUser(user);
         }
+        List<QuestionInterview> list = questionService.sortInterviewList(user);
+
+        session.setAttribute("size", list.size());
+        session.setAttribute("listQuestion", list);
         session.setAttribute("index", 0);
         session.setAttribute("know", 0);
         return "redirect:/interview";
@@ -42,9 +52,9 @@ public class UserPageController {
     @PostMapping("/delete")
     public String delete(
             @SessionAttribute(name = "user") User user
-            , Integer id
+            , Integer idQuestion
     ) {
-        questionService.deleteStudyQuestions(user, id);
+        questionService.deleteStudyQuestions(user, idQuestion);
         return "redirect:/userpage";
     }
 

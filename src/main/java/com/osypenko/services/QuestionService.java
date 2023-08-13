@@ -4,10 +4,12 @@ import com.osypenko.model.interview.QuestionInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.repository.QuestionRepo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class QuestionService {
@@ -32,7 +34,6 @@ public class QuestionService {
 
         createRandomIdQuestions(sizeAllQuestion(), integerSet);
         fillingInAListOfQuestions(integerSet, questionList);
-
         return questionList;
     }
 
@@ -62,5 +63,21 @@ public class QuestionService {
             listStudyQuestion.remove(question);
         }
         userService.createAndUpdateUser(user);
+    }
+
+    public List<QuestionInterview> sortInterviewList(User user) {
+        Set<QuestionInterview> questionInterviews = user.getListQuestionInterviews();
+        List<QuestionInterview> list = new ArrayList<>(questionInterviews);
+        list.sort(Comparator
+                .comparing(QuestionInterview::getTopic)
+                .thenComparing(QuestionInterview::getId));
+        return list;
+    }
+
+    public void sortStudyQuestion(User user) {
+        Set<QuestionInterview> listStudyQuestionInterview = user.getListStudyQuestion();
+        List<QuestionInterview> list = new ArrayList<>(listStudyQuestionInterview);
+        list.sort(Comparator
+                .comparing(QuestionInterview::getId));
     }
 }

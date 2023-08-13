@@ -7,6 +7,7 @@ import com.osypenko.services.StatisticService;
 import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.*;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class InterviewController {
@@ -25,21 +27,15 @@ public class InterviewController {
     public String getInterview(
             @SessionAttribute(name = "user") User user
             , @SessionAttribute(name = "know") Integer know
+            , @SessionAttribute(name = "listQuestion") List<QuestionInterview> list
             , Statistic statistic
     ) {
-        Set<QuestionInterview> questionInterviews = user.getListQuestionInterviews();
-        List<QuestionInterview> list = new ArrayList<>(questionInterviews);
-        list.sort(Comparator
-                .comparing(QuestionInterview::getTopic)
-                .thenComparing(QuestionInterview::getId));
+        if (list.isEmpty()) {
+            int percentage = (know * 100) / (int) session.getAttribute("size");
 
-        if (questionInterviews.isEmpty()) {
-            int percentage = (know * 100) / 15;
+            statisticService.saveNewStatistic(user, statistic, percentage);
 
-            statistic.setResult(percentage);
-            statistic.setUserId(user.getId());
-            statisticService.addStatistic(statistic);
-
+            user.getListQuestionInterviews().removeAll(user.getListQuestionInterviews());
             userService.createAndUpdateUser(user);
             return "redirect:/statistic";
         }
@@ -50,11 +46,10 @@ public class InterviewController {
     @PostMapping("/knowAnswer")
     public String knowAnswer(
             @SessionAttribute(name = "know") Integer know
-            , @SessionAttribute(name = "user") User user
             , @SessionAttribute(name = "question") QuestionInterview questionInterview
-            ) {
-        Set<QuestionInterview> questionInterviews = user.getListQuestionInterviews();
-        questionInterviews.remove(questionInterview);
+            , @SessionAttribute(name = "listQuestion") List<QuestionInterview> list
+    ) {
+        list.remove(questionInterview);
         session.setAttribute("know", ++know);
         return "redirect:/interview";
     }
@@ -63,12 +58,12 @@ public class InterviewController {
     public String noAnswer(
             @SessionAttribute(name = "user") User user
             , @SessionAttribute(name = "question") QuestionInterview questionInterview
+            , @SessionAttribute(name = "listQuestion") List<QuestionInterview> list
     ) {
         Set<QuestionInterview> listStudyQuestion = user.getListStudyQuestion();
         listStudyQuestion.add(questionInterview);
 
-        Set<QuestionInterview> questionInterviews = user.getListQuestionInterviews();
-        questionInterviews.remove(questionInterview);
+        list.remove(questionInterview);
         return "redirect:/interview";
     }
 }

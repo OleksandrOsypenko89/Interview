@@ -1,15 +1,21 @@
 package com.osypenko.services;
 
 import com.osypenko.model.statistic.Statistic;
+import com.osypenko.model.statistic.Type;
 import com.osypenko.model.users.User;
 import com.osypenko.repository.StatisticRepo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class StatisticService {
@@ -17,6 +23,10 @@ public class StatisticService {
 
     public void delete(Statistic statistic) {
         statisticRepo.delete(statistic);
+    }
+
+    public void addStatistic(Statistic statistic) {
+        statisticRepo.save(statistic);
     }
 
     public void deletionOfOutdatedStatistics(User user) {
@@ -36,7 +46,18 @@ public class StatisticService {
         return Timestamp.valueOf(resultDateTime);
     }
 
-    public void addStatistic(Statistic statistic) {
-        statisticRepo.save(statistic);
+    public List<Statistic> sortStatistic(User user) {
+        Set<Statistic> statistic = user.getStatistic();
+        List<Statistic> list = new ArrayList<>(statistic);
+        list.sort(Comparator
+                .comparing(Statistic::getDate));
+        return list;
+    }
+
+    public void saveNewStatistic(User user, Statistic statistic, int percentage) {
+        statistic.setResult(percentage);
+        statistic.setUserId(user.getId());
+        statistic.setType(Type.INTERVIEW);
+        addStatistic(statistic);
     }
 }
