@@ -9,12 +9,15 @@
 <body>
 <div id="overlay" onclick="off()">
     <div id="text">
-        <p th:text="${session.question.getAnswer()}"/>
+        <p th:utext="${session.question.getAnswer()}"></p>
+        <div th:if="${session.question.getImage() != null}">
+            <img th:src="@{${session.question.getImage()}}" alt="image"/>
+        </div>
     </div>
 </div>
 
 <div class="centered" style="padding:20px">
-    <p class="text-bold big-text_1 title_color" th:text="${session.question.getQuestion()}"/>
+    <p class="text-bold big-text_1 title_color" th:utext="${session.question.getQuestion()}"></p>
     <br>
     <div class="container-buttons">
         <form th:action="@{/knowAnswer}" method="post" th:object="${session.question}">

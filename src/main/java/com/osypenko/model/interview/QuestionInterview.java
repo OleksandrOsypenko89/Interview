@@ -25,9 +25,7 @@ public class QuestionInterview {
 
     private String answer;
 
-    private Integer urlId;
-
-    private Integer imageId;
+    private String image;
 
     @Enumerated(EnumType.STRING)
     private Topic topic;
