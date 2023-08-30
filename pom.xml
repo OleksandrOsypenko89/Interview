@@ -32,11 +32,6 @@
     </dependencyManagement>
 
     <dependencies>
-<!--        &lt;!&ndash;suppress VulnerableLibrariesLocal &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
         <!--suppress VulnerableLibrariesLocal -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

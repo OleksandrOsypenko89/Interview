@@ -8,10 +8,25 @@
 
 <body>
 <div th:if="${!session.user.listStudyQuestion.isEmpty()}">
+    <div id="overlay" onclick="off()">
+        <div id="text">
+            <div class="center text-bold big-text_2 red_color">
+                <p>Слишком много вопросов к изучению.
+                <p>Изучите их чтобы снова начать проходить собеседования.
+            </div>
+        </div>
+    </div>
+
     <div class="container-buttons">
-        <form th:action="@{/interview}" method="post">
-            <button type="submit" class="buttonSerene">Interview</button>
-        </form>
+        <div th:if="${session.user.listStudyQuestion.size() > 10}">
+            <button class="buttonSerene" onclick="on()">Interview</button>
+        </div>
+        <div th:if="${session.user.listStudyQuestion.size() < 10}">
+            <form th:action="@{/interview}" method="post">
+                <button type="submit" class="buttonSerene">Interview</button>
+            </form>
+        </div>
+
         <form th:action="@{/testing}" method="post">
             <button type="submit" class="buttonSerene">Testing</button>
         </form>
@@ -24,9 +39,6 @@
             </td>
             <td>
                 <p th:utext="${question.getAnswer()}"></p>
-<!--                <div th:if="${question.getImage() != null}">-->
-<!--                    <img th:src="@{${question.getImage()}}" alt="image"/>-->
-<!--                </div>-->
             </td>
             <td>
                 <form th:action="@{/delete}" method="post">
@@ -45,14 +57,21 @@
         <h2 class="red_color text-bold">Как работает этот сервис?</h2>
         <p>Сервис заточен в основном на самостоятельную работу.
         <p>В нем есть два режима Interview и Testing
-        <p><span class="red_color text-bold">Interview</span> - тебе по очереди будут выведены 15 вопросов. На них желательно отвечать как можно развернуто и вслух, чтобы выработать уверенность в ответе.
+        <p><span class="red_color text-bold">Interview</span> - тебе по очереди будут выведены 15 вопросов. На них
+            желательно отвечать как можно развернуто и вслух, чтобы выработать уверенность в ответе.
         <p>Так же в этом режиме есть три ключевых кнопки.
-        <p><span class="green_color text-bold">Знаю ответ</span> - при нажатии на кнопку ты переходишь к следующему вопросу.
-        <p><span class="green_color text-bold">Посмотреть ответ</span> - выведет на экран ответ на данный вопрос. Это сделано для того чтобы убедится в правильности ответа.
-        <p><span class="green_color text-bold">Не знаю ответ</span> - при нажатии на кнопку ты переходишь к следующему вопросу. При этом вопрос на который ты не знал ответа будет сохранен в список вопросов к изучению.
-        <p>Кнопки "Знаю ответ" и "Не знаю ответ" ведут подсчет статистики для того чтобы ты видел свою динамику прохождения собеседований. Статистика сохраняется 7 дней.
-        <p><span class="red_color text-bold">Testing</span> - будет выведен вопрос или кусок кода с вариантами ответа. Результаты так же записываются в статистику.
-        <p>Рекомендуется после каждого Interview изучать вопросы на которые не знал ответ чтобы их не собирать слишком много</p>
+        <p><span class="green_color text-bold">Знаю ответ</span> - при нажатии на кнопку ты переходишь к следующему
+            вопросу.
+        <p><span class="green_color text-bold">Посмотреть ответ</span> - выведет на экран ответ на данный вопрос. Это
+            сделано для того чтобы убедится в правильности ответа.
+        <p><span class="green_color text-bold">Не знаю ответ</span> - при нажатии на кнопку ты переходишь к следующему
+            вопросу. При этом вопрос на который ты не знал ответа будет сохранен в список вопросов к изучению.
+        <p>Кнопки "Знаю ответ" и "Не знаю ответ" ведут подсчет статистики для того чтобы ты видел свою динамику
+            прохождения собеседований. Статистика сохраняется 7 дней.
+        <p><span class="red_color text-bold">Testing</span> - будет выведен вопрос или кусок кода с вариантами ответа.
+            Результаты так же записываются в статистику.
+        <p>Рекомендуется после каждого Interview изучать вопросы на которые не знал ответ чтобы их не собирать слишком
+            много</p>
     </div>
 
     <div class="container-buttons centered">
@@ -66,5 +85,15 @@
     <div class="center">
     </div>
 </div>
+
+<script>
+    function on() {
+        document.getElementById("overlay").style.display = "block";
+    }
+
+    function off() {
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
 </body>
 </html>
