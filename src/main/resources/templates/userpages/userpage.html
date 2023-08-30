@@ -24,9 +24,9 @@
             </td>
             <td>
                 <p th:utext="${question.getAnswer()}"></p>
-                <div th:if="${question.getImage() != null}">
-                    <img th:src="@{${question.getImage()}}" alt="image"/>
-                </div>
+<!--                <div th:if="${question.getImage() != null}">-->
+<!--                    <img th:src="@{${question.getImage()}}" alt="image"/>-->
+<!--                </div>-->
             </td>
             <td>
                 <form th:action="@{/delete}" method="post">

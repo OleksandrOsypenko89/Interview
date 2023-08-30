@@ -26,6 +26,7 @@ public class UserPageController {
     public String userPage(
             @SessionAttribute(name = "userId") Long id
     ) {
+        log.info("user id = " + id);
         User user = userService.getUser(id);
         questionService.sortStudyQuestion(user);
         session.setAttribute("user", user);

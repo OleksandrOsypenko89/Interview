@@ -10,9 +10,6 @@
 <div id="overlay" onclick="off()">
     <div id="text">
         <p th:utext="${session.question.getAnswer()}"></p>
-        <div th:if="${session.question.getImage() != null}">
-            <img th:src="@{${session.question.getImage()}}" alt="image"/>
-        </div>
     </div>
 </div>
 

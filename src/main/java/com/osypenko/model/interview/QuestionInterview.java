@@ -25,8 +25,6 @@ public class QuestionInterview {
 
     private String answer;
 
-    private String image;
-
     @Enumerated(EnumType.STRING)
     private Topic topic;
 
