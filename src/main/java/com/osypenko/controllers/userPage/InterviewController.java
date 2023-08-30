@@ -31,9 +31,10 @@ public class InterviewController {
             , Statistic statistic
     ) {
         if (list.isEmpty()) {
-            int percentage = (know * 100) / (int) session.getAttribute("size");
+            int sizeListQuestion = (int) session.getAttribute("size");
+            int percentage = (know * 100) /  sizeListQuestion;
 
-            statisticService.saveNewStatistic(user, statistic, percentage);
+            statisticService.saveNewStatistic(user, statistic, percentage, know, sizeListQuestion);
 
             user.getListQuestionInterviews().removeAll(user.getListQuestionInterviews());
             userService.createAndUpdateUser(user);

@@ -29,6 +29,7 @@ public class StatisticController {
         User user = userService.getUser(id);
         statisticService.deletionOfOutdatedStatistics(user);
         List<Statistic> list = statisticService.sortStatistic(user);
+        session.setAttribute("generalResult", statisticService.result());
         session.setAttribute("statisticList", list);
         session.setAttribute("user", user);
         return "userpages/statistic";

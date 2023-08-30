@@ -27,6 +27,10 @@ public class Statistic {
 
     @Enumerated(EnumType.STRING)
     private Type type;
+
+    private Integer knowAnswer;
+
+    private Integer questions;
 }
 
 

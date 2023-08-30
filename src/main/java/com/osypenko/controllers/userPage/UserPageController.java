@@ -39,7 +39,11 @@ public class UserPageController {
     ) {
         if (user.getListQuestionInterviews().isEmpty()) {
             user.setListQuestionInterviews(questionService.createListQuestion());
-            userService.createAndUpdateUser(user);
+            try {
+                userService.createAndUpdateUser(user);
+            } catch (IllegalStateException e) {
+                log.info("Перехват плавающей ошибки " + e);
+            }
         }
         List<QuestionInterview> list = questionService.sortInterviewList(user);
 

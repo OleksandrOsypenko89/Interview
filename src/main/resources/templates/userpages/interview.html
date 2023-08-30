@@ -8,6 +8,9 @@
 
 <body>
 <div class="centered" style="padding:20px">
+    <div th:if="${session.user.getRole().toString()} == ADMIN">
+        <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.question.getId()}"></span>
+    </div>
     <div class="text-bold big-text_2">
         Вопрос по теме - <span th:utext="${session.question.getTopic()}"></span>
     </div>

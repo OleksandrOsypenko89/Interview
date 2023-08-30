@@ -11,9 +11,19 @@
     <h1 class="text-bold title_color big-text_1 text-center">Statistic</h1>
     <div class="center">
         <table class="padding">
+            <tr class="text-bold">
+                <th>Дата</th>
+                <th>Правильных ответов</th>
+                <th>Показатель в %</th>
+                <th>Тип</th>
+            </tr>
+
             <tr th:each="statistic : ${session.statisticList}">
                 <td>
                     <p th:text="${statistic.getDate()}"/>
+                </td>
+                <td>
+                    <p th:text="${statistic.getKnowAnswer()} + '/' + ${statistic.getQuestions()}"/>
                 </td>
                 <td>
                     <div th:if="${statistic.getResult()} < 60">
@@ -31,6 +41,19 @@
                 </td>
             </tr>
         </table>
+        <br>
+        <div th:if="${session.generalResult} < 60">
+            <span class="red_color text-bold big-text_3"
+                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
+        </div>
+        <div th:if="${session.generalResult} > 90">
+            <span class="green_color text-bold big-text_3"
+                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
+        </div>
+        <div th:if="${session.generalResult} < 90 AND ${session.generalResult} > 60">
+            <span class="text-bold big-text_3"
+                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
+        </div>
         <br>
     </div>
     <div class="center">

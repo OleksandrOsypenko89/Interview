@@ -21,6 +21,10 @@ import java.util.Set;
 public class StatisticService {
     private final StatisticRepo statisticRepo;
 
+    public List<Statistic> findAll() {
+        return statisticRepo.findAll();
+    }
+
     public void delete(Statistic statistic) {
         statisticRepo.delete(statistic);
     }
@@ -54,10 +58,28 @@ public class StatisticService {
         return list;
     }
 
-    public void saveNewStatistic(User user, Statistic statistic, int percentage) {
+    public void saveNewStatistic(
+            User user
+            , Statistic statistic
+            , int percentage
+            , int knowAnswer
+            , int sizeListQuestion
+    ) {
         statistic.setResult(percentage);
         statistic.setUserId(user.getId());
         statistic.setType(Type.INTERVIEW);
+        statistic.setKnowAnswer(knowAnswer);
+        statistic.setQuestions(sizeListQuestion);
         addStatistic(statistic);
+    }
+
+    public int result() {
+        List<Statistic> all = findAll();
+        int size = all.size();
+        int general = 0;
+        for (Statistic statistic : all) {
+            general += statistic.getResult();
+        }
+        return  general / size;
     }
 }
