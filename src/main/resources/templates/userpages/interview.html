@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Interview</title>
     <th:block th:replace="~{layout/linksstyles}"/>
 </head>
 
 <body>
-<div id="overlay" onclick="off()">
-    <div id="text">
-        <p th:utext="${session.question.getAnswer()}"></p>
-    </div>
-</div>
-
 <div class="centered" style="padding:20px">
+    <div class="text-bold big-text_2">
+        Вопрос по теме - <span th:utext="${session.question.getTopic()}"></span>
+    </div>
     <p class="text-bold big-text_1 title_color" th:utext="${session.question.getQuestion()}"></p>
     <br>
     <div class="container-buttons">
         <form th:action="@{/knowAnswer}" method="post" th:object="${session.question}">
             <button class="buttonGreen">Знаю ответ</button>
         </form>
-        <button class="buttonGrey" onclick="on()">Посмотреть ответ</button>
+
+        <button class="buttonGrey" id="myBtn">Посмотреть ответ</button>
+
         <form th:action="@{/noAnswer}" method="post" th:object="${session.question}">
             <button class="buttonRed">Не знаю ответ</button>
         </form>
@@ -28,15 +27,15 @@
     <br>
 
 </div>
+<div id="myModal" class="modal">
+    <div class="modal-content style_text_model">
+        <span class="close"></span>
+        <p th:utext="${session.question.getAnswer()}"></p>
+        <br>
+    </div>
+</div>
 
-<script>
-    function on() {
-        document.getElementById("overlay").style.display = "block";
-    }
+<script th:src="@{javascript/modal.js}"></script>
 
-    function off() {
-        document.getElementById("overlay").style.display = "none";
-    }
-</script>
 </body>
 </html>
