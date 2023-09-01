@@ -1,5 +1,6 @@
 package com.osypenko.controllers.userPage;
 
+import com.osypenko.exception.UserException;
 import com.osypenko.model.interview.QuestionInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.services.QuestionService;
@@ -41,8 +42,8 @@ public class UserPageController {
             user.setListQuestionInterviews(questionService.createListQuestion());
             try {
                 userService.createAndUpdateUser(user);
-            } catch (IllegalStateException e) {
-                log.info("Перехват плавающей ошибки " + e);
+            } catch (UserException e) {
+                log.error("Перехват плавающей ошибки " + e);
             }
         }
         List<QuestionInterview> list = questionService.sortInterviewList(user);
@@ -66,5 +67,10 @@ public class UserPageController {
     @PostMapping("/testing")
     public String testingPage() {
         return "redirect:/testing";
+    }
+
+    @PostMapping("/admin")
+    public String adminPage() {
+        return "redirect:/adminpage";
     }
 }

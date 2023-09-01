@@ -4,7 +4,8 @@
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     left: 0;
     top: 0;
     width: 100%;
@@ -18,7 +19,8 @@
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid black;
+    /*border: 1px solid #888;*/
     width: 80%;
 }
 

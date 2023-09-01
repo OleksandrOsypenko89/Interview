@@ -26,10 +26,15 @@
                 <button type="submit" class="buttonSerene">Interview</button>
             </form>
         </div>
-
+        <div th:if="${session.user.getRole().toString()} == ADMIN">
+            <form th:action="@{/admin}" method="post">
+                <button type="submit" class="buttonSerene">Admin Page</button>
+            </form>
+        </div>
         <form th:action="@{/testing}" method="post">
             <button type="submit" class="buttonSerene">Testing</button>
         </form>
+
     </div>
     <h1 class="text-bold title_color big-text_2 text-center">Study questions</h1>
     <table class="table_study_questions">
@@ -56,6 +61,11 @@
         <form th:action="@{/interview}" method="post">
             <button type="submit" class="buttonSerene">Interview</button>
         </form>
+        <div th:if="${session.user.getRole().toString()} == ADMIN">
+            <form th:action="@{/admin}" method="post">
+                <button type="submit" class="buttonSerene">Admin Page</button>
+            </form>
+        </div>
         <form th:action="@{/testing}" method="post">
             <button type="submit" class="buttonSerene">Testing</button>
         </form>

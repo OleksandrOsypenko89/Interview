@@ -21,10 +21,6 @@ import java.util.Set;
 public class StatisticService {
     private final StatisticRepo statisticRepo;
 
-    public List<Statistic> findAll() {
-        return statisticRepo.findAll();
-    }
-
     public void delete(Statistic statistic) {
         statisticRepo.delete(statistic);
     }
@@ -73,11 +69,11 @@ public class StatisticService {
         addStatistic(statistic);
     }
 
-    public int result() {
-        List<Statistic> all = findAll();
-        int size = all.size();
+    public int result(User user) {
+        Set<Statistic> userStatistic = user.getStatistic();
+        int size = userStatistic.size();
         int general = 0;
-        for (Statistic statistic : all) {
+        for (Statistic statistic : userStatistic) {
             general += statistic.getResult();
         }
         return  general / size;
