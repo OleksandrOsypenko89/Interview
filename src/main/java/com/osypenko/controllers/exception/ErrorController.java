@@ -1,5 +1,6 @@
-package com.osypenko.exception;
+package com.osypenko.controllers.exception;
 
+import com.osypenko.exception.UserException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

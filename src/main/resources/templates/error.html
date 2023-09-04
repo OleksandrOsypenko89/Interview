@@ -8,7 +8,7 @@
 <body class="centered">
 
 <div class="big-text_3 text-bold">
-    <p class="big-text_1 title_color">An error has occurred.</p>
+    <span class="big-text_1 title_color">An error has occurred</span>
     <p th:text="${session.exception.getStatusCode()}"/>
     <p th:text="${session.exception.getMessage()}"/>
 </div>
@@ -18,8 +18,6 @@
 <form action="/">
     <button class="buttonSerene">Go to start page</button>
 </form>
-
-<img class="centered" th:src="@{images/view/page_under_construction.jpg}" alt="image"/>
 
 </body>
 </html>
