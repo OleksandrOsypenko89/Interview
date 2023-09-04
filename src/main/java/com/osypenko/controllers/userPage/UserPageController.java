@@ -1,6 +1,5 @@
 package com.osypenko.controllers.userPage;
 
-import com.osypenko.exception.UserException;
 import com.osypenko.model.interview.QuestionInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.services.QuestionService;
@@ -27,11 +26,8 @@ public class UserPageController {
     public String userPage(
             @SessionAttribute(name = "userId") Long id
     ) {
-        if (id == null) {
-            return "login";
-        }
-        log.info("user id = " + id);
         User user = userService.getUser(id);
+        log.info("user " + user);
         questionService.sortStudyQuestion(user);
         session.setAttribute("user", user);
         return "userpages/userpage";
@@ -43,11 +39,7 @@ public class UserPageController {
     ) {
         if (user.getListQuestionInterviews().isEmpty()) {
             user.setListQuestionInterviews(questionService.createListQuestion());
-            try {
-                userService.createAndUpdateUser(user);
-            } catch (UserException e) {
-                log.error("Перехват плавающей ошибки " + e);
-            }
+            userService.createAndUpdateUser(user);
         }
         List<QuestionInterview> list = questionService.sortInterviewList(user);
 

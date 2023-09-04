@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="~{layout/linksstyles}"/>
+</head>
+<body class="centered">
+
+<div class="big-text_3 text-bold">
+    <p class="big-text_1 title_color">An error has occurred.</p>
+    <p th:text="${session.exception.getStatusCode()}"/>
+    <p th:text="${session.exception.getMessage()}"/>
+</div>
+
+<br>
+
+<form action="/">
+    <button class="buttonSerene">Go to start page</button>
+</form>
+
+<img class="centered" th:src="@{images/view/page_under_construction.jpg}" alt="image"/>
+
+</body>
+</html>

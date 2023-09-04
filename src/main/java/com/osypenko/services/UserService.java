@@ -44,11 +44,6 @@ public class UserService {
 
     public User getUser(Long id) {
         Optional<User> optionalUser = findById(id);
-        if (optionalUser.isPresent()){
-            User user = optionalUser.get();
-            log.error("user " + user);
-            return user;
-        }
-        return null;
+        return optionalUser.orElse(null);
     }
 }
