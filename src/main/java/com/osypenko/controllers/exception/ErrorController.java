@@ -14,7 +14,13 @@ public class ErrorController {
     private final HttpSession session;
 
     @GetMapping("/error")
-    @ExceptionHandler({ServletRequestBindingException.class, UserException.class})
+    @ExceptionHandler(
+            {
+                    ServletRequestBindingException.class
+                    , UserException.class
+                    , Exception.class
+            }
+    )
     public String getErrorPage(ServletRequestBindingException exception) {
         log.error(exception.getMessage());
         session.setAttribute("exception", exception);

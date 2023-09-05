@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create and Update Question</title>
+    <th:block th:replace="~{layout/linksstyles}"/>
+</head>
+
+<body>
+<br>
+<table class="table_study_questions">
+    <form method="post" th:action="@{/save}" th:object="${question}">
+        <td>
+            <!--suppress HtmlFormInputWithoutLabel -->
+            <textarea class="textarea1" name="updateQuestion" th:text="*{question}"/>
+        </td>
+        <td>
+            <!--suppress HtmlFormInputWithoutLabel -->
+            <textarea class="textarea2" name="updateAnswer" th:text="*{answer}"/>
+        </td>
+        <td>
+            <!--suppress HtmlFormInputWithoutLabel -->
+            <select th:field="*{topic}">
+                <option th:each="topic : ${allTopic}" th:value="${topic}" th:text="${topic}"/>
+            </select>
+        </td>
+    </form>
+</table>
+<br>
+
+<table class="table_study_questions">
+    <td>
+        <p class="text-bold" th:utext="${session.updateQuestion.getQuestion()}"></p>
+    </td>
+    <td>
+        <p th:utext="${session.updateQuestion.getAnswer()}"></p>
+    </td>
+    <td>
+        <p th:utext="${session.updateQuestion.getTopic()}"></p>
+    </td>
+</table>
+
+</body>
+</html>
