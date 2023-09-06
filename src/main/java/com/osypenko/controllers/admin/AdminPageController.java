@@ -23,7 +23,7 @@ public class AdminPageController {
 
     @PostMapping("/adminQuestionInterview")
     public String adminQuestionInterview(String interview) {
-        log.error("interview = " + interview);
+        log.error("search question interview = " + interview);
         if (adminService.searchQuestion(interview) != null) {
             session.setAttribute("updateQuestion", adminService.searchQuestion(interview));
             return "redirect:/createandupdatequestion";

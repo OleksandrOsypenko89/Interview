@@ -8,8 +8,8 @@
 
 <body>
 <br>
-<table class="table_study_questions">
-    <form method="post" th:action="@{/save}" th:object="${question}">
+<form method="post" th:action="@{/update}" th:object="${session.updateQuestion}">
+    <table class="table_study_questions">
         <td>
             <!--suppress HtmlFormInputWithoutLabel -->
             <textarea class="textarea1" name="updateQuestion" th:text="*{question}"/>
@@ -18,14 +18,10 @@
             <!--suppress HtmlFormInputWithoutLabel -->
             <textarea class="textarea2" name="updateAnswer" th:text="*{answer}"/>
         </td>
-        <td>
-            <!--suppress HtmlFormInputWithoutLabel -->
-            <select th:field="*{topic}">
-                <option th:each="topic : ${allTopic}" th:value="${topic}" th:text="${topic}"/>
-            </select>
-        </td>
-    </form>
-</table>
+    </table>
+    <br>
+    <button class="buttonSerene center" type="submit">Переглянути змінити</button>
+</form>
 <br>
 
 <table class="table_study_questions">
@@ -39,6 +35,7 @@
         <p th:utext="${session.updateQuestion.getTopic()}"></p>
     </td>
 </table>
+
 
 </body>
 </html>
