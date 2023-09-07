@@ -27,3 +27,13 @@ table td {
     padding-left: 30%;
     padding-right: 30%;
 }
+
+.td_red {
+    border: 1px dashed red;
+    padding: 5px;
+}
+
+.td_green {
+    border: 1px dashed green;
+    padding: 5px;
+}

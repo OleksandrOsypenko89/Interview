@@ -10,12 +10,15 @@
 <div th:if="${session.user.getRole().toString()} == ADMIN">
     <div class="text-center">
         <p class="text-bold big-text_2 text-center"
-           th:text="'Зарегистрировано пользователей - ' + ${session.sizeUsers}"/>
+           th:text="'Зареестровано користувачів - ' + ${session.sizeUsers}"/>
         <p>
     </div>
 
+
     <div class="split left">
             <div class="centered">
+                <div th:text="'Питань в базі данних - ' + ${session.sizeAllQuestion}"/>
+                <br>
                 <form th:action="@{/adminQuestionInterview}" method="post">
                     <div class="input-wrapper">
                         <!--suppress HtmlFormInputWithoutLabel -->

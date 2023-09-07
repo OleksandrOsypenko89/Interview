@@ -1,6 +1,8 @@
 package com.osypenko.controllers.admin;
 
+import com.osypenko.model.interview.QuestionInterview;
 import com.osypenko.services.AdminService;
+import com.osypenko.services.QuestionService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,11 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class AdminPageController {
     private final AdminService adminService;
+    private final QuestionService questionService;
     private final HttpSession session;
 
     @GetMapping("/adminpage")
     public String getAdminPage() {
         session.setAttribute("sizeUsers", adminService.sizeUserList());
+        session.setAttribute("sizeAllQuestion", questionService.sizeAllQuestion());
         return "admin/adminpage";
     }
 
@@ -32,8 +36,9 @@ public class AdminPageController {
     }
 
     @PostMapping("/adminNewQuestionInterview")
-    public String adminNewQuestionInterview() {
-        return "redirect:/adminpage";
+    public String adminNewQuestionInterview(QuestionInterview questionInterview) {
+        session.setAttribute("updateQuestion", questionInterview);
+        return "redirect:/createandupdatequestion";
     }
 
     @PostMapping("/adminQuestionTesting")

@@ -8,33 +8,58 @@
 
 <body>
 <br>
-<form method="post" th:action="@{/update}" th:object="${session.updateQuestion}">
-    <table class="table_study_questions">
-        <td>
-            <!--suppress HtmlFormInputWithoutLabel -->
-            <textarea class="textarea1" name="updateQuestion" th:text="*{question}"/>
-        </td>
-        <td>
-            <!--suppress HtmlFormInputWithoutLabel -->
-            <textarea class="textarea2" name="updateAnswer" th:text="*{answer}"/>
-        </td>
-    </table>
-    <br>
-    <button class="buttonSerene center" type="submit">Переглянути змінити</button>
-</form>
+<div class="center">
+    <form method="post" th:action="@{/update}" th:object="${modelUpdateQuestion}">
+        <table class="table_study_questions">
+            <td class="td_red">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea1" th:field="*{question}"></textarea>
+            </td>
+            <td class="td_red">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea2" th:field="*{answer}"></textarea>
+            </td>
+            <td class="td_red">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <select th:field="*{topic}">
+                    <option th:each="allTopic : ${allTopic}" th:value="${allTopic}" th:text="${allTopic}"/>
+                </select>
+                <p>
+                    <button class="buttonGreen" type="submit">✅</button>
+            </td>
+        </table>
+    </form>
+</div>
 <br>
 
-<table class="table_study_questions">
-    <td>
+<table class="table_study_questions td_green">
+    <td class="td_green">
         <p class="text-bold" th:utext="${session.updateQuestion.getQuestion()}"></p>
     </td>
-    <td>
+    <td class="td_green">
         <p th:utext="${session.updateQuestion.getAnswer()}"></p>
     </td>
-    <td>
+    <td class="td_green">
         <p th:utext="${session.updateQuestion.getTopic()}"></p>
     </td>
 </table>
+<br>
+
+<div class="container-buttons center">
+    <form method="post" th:action="@{/saveNewQuestion}">
+        <button class="buttonGreen center" type="submit">Зберегти</button>
+    </form>
+
+    <form method="post" th:action="@{/redirectAdminPage}">
+        <button class="buttonSerene center" type="submit">Повернутись в адмін панель</button>
+    </form>
+
+    <form method="post" th:action="@{/deleteQuestion}">
+        <button class="buttonRed center" type="submit"
+                onclick="alert('Точно потрібно видалити? Якщо ні то просто обнови сторінку браузера.')">Видалити
+        </button>
+    </form>
+</div>
 
 
 </body>

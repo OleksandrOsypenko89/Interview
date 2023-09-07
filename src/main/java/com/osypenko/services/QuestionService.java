@@ -24,6 +24,15 @@ public class QuestionService {
         return questionRepo.findById(id);
     }
 
+    public QuestionInterview save(QuestionInterview questionInterview) {
+        questionRepo.save(questionInterview);
+        return questionInterview;
+    }
+
+    public void delete(QuestionInterview questionInterview) {
+        questionRepo.delete(questionInterview);
+    }
+
     public Integer sizeAllQuestion() {
         return getAll().size();
     }
