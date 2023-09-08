@@ -12,7 +12,7 @@ import java.util.*;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class QuestionService {
+public class QuestionInterviewService {
     private final QuestionRepo questionRepo;
     private final UserService userService;
 
