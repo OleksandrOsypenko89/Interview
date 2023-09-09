@@ -10,15 +10,21 @@
 <div class="big-text_3 text-bold">
     <span class="big-text_1 title_color">An error has occurred</span>
     <div th:if="${session.exception} != null">
-        <p th:text="${session.exception.getStatusCode()}"/>
         <p th:text="${session.exception.getMessage()}"/>
     </div>
 </div>
 <br>
 
-<form action="/">
-    <button class="buttonSerene">Go to start page</button>
-</form>
+<div th:if="${session.userId != null}">
+    <form action="/userpage">
+        <button class="buttonSerene">Go to start page</button>
+    </form>
+</div>
+<div th:if="${session.userId == null}">
+    <form action="/">
+        <button class="buttonSerene">Go to start page</button>
+    </form>
+</div>
 
 </body>
 </html>

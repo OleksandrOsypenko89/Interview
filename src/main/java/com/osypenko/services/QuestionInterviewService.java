@@ -2,7 +2,7 @@ package com.osypenko.services;
 
 import com.osypenko.model.interview.QuestionInterview;
 import com.osypenko.model.users.User;
-import com.osypenko.repository.QuestionRepo;
+import com.osypenko.repository.QuestionInterviewRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,24 +13,20 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class QuestionInterviewService {
-    private final QuestionRepo questionRepo;
+    private final QuestionInterviewRepo questionInterviewRepo;
     private final UserService userService;
 
     public List<QuestionInterview> getAll() {
-        return questionRepo.findAll();
+        return questionInterviewRepo.findAll();
     }
 
     public Optional<QuestionInterview> get(Integer id) {
-        return questionRepo.findById(id);
+        return questionInterviewRepo.findById(id);
     }
 
     public QuestionInterview save(QuestionInterview questionInterview) {
-        questionRepo.save(questionInterview);
+        questionInterviewRepo.save(questionInterview);
         return questionInterview;
-    }
-
-    public void delete(QuestionInterview questionInterview) {
-        questionRepo.delete(questionInterview);
     }
 
     public Integer sizeAllQuestion() {

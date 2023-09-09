@@ -7,6 +7,57 @@
 </head>
 
 <body>
-Create and Update Testing
+<br>
+<div class="center">
+    <form method="post" th:action="@{/updateTestingInterview}" th:object="${modelUpdateTestingInterview}">
+        <table class="table_study_questions">
+            <td class="td_red">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea3" th:field="*{question}"></textarea>
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea3" th:field="*{answer}"></textarea>
+            </td>
+            <td class="td_red">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea4 red_color" th:field="*{firstIncorrectAnswer}"></textarea>
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea4 red_color" th:field="*{secondIncorrectAnswer}"></textarea>
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea4 red_color" th:field="*{thirdIncorrectAnswer}"></textarea>
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea4 green_color" th:field="*{correctAnswer}"></textarea>
+                <p>
+                    <button class="buttonGreen" type="submit">✅</button>
+            </td>
+        </table>
+    </form>
+</div>
+<br>
+
+<div class="center">
+    <p class="text-bold" th:utext="${session.updateTestingInterview.getQuestion()}"></p>
+    <p>
+    <button class="buttonRed" th:text="${session.updateTestingInterview.getFirstIncorrectAnswer()}"/>
+    <p>
+    <button type="button" class="buttonRed" th:text="${session.updateTestingInterview.getSecondIncorrectAnswer()}"/>
+    <p>
+    <button type="button" class="buttonRed" th:text="${session.updateTestingInterview.getThirdIncorrectAnswer()}"/>
+    <p>
+    <button type="button" class="buttonGreen" th:text="${session.updateTestingInterview.getCorrectAnswer()}"/>
+    <p>
+    <button type="button" class="buttonGreen" th:text="Answer"/>
+</div>
+
+<br>
+<div class="container-buttons center">
+    <form method="post" th:action="@{/saveTestingInterview}">
+        <button class="buttonGreen center" type="submit">Зберегти</button>
+    </form>
+
+    <form method="post" th:action="@{/redirectAdminPage}">
+        <button class="buttonSerene center" type="submit">Повернутись в адмін панель</button>
+    </form>
+</div>
+
 </body>
 </html>

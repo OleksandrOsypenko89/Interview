@@ -9,7 +9,7 @@
 <body>
 <br>
 <div class="center">
-    <form method="post" th:action="@{/update}" th:object="${modelUpdateQuestion}">
+    <form method="post" th:action="@{/updateQuestionInterview}" th:object="${modelUpdateQuestionInterview}">
         <table class="table_study_questions">
             <td class="td_red">
                 <!--suppress HtmlFormInputWithoutLabel -->
@@ -22,7 +22,7 @@
             <td class="td_red">
                 <!--suppress HtmlFormInputWithoutLabel -->
                 <select th:field="*{topic}">
-                    <option th:each="allTopic : ${allTopic}" th:value="${allTopic}" th:text="${allTopic}"/>
+                    <option th:each="allTopicInterview : ${allTopicInterview}" th:value="${allTopicInterview}" th:text="${allTopicInterview}"/>
                 </select>
                 <p>
                     <button class="buttonGreen" type="submit">✅</button>
@@ -34,33 +34,26 @@
 
 <table class="table_study_questions td_green">
     <td class="td_green">
-        <p class="text-bold" th:utext="${session.updateQuestion.getQuestion()}"></p>
+        <p class="text-bold" th:utext="${session.updateQuestionInterview.getQuestion()}"></p>
     </td>
     <td class="td_green">
-        <p th:utext="${session.updateQuestion.getAnswer()}"></p>
+        <p th:utext="${session.updateQuestionInterview.getAnswer()}"></p>
     </td>
     <td class="td_green">
-        <p th:utext="${session.updateQuestion.getTopic()}"></p>
+        <p th:utext="${session.updateQuestionInterview.getTopic()}"></p>
     </td>
 </table>
 <br>
 
 <div class="container-buttons center">
-    <form method="post" th:action="@{/saveQuestion}">
+    <form method="post" th:action="@{/saveQuestionInterview}">
         <button class="buttonGreen center" type="submit">Зберегти</button>
     </form>
 
     <form method="post" th:action="@{/redirectAdminPage}">
         <button class="buttonSerene center" type="submit">Повернутись в адмін панель</button>
     </form>
-
-    <form method="post" th:action="@{/deleteQuestion}">
-        <button class="buttonRed center" type="submit"
-                onclick="alert('Точно потрібно видалити? Якщо ні то просто обнови сторінку браузера.')">Видалити
-        </button>
-    </form>
 </div>
-
 
 </body>
 </html>

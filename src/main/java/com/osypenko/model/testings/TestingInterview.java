@@ -1,7 +1,10 @@
 package com.osypenko.model.testings;
 
+import com.osypenko.model.users.User;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,14 +21,21 @@ public class TestingInterview {
 
     private String question;
 
-    @Column(name = "answer_1")
-    private String answer1;
+    private String firstIncorrectAnswer;
 
-    @Column(name = "answer_2")
-    private String answer2;
+    private String secondIncorrectAnswer;
 
-    @Column(name = "answer_3")
-    private String answer3;
+    private String thirdIncorrectAnswer;
 
     private String correctAnswer;
+
+    private String answer;
+
+    @ToString.Exclude
+    @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "lists_question_and_testing_interviews",
+            joinColumns = @JoinColumn(name = "testing_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+    private List<User> userListQuestion;
 }

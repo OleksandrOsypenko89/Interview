@@ -31,8 +31,8 @@ public class QuestionInterview {
     @ToString.Exclude
     @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "list_question_interviews",
-            joinColumns = @JoinColumn(name = "question_id", referencedColumnName = "id"),
+    @JoinTable(name = "lists_question_and_testing_interviews",
+            joinColumns = @JoinColumn(name = "interview_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     private List<User> userListQuestion;
 

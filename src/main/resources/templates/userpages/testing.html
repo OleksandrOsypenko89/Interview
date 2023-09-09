@@ -6,6 +6,13 @@
     <th:block th:replace="~{layout/linksstyles}"/>
 </head>
 <body>
-
+<div th:each="testing : ${session.all}">
+    <div th:text="${testing.id}"/>
+    <div th:text="${testing.question}"/>
+    <div th:text="${testing.firstIncorrectAnswer}"/>
+    <div th:text="${testing.secondIncorrectAnswer}"/>
+    <div th:text="${testing.thirdIncorrectAnswer}"/>
+    <div th:text="${testing.correctAnswer}"/>
+</div>
 </body>
 </html>

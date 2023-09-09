@@ -19,18 +19,17 @@ public class CreateAndUpdateQuestionInterviewController {
 
     @GetMapping("/createandupdatequestion")
     public String createAndUpdateQuestion(
-            @SessionAttribute(name = "updateQuestion") QuestionInterview questionInterview
+            @SessionAttribute(name = "updateQuestionInterview") QuestionInterview questionInterview
             , Model model
     ) {
-        model.addAttribute("idQuestion", questionInterview.getId());
-        model.addAttribute("modelUpdateQuestion", questionInterview);
-        model.addAttribute("allTopic", Topic.values());
+        model.addAttribute("modelUpdateQuestionInterview", questionInterview);
+        model.addAttribute("allTopicInterview", Topic.values());
         return "admin/createandupdatequestion";
     }
 
-    @PostMapping("/update")
-    public String update(
-            @SessionAttribute(name = "updateQuestion") QuestionInterview questionInterview
+    @PostMapping("/updateQuestionInterview")
+    public String updateQuestionInterview(
+            @SessionAttribute(name = "updateQuestionInterview") QuestionInterview questionInterview
             , QuestionInterview updateQuestionInterview
     ) {
         questionInterview.setAnswer(updateQuestionInterview.getAnswer());
@@ -39,24 +38,11 @@ public class CreateAndUpdateQuestionInterviewController {
         return "redirect:/createandupdatequestion";
     }
 
-    @PostMapping("/saveQuestion")
-    public String save(
-            @SessionAttribute(name = "updateQuestion") QuestionInterview questionInterview
+    @PostMapping("/saveQuestionInterview")
+    public String saveQuestionInterview(
+            @SessionAttribute(name = "updateQuestionInterview") QuestionInterview questionInterview
     ) {
         questionInterviewService.save(questionInterview);
-        return "redirect:/adminpage";
-    }
-
-    @PostMapping("/deleteQuestion")
-    public String delete(
-            @SessionAttribute(name = "updateQuestion") QuestionInterview questionInterview
-    ) {
-        questionInterviewService.delete(questionInterview);
-        return "redirect:/adminpage";
-    }
-
-    @PostMapping("/redirectAdminPage")
-    public String redirectAdminPage() {
         return "redirect:/adminpage";
     }
 }
