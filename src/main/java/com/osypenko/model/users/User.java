@@ -2,6 +2,7 @@ package com.osypenko.model.users;
 
 import com.osypenko.model.interview.QuestionInterview;
 import com.osypenko.model.statistic.Statistic;
+import com.osypenko.model.testings.TestingInterview;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,10 +37,18 @@ public class User {
     @ToString.Exclude
     @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "lists_question_and_testing_interviews",
+    @JoinTable(name = "lists_interview",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "interview_id", referencedColumnName = "id"))
     private Set<QuestionInterview> listQuestionInterviews;
+
+    @ToString.Exclude
+    @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "lists_testing",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "testing_id", referencedColumnName = "id"))
+    private Set<TestingInterview> listQuestionTesting;
 
     @ToString.Exclude
     @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")

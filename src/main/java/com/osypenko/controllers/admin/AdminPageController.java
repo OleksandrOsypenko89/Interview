@@ -3,8 +3,8 @@ package com.osypenko.controllers.admin;
 import com.osypenko.model.interview.QuestionInterview;
 import com.osypenko.model.testings.TestingInterview;
 import com.osypenko.services.AdminService;
-import com.osypenko.services.QuestionInterviewService;
-import com.osypenko.services.TestingInterviewService;
+import com.osypenko.services.InterviewService;
+import com.osypenko.services.TestingService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,15 +19,15 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AdminPageController {
     private final AdminService adminService;
-    private final QuestionInterviewService questionInterviewService;
-    private final TestingInterviewService testingInterviewService;
+    private final InterviewService interviewService;
+    private final TestingService testingService;
     private final HttpSession session;
 
     @GetMapping("/adminpage")
     public String getAdminPage() {
         session.setAttribute("sizeUsers", adminService.sizeUserList());
-        session.setAttribute("sizeAllQuestionInterview", questionInterviewService.sizeAllQuestion());
-        session.setAttribute("sizeAllTestingInterview", testingInterviewService.sizeAllQuestion());
+        session.setAttribute("sizeAllQuestionInterview", interviewService.sizeAllQuestion());
+        session.setAttribute("sizeAllTestingInterview", testingService.sizeAllQuestion());
         return "admin/adminpage";
     }
 
@@ -51,7 +51,7 @@ public class AdminPageController {
     public String adminQuestionTesting(String testing) {
         log.error("search id testing = " + testing);
         int id = Integer.parseInt(testing);
-        Optional<TestingInterview> optionalTestingInterview = testingInterviewService.get(id);
+        Optional<TestingInterview> optionalTestingInterview = testingService.get(id);
         if (optionalTestingInterview.isPresent()) {
             TestingInterview testingInterview = optionalTestingInterview.get();
             session.setAttribute("updateTestingInterview", testingInterview);

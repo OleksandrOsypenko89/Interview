@@ -1,8 +1,10 @@
 package com.osypenko.controllers.userPage;
 
 import com.osypenko.model.interview.QuestionInterview;
+import com.osypenko.model.testings.TestingInterview;
 import com.osypenko.model.users.User;
-import com.osypenko.services.QuestionInterviewService;
+import com.osypenko.services.InterviewService;
+import com.osypenko.services.TestingService;
 import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +20,8 @@ import java.util.*;
 @Controller
 @RequiredArgsConstructor
 public class UserPageController {
-    private final QuestionInterviewService questionInterviewService;
+    private final InterviewService interviewService;
+    private final TestingService testingService;
     private final UserService userService;
     private final HttpSession session;
 
@@ -28,7 +31,7 @@ public class UserPageController {
     ) {
         User user = userService.getUser(id);
         log.info("user " + user);
-        questionInterviewService.sortStudyQuestion(user);
+        interviewService.sortStudyQuestion(user);
         session.setAttribute("user", user);
         return "userpages/userpage";
     }
@@ -38,16 +41,33 @@ public class UserPageController {
             @SessionAttribute(name = "user") User user
     ) {
         if (user.getListQuestionInterviews().isEmpty()) {
-            user.setListQuestionInterviews(questionInterviewService.createListQuestion());
+            user.setListQuestionInterviews(interviewService.createListQuestion());
             userService.createAndUpdateUser(user);
         }
-        List<QuestionInterview> list = questionInterviewService.sortInterviewList(user);
+        List<QuestionInterview> list = interviewService.sortInterviewList(user);
 
-        session.setAttribute("size", list.size());
-        session.setAttribute("listQuestion", list);
+        session.setAttribute("sizeListInterview", list.size());
+        session.setAttribute("listInterview", list);
         session.setAttribute("index", 0);
         session.setAttribute("know", 0);
         return "redirect:/interview";
+    }
+
+    @PostMapping("/testing")
+    public String testingPage(
+            @SessionAttribute(name = "user") User user
+    ) {
+        if (user.getListQuestionTesting().isEmpty()) {
+            user.setListQuestionTesting(testingService.createListQuestion());
+            userService.createAndUpdateUser(user);
+        }
+        List<TestingInterview> list = testingService.sortInterviewList(user);
+
+        session.setAttribute("sizeListTesting", list.size());
+        session.setAttribute("listTesting", list);
+        session.setAttribute("index", 0);
+        session.setAttribute("know", 0);
+        return "redirect:/testing";
     }
 
     @PostMapping("/delete")
@@ -55,13 +75,8 @@ public class UserPageController {
             @SessionAttribute(name = "user") User user
             , Integer idQuestion
     ) {
-        questionInterviewService.deleteStudyQuestions(user, idQuestion);
+        interviewService.deleteStudyQuestions(user, idQuestion);
         return "redirect:/userpage";
-    }
-
-    @PostMapping("/testing")
-    public String testingPage() {
-        return "redirect:/testing";
     }
 
     @PostMapping("/admin")

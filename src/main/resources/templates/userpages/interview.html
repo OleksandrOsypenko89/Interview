@@ -9,31 +9,30 @@
 <body>
 <div class="centered" style="padding:20px">
     <div th:if="${session.user.getRole().toString()} == ADMIN">
-        <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.question.getId()}"></span>
+        <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.questionInterview.getId()}"></span>
     </div>
     <div class="text-bold big-text_2">
-        Вопрос по теме - <span th:utext="${session.question.getTopic()}"></span>
+        Вопрос по теме - <span th:utext="${session.questionInterview.getTopic()}"></span>
     </div>
-    <p class="text-bold big-text_1 title_color" th:utext="${session.question.getQuestion()}"></p>
+    <p class="text-bold big-text_1 title_color" th:utext="${session.questionInterview.getQuestion()}"></p>
     <br>
     <div class="container-buttons">
-        <form th:action="@{/knowAnswer}" method="post" th:object="${session.question}">
+        <form th:action="@{/knowAnswer}" method="post" th:object="${session.questionInterview}">
             <button class="buttonGreen">Знаю ответ</button>
         </form>
 
         <button class="buttonGrey" id="myBtn">Посмотреть ответ</button>
 
-        <form th:action="@{/noAnswer}" method="post" th:object="${session.question}">
+        <form th:action="@{/noAnswer}" method="post" th:object="${session.questionInterview}">
             <button class="buttonRed">Не знаю ответ</button>
         </form>
     </div>
     <br>
-
 </div>
 <div id="myModal" class="modal">
     <div class="modal-content style_text_model">
         <span class="close"></span>
-        <p th:utext="${session.question.getAnswer()}"></p>
+        <p th:utext="${session.questionInterview.getAnswer()}"></p>
         <br>
     </div>
 </div>

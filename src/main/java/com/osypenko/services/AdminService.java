@@ -10,14 +10,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminService {
     private final UserService userService;
-    private final QuestionInterviewService questionInterviewService;
+    private final InterviewService interviewService;
 
     public int sizeUserList() {
         return userService.getAll().size();
     }
 
     public QuestionInterview searchQuestion(String text) {
-        List<QuestionInterview> all = questionInterviewService.getAll();
+        List<QuestionInterview> all = interviewService.getAll();
         for (QuestionInterview interview : all) {
             if (interview.getQuestion().equals(text) || interview.getId().toString().equals(text)) {
                 return interview;

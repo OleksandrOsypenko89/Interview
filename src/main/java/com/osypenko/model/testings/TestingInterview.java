@@ -21,11 +21,17 @@ public class TestingInterview {
 
     private String question;
 
-    private String firstIncorrectAnswer;
+    private String picture;
 
-    private String secondIncorrectAnswer;
+    private String firstFalseAnswer;
 
-    private String thirdIncorrectAnswer;
+    private String secondFalseAnswer;
+
+    private String thirdFalseAnswer;
+
+    private String fourthFalseAnswer;
+
+    private String fifthFalseAnswer;
 
     private String correctAnswer;
 
@@ -34,7 +40,7 @@ public class TestingInterview {
     @ToString.Exclude
     @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "lists_question_and_testing_interviews",
+    @JoinTable(name = "lists_testing",
             joinColumns = @JoinColumn(name = "testing_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     private List<User> userListQuestion;

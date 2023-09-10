@@ -60,10 +60,11 @@ public class StatisticService {
             , int percentage
             , int knowAnswer
             , int sizeListQuestion
+            , Type type
     ) {
         statistic.setResult(percentage);
         statistic.setUserId(user.getId());
-        statistic.setType(Type.INTERVIEW);
+        statistic.setType(type);
         statistic.setKnowAnswer(knowAnswer);
         statistic.setQuestions(sizeListQuestion);
         addStatistic(statistic);

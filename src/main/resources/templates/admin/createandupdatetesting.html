@@ -15,17 +15,23 @@
                 <!--suppress HtmlFormInputWithoutLabel -->
                 <textarea class="textarea3" th:field="*{question}"></textarea>
                 <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea3" th:field="*{picture}"></textarea>
+                <!--suppress HtmlFormInputWithoutLabel -->
                 <textarea class="textarea3" th:field="*{answer}"></textarea>
             </td>
             <td class="td_red">
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea4 red_color" th:field="*{firstIncorrectAnswer}"></textarea>
-                <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea4 red_color" th:field="*{secondIncorrectAnswer}"></textarea>
-                <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea4 red_color" th:field="*{thirdIncorrectAnswer}"></textarea>
-                <!--suppress HtmlFormInputWithoutLabel -->
                 <textarea class="textarea4 green_color" th:field="*{correctAnswer}"></textarea>
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea4 red_color" th:field="*{firstFalseAnswer}"></textarea>
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea4 red_color" th:field="*{secondFalseAnswer}"></textarea>
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea4 red_color" th:field="*{thirdFalseAnswer}"></textarea>
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea4 red_color" th:field="*{fourthFalseAnswer}"></textarea>
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <textarea class="textarea4 red_color" th:field="*{fifthFalseAnswer}"></textarea>
                 <p>
                     <button class="buttonGreen" type="submit">✅</button>
             </td>
@@ -35,17 +41,22 @@
 <br>
 
 <div class="center">
-    <p class="text-bold" th:utext="${session.updateTestingInterview.getQuestion()}"></p>
+    <p class="text-bold big-text_4" th:utext="${session.updateTestingInterview.getQuestion()}"></p>
+    <p th:utext="${session.updateTestingInterview.getPicture()}"></p>
     <p>
-    <button class="buttonRed" th:text="${session.updateTestingInterview.getFirstIncorrectAnswer()}"/>
+        <button class="buttonGrey" id="myBtn" th:text="Answer"/>
     <p>
-    <button type="button" class="buttonRed" th:text="${session.updateTestingInterview.getSecondIncorrectAnswer()}"/>
+        <button class="buttonGreen" th:text="${session.updateTestingInterview.getCorrectAnswer()}"/>
     <p>
-    <button type="button" class="buttonRed" th:text="${session.updateTestingInterview.getThirdIncorrectAnswer()}"/>
+        <button class="buttonRed" th:text="${session.updateTestingInterview.getFirstFalseAnswer()}"/>
     <p>
-    <button type="button" class="buttonGreen" th:text="${session.updateTestingInterview.getCorrectAnswer()}"/>
+        <button class="buttonRed" th:text="${session.updateTestingInterview.getSecondFalseAnswer()}"/>
     <p>
-    <button type="button" class="buttonGreen" th:text="Answer"/>
+        <button class="buttonRed" th:text="${session.updateTestingInterview.getThirdFalseAnswer()}"/>
+    <p>
+        <button class="buttonRed" th:text="${session.updateTestingInterview.getFourthFalseAnswer()}"/>
+    <p>
+        <button class="buttonRed" th:text="${session.updateTestingInterview.getFifthFalseAnswer()}"/>
 </div>
 
 <br>
@@ -58,6 +69,16 @@
         <button class="buttonSerene center" type="submit">Повернутись в адмін панель</button>
     </form>
 </div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content style_text_model">
+        <span class="close"></span>
+        <p th:utext="${modelUpdateTestingInterview.getAnswer()}"></p>
+        <br>
+    </div>
+</div>
+
+<script th:src="@{javascript/modal.js}"></script>
 
 </body>
 </html>
