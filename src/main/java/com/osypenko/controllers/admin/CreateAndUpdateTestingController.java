@@ -1,6 +1,7 @@
 package com.osypenko.controllers.admin;
 
 import com.osypenko.model.testings.TestingInterview;
+import com.osypenko.services.AdminService;
 import com.osypenko.services.TestingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @RequiredArgsConstructor
 public class CreateAndUpdateTestingController {
     private final TestingService testingService;
+    private final AdminService adminService;
 
     @GetMapping("/createandupdatetesting")
     public String createAndUpdateQuestion(
@@ -30,15 +32,7 @@ public class CreateAndUpdateTestingController {
             @SessionAttribute(name = "updateTestingInterview") TestingInterview testingInterview
             , TestingInterview updateTestingInterview
     ) {
-        testingInterview.setQuestion(updateTestingInterview.getQuestion());
-        testingInterview.setPicture(updateTestingInterview.getPicture());
-        testingInterview.setFirstFalseAnswer(updateTestingInterview.getFirstFalseAnswer());
-        testingInterview.setSecondFalseAnswer(updateTestingInterview.getSecondFalseAnswer());
-        testingInterview.setThirdFalseAnswer(updateTestingInterview.getThirdFalseAnswer());
-        testingInterview.setFourthFalseAnswer(updateTestingInterview.getFourthFalseAnswer());
-        testingInterview.setFifthFalseAnswer(updateTestingInterview.getFifthFalseAnswer());
-        testingInterview.setCorrectAnswer(updateTestingInterview.getCorrectAnswer());
-        testingInterview.setAnswer(updateTestingInterview.getAnswer());
+        adminService.changingFieldsTestingInterview(testingInterview, updateTestingInterview);
         return "redirect:/createandupdatetesting";
     }
 

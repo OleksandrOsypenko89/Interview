@@ -36,7 +36,6 @@ public class LoginController {
                 String hash = String.valueOf(password.hashCode());
 
                 if (user.getPassword().equals(hash)) {
-                    session.setAttribute("context", session.getServletContext());
                     session.setAttribute("userId", id);
                     session.removeAttribute("loginFlag");
                     return "redirect:/userpage";

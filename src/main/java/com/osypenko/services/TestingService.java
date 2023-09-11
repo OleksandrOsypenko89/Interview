@@ -56,7 +56,7 @@ public class TestingService {
             Random random = new Random();
             int randomNum = random.nextInt((size - 1) + 1) + 1;
             integerSet.add(randomNum);
-        } while (integerSet.size() < 5);
+        } while (integerSet.size() < 10);
     }
 
     public List<TestingInterview> sortInterviewList(User user) {
@@ -64,5 +64,17 @@ public class TestingService {
         List<TestingInterview> list = new ArrayList<>(questionTesting);
         list.sort(Comparator.comparing(TestingInterview::getId));
         return list;
+    }
+
+    public List<String> shuffleButtons(List<TestingInterview> list) {
+        List<String> randomButton = new ArrayList<>();
+        randomButton.add(list.get(0).getCorrectAnswer());
+        randomButton.add(list.get(0).getFirstFalseAnswer());
+        randomButton.add(list.get(0).getSecondFalseAnswer());
+        randomButton.add(list.get(0).getThirdFalseAnswer());
+        randomButton.add(list.get(0).getFourthFalseAnswer());
+        randomButton.add(list.get(0).getFifthFalseAnswer());
+        Collections.shuffle(randomButton);
+        return randomButton;
     }
 }

@@ -2,6 +2,7 @@ package com.osypenko.controllers.admin;
 
 import com.osypenko.model.interview.QuestionInterview;
 import com.osypenko.model.interview.Topic;
+import com.osypenko.services.AdminService;
 import com.osypenko.services.InterviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @RequiredArgsConstructor
 public class CreateAndUpdateInterviewController {
     private final InterviewService interviewService;
+    private final AdminService adminService;
 
     @GetMapping("/createandupdatequestion")
     public String createAndUpdateQuestion(
@@ -32,9 +34,7 @@ public class CreateAndUpdateInterviewController {
             @SessionAttribute(name = "updateQuestionInterview") QuestionInterview questionInterview
             , QuestionInterview updateQuestionInterview
     ) {
-        questionInterview.setAnswer(updateQuestionInterview.getAnswer());
-        questionInterview.setQuestion(updateQuestionInterview.getQuestion());
-        questionInterview.setTopic(updateQuestionInterview.getTopic());
+        adminService.changingFieldsQuestionInterview(questionInterview, updateQuestionInterview);
         return "redirect:/createandupdatequestion";
     }
 

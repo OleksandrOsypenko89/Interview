@@ -1,6 +1,7 @@
 package com.osypenko.services;
 
 import com.osypenko.model.interview.QuestionInterview;
+import com.osypenko.model.testings.TestingInterview;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,23 @@ public class AdminService {
             }
         }
         return null;
+    }
+
+    public void changingFieldsQuestionInterview(QuestionInterview questionInterview, QuestionInterview updateQuestionInterview) {
+        questionInterview.setAnswer(updateQuestionInterview.getAnswer());
+        questionInterview.setQuestion(updateQuestionInterview.getQuestion());
+        questionInterview.setTopic(updateQuestionInterview.getTopic());
+    }
+
+    public void changingFieldsTestingInterview(TestingInterview testingInterview, TestingInterview updateTestingInterview) {
+        testingInterview.setQuestion(updateTestingInterview.getQuestion());
+        testingInterview.setPicture(updateTestingInterview.getPicture());
+        testingInterview.setFirstFalseAnswer(updateTestingInterview.getFirstFalseAnswer());
+        testingInterview.setSecondFalseAnswer(updateTestingInterview.getSecondFalseAnswer());
+        testingInterview.setThirdFalseAnswer(updateTestingInterview.getThirdFalseAnswer());
+        testingInterview.setFourthFalseAnswer(updateTestingInterview.getFourthFalseAnswer());
+        testingInterview.setFifthFalseAnswer(updateTestingInterview.getFifthFalseAnswer());
+        testingInterview.setCorrectAnswer(updateTestingInterview.getCorrectAnswer());
+        testingInterview.setAnswer(updateTestingInterview.getAnswer());
     }
 }
