@@ -27,11 +27,11 @@ public class InterviewController {
     @GetMapping("/interview")
     public String getInterview(
             @SessionAttribute(name = "user") User user
-            , @SessionAttribute(name = "know") Integer know
-            , @SessionAttribute(name = "listInterview") List<QuestionInterview> list
+            , @SessionAttribute(name = "knowInterview") Integer know
+            , @SessionAttribute(name = "listInterview") List<QuestionInterview> listInterview
             , Statistic statistic
     ) {
-        if (list.isEmpty()) {
+        if (listInterview.isEmpty()) {
             int sizeListQuestion = (int) session.getAttribute("sizeListInterview");
             int percentage = (know * 100) /  sizeListQuestion;
 
@@ -41,18 +41,18 @@ public class InterviewController {
             userService.createAndUpdateUser(user);
             return "redirect:/statistic";
         }
-        session.setAttribute("questionInterview", list.get(0));
+        session.setAttribute("questionInterview", listInterview.get(0));
         return "userpages/interview";
     }
 
     @PostMapping("/knowAnswer")
     public String knowAnswer(
-            @SessionAttribute(name = "know") Integer know
+            @SessionAttribute(name = "knowInterview") Integer know
             , @SessionAttribute(name = "questionInterview") QuestionInterview questionInterview
             , @SessionAttribute(name = "listInterview") List<QuestionInterview> list
     ) {
         list.remove(questionInterview);
-        session.setAttribute("know", ++know);
+        session.setAttribute("knowInterview", ++know);
         return "redirect:/interview";
     }
 

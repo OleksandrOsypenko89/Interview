@@ -66,14 +66,14 @@ public class TestingService {
         return list;
     }
 
-    public List<String> shuffleButtons(List<TestingInterview> list) {
+    public List<String> shuffleButtons(TestingInterview testingInterview) {
         List<String> randomButton = new ArrayList<>();
-        randomButton.add(list.get(0).getCorrectAnswer());
-        randomButton.add(list.get(0).getFirstFalseAnswer());
-        randomButton.add(list.get(0).getSecondFalseAnswer());
-        randomButton.add(list.get(0).getThirdFalseAnswer());
-        randomButton.add(list.get(0).getFourthFalseAnswer());
-        randomButton.add(list.get(0).getFifthFalseAnswer());
+        randomButton.add(testingInterview.getCorrectAnswer());
+        randomButton.add(testingInterview.getFirstFalseAnswer());
+        randomButton.add(testingInterview.getSecondFalseAnswer());
+        randomButton.add(testingInterview.getThirdFalseAnswer());
+        randomButton.add(testingInterview.getFourthFalseAnswer());
+        randomButton.add(testingInterview.getFifthFalseAnswer());
         Collections.shuffle(randomButton);
         return randomButton;
     }

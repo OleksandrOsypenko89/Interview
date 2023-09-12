@@ -29,11 +29,11 @@ public class TestingController {
     @GetMapping("/testing")
     public String getTesting(
             @SessionAttribute(name = "user") User user
-            , @SessionAttribute(name = "know") Integer know
-            , @SessionAttribute(name = "listTesting") List<TestingInterview> list
+            , @SessionAttribute(name = "knowTesting") Integer know
+            , @SessionAttribute(name = "listTesting") List<TestingInterview> listTesting
             , Statistic statistic
     ) {
-        if (list.isEmpty()) {
+        if (listTesting.isEmpty()) {
             int sizeListQuestion = (int) session.getAttribute("sizeListTesting");
             int percentage = (know * 100) /  sizeListQuestion;
 
@@ -43,18 +43,22 @@ public class TestingController {
             userService.createAndUpdateUser(user);
             return "redirect:/statistic";
         }
-        session.setAttribute("questionTesting", list.get(0));
-        session.setAttribute("randomButton", testingService.shuffleButtons(list));
+        session.setAttribute("randomButton", testingService.shuffleButtons(listTesting.get(0)));
+        session.setAttribute("questionTesting", listTesting.get(0));
         return "userpages/testing";
     }
 
     @PostMapping("/answerTesting")
     public String answerTesting(
-            @SessionAttribute(name = "questionTesting") TestingInterview testingInterview
+            @SessionAttribute(name = "knowTesting") Integer know
+            , @SessionAttribute(name = "questionTesting") TestingInterview testingInterview
             , @SessionAttribute(name = "listTesting") List<TestingInterview> list
-            , String buttonAnswer) {
-        log.error("buttonAnswer " + buttonAnswer);
+            , String buttonAnswer
+    ) {
+        if (testingInterview.getCorrectAnswer().equals(buttonAnswer)) {
+            session.setAttribute("knowTesting", ++know);
+        }
         list.remove(testingInterview);
-        return "userpages/testing";
+        return "redirect:/testing";
     }
 }

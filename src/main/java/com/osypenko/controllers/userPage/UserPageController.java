@@ -48,8 +48,7 @@ public class UserPageController {
 
         session.setAttribute("sizeListInterview", list.size());
         session.setAttribute("listInterview", list);
-        session.setAttribute("index", 0);
-        session.setAttribute("know", 0);
+        session.setAttribute("knowInterview", 0);
         return "redirect:/interview";
     }
 
@@ -65,8 +64,7 @@ public class UserPageController {
 
         session.setAttribute("sizeListTesting", list.size());
         session.setAttribute("listTesting", list);
-        session.setAttribute("index", 0);
-        session.setAttribute("know", 0);
+        session.setAttribute("knowTesting", 0);
         return "redirect:/testing";
     }
 

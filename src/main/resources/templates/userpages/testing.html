@@ -5,21 +5,29 @@
     <title>Testing Page</title>
     <th:block th:replace="~{layout/linksstyles}"/>
 </head>
+
 <body>
 <br>
 <div class="center">
-    <div th:if="${session.user.getRole().toString()} == ADMIN">
-        <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.questionTesting.getId()}"></span>
-    </div>
+        <div th:if="${session.user.getRole().toString()} == ADMIN">
+            <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.questionTesting.getId()}"></span>
+        </div>
     <p class="text-bold big-text_3" th:utext="${session.questionTesting.getQuestion()}"></p>
     <p th:utext="${session.questionTesting.getPicture()}"></p>
     <br>
     <div th:each="buttonAnswer : ${session.randomButton}">
         <div th:if="*{!buttonAnswer.isEmpty()}">
             <form th:action="@{/answerTesting}" method="post">
-                <input type="hidden" th:value="*{buttonAnswer}" name="buttonAnswer">
-                <button type="submit" class="buttonGrey" th:utext="*{buttonAnswer}"></button>
-                <p>
+                <div th:if="${session.questionTesting.getCorrectAnswer().equals(buttonAnswer)}">
+                    <button class="buttonCorrectAnswer" th:value="*{buttonAnswer}" name="buttonAnswer"
+                            th:utext="*{buttonAnswer}"></button>
+                    <p>
+                </div>
+                <div th:if="${!session.questionTesting.getCorrectAnswer().equals(buttonAnswer)}">
+                    <button class="buttonNoCorrectAnswer" th:value="*{buttonAnswer}" name="buttonAnswer"
+                            th:utext="*{buttonAnswer}"></button>
+                    <p>
+                </div>
             </form>
         </div>
     </div>
