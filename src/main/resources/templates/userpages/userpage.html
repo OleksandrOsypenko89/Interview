@@ -17,25 +17,8 @@
         </div>
     </div>
 
-    <div class="container-buttons">
-        <div th:if="${session.user.listStudyQuestion.size() > 10}">
-            <button class="buttonSerene" onclick="on()">Interview</button>
-        </div>
-        <div th:if="${session.user.listStudyQuestion.size() <= 10}">
-            <form th:action="@{/interview}" method="post">
-                <button type="submit" class="buttonSerene">Interview</button>
-            </form>
-        </div>
-        <div th:if="${session.user.getRole().toString()} == ADMIN">
-            <form th:action="@{/admin}" method="post">
-                <button type="submit" class="buttonSerene">Admin Page</button>
-            </form>
-        </div>
-        <form th:action="@{/testing}" method="post">
-            <button type="submit" class="buttonSerene">Testing</button>
-        </form>
+    <th:block th:replace="~{layout/buttonsUserPage}"/>
 
-    </div>
     <h1 class="text-bold title_color big-text_2 text-center">Study questions</h1>
     <table class="table_study_questions">
         <tr th:each="question : ${session.user.getListStudyQuestion()}">
@@ -57,19 +40,9 @@
 </div>
 
 <div th:if="${session.user.listStudyQuestion.isEmpty()}">
-    <div class="container-buttons center">
-        <form th:action="@{/interview}" method="post">
-            <button type="submit" class="buttonSerene">Interview</button>
-        </form>
-        <div th:if="${session.user.getRole().toString()} == ADMIN">
-            <form th:action="@{/admin}" method="post">
-                <button type="submit" class="buttonSerene">Admin Page</button>
-            </form>
-        </div>
-        <form th:action="@{/testing}" method="post">
-            <button type="submit" class="buttonSerene">Testing</button>
-        </form>
-    </div>
+
+    <th:block th:replace="~{layout/buttonsUserPage}"/>
+
     <div class="centered_title_text">
         <div class="container">
             <br>

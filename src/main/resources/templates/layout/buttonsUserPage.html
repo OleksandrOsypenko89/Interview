@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="buttonsUserPage">
+  <div class="container-buttons">
+    <div th:if="${session.user.getRole().toString()} == ADMIN">
+      <form th:action="@{/admin}" method="post">
+        <button type="submit" class="buttonSerene">Admin Page</button>
+      </form>
+    </div>
+    <div th:if="${session.user.listStudyQuestion.size() > 10}">
+      <button class="buttonSerene" onclick="on()">Interview</button>
+    </div>
+    <div th:if="${session.user.listStudyQuestion.size() <= 10}">
+      <form th:action="@{/interview}" method="post">
+        <button type="submit" class="buttonSerene">Interview</button>
+      </form>
+    </div>
+    <form th:action="@{/allstatistics}" method="post">
+      <button type="submit" class="buttonSerene">Statistics</button>
+    </form>
+    <form th:action="@{/testing}" method="post">
+      <button type="submit" class="buttonSerene">Testing</button>
+    </form>
+  </div>
+</th:block>

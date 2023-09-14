@@ -1,9 +1,11 @@
-package com.osypenko.controllers.userPage;
+package com.osypenko.controllers.userpage;
 
 import com.osypenko.model.interview.QuestionInterview;
+import com.osypenko.model.statistic.Statistic;
 import com.osypenko.model.testings.TestingInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.services.InterviewService;
+import com.osypenko.services.StatisticService;
 import com.osypenko.services.TestingService;
 import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -23,6 +25,7 @@ public class UserPageController {
     private final InterviewService interviewService;
     private final TestingService testingService;
     private final UserService userService;
+    private final StatisticService statisticService;
     private final HttpSession session;
 
     @GetMapping("/userpage")
@@ -30,9 +33,9 @@ public class UserPageController {
             @SessionAttribute(name = "userId") Long id
     ) {
         User user = userService.getUser(id);
-        log.info("user " + user);
         interviewService.sortStudyQuestion(user);
         session.setAttribute("user", user);
+        log.info("user " + user);
         return "userpages/userpage";
     }
 
@@ -48,7 +51,7 @@ public class UserPageController {
 
         session.setAttribute("sizeListInterview", list.size());
         session.setAttribute("listInterview", list);
-        session.setAttribute("knowInterview", 0);
+        session.setAttribute("know", 0);
         return "redirect:/interview";
     }
 
@@ -64,12 +67,28 @@ public class UserPageController {
 
         session.setAttribute("sizeListTesting", list.size());
         session.setAttribute("listTesting", list);
-        session.setAttribute("knowTesting", 0);
+        session.setAttribute("know", 0);
         return "redirect:/testing";
     }
 
+    @PostMapping("/allstatistics")
+    public String statisticPage(
+            @SessionAttribute(name = "user") User user
+    ) {
+        statisticService.deletionOfOutdatedStatistics(user);
+        List<Statistic> list = statisticService.sortStatistic(user);
+        session.setAttribute("generalResult", statisticService.result(user));
+        session.setAttribute("statisticList", list);
+        return "redirect:/allstatistics";
+    }
+
+    @PostMapping("/admin")
+    public String adminPage() {
+        return "redirect:/adminpage";
+    }
+
     @PostMapping("/delete")
-    public String delete(
+    public String deleteStudyQuestion(
             @SessionAttribute(name = "user") User user
             , Integer idQuestion
     ) {
@@ -77,8 +96,8 @@ public class UserPageController {
         return "redirect:/userpage";
     }
 
-    @PostMapping("/admin")
-    public String adminPage() {
-        return "redirect:/adminpage";
+    @PostMapping("/userPage")
+    public String userPage() {
+        return "redirect:/userpage";
     }
 }

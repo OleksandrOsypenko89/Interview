@@ -7,15 +7,15 @@
 </head>
 
 <body>
-<div th:if="${session.user.getRole().toString()} == ADMIN">
-    <div class="text-center">
-        <p class="text-bold big-text_2 text-center"
-           th:text="'Зареестровано користувачів - ' + ${session.sizeUsers}"/>
-        <p>
-    </div>
+<div>
+    <div th:if="${session.user.getRole().toString()} == ADMIN">
+        <div class="text-center">
+            <p class="text-bold big-text_2 text-center"
+               th:text="'Зареестровано користувачів - ' + ${session.sizeUsers}"/>
+            <p>
+        </div>
 
-
-    <div class="split left">
+        <div class="split left">
             <div class="centered">
                 <div th:text="'Питань в базі данних - ' + ${session.sizeAllQuestionInterview}"/>
                 <br>
@@ -31,33 +31,40 @@
                 <form th:action="@{/adminNewQuestionInterview}" method="post">
                     <button type="submit" class="buttonSerene">New Interview</button>
                 </form>
+            </div>
         </div>
-    </div>
 
-    <div class="split right">
-        <div class="centered">
-            <div th:text="'Питань в базі данних - ' + ${session.sizeAllTestingInterview}"/>
-            <br>
-            <form th:action="@{/adminQuestionTesting}" method="post">
-                <div class="input-wrapper">
-                    <!--suppress HtmlFormInputWithoutLabel -->
-                    <input name="testing" type="text" placeholder="ID Testing" class="input">
-                </div>
+        <div class="split right">
+            <div class="centered">
+                <div th:text="'Питань в базі данних - ' + ${session.sizeAllTestingInterview}"/>
                 <br>
-                <button type="submit" class="buttonSerene">Testing</button>
-            </form>
-            <br>
-            <br>
-            <form th:action="@{/adminNewQuestionTesting}" method="post">
-                <button type="submit" class="buttonSerene">New Testing</button>
-            </form>
+                <form th:action="@{/adminQuestionTesting}" method="post">
+                    <div class="input-wrapper">
+                        <!--suppress HtmlFormInputWithoutLabel -->
+                        <input name="testing" type="text" placeholder="ID Testing" class="input">
+                    </div>
+                    <br>
+                    <button type="submit" class="buttonSerene">Testing</button>
+                </form>
+                <br>
+                <br>
+                <form th:action="@{/adminNewQuestionTesting}" method="post">
+                    <button type="submit" class="buttonSerene">New Testing</button>
+                </form>
+            </div>
         </div>
+    </div>
+
+    <div th:if="${session.user.getRole().toString()} != ADMIN">
+        <p class="text-bold big-text_1 title_color">У Вас нет доступа.</p>
     </div>
 </div>
 
-<div th:if="${session.user.getRole().toString()} != ADMIN">
-    <p class="text-bold big-text_1 title_color">У Вас нет доступа.</p>
-</div>
+<form th:action="@{/userPage}" method="post">
+    <div class="center">
+        <button type="submit" class="buttonSerene">Home page</button>
+    </div>
+</form>
 
 </body>
 </html>

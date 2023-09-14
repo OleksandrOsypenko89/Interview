@@ -1,4 +1,4 @@
-package com.osypenko.controllers.userPage;
+package com.osypenko.controllers.interview;
 
 import com.osypenko.model.interview.QuestionInterview;
 import com.osypenko.model.statistic.Statistic;
@@ -27,18 +27,20 @@ public class InterviewController {
     @GetMapping("/interview")
     public String getInterview(
             @SessionAttribute(name = "user") User user
-            , @SessionAttribute(name = "knowInterview") Integer know
+            , @SessionAttribute(name = "know") Integer know
             , @SessionAttribute(name = "listInterview") List<QuestionInterview> listInterview
-            , Statistic statistic
+            , Statistic newStatisticsAdded
     ) {
         if (listInterview.isEmpty()) {
             int sizeListQuestion = (int) session.getAttribute("sizeListInterview");
             int percentage = (know * 100) /  sizeListQuestion;
 
-            statisticService.saveNewStatistic(user, statistic, percentage, know, sizeListQuestion, Type.INTERVIEW);
+            statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, sizeListQuestion, Type.INTERVIEW);
 
             user.getListQuestionInterviews().removeAll(user.getListQuestionInterviews());
             userService.createAndUpdateUser(user);
+
+            session.setAttribute("newStatisticsAdded", newStatisticsAdded);
             return "redirect:/statistic";
         }
         session.setAttribute("questionInterview", listInterview.get(0));
@@ -47,12 +49,12 @@ public class InterviewController {
 
     @PostMapping("/knowAnswer")
     public String knowAnswer(
-            @SessionAttribute(name = "knowInterview") Integer know
+            @SessionAttribute(name = "know") Integer know
             , @SessionAttribute(name = "questionInterview") QuestionInterview questionInterview
             , @SessionAttribute(name = "listInterview") List<QuestionInterview> list
     ) {
         list.remove(questionInterview);
-        session.setAttribute("knowInterview", ++know);
+        session.setAttribute("know", ++know);
         return "redirect:/interview";
     }
 
