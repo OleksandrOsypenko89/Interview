@@ -1,7 +1,7 @@
 package com.osypenko.controllers.registration;
 
 import com.osypenko.model.users.User;
-import com.osypenko.services.MailService;
+import com.osypenko.services.admin.MailService;
 import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +32,7 @@ public class RegistrationController {
             , String email
             , String password
     ) {
-        Long id = userService.userHashMap().get(email);
+        Long id = userService.findByEmail(email).getId();
         if (id != null) {
             session.setAttribute("registrationFlag", false);
             return "redirect:/registration";

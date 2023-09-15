@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Statistic</title>
     <th:block th:replace="~{layout/linksstyles}"/>
 </head>
@@ -12,7 +11,7 @@
     <p class="text-bold big-text_2" th:text="'Ответил на ' + ${session.newStatisticsAdded.getKnowAnswer()} + ' из ' + ${session.newStatisticsAdded.getQuestions()} + ' вопросов'"></p>
     <p class="text-bold big-text_2" th:text="'Результат составляет ' + ${session.newStatisticsAdded.getResult()} + '%'"></p>
     <br>
-    <form th:action="@{/userPage}" method="post">
+    <form th:action="@{/userpage}" method="get">
         <div class="center">
             <button type="submit" class="buttonSerene">Home page</button>
         </div>

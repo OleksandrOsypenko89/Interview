@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Page</title>
+    <title>User Page</title>
     <th:block th:replace="~{layout/linksstyles}"/>
 </head>
 
@@ -40,36 +39,8 @@
 </div>
 
 <div th:if="${session.user.listStudyQuestion.isEmpty()}">
-
     <th:block th:replace="~{layout/buttonsUserPage}"/>
-
-    <div class="centered_title_text">
-        <div class="container">
-            <br>
-            <h2 class="red_color text-bold">Как работает этот сервис?</h2>
-            <p>Сервис заточен в основном на самостоятельную работу.
-            <p>В нем есть два режима Interview и Testing
-            <p><span class="red_color text-bold">Interview</span> - тебе по очереди будут выведены 15 вопросов. На них
-                желательно отвечать как можно развернуто и вслух, чтобы выработать уверенность в ответе.
-            <p>Так же в этом режиме есть три ключевых кнопки.
-            <p><span class="green_color text-bold">Знаю ответ</span> - при нажатии на кнопку ты переходишь к следующему
-                вопросу.
-            <p><span class="green_color text-bold">Посмотреть ответ</span> - выведет на экран ответ на данный вопрос.
-                Это
-                сделано для того чтобы убедится в правильности ответа.
-            <p><span class="green_color text-bold">Не знаю ответ</span> - при нажатии на кнопку ты переходишь к
-                следующему
-                вопросу. При этом вопрос на который ты не знал ответа будет сохранен в список вопросов к изучению.
-            <p>Кнопки "Знаю ответ" и "Не знаю ответ" ведут подсчет статистики для того чтобы ты видел свою динамику
-                прохождения собеседований. Статистика сохраняется 7 дней.
-            <p><span class="red_color text-bold">Testing</span> - будет выведен вопрос или кусок кода с вариантами
-                ответа.
-                Результаты так же записываются в статистику.
-            <p>Рекомендуется после каждого Interview изучать вопросы на которые не знал ответ чтобы их не собирать
-                слишком
-                много</p>
-        </div>
-    </div>
+    <th:block th:replace="~{layout/infoservicework}"/>
 </div>
 
 <script th:src="@{javascript/display.js}"></script>

@@ -2,7 +2,7 @@ package com.osypenko.controllers.statistic;
 
 import com.osypenko.model.statistic.Statistic;
 import com.osypenko.model.users.User;
-import com.osypenko.services.StatisticService;
+import com.osypenko.services.statistics.StatisticService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

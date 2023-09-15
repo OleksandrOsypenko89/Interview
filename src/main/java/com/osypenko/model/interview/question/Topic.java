@@ -1,4 +1,4 @@
-package com.osypenko.model.interview;
+package com.osypenko.model.interview.question;
 
 public enum Topic {
     CORE1,

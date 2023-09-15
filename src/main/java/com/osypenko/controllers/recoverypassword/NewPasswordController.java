@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import java.util.Optional;
-
 @Controller
 @RequiredArgsConstructor
 public class NewPasswordController {
@@ -27,15 +25,11 @@ public class NewPasswordController {
             , String passwordTwo
     ) {
         if (passwordOne.equals(passwordTwo)) {
-            Long id = userService.userHashMap().get(email);
-            Optional<User> optionalUser = userService.findById(id);
-            if (optionalUser.isPresent()) {
-                User user = optionalUser.get();
-                String hash = String.valueOf(passwordOne.hashCode());
-                user.setPassword(hash);
-                userService.createAndUpdateUser(user);
-                return "redirect:/";
-            }
+            User user = userService.findByEmail(email);
+            String hash = String.valueOf(passwordOne.hashCode());
+            user.setPassword(hash);
+            userService.createAndUpdateUser(user);
+            return "redirect:/";
         }
         return "redirect:/newpassword";
     }

@@ -1,12 +1,12 @@
 package com.osypenko.services;
 
+import com.osypenko.exception.UserException;
 import com.osypenko.model.users.User;
 import com.osypenko.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +16,6 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepo userRepo;
-    private HashMap<String, Long> hashMail;
 
     public List<User> getAll() {
         return userRepo.findAll();
@@ -30,16 +29,14 @@ public class UserService {
         return userRepo.findById(id);
     }
 
-    public HashMap<String, Long> userHashMap() {
-        if (hashMail == null) {
-            hashMail = new HashMap<>();
-            List<User> allUsers = getAll();
-            for (User user : allUsers) {
-                hashMail.put(user.getEmail(), user.getId());
-            }
-            return hashMail;
+    public User findByEmail(String email) {
+        try {
+            log.error("user " + email);
+            return userRepo.findByEmail(email);
+        } catch (UserException e) {
+            log.error("user not found");
+            throw new UserException();
         }
-        return hashMail;
     }
 
     public User getUser(Long id) {

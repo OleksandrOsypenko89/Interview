@@ -1,10 +1,10 @@
 package com.osypenko.controllers.admin;
 
-import com.osypenko.model.interview.QuestionInterview;
-import com.osypenko.model.testings.TestingInterview;
-import com.osypenko.services.AdminService;
-import com.osypenko.services.InterviewService;
-import com.osypenko.services.TestingService;
+import com.osypenko.model.interview.question.QuestionInterview;
+import com.osypenko.model.interview.testings.TestingInterview;
+import com.osypenko.services.admin.AdminService;
+import com.osypenko.services.interview.QuestionService;
+import com.osypenko.services.interview.TestingService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,14 +19,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AdminPageController {
     private final AdminService adminService;
-    private final InterviewService interviewService;
+    private final QuestionService questionService;
     private final TestingService testingService;
     private final HttpSession session;
 
     @GetMapping("/adminpage")
     public String getAdminPage() {
         session.setAttribute("sizeUsers", adminService.sizeUserList());
-        session.setAttribute("sizeAllQuestionInterview", interviewService.sizeAllQuestion());
+        session.setAttribute("sizeAllQuestionInterview", questionService.sizeAllQuestion());
         session.setAttribute("sizeAllTestingInterview", testingService.sizeAllQuestion());
         return "admin/adminpage";
     }

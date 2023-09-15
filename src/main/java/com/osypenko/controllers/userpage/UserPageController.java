@@ -1,12 +1,12 @@
 package com.osypenko.controllers.userpage;
 
-import com.osypenko.model.interview.QuestionInterview;
+import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.statistic.Statistic;
-import com.osypenko.model.testings.TestingInterview;
+import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.model.users.User;
-import com.osypenko.services.InterviewService;
-import com.osypenko.services.StatisticService;
-import com.osypenko.services.TestingService;
+import com.osypenko.services.interview.QuestionService;
+import com.osypenko.services.statistics.StatisticService;
+import com.osypenko.services.interview.TestingService;
 import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -18,86 +18,87 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.*;
 
+import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameSessionAttributes.*;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 public class UserPageController {
-    private final InterviewService interviewService;
+
+    private final QuestionService questionService;
     private final TestingService testingService;
     private final UserService userService;
     private final StatisticService statisticService;
     private final HttpSession session;
 
-    @GetMapping("/userpage")
+    @GetMapping(USER_PAGE)
     public String userPage(
-            @SessionAttribute(name = "userId") Long id
+            @SessionAttribute(name = USER_ID) Long id
     ) {
         User user = userService.getUser(id);
-        interviewService.sortStudyQuestion(user);
-        session.setAttribute("user", user);
+        questionService.sortStudyQuestion(user);
+        session.setAttribute(USER, user);
+        session.setAttribute(KNOW, 0);
+
+
         log.info("user " + user);
-        return "userpages/userpage";
+        return DIRECTORY_USER_PAGES + USER_PAGE;
     }
 
-    @PostMapping("/interview")
-    public String interviewPage(
-            @SessionAttribute(name = "user") User user
+    @PostMapping(QUESTION)
+    public String questionPage(
+            @SessionAttribute(name = USER) User user
     ) {
         if (user.getListQuestionInterviews().isEmpty()) {
-            user.setListQuestionInterviews(interviewService.createListQuestion());
+            user.setListQuestionInterviews(questionService.createListQuestion());
             userService.createAndUpdateUser(user);
         }
-        List<QuestionInterview> list = interviewService.sortInterviewList(user);
+        List<QuestionInterview> listQuestionInterviews = questionService.sortQuestionList(user);
 
-        session.setAttribute("sizeListInterview", list.size());
-        session.setAttribute("listInterview", list);
-        session.setAttribute("know", 0);
-        return "redirect:/interview";
+        session.setAttribute(SIZE_LIST_QUESTION, listQuestionInterviews.size());
+        session.setAttribute(LIST_QUESTION, listQuestionInterviews);
+        session.setAttribute(KNOW, 0);
+        return REDIRECT + QUESTION;
     }
 
-    @PostMapping("/testing")
+    @PostMapping(TESTING)
     public String testingPage(
-            @SessionAttribute(name = "user") User user
+            @SessionAttribute(name = USER) User user
     ) {
         if (user.getListQuestionTesting().isEmpty()) {
             user.setListQuestionTesting(testingService.createListQuestion());
             userService.createAndUpdateUser(user);
         }
-        List<TestingInterview> list = testingService.sortInterviewList(user);
+        List<TestingInterview> listQuestionTesting = testingService.sortTestingList(user);
 
-        session.setAttribute("sizeListTesting", list.size());
-        session.setAttribute("listTesting", list);
-        session.setAttribute("know", 0);
-        return "redirect:/testing";
+        session.setAttribute(SIZE_LIST_TESTING, listQuestionTesting.size());
+        session.setAttribute(LIST_TESTING, listQuestionTesting);
+        return REDIRECT + TESTING;
     }
 
-    @PostMapping("/allstatistics")
-    public String statisticPage(
-            @SessionAttribute(name = "user") User user
+    @PostMapping(ALL_STATISTICS)
+    public String allStatisticPage(
+            @SessionAttribute(name = USER) User user
     ) {
         statisticService.deletionOfOutdatedStatistics(user);
         List<Statistic> list = statisticService.sortStatistic(user);
-        session.setAttribute("generalResult", statisticService.result(user));
-        session.setAttribute("statisticList", list);
-        return "redirect:/allstatistics";
+        session.setAttribute(GENERAL_RESULT, statisticService.result(user));
+        session.setAttribute(STATISTIC_LIST, list);
+        return REDIRECT + ALL_STATISTICS;
     }
 
-    @PostMapping("/admin")
+    @PostMapping(ADMIN_PAGE)
     public String adminPage() {
-        return "redirect:/adminpage";
+        return REDIRECT + ADMIN_PAGE;
     }
 
-    @PostMapping("/delete")
+    @PostMapping(DELETE_STUDY_QUESTION)
     public String deleteStudyQuestion(
-            @SessionAttribute(name = "user") User user
+            @SessionAttribute(name = USER) User user
             , Integer idQuestion
     ) {
-        interviewService.deleteStudyQuestions(user, idQuestion);
-        return "redirect:/userpage";
-    }
-
-    @PostMapping("/userPage")
-    public String userPage() {
-        return "redirect:/userpage";
+        questionService.deleteStudyQuestions(user, idQuestion);
+        return REDIRECT + USER_PAGE;
     }
 }

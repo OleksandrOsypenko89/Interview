@@ -1,8 +1,9 @@
-package com.osypenko.services;
+package com.osypenko.services.interview;
 
-import com.osypenko.model.interview.QuestionInterview;
+import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.repository.QuestionInterviewRepo;
+import com.osypenko.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.*;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class InterviewService {
+public class QuestionService {
     private final QuestionInterviewRepo questionInterviewRepo;
     private final UserService userService;
 
@@ -70,7 +71,7 @@ public class InterviewService {
         userService.createAndUpdateUser(user);
     }
 
-    public List<QuestionInterview> sortInterviewList(User user) {
+    public List<QuestionInterview> sortQuestionList(User user) {
         Set<QuestionInterview> questionInterviews = user.getListQuestionInterviews();
         List<QuestionInterview> list = new ArrayList<>(questionInterviews);
         list.sort(Comparator

@@ -1,7 +1,7 @@
 package com.osypenko.controllers.registration;
 
 import com.osypenko.model.users.User;
-import com.osypenko.services.MailService;
+import com.osypenko.services.admin.MailService;
 import com.osypenko.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,6 @@ public class CodeForRegistrationController {
     ) {
         if (codeSystem == codeUser) {
             userService.createAndUpdateUser(user);
-            userService.userHashMap().put(user.getEmail(), user.getId());
             mailService.sendSimpleMessage("Oleksandrosipenk@gmail.com", "Зареєстрований новий користувач " + user.getFirstName() + " " + user.getLastName());
             return "redirect:/";
         }

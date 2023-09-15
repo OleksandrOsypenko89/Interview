@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Optional;
-
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -28,19 +26,13 @@ public class LoginController {
             String email
             , String password
     ) {
-        Long id = userService.userHashMap().get(email);
-        if (id != null) {
-            Optional<User> optionalUser = userService.findById(id);
-            if (optionalUser.isPresent()) {
-                User user = optionalUser.get();
-                String hash = String.valueOf(password.hashCode());
+        User user = userService.findByEmail(email);
+        String hash = String.valueOf(password.hashCode());
 
-                if (user.getPassword().equals(hash)) {
-                    session.setAttribute("userId", id);
-                    session.removeAttribute("loginFlag");
-                    return "redirect:/userpage";
-                }
-            }
+        if (user.getPassword().equals(hash)) {
+            session.setAttribute("userId", user.getId());
+            session.removeAttribute("loginFlag");
+            return "redirect:/userpage";
         }
         session.setAttribute("loginFlag", false);
         return "redirect:/";

@@ -1,6 +1,6 @@
 package com.osypenko.controllers.recoverypassword;
 
-import com.osypenko.services.MailService;
+import com.osypenko.services.admin.MailService;
 import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class PasswordRecoveryController {
 
     @PostMapping("/confirmationcode")
     public String newPassword(String email) {
-        Long id = userService.userHashMap().get(email);
+        Long id = userService.findByEmail(email).getId();
         if (id != null) {
             int code = mailService.generatedRandomCode();
             session.setAttribute("code", code);

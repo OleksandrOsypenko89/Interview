@@ -1,4 +1,4 @@
-package com.osypenko.services;
+package com.osypenko.services.admin;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

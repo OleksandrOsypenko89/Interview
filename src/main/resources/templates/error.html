@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Error</title>
     <th:block th:replace="~{layout/linksstyles}"/>
 </head>
 <body class="centered">
@@ -16,12 +15,13 @@
 <br>
 
 <div th:if="${session.userId != null}">
-    <form action="/userpage">
+    <form th:action="@{/userpage}" method="get">
         <button class="buttonSerene">Go to start page</button>
     </form>
 </div>
+
 <div th:if="${session.userId == null}">
-    <form action="/">
+    <form th:action="@{/}" method="get">
         <button class="buttonSerene">Go to start page</button>
     </form>
 </div>

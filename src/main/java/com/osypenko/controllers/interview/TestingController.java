@@ -2,10 +2,10 @@ package com.osypenko.controllers.interview;
 
 import com.osypenko.model.statistic.Statistic;
 import com.osypenko.model.statistic.Type;
-import com.osypenko.model.testings.TestingInterview;
+import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.model.users.User;
-import com.osypenko.services.StatisticService;
-import com.osypenko.services.TestingService;
+import com.osypenko.services.statistics.StatisticService;
+import com.osypenko.services.interview.TestingService;
 import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

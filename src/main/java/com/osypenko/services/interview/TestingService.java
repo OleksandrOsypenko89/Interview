@@ -1,6 +1,6 @@
-package com.osypenko.services;
+package com.osypenko.services.interview;
 
-import com.osypenko.model.testings.TestingInterview;
+import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.repository.TestingInterviewRepo;
 import lombok.RequiredArgsConstructor;
@@ -56,10 +56,10 @@ public class TestingService {
             Random random = new Random();
             int randomNum = random.nextInt((size - 1) + 1) + 1;
             integerSet.add(randomNum);
-        } while (integerSet.size() < 10);
+        } while (integerSet.size() < 15);
     }
 
-    public List<TestingInterview> sortInterviewList(User user) {
+    public List<TestingInterview> sortTestingList(User user) {
         Set<TestingInterview> questionTesting = user.getListQuestionTesting();
         List<TestingInterview> list = new ArrayList<>(questionTesting);
         list.sort(Comparator.comparing(TestingInterview::getId));

@@ -1,7 +1,9 @@
-package com.osypenko.services;
+package com.osypenko.services.admin;
 
-import com.osypenko.model.interview.QuestionInterview;
-import com.osypenko.model.testings.TestingInterview;
+import com.osypenko.model.interview.question.QuestionInterview;
+import com.osypenko.model.interview.testings.TestingInterview;
+import com.osypenko.services.UserService;
+import com.osypenko.services.interview.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +13,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminService {
     private final UserService userService;
-    private final InterviewService interviewService;
+    private final QuestionService questionService;
 
     public int sizeUserList() {
         return userService.getAll().size();
     }
 
     public QuestionInterview searchQuestion(String text) {
-        List<QuestionInterview> all = interviewService.getAll();
+        List<QuestionInterview> all = questionService.getAll();
         for (QuestionInterview interview : all) {
             if (interview.getQuestion().equals(text) || interview.getId().toString().equals(text)) {
                 return interview;

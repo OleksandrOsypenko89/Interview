@@ -1,8 +1,8 @@
 package com.osypenko.model.users;
 
-import com.osypenko.model.interview.QuestionInterview;
+import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.statistic.Statistic;
-import com.osypenko.model.testings.TestingInterview;
+import com.osypenko.model.interview.testings.TestingInterview;
 import jakarta.persistence.*;
 import lombok.*;
 

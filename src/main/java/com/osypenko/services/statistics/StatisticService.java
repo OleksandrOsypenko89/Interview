@@ -1,4 +1,4 @@
-package com.osypenko.services;
+package com.osypenko.services.statistics;
 
 import com.osypenko.model.statistic.Statistic;
 import com.osypenko.model.statistic.Type;

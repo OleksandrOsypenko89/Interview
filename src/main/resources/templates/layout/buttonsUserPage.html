@@ -4,7 +4,7 @@
 <th:block th:fragment="buttonsUserPage">
   <div class="container-buttons">
     <div th:if="${session.user.getRole().toString()} == ADMIN">
-      <form th:action="@{/admin}" method="post">
+      <form th:action="@{/adminpage}" method="post">
         <button type="submit" class="buttonSerene">Admin Page</button>
       </form>
     </div>
@@ -12,7 +12,7 @@
       <button class="buttonSerene" onclick="on()">Interview</button>
     </div>
     <div th:if="${session.user.listStudyQuestion.size() <= 10}">
-      <form th:action="@{/interview}" method="post">
+      <form th:action="@{/question}" method="post">
         <button type="submit" class="buttonSerene">Interview</button>
       </form>
     </div>

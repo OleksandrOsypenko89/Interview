@@ -1,9 +1,9 @@
 package com.osypenko.controllers.admin;
 
-import com.osypenko.model.interview.QuestionInterview;
-import com.osypenko.model.interview.Topic;
-import com.osypenko.services.AdminService;
-import com.osypenko.services.InterviewService;
+import com.osypenko.model.interview.question.QuestionInterview;
+import com.osypenko.model.interview.question.Topic;
+import com.osypenko.services.admin.AdminService;
+import com.osypenko.services.interview.QuestionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @Controller
 @RequiredArgsConstructor
 public class CreateAndUpdateInterviewController {
-    private final InterviewService interviewService;
+    private final QuestionService questionService;
     private final AdminService adminService;
 
     @GetMapping("/createandupdatequestion")
@@ -42,7 +42,7 @@ public class CreateAndUpdateInterviewController {
     public String saveQuestionInterview(
             @SessionAttribute(name = "updateQuestionInterview") QuestionInterview questionInterview
     ) {
-        interviewService.save(questionInterview);
+        questionService.save(questionInterview);
         return "redirect:/adminpage";
     }
 }

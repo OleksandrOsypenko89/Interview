@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Statistic All</title>
     <th:block th:replace="~{layout/linksstyles}"/>
 </head>
@@ -56,7 +55,7 @@
     <br>
 </div>
 
-<form th:action="@{/userPage}" method="post">
+<form th:action="@{/userpage}" method="get">
     <div class="center">
         <button type="submit" class="buttonSerene">Home page</button>
     </div>

@@ -1,8 +1,8 @@
 package com.osypenko.controllers.admin;
 
-import com.osypenko.model.testings.TestingInterview;
-import com.osypenko.services.AdminService;
-import com.osypenko.services.TestingService;
+import com.osypenko.model.interview.testings.TestingInterview;
+import com.osypenko.services.admin.AdminService;
+import com.osypenko.services.interview.TestingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

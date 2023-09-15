@@ -25,11 +25,11 @@
                         <input name="interview" type="text" placeholder="Question Interview or ID" class="input">
                     </div>
                     <br>
-                    <button type="submit" class="buttonSerene">Interview</button>
+                    <button type="submit" class="buttonSerene">Question</button>
                 </form>
                 <br><br>
                 <form th:action="@{/adminNewQuestionInterview}" method="post">
-                    <button type="submit" class="buttonSerene">New Interview</button>
+                    <button type="submit" class="buttonSerene">New Question</button>
                 </form>
             </div>
         </div>
@@ -60,7 +60,7 @@
     </div>
 </div>
 
-<form th:action="@{/userPage}" method="post">
+<form th:action="@{/userpage}" method="get">
     <div class="center">
         <button type="submit" class="buttonSerene">Home page</button>
     </div>

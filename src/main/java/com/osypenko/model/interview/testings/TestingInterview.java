@@ -1,4 +1,4 @@
-package com.osypenko.model.testings;
+package com.osypenko.model.interview.testings;
 
 import com.osypenko.model.users.User;
 import jakarta.persistence.*;
