@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.List;
 
+import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameSessionAttributes.*;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -26,15 +29,15 @@ public class TestingController {
     private final StatisticService statisticService;
     private final TestingService testingService;
 
-    @GetMapping("/testing")
+    @GetMapping(TESTING)
     public String getTesting(
-            @SessionAttribute(name = "user") User user
-            , @SessionAttribute(name = "know") Integer know
-            , @SessionAttribute(name = "listTesting") List<TestingInterview> listTesting
+            @SessionAttribute(USER) User user
+            , @SessionAttribute(KNOW) Integer know
+            , @SessionAttribute(LIST_TESTING) List<TestingInterview> listTesting
             , Statistic newStatisticsAdded
     ) {
         if (listTesting.isEmpty()) {
-            int sizeListQuestion = (int) session.getAttribute("sizeListTesting");
+            int sizeListQuestion = (int) session.getAttribute(SIZE_LIST_TESTING);
             int percentage = (know * 100) /  sizeListQuestion;
 
             statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, sizeListQuestion, Type.TESTING);
@@ -42,25 +45,25 @@ public class TestingController {
             user.getListQuestionTesting().removeAll(user.getListQuestionTesting());
             userService.createAndUpdateUser(user);
 
-            session.setAttribute("newStatisticsAdded", newStatisticsAdded);
-            return "redirect:/statistic";
+            session.setAttribute(NEW_STATISTICS_ADDED, newStatisticsAdded);
+            return REDIRECT + STATISTIC;
         }
-        session.setAttribute("randomButton", testingService.shuffleButtons(listTesting.get(0)));
-        session.setAttribute("questionTesting", listTesting.get(0));
-        return "userpages/testing";
+        session.setAttribute(RANDOM_BUTTON, testingService.shuffleButtons(listTesting.get(0)));
+        session.setAttribute(QUESTION_TESTING, listTesting.get(0));
+        return DIRECTORY_USER_PAGES + TESTING;
     }
 
-    @PostMapping("/answerTesting")
+    @PostMapping(ANSWER_TESTING)
     public String answerTesting(
-            @SessionAttribute(name = "know") Integer know
-            , @SessionAttribute(name = "questionTesting") TestingInterview testingInterview
-            , @SessionAttribute(name = "listTesting") List<TestingInterview> list
+            @SessionAttribute(KNOW) Integer know
+            , @SessionAttribute(QUESTION_TESTING) TestingInterview testingInterview
+            , @SessionAttribute(LIST_TESTING) List<TestingInterview> list
             , String buttonAnswer
     ) {
         if (testingInterview.getCorrectAnswer().equals(buttonAnswer)) {
-            session.setAttribute("know", ++know);
+            session.setAttribute(KNOW, ++know);
         }
         list.remove(testingInterview);
-        return "redirect:/testing";
+        return REDIRECT + TESTING;
     }
 }

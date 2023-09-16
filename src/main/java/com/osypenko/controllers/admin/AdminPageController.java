@@ -14,59 +14,63 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Optional;
 
+import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameSessionAttributes.*;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 public class AdminPageController {
+
     private final AdminService adminService;
     private final QuestionService questionService;
     private final TestingService testingService;
     private final HttpSession session;
 
-    @GetMapping("/adminpage")
+    @GetMapping(ADMIN_PAGE)
     public String getAdminPage() {
-        session.setAttribute("sizeUsers", adminService.sizeUserList());
-        session.setAttribute("sizeAllQuestionInterview", questionService.sizeAllQuestion());
-        session.setAttribute("sizeAllTestingInterview", testingService.sizeAllQuestion());
-        return "admin/adminpage";
+        session.setAttribute(SIZE_ALL_USERS, adminService.sizeUserList());
+        session.setAttribute(SIZE_ALL_QUESTION_INTERVIEW, questionService.sizeAllQuestion());
+        session.setAttribute(SIZE_ALL_TESTING_INTERVIEW, testingService.sizeAllQuestion());
+        return DIRECTORY_ADMIN + ADMIN_PAGE;
     }
 
-    @PostMapping("/adminQuestionInterview")
+    @PostMapping(ADMIN_SEARCH_QUESTION)
     public String adminQuestionInterview(String interview) {
         log.error("search question interview = " + interview);
         if (adminService.searchQuestion(interview) != null) {
-            session.setAttribute("updateQuestionInterview", adminService.searchQuestion(interview));
-            return "redirect:/createandupdatequestion";
+            session.setAttribute(UPDATE_QUESTION_INTERVIEW, adminService.searchQuestion(interview));
+            return REDIRECT + CREATE_AND_UPDATE_QUESTION;
         }
-        return "redirect:/adminpage";
+        return REDIRECT + ADMIN_PAGE;
     }
 
-    @PostMapping("/adminNewQuestionInterview")
+    @PostMapping(ADMIN_NEW_QUESTION)
     public String adminNewQuestionInterview(QuestionInterview questionInterview) {
-        session.setAttribute("updateQuestionInterview", questionInterview);
-        return "redirect:/createandupdatequestion";
+        session.setAttribute(UPDATE_QUESTION_INTERVIEW, questionInterview);
+        return REDIRECT + CREATE_AND_UPDATE_QUESTION;
     }
 
-    @PostMapping("/adminQuestionTesting")
+    @PostMapping(ADMIN_SEARCH_TESTING)
     public String adminQuestionTesting(String testing) {
         log.error("search id testing = " + testing);
         int id = Integer.parseInt(testing);
         Optional<TestingInterview> optionalTestingInterview = testingService.get(id);
         if (optionalTestingInterview.isPresent()) {
             TestingInterview testingInterview = optionalTestingInterview.get();
-            session.setAttribute("updateTestingInterview", testingInterview);
+            session.setAttribute(UPDATE_TESTING_INTERVIEW, testingInterview);
         }
-        return "redirect:/createandupdatetesting";
+        return REDIRECT + CREATE_AND_UPDATE_TESTING;
     }
 
-    @PostMapping("/adminNewQuestionTesting")
+    @PostMapping(ADMIN_NEW_TESTING)
     public String adminNewQuestionTesting(TestingInterview testingInterview) {
-        session.setAttribute("updateTestingInterview", testingInterview);
-        return "redirect:/createandupdatetesting";
+        session.setAttribute(UPDATE_TESTING_INTERVIEW, testingInterview);
+        return REDIRECT + CREATE_AND_UPDATE_TESTING;
     }
 
-    @PostMapping("/redirectAdminPage")
+    @PostMapping(REDIRECT_ADMIN_PAGE)
     public String redirectAdminPage() {
-        return "redirect:/adminpage";
+        return REDIRECT + ADMIN_PAGE;
     }
 }

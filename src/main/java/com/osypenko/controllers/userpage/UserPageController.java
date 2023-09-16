@@ -25,7 +25,6 @@ import static com.osypenko.constant.NameSessionAttributes.*;
 @Controller
 @RequiredArgsConstructor
 public class UserPageController {
-
     private final QuestionService questionService;
     private final TestingService testingService;
     private final UserService userService;
@@ -34,13 +33,12 @@ public class UserPageController {
 
     @GetMapping(USER_PAGE)
     public String userPage(
-            @SessionAttribute(name = USER_ID) Long id
+            @SessionAttribute(USER_ID) Long id
     ) {
         User user = userService.getUser(id);
         questionService.sortStudyQuestion(user);
         session.setAttribute(USER, user);
         session.setAttribute(KNOW, 0);
-
 
         log.info("user " + user);
         return DIRECTORY_USER_PAGES + USER_PAGE;
@@ -48,7 +46,7 @@ public class UserPageController {
 
     @PostMapping(QUESTION)
     public String questionPage(
-            @SessionAttribute(name = USER) User user
+            @SessionAttribute(USER) User user
     ) {
         if (user.getListQuestionInterviews().isEmpty()) {
             user.setListQuestionInterviews(questionService.createListQuestion());
@@ -64,7 +62,7 @@ public class UserPageController {
 
     @PostMapping(TESTING)
     public String testingPage(
-            @SessionAttribute(name = USER) User user
+            @SessionAttribute(USER) User user
     ) {
         if (user.getListQuestionTesting().isEmpty()) {
             user.setListQuestionTesting(testingService.createListQuestion());
@@ -79,7 +77,7 @@ public class UserPageController {
 
     @PostMapping(ALL_STATISTICS)
     public String allStatisticPage(
-            @SessionAttribute(name = USER) User user
+            @SessionAttribute(USER) User user
     ) {
         statisticService.deletionOfOutdatedStatistics(user);
         List<Statistic> list = statisticService.sortStatistic(user);
@@ -95,7 +93,7 @@ public class UserPageController {
 
     @PostMapping(DELETE_STUDY_QUESTION)
     public String deleteStudyQuestion(
-            @SessionAttribute(name = USER) User user
+            @SessionAttribute(USER) User user
             , Integer idQuestion
     ) {
         questionService.deleteStudyQuestions(user, idQuestion);

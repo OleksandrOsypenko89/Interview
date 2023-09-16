@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>User Page</title>
     <th:block th:replace="~{layout/linksstyles}"/>
 </head>
@@ -16,7 +17,7 @@
         </div>
     </div>
 
-    <th:block th:replace="~{layout/buttonsUserPage}"/>
+    <th:block th:replace="~{layout/buttonsuserpage}"/>
 
     <h1 class="text-bold title_color big-text_2 text-center">Study questions</h1>
     <table class="table_study_questions">
@@ -39,7 +40,7 @@
 </div>
 
 <div th:if="${session.user.listStudyQuestion.isEmpty()}">
-    <th:block th:replace="~{layout/buttonsUserPage}"/>
+    <th:block th:replace="~{layout/buttonsuserpage}"/>
     <th:block th:replace="~{layout/infoservicework}"/>
 </div>
 

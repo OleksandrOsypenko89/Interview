@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameSessionAttributes.*;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -18,29 +21,29 @@ public class CreateAndUpdateTestingController {
     private final TestingService testingService;
     private final AdminService adminService;
 
-    @GetMapping("/createandupdatetesting")
+    @GetMapping(CREATE_AND_UPDATE_TESTING)
     public String createAndUpdateQuestion(
-            @SessionAttribute(name = "updateTestingInterview") TestingInterview testingInterview
+            @SessionAttribute(UPDATE_TESTING_INTERVIEW) TestingInterview testingInterview
             , Model model
     ) {
         model.addAttribute("modelUpdateTestingInterview", testingInterview);
-        return "admin/createandupdatetesting";
+        return DIRECTORY_ADMIN + CREATE_AND_UPDATE_TESTING;
     }
 
-    @PostMapping("/updateTestingInterview")
+    @PostMapping(VIEW_CHANGES_TESTING)
     public String updateTestingInterview(
-            @SessionAttribute(name = "updateTestingInterview") TestingInterview testingInterview
+            @SessionAttribute(UPDATE_TESTING_INTERVIEW) TestingInterview testingInterview
             , TestingInterview updateTestingInterview
     ) {
         adminService.changingFieldsTestingInterview(testingInterview, updateTestingInterview);
-        return "redirect:/createandupdatetesting";
+        return REDIRECT + CREATE_AND_UPDATE_TESTING;
     }
 
-    @PostMapping("/saveTestingInterview")
+    @PostMapping(SAVE_TESTING_INTERVIEW)
     public String saveTestingInterview(
-            @SessionAttribute(name = "updateTestingInterview") TestingInterview testingInterview
+            @SessionAttribute(UPDATE_TESTING_INTERVIEW) TestingInterview testingInterview
     ) {
         testingService.save(testingInterview);
-        return "redirect:/adminpage";
+        return REDIRECT + ADMIN_PAGE;
     }
 }

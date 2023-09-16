@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import static com.osypenko.constant.Constant.PASSWORD_CHANGE_CODE;
+import static com.osypenko.constant.Constant.*;
+import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameSessionAttributes.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,24 +19,24 @@ public class PasswordRecoveryController {
     private final HttpSession session;
     private final UserService userService;
 
-    @GetMapping("/passwordrecovery")
+    @GetMapping(PASSWORD_RECOVERY)
     public String forgotPassword() {
-        session.removeAttribute("loginFlag");
-        return "passwordrecovery/passwordrecovery";
+        session.removeAttribute(LOGIN_FLAG);
+        return DIRECTORY_PASSWORD_RECOVERY + PASSWORD_RECOVERY;
     }
 
-    @PostMapping("/confirmationcode")
+    @PostMapping(CONFIRMATION_CODE)
     public String newPassword(String email) {
         Long id = userService.findByEmail(email).getId();
         if (id != null) {
             int code = mailService.generatedRandomCode();
-            session.setAttribute("code", code);
-            session.setAttribute("email", email);
-            session.removeAttribute("passwordFlag");
+            session.setAttribute(CODE, code);
+            session.setAttribute(EMAIL, email);
+            session.removeAttribute(PASSWORD_FLAG);
             mailService.sendSimpleMessage(email, PASSWORD_CHANGE_CODE + code);
-            return "redirect:/codepasswordrecovery";
+            return REDIRECT + CODE_PASSWORD_RECOVERY;
         }
-        session.setAttribute("passwordFlag", false);
-        return "redirect:/passwordrecovery";
+        session.setAttribute(PASSWORD_FLAG, false);
+        return REDIRECT + PASSWORD_RECOVERY;
     }
 }

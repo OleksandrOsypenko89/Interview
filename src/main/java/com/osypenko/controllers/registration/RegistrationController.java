@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import static com.osypenko.constant.Constant.TO_COMPLETE_THE_REGISTRATION_ENTER_THE_CODE;
+import static com.osypenko.constant.Constant.*;
+import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameSessionAttributes.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,13 +20,13 @@ public class RegistrationController {
     private final HttpSession session;
     private final UserService userService;
 
-    @GetMapping("/registration")
+    @GetMapping(REGISTRATION)
     public String registration() {
-        session.removeAttribute("loginFlag");
-        return "registration/registration";
+        session.removeAttribute(LOGIN_FLAG);
+        return DIRECTORY_REGISTRATION + REGISTRATION;
     }
 
-    @PostMapping("/login")
+    @PostMapping(LOGIN)
     public String registrationNewUser(
             User user
             , String firstName
@@ -34,8 +36,8 @@ public class RegistrationController {
     ) {
         Long id = userService.findByEmail(email).getId();
         if (id != null) {
-            session.setAttribute("registrationFlag", false);
-            return "redirect:/registration";
+            session.setAttribute(REGISTRATION_FLAG, false);
+            return REDIRECT + REGISTRATION;
         }
         String hashPassword = String.valueOf(password.hashCode());
         user.setFirstName(firstName);
@@ -43,12 +45,12 @@ public class RegistrationController {
         user.setEmail(email);
         user.setPassword(hashPassword);
 
-        session.setAttribute("user", user);
+        session.setAttribute(USER, user);
 
         int code = mailService.generatedRandomCode();
-        session.setAttribute("codeRegistration", code);
-        session.removeAttribute("registrationFlag");
+        session.setAttribute(CODE_REGISTRATION, code);
+        session.removeAttribute(REGISTRATION_FLAG);
         mailService.sendSimpleMessage(email, TO_COMPLETE_THE_REGISTRATION_ENTER_THE_CODE + code);
-        return "redirect:/codeforregistration";
+        return REDIRECT + CODE_FOR_REGISTRATION;
     }
 }

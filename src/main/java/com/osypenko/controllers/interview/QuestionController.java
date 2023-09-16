@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.*;
 
+import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameSessionAttributes.*;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -24,15 +27,15 @@ public class QuestionController {
     private final HttpSession session;
     private final StatisticService statisticService;
 
-    @GetMapping("/question")
+    @GetMapping(QUESTION)
     public String getInterview(
-            @SessionAttribute(name = "user") User user
-            , @SessionAttribute(name = "know") Integer know
-            , @SessionAttribute(name = "listQuestion") List<QuestionInterview> listInterview
+            @SessionAttribute(USER) User user
+            , @SessionAttribute(KNOW) Integer know
+            , @SessionAttribute(LIST_QUESTION) List<QuestionInterview> listInterview
             , Statistic newStatisticsAdded
     ) {
         if (listInterview.isEmpty()) {
-            int sizeListQuestion = (int) session.getAttribute("sizeListQuestion");
+            int sizeListQuestion = (int) session.getAttribute(SIZE_LIST_QUESTION);
             int percentage = (know * 100) /  sizeListQuestion;
 
             statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, sizeListQuestion, Type.INTERVIEW);
@@ -40,34 +43,34 @@ public class QuestionController {
             user.getListQuestionInterviews().removeAll(user.getListQuestionInterviews());
             userService.createAndUpdateUser(user);
 
-            session.setAttribute("newStatisticsAdded", newStatisticsAdded);
-            return "redirect:/statistic";
+            session.setAttribute(NEW_STATISTICS_ADDED, newStatisticsAdded);
+            return REDIRECT + STATISTIC;
         }
-        session.setAttribute("questionInterview", listInterview.get(0));
-        return "userpages/question";
+        session.setAttribute(QUESTION_INTERVIEW, listInterview.get(0));
+        return DIRECTORY_USER_PAGES + QUESTION;
     }
 
-    @PostMapping("/knowAnswer")
+    @PostMapping(KNOW_ANSWER)
     public String knowAnswer(
-            @SessionAttribute(name = "know") Integer know
-            , @SessionAttribute(name = "questionInterview") QuestionInterview questionInterview
-            , @SessionAttribute(name = "listQuestion") List<QuestionInterview> list
+            @SessionAttribute(KNOW) Integer know
+            , @SessionAttribute(QUESTION_INTERVIEW) QuestionInterview questionInterview
+            , @SessionAttribute(LIST_QUESTION) List<QuestionInterview> list
     ) {
         list.remove(questionInterview);
-        session.setAttribute("know", ++know);
-        return "redirect:/question";
+        session.setAttribute(KNOW, ++know);
+        return REDIRECT + QUESTION;
     }
 
-    @PostMapping("/noAnswer")
+    @PostMapping(NO_ANSWER)
     public String noAnswer(
-            @SessionAttribute(name = "user") User user
-            , @SessionAttribute(name = "questionInterview") QuestionInterview questionInterview
-            , @SessionAttribute(name = "listQuestion") List<QuestionInterview> list
+            @SessionAttribute(USER) User user
+            , @SessionAttribute(QUESTION_INTERVIEW) QuestionInterview questionInterview
+            , @SessionAttribute(LIST_QUESTION) List<QuestionInterview> list
     ) {
         Set<QuestionInterview> listStudyQuestion = user.getListStudyQuestion();
         listStudyQuestion.add(questionInterview);
 
         list.remove(questionInterview);
-        return "redirect:/question";
+        return REDIRECT + QUESTION;
     }
 }

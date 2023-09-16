@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameSessionAttributes.*;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -16,12 +19,12 @@ public class LoginController {
     private final UserService userService;
     private final HttpSession session;
 
-    @GetMapping("/")
+    @GetMapping(SLASH)
     public String login() {
-        return "login";
+        return LOGIN;
     }
 
-    @PostMapping("/userpage")
+    @PostMapping(USER_PAGE)
     public String getUserPage(
             String email
             , String password
@@ -30,12 +33,12 @@ public class LoginController {
         String hash = String.valueOf(password.hashCode());
 
         if (user.getPassword().equals(hash)) {
-            session.setAttribute("userId", user.getId());
-            session.removeAttribute("loginFlag");
-            return "redirect:/userpage";
+            session.setAttribute(USER_ID, user.getId());
+            session.removeAttribute(LOGIN_FLAG);
+            return REDIRECT + USER_PAGE;
         }
-        session.setAttribute("loginFlag", false);
-        return "redirect:/";
+        session.setAttribute(LOGIN_FLAG, false);
+        return REDIRECT + SLASH;
     }
 }
 

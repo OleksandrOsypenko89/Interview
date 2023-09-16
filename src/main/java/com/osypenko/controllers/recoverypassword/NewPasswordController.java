@@ -8,19 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameSessionAttributes.*;
+
 @Controller
 @RequiredArgsConstructor
 public class NewPasswordController {
     private final UserService userService;
 
-    @GetMapping("/newpassword")
+    @GetMapping(NEW_PASSWORD)
     public String newPassword() {
-        return "passwordrecovery/newpassword";
+        return DIRECTORY_PASSWORD_RECOVERY + NEW_PASSWORD;
     }
 
-    @PostMapping("/becktologin")
+    @PostMapping(BECK_TO_LOGIN)
     public String redirectLogin(
-            @SessionAttribute(name = "email") String email
+            @SessionAttribute(EMAIL) String email
             , String passwordOne
             , String passwordTwo
     ) {
@@ -29,8 +32,8 @@ public class NewPasswordController {
             String hash = String.valueOf(passwordOne.hashCode());
             user.setPassword(hash);
             userService.createAndUpdateUser(user);
-            return "redirect:/";
+            return REDIRECT + SLASH;
         }
-        return "redirect:/newpassword";
+        return REDIRECT + NEW_PASSWORD;
     }
 }

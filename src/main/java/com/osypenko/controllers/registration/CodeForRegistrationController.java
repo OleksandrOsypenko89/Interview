@@ -9,28 +9,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import static com.osypenko.constant.Constant.*;
+import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameSessionAttributes.*;
+
 @Controller
 @RequiredArgsConstructor
 public class CodeForRegistrationController {
     private final UserService userService;
     private final MailService mailService;
 
-    @GetMapping("/codeforregistration")
+    @GetMapping(CODE_FOR_REGISTRATION)
     public String codeUser() {
-        return "registration/codeforregistration";
+        return REDIRECT + CODE_FOR_REGISTRATION;
     }
 
-    @PostMapping("/newuser")
+    @PostMapping(NEW_USER)
     public String createNewUser(
-            @SessionAttribute(name = "user") User user
-            , @SessionAttribute(name = "codeRegistration") int codeSystem
+            @SessionAttribute(USER) User user
+            , @SessionAttribute(CODE_REGISTRATION) int codeSystem
             , int codeUser
     ) {
         if (codeSystem == codeUser) {
             userService.createAndUpdateUser(user);
-            mailService.sendSimpleMessage("Oleksandrosipenk@gmail.com", "Зареєстрований новий користувач " + user.getFirstName() + " " + user.getLastName());
-            return "redirect:/";
+            mailService.sendSimpleMessage(OLEKSANDR_GMAIL_COM, REGISTRATION_NEW_USER + user.getFirstName() + " " + user.getLastName());
+            return REDIRECT + SLASH;
         }
-        return "redirect:/codeforregistration";
+        return REDIRECT + CODE_FOR_REGISTRATION;
     }
 }

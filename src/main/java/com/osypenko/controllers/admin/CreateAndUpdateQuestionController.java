@@ -12,37 +12,40 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameSessionAttributes.*;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class CreateAndUpdateInterviewController {
+public class CreateAndUpdateQuestionController {
     private final QuestionService questionService;
     private final AdminService adminService;
 
-    @GetMapping("/createandupdatequestion")
+    @GetMapping(CREATE_AND_UPDATE_QUESTION)
     public String createAndUpdateQuestion(
-            @SessionAttribute(name = "updateQuestionInterview") QuestionInterview questionInterview
+            @SessionAttribute(UPDATE_QUESTION_INTERVIEW) QuestionInterview questionInterview
             , Model model
     ) {
         model.addAttribute("modelUpdateQuestionInterview", questionInterview);
         model.addAttribute("allTopicInterview", Topic.values());
-        return "admin/createandupdatequestion";
+        return DIRECTORY_ADMIN + CREATE_AND_UPDATE_QUESTION;
     }
 
-    @PostMapping("/updateQuestionInterview")
+    @PostMapping(VIEW_CHANGES_QUESTION)
     public String updateQuestionInterview(
-            @SessionAttribute(name = "updateQuestionInterview") QuestionInterview questionInterview
+            @SessionAttribute(UPDATE_QUESTION_INTERVIEW) QuestionInterview questionInterview
             , QuestionInterview updateQuestionInterview
     ) {
         adminService.changingFieldsQuestionInterview(questionInterview, updateQuestionInterview);
-        return "redirect:/createandupdatequestion";
+        return REDIRECT + CREATE_AND_UPDATE_QUESTION;
     }
 
-    @PostMapping("/saveQuestionInterview")
+    @PostMapping(SAVE_QUESTION_INTERVIEW)
     public String saveQuestionInterview(
-            @SessionAttribute(name = "updateQuestionInterview") QuestionInterview questionInterview
+            @SessionAttribute(UPDATE_QUESTION_INTERVIEW) QuestionInterview questionInterview
     ) {
         questionService.save(questionInterview);
-        return "redirect:/adminpage";
+        return REDIRECT + ADMIN_PAGE;
     }
 }
