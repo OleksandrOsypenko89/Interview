@@ -34,11 +34,11 @@ public class RegistrationController {
             , String email
             , String password
     ) {
-        Long id = userService.findByEmail(email).getId();
-        if (id != null) {
+        if (userService.allEmailUsers().contains(email)) {
             session.setAttribute(REGISTRATION_FLAG, false);
             return REDIRECT + REGISTRATION;
         }
+
         String hashPassword = String.valueOf(password.hashCode());
         user.setFirstName(firstName);
         user.setLastName(lastName);

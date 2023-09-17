@@ -11,7 +11,7 @@
     <div th:if="${session.user.getRole().toString()} == ADMIN">
         <div class="text-center">
             <p class="text-bold big-text_2 text-center"
-               th:text="'Зареестровано користувачів - ' + ${session.sizeUsers}"/>
+               th:text="'Зареестровано користувачів - ' + ${session.sizeAllUsers}"/>
             <p>
         </div>
 
@@ -19,7 +19,7 @@
             <div class="centered">
                 <div th:text="'Питань в базі данних - ' + ${session.sizeAllQuestionInterview}"/>
                 <br>
-                <form th:action="@{/adminSearchQuestion}" method="post">
+                <form th:action="@{/adminsearchquestion}" method="post">
                     <div class="input-wrapper">
                         <!--suppress HtmlFormInputWithoutLabel -->
                         <input name="interview" type="text" placeholder="Question Interview or ID" class="input">
@@ -28,7 +28,7 @@
                     <button type="submit" class="buttonSerene">Question</button>
                 </form>
                 <br><br>
-                <form th:action="@{/adminNewQuestion}" method="post">
+                <form th:action="@{/adminnewquestion}" method="post">
                     <button type="submit" class="buttonSerene">New Question</button>
                 </form>
             </div>
@@ -38,7 +38,7 @@
             <div class="centered">
                 <div th:text="'Питань в базі данних - ' + ${session.sizeAllTestingInterview}"/>
                 <br>
-                <form th:action="@{/adminSearchTesting}" method="post">
+                <form th:action="@{/adminsearchtesting}" method="post">
                     <div class="input-wrapper">
                         <!--suppress HtmlFormInputWithoutLabel -->
                         <input name="testing" type="text" placeholder="ID Testing" class="input">
@@ -48,7 +48,7 @@
                 </form>
                 <br>
                 <br>
-                <form th:action="@{/adminNewTesting}" method="post">
+                <form th:action="@{/adminnewtesting}" method="post">
                     <button type="submit" class="buttonSerene">New Testing</button>
                 </form>
             </div>

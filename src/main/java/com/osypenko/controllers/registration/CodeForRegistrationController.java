@@ -3,6 +3,7 @@ package com.osypenko.controllers.registration;
 import com.osypenko.model.users.User;
 import com.osypenko.services.admin.MailService;
 import com.osypenko.services.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +19,11 @@ import static com.osypenko.constant.NameSessionAttributes.*;
 public class CodeForRegistrationController {
     private final UserService userService;
     private final MailService mailService;
+    private final HttpSession session;
 
     @GetMapping(CODE_FOR_REGISTRATION)
     public String codeUser() {
-        return REDIRECT + CODE_FOR_REGISTRATION;
+        return DIRECTORY_REGISTRATION + CODE_FOR_REGISTRATION;
     }
 
     @PostMapping(NEW_USER)
@@ -32,6 +34,7 @@ public class CodeForRegistrationController {
     ) {
         if (codeSystem == codeUser) {
             userService.createAndUpdateUser(user);
+            session.setAttribute(NEW_USER_IS_REGISTERED, true);
             mailService.sendSimpleMessage(OLEKSANDR_GMAIL_COM, REGISTRATION_NEW_USER + user.getFirstName() + " " + user.getLastName());
             return REDIRECT + SLASH;
         }

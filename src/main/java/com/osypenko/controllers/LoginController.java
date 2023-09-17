@@ -29,6 +29,13 @@ public class LoginController {
             String email
             , String password
     ) {
+        session.removeAttribute(NEW_USER_IS_REGISTERED);
+        session.setAttribute(LOGIN_FLAG, false);
+
+        if (!userService.allEmailUsers().contains(email)) {
+            return REDIRECT + SLASH;
+        }
+
         User user = userService.findByEmail(email);
         String hash = String.valueOf(password.hashCode());
 
@@ -37,7 +44,7 @@ public class LoginController {
             session.removeAttribute(LOGIN_FLAG);
             return REDIRECT + USER_PAGE;
         }
-        session.setAttribute(LOGIN_FLAG, false);
+
         return REDIRECT + SLASH;
     }
 }
