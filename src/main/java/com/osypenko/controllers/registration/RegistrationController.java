@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Optional;
+
 import static com.osypenko.constant.Constant.*;
 import static com.osypenko.constant.NameMapping.*;
 import static com.osypenko.constant.NameSessionAttributes.*;
@@ -34,7 +36,8 @@ public class RegistrationController {
             , String email
             , String password
     ) {
-        if (userService.allEmailUsers().contains(email)) {
+        Optional<User> userOptional = userService.findByEmail(email);
+        if (userOptional.isPresent()) {
             session.setAttribute(REGISTRATION_FLAG, false);
             return REDIRECT + REGISTRATION;
         }

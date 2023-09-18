@@ -2,7 +2,7 @@ package com.osypenko.services.interview;
 
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.users.User;
-import com.osypenko.repository.QuestionInterviewRepo;
+import com.osypenko.repository.QuestionInterviewRepository;
 import com.osypenko.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,19 +14,19 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class QuestionService {
-    private final QuestionInterviewRepo questionInterviewRepo;
+    private final QuestionInterviewRepository questionInterviewRepository;
     private final UserService userService;
 
     public List<QuestionInterview> getAll() {
-        return questionInterviewRepo.findAll();
+        return questionInterviewRepository.findAll();
     }
 
     public Optional<QuestionInterview> get(Integer id) {
-        return questionInterviewRepo.findById(id);
+        return questionInterviewRepository.findById(id);
     }
 
     public QuestionInterview save(QuestionInterview questionInterview) {
-        questionInterviewRepo.save(questionInterview);
+        questionInterviewRepository.save(questionInterview);
         return questionInterview;
     }
 

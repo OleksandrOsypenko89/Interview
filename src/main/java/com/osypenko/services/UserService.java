@@ -1,12 +1,11 @@
 package com.osypenko.services;
 
 import com.osypenko.model.users.User;
-import com.osypenko.repository.UserRepo;
+import com.osypenko.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,31 +13,22 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRepo userRepo;
+    private final UserRepository userRepository;
 
     public List<User> getAll() {
-        return userRepo.findAll();
+        return userRepository.findAll();
     }
 
     public void createAndUpdateUser(User user) {
-        userRepo.save(user);
+        userRepository.save(user);
     }
 
     public Optional<User> findById(Long id) {
-        return userRepo.findById(id);
+        return userRepository.findById(id);
     }
 
-    public User findByEmail(String email) {
-        return userRepo.findByEmail(email);
-    }
-
-    public HashSet<String> allEmailUsers() {
-        HashSet<String> allEmail = new HashSet<>();
-        List<User> allUsers = getAll();
-        for (User user : allUsers) {
-            allEmail.add(user.getEmail());
-        }
-        return allEmail;
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     public User getUser(Long id) {

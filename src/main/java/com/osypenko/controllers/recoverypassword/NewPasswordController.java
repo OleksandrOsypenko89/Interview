@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.util.Optional;
+
 import static com.osypenko.constant.NameMapping.*;
 import static com.osypenko.constant.NameSessionAttributes.*;
 
@@ -28,11 +30,14 @@ public class NewPasswordController {
             , String passwordTwo
     ) {
         if (passwordOne.equals(passwordTwo)) {
-            User user = userService.findByEmail(email);
-            String hash = String.valueOf(passwordOne.hashCode());
-            user.setPassword(hash);
-            userService.createAndUpdateUser(user);
-            return REDIRECT + SLASH;
+            Optional<User> optionalUser = userService.findByEmail(email);
+            if (optionalUser.isPresent()) {
+                User user = optionalUser.get();
+                String hash = String.valueOf(passwordOne.hashCode());
+                user.setPassword(hash);
+                userService.createAndUpdateUser(user);
+                return REDIRECT + SLASH;
+            }
         }
         return REDIRECT + NEW_PASSWORD;
     }

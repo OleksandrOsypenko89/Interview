@@ -3,7 +3,7 @@ package com.osypenko.services.statistics;
 import com.osypenko.model.statistic.Statistic;
 import com.osypenko.model.statistic.Type;
 import com.osypenko.model.users.User;
-import com.osypenko.repository.StatisticRepo;
+import com.osypenko.repository.StatisticRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,14 +19,14 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class StatisticService {
-    private final StatisticRepo statisticRepo;
+    private final StatisticRepository statisticRepository;
 
     public void delete(Statistic statistic) {
-        statisticRepo.delete(statistic);
+        statisticRepository.delete(statistic);
     }
 
     public void addStatistic(Statistic statistic) {
-        statisticRepo.save(statistic);
+        statisticRepository.save(statistic);
     }
 
     public void deletionOfOutdatedStatistics(User user) {

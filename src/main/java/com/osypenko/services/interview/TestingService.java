@@ -2,7 +2,7 @@ package com.osypenko.services.interview;
 
 import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.model.users.User;
-import com.osypenko.repository.TestingInterviewRepo;
+import com.osypenko.repository.TestingInterviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,18 +13,18 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class TestingService {
-    private final TestingInterviewRepo testingInterviewRepo;
+    private final TestingInterviewRepository testingInterviewRepository;
 
     public List<TestingInterview> getAll() {
-        return testingInterviewRepo.findAll();
+        return testingInterviewRepository.findAll();
     }
 
     public Optional<TestingInterview> get(int id) {
-        return testingInterviewRepo.findById(id);
+        return testingInterviewRepository.findById(id);
     }
 
     public TestingInterview save(TestingInterview testingInterview) {
-        testingInterviewRepo.save(testingInterview);
+        testingInterviewRepository.save(testingInterview);
         return testingInterview;
     }
 

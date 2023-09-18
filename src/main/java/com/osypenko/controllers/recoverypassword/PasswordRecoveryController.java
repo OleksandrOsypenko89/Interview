@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Optional;
+
 import static com.osypenko.constant.Constant.*;
 import static com.osypenko.constant.NameMapping.*;
 import static com.osypenko.constant.NameSessionAttributes.*;
@@ -30,20 +32,18 @@ public class PasswordRecoveryController {
 
     @PostMapping(CONFIRMATION_CODE)
     public String newPassword(String email) {
-        if (!userService.allEmailUsers().contains(email)) {
+        Optional<User> optionalUser = userService.findByEmail(email);
+        if (optionalUser.isEmpty()) {
             session.setAttribute(PASSWORD_FLAG, false);
             return REDIRECT + PASSWORD_RECOVERY;
         }
-        User user = userService.findByEmail(email);
-        if (user != null) {
-            int code = mailService.generatedRandomCode();
-            session.setAttribute(CODE, code);
-            session.setAttribute(EMAIL, email);
-            session.removeAttribute(PASSWORD_FLAG);
-            mailService.sendSimpleMessage(email, PASSWORD_CHANGE_CODE + code);
-            return REDIRECT + CODE_PASSWORD_RECOVERY;
-        }
-        session.setAttribute(PASSWORD_FLAG, false);
-        return REDIRECT + PASSWORD_RECOVERY;
+
+        int code = mailService.generatedRandomCode();
+        session.setAttribute(CODE, code);
+        session.setAttribute(EMAIL, email);
+        session.removeAttribute(PASSWORD_FLAG);
+        mailService.sendSimpleMessage(email, PASSWORD_CHANGE_CODE + code);
+        return REDIRECT + CODE_PASSWORD_RECOVERY;
+
     }
 }
