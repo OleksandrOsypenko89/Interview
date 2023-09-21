@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="formRegistration">
-  <form th:action="@{/login}" method="post">
+  <form th:action="@{/getregistrationcode}" method="post">
     <div class="wave-group">
       <!--suppress HtmlFormInputWithoutLabel -->
       <input name="firstName" required type="text" class="input">
@@ -40,7 +40,7 @@
     <br>
     <div class="wave-group">
       <!--suppress HtmlFormInputWithoutLabel -->
-      <input name="email" required type="email" class="input">
+      <input name="username" required type="email" class="input">
       <span class="bar"></span>
       <label class="label">
         <span class="label-char" style="--index: 0">E</span>

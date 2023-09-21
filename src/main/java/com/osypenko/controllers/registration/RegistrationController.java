@@ -5,6 +5,7 @@ import com.osypenko.services.admin.MailService;
 import com.osypenko.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import static com.osypenko.constant.Constant.*;
 import static com.osypenko.constant.NameMapping.*;
 import static com.osypenko.constant.NameSessionAttributes.*;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class RegistrationController {
@@ -28,7 +30,7 @@ public class RegistrationController {
         return DIRECTORY_REGISTRATION + REGISTRATION;
     }
 
-    @PostMapping(LOGIN)
+    @PostMapping(GET_REGISTRATION_CODE)
     public String registrationNewUser(
             User user
             , String firstName

@@ -27,6 +27,7 @@ public class NameMapping {
     public static final String REDIRECT_ADMIN_PAGE = "/redirectadminpage";
     public static final String ADMIN_SEARCH_TESTING = "/adminsearchtesting";
     public static final String VIEW_CHANGES_TESTING = "/viewchangestesting";
+    public static final String GET_REGISTRATION_CODE = "/getregistrationcode";
     public static final String CODE_FOR_REGISTRATION = "/codeforregistration";
     public static final String ADMIN_SEARCH_QUESTION = "/adminsearchsuestion";
     public static final String VIEW_CHANGES_QUESTION = "/viewchangesquestion";
@@ -42,4 +43,7 @@ public class NameMapping {
     public static final String DIRECTORY_REGISTRATION = "registration";
     public static final String DIRECTORY_PASSWORD_RECOVERY = "passwordrecovery";
 
+    public static final String DIRECTORY_CSS = "/css/**";
+    public static final String DIRECTORY_IMAGES = "/images/**";
+    public static final String DIRECTORY_JAVASCRIPT = "/javascript/**";
 }

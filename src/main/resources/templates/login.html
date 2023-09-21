@@ -10,14 +10,6 @@
 <th:block th:replace="~{layout/titletext}"/>
 <div class="split right">
     <div class="centered">
-        <div th:if="${session.loginFlag == false}">
-            <p class="text-bold red_color">Не правильно введен логин или пароль!</p>
-            <br>
-        </div>
-        <div th:if="${session.newUserIsRegistered == true}">
-            <p class="text-bold green_color">Вы зарегистрированы!</p>
-            <br>
-        </div>
         <th:block th:replace="~{layout/formlogin}"/>
     </div>
 </div>

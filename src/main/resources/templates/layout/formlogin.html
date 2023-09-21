@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="formLogin">
-    <form th:action="@{/userpage}" method="post">
+    <form th:action="@{/login}" method="post">
         <div class="wave-group">
             <!--suppress HtmlFormInputWithoutLabel -->
-            <input name="email" required type="email" class="input">
+            <input name="username" required type="email" class="input">
             <span class="bar"></span>
             <label class="label">
                 <span class="label-char" style="--index: 0">E</span>
