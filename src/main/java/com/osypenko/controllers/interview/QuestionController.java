@@ -5,7 +5,7 @@ import com.osypenko.model.statistic.Statistic;
 import com.osypenko.model.statistic.Type;
 import com.osypenko.model.users.User;
 import com.osypenko.services.statistics.StatisticService;
-import com.osypenko.services.UserService;
+import com.osypenko.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

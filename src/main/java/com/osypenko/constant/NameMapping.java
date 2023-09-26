@@ -16,10 +16,10 @@ public class NameMapping {
     public static final String KNOW_ANSWER = "/knowAnswer";
     public static final String NEW_PASSWORD = "/newpassword";
     public static final String REGISTRATION = "/registration";
-    public static final String BECK_TO_LOGIN = "/becktologin";
     public static final String ALL_STATISTICS = "/allstatistics";
     public static final String DELETE_STUDY_QUESTION = "/delete";
     public static final String ANSWER_TESTING = "/answerTesting";
+    public static final String SAVE_NEW_PASSWORD = "/savenewpassword";
     public static final String ADMIN_NEW_TESTING = "/adminnewtesting";
     public static final String PASSWORD_RECOVERY = "/passwordrecovery";
     public static final String CONFIRMATION_CODE = "/confirmationcode";

@@ -1,4 +1,4 @@
-package com.osypenko.services;
+package com.osypenko.services.user;
 
 import com.osypenko.model.users.User;
 import com.osypenko.repository.UserRepository;
@@ -23,16 +23,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
-    }
-
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
-    }
-
-    public User getUser(Long id) {
-        Optional<User> optionalUser = findById(id);
-        return optionalUser.orElse(null);
     }
 }

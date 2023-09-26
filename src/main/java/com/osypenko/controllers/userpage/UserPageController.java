@@ -7,7 +7,7 @@ import com.osypenko.model.users.User;
 import com.osypenko.services.interview.QuestionService;
 import com.osypenko.services.statistics.StatisticService;
 import com.osypenko.services.interview.TestingService;
-import com.osypenko.services.UserService;
+import com.osypenko.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,14 +33,14 @@ public class UserPageController {
 
     @GetMapping(USER_PAGE)
     public String userPage(
-            @SessionAttribute(USER_ID) Long id
+            @SessionAttribute(USER) User user
     ) {
-        User user = userService.getUser(id);
+        log.info("user " + user.getEmail());
+
         questionService.sortStudyQuestion(user);
         session.setAttribute(USER, user);
         session.setAttribute(KNOW, 0);
 
-        log.info("user " + user);
         return DIRECTORY_USER_PAGES + USER_PAGE;
     }
 

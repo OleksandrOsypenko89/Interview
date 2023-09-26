@@ -2,7 +2,7 @@ package com.osypenko.controllers.recoverypassword;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.admin.MailService;
-import com.osypenko.services.UserService;
+import com.osypenko.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

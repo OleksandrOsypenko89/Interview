@@ -3,7 +3,7 @@ package com.osypenko.services.interview;
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.repository.QuestionInterviewRepository;
-import com.osypenko.services.UserService;
+import com.osypenko.services.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -2,7 +2,7 @@ package com.osypenko.controllers.registration;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.admin.MailService;
-import com.osypenko.services.UserService;
+import com.osypenko.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -36,7 +36,7 @@ public class CodeForRegistrationController {
             userService.createAndUpdateUser(user);
             session.setAttribute(NEW_USER_IS_REGISTERED, true);
             mailService.sendSimpleMessage(OLEKSANDR_GMAIL_COM, REGISTRATION_NEW_USER + user.getFirstName() + " " + user.getLastName());
-            return REDIRECT + SLASH;
+            return REDIRECT + LOGIN;
         }
         return REDIRECT + CODE_FOR_REGISTRATION;
     }

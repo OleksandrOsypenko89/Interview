@@ -1,2 +1,27 @@
-[//]: # (<img class="center" src="images/DBImageInterview/testing/-.jpg" width="-" height="-" alt="image"/>)
-[//]: # (<span class="selected_text color_selected_text"></span>)
+# My project - INTERVIEWER
+
+### The project is aimed  practicing interview skills.
+
+### Stack of technologies used in the project
+
+* Java 17
+* Spring Boot
+* Spring Data
+* Spring MVC
+* Spring Security
+* PostgreSQL
+* Thymeleaf
+* Docker
+* Maven
+* HTML
+* CSS
+* JS
+
+### Tools used in development
+
+* IntelliJ IDEA
+* Docker
+* GitHub
+* Git
+
+

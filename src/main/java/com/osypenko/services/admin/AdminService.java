@@ -2,7 +2,7 @@ package com.osypenko.services.admin;
 
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.interview.testings.TestingInterview;
-import com.osypenko.services.UserService;
+import com.osypenko.services.user.UserService;
 import com.osypenko.services.interview.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
