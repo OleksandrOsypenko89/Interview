@@ -44,6 +44,5 @@ public class PasswordRecoveryController {
         session.removeAttribute(PASSWORD_FLAG);
         mailService.sendSimpleMessage(email, PASSWORD_CHANGE_CODE + code);
         return REDIRECT + CODE_PASSWORD_RECOVERY;
-
     }
 }

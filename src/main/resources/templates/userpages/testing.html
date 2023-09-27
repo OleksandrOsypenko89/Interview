@@ -7,7 +7,10 @@
 </head>
 
 <body>
-<br>
+<header th:align="center">
+    <ul><p></ul>
+    <br>
+</header>
 <div class="center">
         <div th:if="${session.user.getRole().toString()} == ADMIN">
             <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.questionTesting.getId()}"></span>

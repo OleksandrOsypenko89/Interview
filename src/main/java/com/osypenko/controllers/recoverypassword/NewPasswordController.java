@@ -46,7 +46,7 @@ public class NewPasswordController {
                 return REDIRECT + LOGIN;
             }
         }
-        session.setAttribute("newPasswordFlag", false);
+        session.setAttribute(NEW_PASSWORD_FLAG, false);
         return REDIRECT + NEW_PASSWORD;
     }
 }

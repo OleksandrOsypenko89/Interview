@@ -7,55 +7,68 @@
 </head>
 
 <body>
-<h1 class="text-bold title_color big-text_1 text-center">All statistics</h1>
-<div class="center">
-    <table class="padding">
-        <tr class="text-bold">
-            <th>Дата</th>
-            <th>Правильных ответов</th>
-            <th>Показатель в %</th>
-            <th>Тип</th>
-        </tr>
+<header th:align="center">
+    <ul>
+        <li>
+            <ul class="text-bold big-text_1 text-center">All statistics</ul>
+        </li>
+    </ul>
+</header>
 
-        <tr th:each="statistic : ${session.statisticList}">
-            <td>
-                <p th:text="${statistic.getDate()}"/>
-            </td>
-            <td>
-                <p th:text="${statistic.getKnowAnswer()} + '/' + ${statistic.getQuestions()}"/>
-            </td>
-            <td>
-                <div th:if="${statistic.getResult()} < 60">
-                    <p class="red_color text-bold" th:text="${statistic.getResult()} + '%'"/>
-                </div>
-                <div th:if="${statistic.getResult()} > 90">
-                    <p class="green_color text-bold" th:text="${statistic.getResult()} + '%'"/>
-                </div>
-                <div th:if="${statistic.getResult()} < 90 AND ${statistic.getResult()} > 60">
-                    <p class="text-bold" th:text="${statistic.getResult()} + '%'"/>
-                </div>
-            </td>
-            <td>
-                <p th:text="${statistic.getType()}"/>
-            </td>
-        </tr>
-    </table>
+<div th:if="${session.statisticList.isEmpty()}">
     <br>
-    <div th:if="${session.generalResult} < 60">
-            <span class="red_color text-bold big-text_3"
-                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
-    </div>
-    <div th:if="${session.generalResult} > 90">
-            <span class="green_color text-bold big-text_3"
-                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
-    </div>
-    <div th:if="${session.generalResult} < 90 AND ${session.generalResult} > 60">
-            <span class="text-bold big-text_3"
-                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
-    </div>
+    <h1 class="text-bold big-text_2 text-center">Статистика отсутствует</h1>
     <br>
 </div>
+<div th:if="${!session.statisticList.isEmpty()}">
+    <div class="center">
+        <table class="padding">
+            <tr class="text-bold">
+                <th>Дата</th>
+                <th>Правильных ответов</th>
+                <th>Показатель в %</th>
+                <th>Тип</th>
+            </tr>
 
+            <tr th:each="statistic : ${session.statisticList}">
+                <td>
+                    <p th:text="${statistic.getDate()}"/>
+                </td>
+                <td>
+                    <p th:text="${statistic.getKnowAnswer()} + '/' + ${statistic.getQuestions()}"/>
+                </td>
+                <td>
+                    <div th:if="${statistic.getResult()} < 60">
+                        <p class="red_color text-bold" th:text="${statistic.getResult()} + '%'"/>
+                    </div>
+                    <div th:if="${statistic.getResult()} > 90">
+                        <p class="green_color text-bold" th:text="${statistic.getResult()} + '%'"/>
+                    </div>
+                    <div th:if="${statistic.getResult()} < 90 AND ${statistic.getResult()} > 60">
+                        <p class="text-bold" th:text="${statistic.getResult()} + '%'"/>
+                    </div>
+                </td>
+                <td>
+                    <p th:text="${statistic.getType()}"/>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div th:if="${session.generalResult} < 60">
+            <span class="red_color text-bold big-text_3"
+                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
+        </div>
+        <div th:if="${session.generalResult} > 90">
+            <span class="green_color text-bold big-text_3"
+                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
+        </div>
+        <div th:if="${session.generalResult} < 90 AND ${session.generalResult} > 60">
+            <span class="text-bold big-text_3"
+                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
+        </div>
+        <br>
+    </div>
+</div>
 <form th:action="@{/userpage}" method="get">
     <div class="center">
         <button type="submit" class="buttonSerene">Home page</button>

@@ -35,16 +35,13 @@ public class UserPageController {
     public String userPage(
             @SessionAttribute(USER) User user
     ) {
-        log.info("user " + user.getEmail());
-
         questionService.sortStudyQuestion(user);
-        session.setAttribute(USER, user);
         session.setAttribute(KNOW, 0);
-
+        session.removeAttribute(REGISTRATION_FLAG);
         return DIRECTORY_USER_PAGES + USER_PAGE;
     }
 
-    @PostMapping(QUESTION)
+    @GetMapping(QUESTION_PAGE)
     public String questionPage(
             @SessionAttribute(USER) User user
     ) {
@@ -56,11 +53,10 @@ public class UserPageController {
 
         session.setAttribute(SIZE_LIST_QUESTION, listQuestionInterviews.size());
         session.setAttribute(LIST_QUESTION, listQuestionInterviews);
-        session.setAttribute(KNOW, 0);
         return REDIRECT + QUESTION;
     }
 
-    @PostMapping(TESTING)
+    @GetMapping(TESTING_PAGE)
     public String testingPage(
             @SessionAttribute(USER) User user
     ) {
@@ -75,7 +71,7 @@ public class UserPageController {
         return REDIRECT + TESTING;
     }
 
-    @PostMapping(ALL_STATISTICS)
+    @GetMapping(ALL_STATISTICS_PAGE)
     public String allStatisticPage(
             @SessionAttribute(USER) User user
     ) {
@@ -84,6 +80,12 @@ public class UserPageController {
         session.setAttribute(GENERAL_RESULT, statisticService.result(user));
         session.setAttribute(STATISTIC_LIST, list);
         return REDIRECT + ALL_STATISTICS;
+    }
+
+    @GetMapping(LOGOUT)
+    public String logout() {
+        session.removeAttribute(USER);
+        return LOGIN;
     }
 
     @PostMapping(ADMIN_PAGE)

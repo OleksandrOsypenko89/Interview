@@ -72,6 +72,9 @@ public class StatisticService {
 
     public int result(User user) {
         Set<Statistic> userStatistic = user.getStatistic();
+        if (userStatistic.isEmpty()) {
+            return 0;
+        }
         int size = userStatistic.size();
         int general = 0;
         for (Statistic statistic : userStatistic) {

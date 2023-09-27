@@ -1,5 +1,6 @@
 package com.osypenko.controllers.recoverypassword;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import static com.osypenko.constant.NameSessionAttributes.*;
 @Controller
 @RequiredArgsConstructor
 public class CodePasswordRecoveryController {
+    private final HttpSession session;
 
     @GetMapping(CODE_PASSWORD_RECOVERY)
     public String code() {
@@ -24,8 +26,10 @@ public class CodePasswordRecoveryController {
             , int codeUser
     ) {
         if (codeSystem == codeUser) {
+            session.removeAttribute(CODE_NO_CORRECT);
             return REDIRECT + NEW_PASSWORD;
         }
+        session.setAttribute(CODE_NO_CORRECT, true);
         return REDIRECT + CODE_PASSWORD_RECOVERY;
     }
 }

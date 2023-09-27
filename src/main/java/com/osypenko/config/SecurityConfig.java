@@ -1,7 +1,6 @@
 package com.osypenko.config;
 
 import com.osypenko.model.users.Role;
-import org.springframework.security.config.Customizer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,15 +27,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests()
                 .requestMatchers(REGISTRATION, GET_REGISTRATION_CODE, CODE_FOR_REGISTRATION, NEW_USER).permitAll()
                 .requestMatchers(PASSWORD_RECOVERY, CODE_PASSWORD_RECOVERY, NEW_PASSWORD, CONFIRMATION_CODE, SAVE_NEW_PASSWORD).permitAll()
                 .requestMatchers(DIRECTORY_CSS, DIRECTORY_JAVASCRIPT, DIRECTORY_IMAGES).permitAll()
-                .requestMatchers(USER_PAGE, QUESTION, TESTING, ALL_STATISTICS, STATISTIC).hasAnyRole(Role.USER.name(), Role.ADMIN.name())
-                .requestMatchers(ADMIN_PAGE, CREATE_AND_UPDATE_QUESTION, CREATE_AND_UPDATE_TESTING).hasRole(Role.ADMIN.name())
+                .requestMatchers(USER_PAGE, QUESTION, TESTING, ALL_STATISTICS, STATISTIC, FEEDBACK).hasAnyRole(Role.USER.name(), Role.ADMIN.name())
+                .requestMatchers(ADMIN_PAGE, ADMIN_SEARCH_QUESTION, CREATE_AND_UPDATE_QUESTION, ADMIN_SEARCH_TESTING, CREATE_AND_UPDATE_TESTING, REDIRECT_ADMIN_PAGE).hasRole(Role.ADMIN.name())
                 .anyRequest().authenticated().and()
-                .formLogin().permitAll().loginPage(LOGIN).defaultSuccessUrl(USER_PAGE).and()
+                .formLogin().permitAll().loginPage(LOGIN).defaultSuccessUrl(USER_PAGE, true).and()
+                .httpBasic().and()
                 .csrf().disable();
         return http.build();
     }

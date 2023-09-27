@@ -7,6 +7,10 @@
 </head>
 
 <body>
+<header th:align="center">
+    <ul><p></ul>
+    <br>
+</header>
 <div class="centered">
     <span class="text-bold title_color big-text_1" th:text="'Результат прохождения ' + ${session.newStatisticsAdded.getType()}"></span>
     <p class="text-bold big-text_2" th:text="'Ответил на ' + ${session.newStatisticsAdded.getKnowAnswer()} + ' из ' + ${session.newStatisticsAdded.getQuestions()} + ' вопросов'"></p>

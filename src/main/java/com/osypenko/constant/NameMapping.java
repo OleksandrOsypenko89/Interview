@@ -6,16 +6,21 @@ public class NameMapping {
 
     public static final String ERROR = "error";
     public static final String LOGIN = "/login";
+    public static final String LOGOUT = "/logout";
+    public static final String TEXT_ME = "/textme";
     public static final String TESTING = "/testing";
     public static final String NEW_USER = "/newuser";
+    public static final String FEEDBACK = "/feedback";
     public static final String QUESTION = "/question";
     public static final String NO_ANSWER = "/noAnswer";
     public static final String USER_PAGE = "/userpage";
     public static final String STATISTIC = "/statistic";
     public static final String ADMIN_PAGE = "/adminpage";
     public static final String KNOW_ANSWER = "/knowAnswer";
+    public static final String TESTING_PAGE = "/testingpage";
     public static final String NEW_PASSWORD = "/newpassword";
     public static final String REGISTRATION = "/registration";
+    public static final String QUESTION_PAGE = "/questionpage";
     public static final String ALL_STATISTICS = "/allstatistics";
     public static final String DELETE_STUDY_QUESTION = "/delete";
     public static final String ANSWER_TESTING = "/answerTesting";
@@ -24,6 +29,7 @@ public class NameMapping {
     public static final String PASSWORD_RECOVERY = "/passwordrecovery";
     public static final String CONFIRMATION_CODE = "/confirmationcode";
     public static final String ADMIN_NEW_QUESTION = "/adminnewquestion";
+    public static final String ALL_STATISTICS_PAGE = "/allstatisticspage";
     public static final String REDIRECT_ADMIN_PAGE = "/redirectadminpage";
     public static final String ADMIN_SEARCH_TESTING = "/adminsearchtesting";
     public static final String VIEW_CHANGES_TESTING = "/viewchangestesting";
