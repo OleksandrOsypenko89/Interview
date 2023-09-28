@@ -5,27 +5,18 @@
     <title>Error</title>
     <th:block th:replace="~{layout/linksstyles}"/>
 </head>
-<body class="centered">
 
-<div class="big-text_3 text-bold">
-    <span class="big-text_1 title_color">An error has occurred</span>
-    <div th:if="${session.exception} != null">
-        <p th:text="${session.exception.getMessage()}"/>
+<body>
+<th:block th:replace="~{layout/header}"/>
+
+<div class="centered">
+    <div class="big-text_3 text-bold">
+        <span class="big-text_1 title_color">An error has occurred</span>
+        <div th:if="${session.exception} != null">
+            <p th:text="${session.exception.getMessage()}"/>
+        </div>
     </div>
+    <br>
 </div>
-<br>
-
-<div th:if="${session.user != null}">
-    <form th:action="@{/userpage}" method="get">
-        <button class="buttonSerene">Go to start page</button>
-    </form>
-</div>
-
-<div th:if="${session.user == null}">
-    <form th:action="@{/login}" method="get">
-        <button class="buttonSerene">Go to start page</button>
-    </form>
-</div>
-
 </body>
 </html>

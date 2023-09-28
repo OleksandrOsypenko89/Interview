@@ -7,14 +7,8 @@
 </head>
 
 <body>
-<header th:align="center">
-    <ul>
-        <li>
-            <a class="link" th:href="@{/userpage}">Home page</a>
-        </li>
-    </ul>
-    <br>
-</header>
+<th:block th:replace="~{layout/header}"/>
+
 <h1 class="text-bold title_color big-text_2 text-center">If you have any suggestions or comments text me.</h1>
 <br>
 <form class="center" th:action="@{/textme}" method="post">

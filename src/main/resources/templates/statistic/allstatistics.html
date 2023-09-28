@@ -7,14 +7,9 @@
 </head>
 
 <body>
-<header th:align="center">
-    <ul>
-        <li>
-            <ul class="text-bold big-text_1 text-center">All statistics</ul>
-        </li>
-    </ul>
-</header>
+<th:block th:replace="~{layout/header}"/>
 
+<div class="text-bold big-text_1 text-center">All statistics</div>
 <div th:if="${session.statisticList.isEmpty()}">
     <br>
     <h1 class="text-bold big-text_2 text-center">Статистика отсутствует</h1>

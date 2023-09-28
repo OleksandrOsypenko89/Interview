@@ -5,7 +5,6 @@ public class NameSessionAttributes {
     public static final String CODE = "code";
     public static final String KNOW = "know";
     public static final String EMAIL = "email";
-    public static final String USER_ID = "userId";
     public static final String EXCEPTION = "exception";
     public static final String LOGIN_FLAG = "loginFlag";
     public static final String LIST_TESTING = "listTesting";
@@ -15,7 +14,9 @@ public class NameSessionAttributes {
     public static final String SIZE_ALL_USERS = "sizeAllUsers";
     public static final String STATISTIC_LIST = "statisticList";
     public static final String GENERAL_RESULT = "generalResult";
+    public static final String CODE_NO_CORRECT = "codeNoCorrect";
     public static final String QUESTION_TESTING = "questionTesting";
+    public static final String NEW_PASSWORD_FLAG = "newPasswordFlag";
     public static final String SIZE_LIST_TESTING = "sizeListTesting";
     public static final String REGISTRATION_FLAG = "registrationFlag";
     public static final String CODE_REGISTRATION = "codeRegistration";
@@ -27,5 +28,4 @@ public class NameSessionAttributes {
     public static final String UPDATE_QUESTION_INTERVIEW = "updateQuestionInterview";
     public static final String SIZE_ALL_TESTING_INTERVIEW = "sizeAllTestingInterview";
     public static final String SIZE_ALL_QUESTION_INTERVIEW = "sizeAllQuestionInterview";
-
 }

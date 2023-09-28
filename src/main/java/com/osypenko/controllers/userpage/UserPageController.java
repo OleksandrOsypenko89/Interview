@@ -36,7 +36,6 @@ public class UserPageController {
             @SessionAttribute(USER) User user
     ) {
         questionService.sortStudyQuestion(user);
-        session.setAttribute(KNOW, 0);
         session.removeAttribute(REGISTRATION_FLAG);
         return DIRECTORY_USER_PAGES + USER_PAGE;
     }
@@ -53,6 +52,7 @@ public class UserPageController {
 
         session.setAttribute(SIZE_LIST_QUESTION, listQuestionInterviews.size());
         session.setAttribute(LIST_QUESTION, listQuestionInterviews);
+        session.setAttribute(KNOW, 0);
         return REDIRECT + QUESTION;
     }
 
@@ -68,6 +68,7 @@ public class UserPageController {
 
         session.setAttribute(SIZE_LIST_TESTING, listQuestionTesting.size());
         session.setAttribute(LIST_TESTING, listQuestionTesting);
+        session.setAttribute(KNOW, 0);
         return REDIRECT + TESTING;
     }
 

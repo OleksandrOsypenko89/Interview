@@ -1,5 +1,10 @@
 body {
     background-color: #FAFAFA;
+    margin: 0;
+}
+
+.body_color {
+    background-color: #FAFAFA;
 }
 
 .red_color {
@@ -17,7 +22,7 @@ body {
 }
 
 .title_color {
-    color: #9641B0;
+    color: #1728ef;
 }
 
 tr:nth-child(even) {

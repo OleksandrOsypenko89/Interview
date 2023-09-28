@@ -35,11 +35,11 @@ public class NameMapping {
     public static final String VIEW_CHANGES_TESTING = "/viewchangestesting";
     public static final String GET_REGISTRATION_CODE = "/getregistrationcode";
     public static final String CODE_FOR_REGISTRATION = "/codeforregistration";
-    public static final String ADMIN_SEARCH_QUESTION = "/adminsearchsuestion";
+    public static final String ADMIN_SEARCH_QUESTION = "/adminsearchquestion";
     public static final String VIEW_CHANGES_QUESTION = "/viewchangesquestion";
     public static final String CODE_PASSWORD_RECOVERY = "/codepasswordrecovery";
     public static final String SAVE_TESTING_INTERVIEW = "/savetestinginterview";
-    public static final String SAVE_QUESTION_INTERVIEW = "/saveQuestionInterview";
+    public static final String SAVE_QUESTION_INTERVIEW = "/savequestioninterview";
     public static final String CREATE_AND_UPDATE_TESTING = "/createandupdatetesting";
     public static final String CREATE_AND_UPDATE_QUESTION = "/createandupdatequestion";
 

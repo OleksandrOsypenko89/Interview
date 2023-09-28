@@ -7,45 +7,9 @@
 </head>
 
 <body>
-<header th:align="center">
-    <ul>
-        <li class="text-bold big-text_3" th:text="${session.user.getFirstName()}"></li>
-        <li class="text-bold big-text_3" th:text="${session.user.getLastName()}"></li>
-        <li th:if="${session.user.getRole().toString()} == ADMIN">
-            <a class="link" th:href="@{/adminpage}">Admin Page</a>
-        </li>
-        <li th:if="${session.user.listStudyQuestion.size() > 10}">
-            <a class="link" onclick="on()">Interview</a>
-        </li>
-        <li th:if="${session.user.listStudyQuestion.size() <= 10}">
-            <a class="link" th:href="@{/questionpage}">Interview</a>
-        </li>
-        <li>
-            <a class="link" th:href="@{/testingpage}">Testing</a>
-        </li>
-        <li>
-            <a class="link" th:href="@{/allstatisticspage}">Statistics</a>
-        </li>
-        <li>
-            <a class="link" th:href="@{/feedback}">Feedback</a>
-        </li>
-        <li>
-            <a class="link" th:href="@{/logout}">Logout</a>
-        </li>
-    </ul>
-    <br>
-</header>
+<th:block th:replace="~{layout/header}"/>
 
 <div th:if="${!session.user.listStudyQuestion.isEmpty()}">
-    <div id="overlay" onclick="off()">
-        <div id="text">
-            <div class="center text-bold big-text_2 red_color">
-                <p>Слишком много вопросов к изучению.
-                <p>Сначала изучите их чтобы снова продолжить проходить собеседования.
-            </div>
-        </div>
-    </div>
-
     <h1 class="text-bold title_color big-text_2 text-center">Study questions</h1>
     <table class="table_study_questions">
         <tr th:each="question : ${session.user.getListStudyQuestion()}">
@@ -69,8 +33,6 @@
 <div th:if="${session.user.listStudyQuestion.isEmpty()}">
     <th:block th:replace="~{layout/infoservicework}"/>
 </div>
-
-<script th:src="@{javascript/display.js}"></script>
 
 </body>
 </html>

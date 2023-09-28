@@ -1,0 +1,41 @@
+.header {
+    overflow: hidden;
+    background: linear-gradient(rgba(35, 20, 245, 0.33), #FAFAFA);
+    padding: 20px 10px;
+}
+
+.header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.header a:hover {
+    background-color: rgba(27, 2, 243, 0.41);
+    color: black;
+}
+
+.header-right {
+    float: right;
+}
+
+@media screen and (max-width: 650px) {
+    .header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+    .header-right {
+        float: none;
+    }
+}
