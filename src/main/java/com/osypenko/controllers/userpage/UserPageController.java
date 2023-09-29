@@ -11,6 +11,8 @@ import com.osypenko.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +35,14 @@ public class UserPageController {
 
     @GetMapping(USER_PAGE)
     public String userPage(
-            @SessionAttribute(USER) User user
+            @AuthenticationPrincipal UserDetails userDetails
     ) {
+        Optional<User> userOptional = userService.findByEmail(userDetails.getUsername());
+        if (userOptional.isEmpty()) {
+            return LOGIN;
+        }
+        User user = userOptional.get();
+        session.setAttribute(USER, user);
         questionService.sortStudyQuestion(user);
         session.removeAttribute(REGISTRATION_FLAG);
         return DIRECTORY_USER_PAGES + USER_PAGE;

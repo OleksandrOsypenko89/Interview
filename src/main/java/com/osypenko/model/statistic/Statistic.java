@@ -32,5 +32,3 @@ public class Statistic {
 
     private Integer questions;
 }
-
-

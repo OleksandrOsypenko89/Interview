@@ -7,9 +7,8 @@
 </head>
 
 <body>
-<th:block th:replace="~{layout/header}"/>
-
 <div th:if="${!session.user.listStudyQuestion.isEmpty()}">
+    <th:block th:replace="~{layout/header}"/>
     <h1 class="text-bold title_color big-text_2 text-center">Study questions</h1>
     <table class="table_study_questions">
         <tr th:each="question : ${session.user.getListStudyQuestion()}">
@@ -31,7 +30,8 @@
 </div>
 
 <div th:if="${session.user.listStudyQuestion.isEmpty()}">
-    <th:block th:replace="~{layout/infoservicework}"/>
+    <th:block th:replace="~{layout/headeruserpage}"/>
+    <img class="centered" th:src="@{images/view/image.png}" alt="image">
 </div>
 
 </body>

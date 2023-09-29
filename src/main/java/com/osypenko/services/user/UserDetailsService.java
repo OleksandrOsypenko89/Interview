@@ -1,7 +1,6 @@
 package com.osypenko.services.user;
 
 import com.osypenko.model.users.User;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,7 +13,6 @@ import java.util.Optional;
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
     private final UserService userService;
-    private final HttpSession session;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -23,12 +21,10 @@ public class UserDetailsService implements org.springframework.security.core.use
             throw new UsernameNotFoundException("Unknown user: " + email);
         }
         User user = userOptional.get();
-        UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
+        return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getEmail())
                 .password(user.getPassword())
                 .roles(String.valueOf(user.getRole()))
                 .build();
-        session.setAttribute("user", user);
-        return userDetails;
     }
 }

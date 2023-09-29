@@ -2,6 +2,8 @@
 
 ### The project is aimed  practicing interview skills.
 
+<hr>
+
 ### Stack of technologies used in the project
 
 * Java 17
@@ -24,4 +26,4 @@
 * GitHub
 * Git
 
-
+<hr>
