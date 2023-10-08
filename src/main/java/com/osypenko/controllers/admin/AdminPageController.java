@@ -37,7 +37,6 @@ public class AdminPageController {
 
     @PostMapping(ADMIN_SEARCH_QUESTION)
     public String adminQuestionInterview(String interview) {
-        log.error("search question interview = " + interview);
         if (adminService.searchQuestion(interview) != null) {
             session.setAttribute(UPDATE_QUESTION_INTERVIEW, adminService.searchQuestion(interview));
             return REDIRECT + CREATE_AND_UPDATE_QUESTION;
@@ -53,7 +52,6 @@ public class AdminPageController {
 
     @PostMapping(ADMIN_SEARCH_TESTING)
     public String adminQuestionTesting(String testing) {
-        log.error("search id testing = " + testing);
         int id = Integer.parseInt(testing);
         Optional<TestingInterview> optionalTestingInterview = testingService.get(id);
         if (optionalTestingInterview.isPresent()) {

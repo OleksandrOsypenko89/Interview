@@ -1,9 +1,9 @@
 header {
-    background: linear-gradient(rgba(35, 20, 245, 0.33), #FAFAFA);
+    background: #1F2E45;
 }
 
 ul {
     list-style: none;
     margin: 0;
-    padding: 20px;
+    padding: 15px;
 }

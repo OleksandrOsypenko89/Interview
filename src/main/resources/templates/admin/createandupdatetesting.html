@@ -7,9 +7,10 @@
 </head>
 
 <body>
+<th:block th:replace="~{layout/header}"/>
 <br>
 <div class="center">
-    <form method="post" th:action="@{/updateTestingInterview}" th:object="${modelUpdateTestingInterview}">
+    <form method="post" th:action="@{/viewchangestesting}" th:object="${modelUpdateTestingInterview}">
         <table class="table_study_questions">
             <td class="td_red">
                 <!--suppress HtmlFormInputWithoutLabel -->
@@ -61,14 +62,15 @@
 
 <br>
 <div class="container-buttons center">
-    <form method="post" th:action="@{/saveTestingInterview}">
-        <button class="buttonGreen center" type="submit">Зберегти</button>
+    <form method="post" th:action="@{/savetestinginterview}">
+        <button class="buttonGreen center" type="submit">Save</button>
     </form>
 
-    <form method="post" th:action="@{/redirectAdminPage}">
-        <button class="buttonSerene center" type="submit">Повернутись в адмін панель</button>
+    <form method="post" th:action="@{/redirectadminpage}">
+        <button class="buttonSerene center" type="submit">Back to admin page</button>
     </form>
 </div>
+<br>
 
 <div id="myModal" class="modal">
     <div class="modal-content style_text_model">

@@ -1,12 +1,12 @@
 .header {
     overflow: hidden;
-    background: linear-gradient(rgba(35, 20, 245, 0.33), #FAFAFA);
-    padding: 20px 10px;
+    background: #1F2E45;
+    padding: 15px 10px;
 }
 
 .header a {
     float: left;
-    color: black;
+    color: #FAFAFA;
     text-align: center;
     padding: 12px;
     text-decoration: none;
@@ -21,8 +21,8 @@
 }
 
 .header a:hover {
-    background-color: rgba(27, 2, 243, 0.41);
-    color: black;
+    background-color: #1F2E45;
+    color: #ec5d2a;
 }
 
 .header-right {

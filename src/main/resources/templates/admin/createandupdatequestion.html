@@ -7,9 +7,10 @@
 </head>
 
 <body>
+<th:block th:replace="~{layout/header}"/>
 <br>
 <div class="center">
-    <form method="post" th:action="@{/updateQuestionInterview}" th:object="${modelUpdateQuestionInterview}">
+    <form method="post" th:action="@{/viewchangesquestion}" th:object="${modelUpdateQuestionInterview}">
         <table class="table_study_questions">
             <td class="td_red">
                 <!--suppress HtmlFormInputWithoutLabel -->
@@ -22,7 +23,7 @@
             <td class="td_red">
                 <!--suppress HtmlFormInputWithoutLabel -->
                 <select th:field="*{topic}">
-                    <option th:each="allTopicInterview : ${allTopicInterview}" th:value="${allTopicInterview}" th:text="${allTopicInterview}"/>
+                    <option th:each="allTopic : ${allTopicInterview}" th:value="${allTopic}" th:text="${allTopic}"/>
                 </select>
                 <p>
                     <button class="buttonGreen" type="submit">✅</button>
@@ -46,14 +47,15 @@
 <br>
 
 <div class="container-buttons center">
-    <form method="post" th:action="@{/saveQuestionInterview}">
-        <button class="buttonGreen center" type="submit">Зберегти</button>
+    <form method="post" th:action="@{/savequestioninterview}">
+        <button class="buttonGreen center" type="submit">Save</button>
     </form>
-
-    <form method="post" th:action="@{/redirectAdminPage}">
-        <button class="buttonSerene center" type="submit">Повернутись в адмін панель</button>
+    <p class="red_color text-bold" th:text="'id - ' + ${modelUpdateQuestionInterview.getId()}"/>
+    <form method="post" th:action="@{/redirectadminpage}">
+        <button class="buttonSerene center" type="submit">Back to admin page</button>
     </form>
 </div>
+<br>
 
 </body>
 </html>

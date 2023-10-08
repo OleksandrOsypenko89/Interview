@@ -5,11 +5,11 @@
     font-size: 1rem;
     width: 13em;
     border-radius: 1rem;
-    color: #9641B0;
+    color: #1F2E45;
     box-shadow: 0 0.4rem #dfd9d9;
     cursor: pointer;
 }
 
 .input-wrapper input:focus {
-    outline-color: #9641B0;
+    outline-color: #1F2E45;
 }

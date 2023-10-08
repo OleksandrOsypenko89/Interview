@@ -11,6 +11,10 @@ body {
     color: red;
 }
 
+.orange_color {
+    color: #ec5d2a;
+}
+
 .green_color {
     color: green;
 }
@@ -22,7 +26,7 @@ body {
 }
 
 .title_color {
-    color: #1728ef;
+    color: black;
 }
 
 tr:nth-child(even) {

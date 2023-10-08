@@ -8,26 +8,26 @@
 
 <body>
 <th:block th:replace="~{layout/header}"/>
-
+<br>
 <div class="text-bold big-text_1 text-center">All statistics</div>
 <div th:if="${session.statisticList.isEmpty()}">
     <br>
-    <h1 class="text-bold big-text_2 text-center">Статистика отсутствует</h1>
+    <h1 class="text-bold big-text_2 text-center">No statistics</h1>
     <br>
 </div>
 <div th:if="${!session.statisticList.isEmpty()}">
     <div class="center">
         <table class="padding">
             <tr class="text-bold">
-                <th>Дата</th>
-                <th>Правильных ответов</th>
-                <th>Показатель в %</th>
-                <th>Тип</th>
+                <th>Date</th>
+                <th>Correct answers</th>
+                <th>Indicator %</th>
+                <th>Type</th>
             </tr>
 
             <tr th:each="statistic : ${session.statisticList}">
                 <td>
-                    <p th:text="${statistic.getDate()}"/>
+                    <p th:text="${#dates.format(statistic.getDate(), 'yyyy-MM-dd HH:mm')}"/>
                 </td>
                 <td>
                     <p th:text="${statistic.getKnowAnswer()} + '/' + ${statistic.getQuestions()}"/>
@@ -51,15 +51,15 @@
         <br>
         <div th:if="${session.generalResult} < 60">
             <span class="red_color text-bold big-text_3"
-                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
+                  th:text="'Total result of all interviews - ' + ${session.generalResult} + '%'"/>
         </div>
         <div th:if="${session.generalResult} > 90">
             <span class="green_color text-bold big-text_3"
-                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
+                  th:text="'Total result of all interviews - ' + ${session.generalResult} + '%'"/>
         </div>
         <div th:if="${session.generalResult} < 90 AND ${session.generalResult} > 60">
             <span class="text-bold big-text_3"
-                  th:text="'Общий результат всех собеседований - ' + ${session.generalResult} + '%'"/>
+                  th:text="'Total result of all interviews - ' + ${session.generalResult} + '%'"/>
         </div>
         <br>
     </div>

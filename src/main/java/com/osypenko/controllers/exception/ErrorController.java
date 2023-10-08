@@ -25,7 +25,6 @@ public class ErrorController {
             }
     )
     public String getErrorPage(ServletRequestBindingException exception) {
-        log.error(exception.getMessage());
         session.setAttribute(EXCEPTION, exception);
         return ERROR;
     }

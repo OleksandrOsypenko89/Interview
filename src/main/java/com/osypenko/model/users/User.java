@@ -27,25 +27,28 @@ public class User {
     @Column(name= "last_name")
     private String lastName;
 
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role = Role.USER;
 
     @ToString.Exclude
     @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "lists_interview",
+    @JoinTable(name = "lists_question_interview",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "interview_id", referencedColumnName = "id"))
+            inverseJoinColumns = @JoinColumn(name = "question_id", referencedColumnName = "id"))
     private Set<QuestionInterview> listQuestionInterviews;
 
     @ToString.Exclude
     @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "lists_testing",
+    @JoinTable(name = "lists_testing_interview",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "testing_id", referencedColumnName = "id"))
     private Set<TestingInterview> listQuestionTesting;

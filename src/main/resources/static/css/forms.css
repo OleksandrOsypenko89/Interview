@@ -36,7 +36,7 @@
 .wave-group .input:valid ~ label .label-char {
     transform: translateY(-20px);
     font-size: 14px;
-    color: #1728ef;
+    color: black;
 }
 
 .wave-group .bar {
@@ -51,7 +51,7 @@
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: #1728ef;
+    background: black;
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
