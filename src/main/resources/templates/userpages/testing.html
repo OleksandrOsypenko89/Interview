@@ -11,12 +11,15 @@
     <ul><p></ul>
     <br>
 </header>
+<br>
 <div class="center">
         <div th:if="${session.user.getRole().toString()} == ADMIN">
             <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.questionTesting.getId()}"></span>
         </div>
-    <p class="text-bold big-text_3" th:utext="${session.questionTesting.getQuestion()}"></p>
-    <p th:utext="${session.questionTesting.getPicture()}"></p>
+    <p class="text-bold big-text_1" th:utext="${session.questionTesting.getQuestion()}"></p>
+    <div>
+        <p th:utext="${session.questionTesting.getPicture()}"></p>
+    </div>
     <br>
     <div th:each="buttonAnswer : ${session.randomButton}">
         <div th:if="*{!buttonAnswer.isEmpty()}">

@@ -14,4 +14,8 @@ spring:
      smtp:
       auth: true
       starttls:
-       enable: true
+        enable: true
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html

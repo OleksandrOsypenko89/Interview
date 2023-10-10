@@ -11,7 +11,6 @@ import static com.osypenko.constant.NameMapping.*;
 public class LoginController {
     @GetMapping(LOGIN)
     public String login() {
-        return LOGIN;
+        return DIRECTORY_USER_PAGES + LOGIN;
     }
 }
-
