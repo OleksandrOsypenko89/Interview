@@ -22,6 +22,7 @@
 ### Tools used in development
 
 * IntelliJ IDEA
+* Postman
 * Docker
 * GitHub
 * Git

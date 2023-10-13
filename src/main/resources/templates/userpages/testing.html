@@ -7,10 +7,7 @@
 </head>
 
 <body>
-<header th:align="center">
-    <ul><p></ul>
-    <br>
-</header>
+<th:block th:replace="~{layout/header}"/>
 <br>
 <div class="center">
         <div th:if="${session.user.getRole().toString()} == ADMIN">
