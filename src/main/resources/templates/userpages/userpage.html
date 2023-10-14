@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>User Page</title>
-    <th:block th:replace="~{layout/linksstyles}"/>
+    <th:block th:replace="~{layout/linksstyles :: linksStylesBootstrap}"/>
 </head>
 
 <body>
 <div th:if="${!session.user.listStudyQuestion.isEmpty()}">
     <th:block th:replace="~{layout/header}"/>
+    <br>
     <h1 class="text-bold title_color big-text_2 text-center">Study questions</h1>
+    <br>
     <table class="table_study_questions">
         <tr th:each="question : ${session.user.getListStudyQuestion()}">
             <td>
@@ -31,7 +33,7 @@
 
 <div th:if="${session.user.listStudyQuestion.isEmpty()}">
     <th:block th:replace="~{layout/header}"/>
-    <img class="centered" th:src="@{images/view/image.png}" alt="image">
+    <img class="centered" th:src="@{images/view/image-1.png}"  height="700" width="700" alt="image">
 </div>
 
 </body>

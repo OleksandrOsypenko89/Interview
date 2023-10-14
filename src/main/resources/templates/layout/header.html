@@ -6,10 +6,10 @@
         <a th:href="@{/userpage}" class="text-bold orange_color"
            th:text="${session.user.getFirstName().toUpperCase()} + ' ' + ${session.user.getLastName().toUpperCase()}"/>
         <div class="header-right">
-            <a th:if="${session.user.listStudyQuestion.isEmpty()}" id="myBtn"><span class="orange_color">How service works?</span></a>
+            <a th:if="${session.user.listStudyQuestion.isEmpty()}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="orange_color">How service works?</span></a>
             <a th:href="@{/userpage}">Home page</a>
             <a th:if="${session.user.getRole().toString()} == ADMIN" th:href="@{/adminpage}">Admin page</a>
-            <a th:if="${session.user.listStudyQuestion.size() > 10}" onclick="on()">Interview</a>
+            <a th:if="${session.user.listStudyQuestion.size() > 10}" class="btn" onclick="on()">Interview</a>
             <a th:if="${session.user.listStudyQuestion.size() <= 10}" th:href="@{/questionpage}">Interview</a>
             <a th:href="@{/testingpage}">Testing</a>
             <a th:href="@{/allstatisticspage}">Statistic</a>
@@ -27,36 +27,38 @@
         </div>
     </div>
 
-    <div id="myModal" class="modal">
-        <div class="modal-content style_text_model">
-            <span class="close"></span>
-
-            <div class="text-center text-bold">
-                <p>Сервис заточен в основном на самостоятельную работу.
-                <p>В нем есть две основных функции, это Interview и Testing.
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><p>Сервис заточен в основном на самостоятельную работу.
+                        <p>В нем есть две основных функции, это Interview и Testing.</p></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <p><span class="red_color text-bold">Interview</span> - тебе по очереди будут выведены 15 вопросов. На них
+                        желательно отвечать как можно развернуто и вслух, чтобы выработать уверенность в ответе.
+                    <p>Так же в этом режиме есть три ключевых кнопки.
+                    <p><span class="green_color text-bold">Знаю ответ</span> - при нажатии на кнопку ты переходишь к следующему
+                        вопросу.
+                    <p><span class="green_color text-bold">Посмотреть ответ</span> - отобразит ответ на данный вопрос.
+                        Это сделано для того чтобы убедится в правильности ответа.
+                    <p><span class="green_color text-bold">Не знаю ответ</span> - при нажатии на кнопку ты переходишь к
+                        следующему вопросу. При этом вопрос на который ты не знал ответа будет сохранен в список вопросов к
+                        изучению.
+                    <p>Кнопки "Знаю ответ" и "Не знаю ответ" ведут подсчет статистики для того чтобы ты видел свою динамику
+                        прохождения собеседований. Статистика сохраняется 7 дней.
+                    <p><span class="red_color text-bold">Testing</span> - тебе по очереди будут выведены 15 вопросов с
+                        вариантами ответов.
+                    <p>При нажатии на кнопку с вариантом ответа кнопка изменит цвет в соответствии правильный ответ был дан или
+                        нет. Результаты тестирования так же записываются в статистику.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
             </div>
-            <br>
-            <p><span class="red_color text-bold">Interview</span> - тебе по очереди будут выведены 15 вопросов. На них
-                желательно отвечать как можно развернуто и вслух, чтобы выработать уверенность в ответе.
-            <p>Так же в этом режиме есть три ключевых кнопки.
-            <p><span class="green_color text-bold">Знаю ответ</span> - при нажатии на кнопку ты переходишь к следующему
-                вопросу.
-            <p><span class="green_color text-bold">Посмотреть ответ</span> - отобразит ответ на данный вопрос.
-                Это сделано для того чтобы убедится в правильности ответа.
-            <p><span class="green_color text-bold">Не знаю ответ</span> - при нажатии на кнопку ты переходишь к
-                следующему вопросу. При этом вопрос на который ты не знал ответа будет сохранен в список вопросов к
-                изучению.
-            <p>Кнопки "Знаю ответ" и "Не знаю ответ" ведут подсчет статистики для того чтобы ты видел свою динамику
-                прохождения собеседований. Статистика сохраняется 7 дней.
-            <p><span class="red_color text-bold">Testing</span> - тебе по очереди будут выведены 15 вопросов с
-                вариантами ответов.
-            <p>При нажатии на кнопку с вариантом ответа кнопка изменит цвет в соответствии правильный ответ был дан или
-                нет.
-                Результаты тестирования так же записываются в статистику.
-                <br>
         </div>
     </div>
 
-    <script th:src="@{javascript/modal.js}"></script>
     <script th:src="@{javascript/display.js}"></script>
 </th:block>

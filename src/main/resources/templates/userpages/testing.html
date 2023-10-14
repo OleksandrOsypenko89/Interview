@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Testing</title>
-    <th:block th:replace="~{layout/linksstyles}"/>
+    <th:block th:replace="~{layout/linksstyles :: linksStylesBootstrap}"/>
 </head>
 
 <body>
-<th:block th:replace="~{layout/header}"/>
+<th:block th:replace="~{layout/headerforinterview}"/>
 <br>
 <div class="center">
         <div th:if="${session.user.getRole().toString()} == ADMIN">
             <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.questionTesting.getId()}"></span>
         </div>
-    <p class="text-bold big-text_1" th:utext="${session.questionTesting.getQuestion()}"></p>
+    <p class="text-bold big-text_2" th:utext="${session.questionTesting.getQuestion()}"></p>
     <div>
         <p th:utext="${session.questionTesting.getPicture()}"></p>
     </div>

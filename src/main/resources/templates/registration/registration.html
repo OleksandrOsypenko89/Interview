@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
-    <th:block th:replace="~{layout/linksstyles}"/>
+    <th:block th:replace="~{layout/linksstyles :: linksStyles}"/>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
         <th:block th:replace="~{layout/formregistration}"/>
         <br>
         <form method="post" th:action="@{/login}">
-            <button class="buttonSerene" type="submit">Back</button>
+            <button class="buttonDarkBlue" type="submit">Back</button>
         </form>
     </div>
 </div>

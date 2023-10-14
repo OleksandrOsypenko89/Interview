@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create and Update Question</title>
-    <th:block th:replace="~{layout/linksstyles}"/>
+    <th:block th:replace="~{layout/linksstyles :: linksStylesBootstrap}"/>
 </head>
 
 <body>
@@ -25,8 +25,7 @@
                 <select th:field="*{topic}">
                     <option th:each="allTopic : ${allTopicInterview}" th:value="${allTopic}" th:text="${allTopic}"/>
                 </select>
-                <p>
-                    <button class="buttonGreen" type="submit">✅</button>
+                <p><button class="buttonGreen" type="submit">✅</button>
             </td>
         </table>
     </form>
@@ -52,7 +51,7 @@
     </form>
     <p class="red_color text-bold" th:text="'id - ' + ${modelUpdateQuestionInterview.getId()}"/>
     <form method="post" th:action="@{/redirectadminpage}">
-        <button class="buttonSerene center" type="submit">Back to admin page</button>
+        <button class="buttonDarkBlue center" type="submit">Back to admin page</button>
     </form>
 </div>
 <br>

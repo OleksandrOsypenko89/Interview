@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create and Update Testing</title>
-    <th:block th:replace="~{layout/linksstyles}"/>
+    <th:block th:replace="~{layout/linksstyles :: linksStylesBootstrap}"/>
 </head>
 
 <body>
@@ -67,7 +67,7 @@
     </form>
 
     <form method="post" th:action="@{/redirectadminpage}">
-        <button class="buttonSerene center" type="submit">Back to admin page</button>
+        <button class="buttonDarkBlue center" type="submit">Back to admin page</button>
     </form>
 </div>
 <br>
@@ -79,8 +79,6 @@
         <br>
     </div>
 </div>
-
-<script th:src="@{javascript/modal.js}"></script>
 
 </body>
 </html>

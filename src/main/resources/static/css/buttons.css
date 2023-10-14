@@ -3,7 +3,7 @@
     justify-content: space-around;
 }
 
-.buttonSerene {
+.buttonDarkBlue {
     display: inline-block;
     transition: all 0.2s ease-in;
     position: relative;
@@ -19,13 +19,13 @@
     -6px -6px 12px #ffffff;
 }
 
-.buttonSerene:active {
+.buttonDarkBlue:active {
     color: #666;
     box-shadow: inset 4px 4px 12px #c5c5c5,
     inset -4px -4px 12px #ffffff;
 }
 
-.buttonSerene:before {
+.buttonDarkBlue:before {
     content: "";
     position: absolute;
     left: 50%;
@@ -40,7 +40,7 @@
     z-index: -1;
 }
 
-.buttonSerene:after {
+.buttonDarkBlue:after {
     content: "";
     position: absolute;
     left: 55%;
@@ -55,18 +55,18 @@
     z-index: -1;
 }
 
-.buttonSerene:hover {
+.buttonDarkBlue:hover {
     color: #ffffff;
     border: 1px solid #1F2E45;
 }
 
-.buttonSerene:hover:before {
+.buttonDarkBlue:hover:before {
     top: -35%;
     background-color: #1F2E45;
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
-.buttonSerene:hover:after {
+.buttonDarkBlue:hover:after {
     top: -45%;
     background-color: #1F2E45;
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);

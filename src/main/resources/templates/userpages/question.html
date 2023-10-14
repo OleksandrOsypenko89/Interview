@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Interview</title>
-    <th:block th:replace="~{layout/linksstyles}"/>
+    <th:block th:replace="~{layout/linksstyles :: linksStylesBootstrap}"/>
 </head>
 
 <body>
-<th:block th:replace="~{layout/header}"/>
+<th:block th:replace="~{layout/headerforinterview}"/>
 
 <div class="centered" style="padding:20px">
     <div th:if="${session.user.getRole().toString()} == ADMIN">
         <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.questionInterview.getId()}"></span>
     </div>
-    <div class="text-bold big-text_2">
+    <div class="text-bold big-text_3">
         Вопрос по теме - <span th:utext="${session.questionInterview.getTopic()}"></span>
     </div>
-    <p class="text-bold big-text_1 title_color" th:utext="${session.questionInterview.getQuestion()}"></p>
+    <p class="text-bold big-text_2" th:utext="${session.questionInterview.getQuestion()}"></p>
     <br>
     <div class="container-buttons">
         <form th:action="@{/knowAnswer}" method="post" th:object="${session.questionInterview}">
             <button class="buttonGreen">Знаю ответ</button>
         </form>
 
-        <button class="buttonGrey" id="myBtn">Посмотреть ответ</button>
+        <button type="button" class="buttonGrey" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Посмотреть ответ
+        </button>
 
         <form th:action="@{/noAnswer}" method="post" th:object="${session.questionInterview}">
             <button class="buttonRed">Не знаю ответ</button>
@@ -31,15 +33,23 @@
     </div>
     <br>
 </div>
-<div id="myModal" class="modal">
-    <div class="modal-content style_text_model">
-        <span class="close"></span>
-        <p th:utext="${session.questionInterview.getAnswer()}"></p>
-        <br>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><p th:utext="${session.questionInterview.getQuestion()}"></p></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <p th:utext="${session.questionInterview.getAnswer()}"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
     </div>
 </div>
-
-<script th:src="@{javascript/modal.js}"></script>
 
 </body>
 </html>

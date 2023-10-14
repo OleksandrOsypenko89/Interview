@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
-    <th:block th:replace="~{layout/linksstyles}"/>
+    <th:block th:replace="~{layout/linksstyles :: linksStylesBootstrap}"/>
 </head>
 
 <body>
 <th:block th:replace="~{layout/header}"/>
-
+<br>
 <div>
     <div class="text-center">
         <p class="text-bold big-text_2 text-center"
@@ -25,11 +25,11 @@
                 <input name="interview" type="text" placeholder="Question Interview or ID" class="input">
             </div>
             <br>
-            <button type="submit" class="buttonSerene">Question</button>
+            <button type="submit" class="buttonDarkBlue">Question</button>
         </form>
         <br><br>
         <form th:action="@{/adminnewquestion}" method="post">
-            <button type="submit" class="buttonSerene">New Question</button>
+            <button type="submit" class="buttonDarkBlue">New Question</button>
         </form>
 
         <br><br>
@@ -42,12 +42,12 @@
                 <input name="testing" type="text" placeholder="ID Testing" class="input">
             </div>
             <br>
-            <button type="submit" class="buttonSerene">Testing</button>
+            <button type="submit" class="buttonDarkBlue">Testing</button>
         </form>
         <br>
         <br>
         <form th:action="@{/adminnewtesting}" method="post">
-            <button type="submit" class="buttonSerene">New Testing</button>
+            <button type="submit" class="buttonDarkBlue">New Testing</button>
         </form>
     </div>
 </div>

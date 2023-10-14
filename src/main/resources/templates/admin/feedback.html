@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Feedback</title>
-    <th:block th:replace="~{layout/linksstyles}"/>
+    <th:block th:replace="~{layout/linksstyles :: linksStylesBootstrap}"/>
 </head>
 
 <body>
 <th:block th:replace="~{layout/header}"/>
-
+<br>
 <h1 class="text-bold title_color big-text_2 text-center">If you have any suggestions or comments text me.</h1>
 <br>
 <form class="center" th:action="@{/textme}" method="post">
     <!--suppress HtmlFormInputWithoutLabel -->
     <textarea name="text" class="textarea5"></textarea>
     <br><br>
-    <button type="submit" class="buttonSerene">Send</button>
+    <button type="submit" class="buttonDarkBlue">Send</button>
 </form>
 </body>
 </html>
