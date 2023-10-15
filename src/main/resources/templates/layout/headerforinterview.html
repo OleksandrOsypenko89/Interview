@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="header">
-  <div class="header">
+  <div class="header shadow">
     <a data-bs-toggle="modal" data-bs-target="#staticBackdropHomePage" th:href="@{/userpage}" class="text-bold orange_color" th:text="${session.user.getFirstName().toUpperCase()} + ' ' + ${session.user.getLastName().toUpperCase()}"/>
     <div class="header-right">
       <a th:href="@{/userpage}" data-bs-toggle="modal" data-bs-target="#staticBackdropHomePage">Home page</a>

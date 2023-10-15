@@ -49,6 +49,20 @@
         <form th:action="@{/adminnewtesting}" method="post">
             <button type="submit" class="buttonDarkBlue">New Testing</button>
         </form>
+
+        <br><br>
+
+        <form th:action="@{/adminsearchuser}" method="post">
+            <div class="input-wrapper">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <input name="email" type="text" placeholder="user email" class="input">
+            </div>
+            <br>
+            <button type="submit" class="buttonDarkBlue">Search user</button>
+            <br>
+        </form>
+
+        <br>
     </div>
 </div>
 

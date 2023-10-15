@@ -29,16 +29,14 @@ public class QuestionInterview {
     private Topic topic;
 
     @ToString.Exclude
-    @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "lists_question_interview",
             joinColumns = @JoinColumn(name = "question_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     private List<User> userListQuestion;
 
     @ToString.Exclude
-    @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "list_study_questions",
             joinColumns = @JoinColumn(name = "question_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))

@@ -6,6 +6,7 @@ import com.osypenko.model.interview.testings.TestingInterview;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Getter
@@ -37,32 +38,31 @@ public class User {
     @Column(nullable = false)
     private Role role = Role.USER;
 
+    private Timestamp registrationDate = new Timestamp(System.currentTimeMillis());
+
     @ToString.Exclude
-    @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "lists_question_interview",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "question_id", referencedColumnName = "id"))
     private Set<QuestionInterview> listQuestionInterviews;
 
     @ToString.Exclude
-    @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "lists_testing_interview",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "testing_id", referencedColumnName = "id"))
     private Set<TestingInterview> listQuestionTesting;
 
     @ToString.Exclude
-    @SuppressWarnings("com.haulmont.jpb.ManyToManyCascadeRemove")
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "list_study_questions",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "question_id", referencedColumnName = "id"))
     private Set<QuestionInterview> listStudyQuestion;
 
     @ToString.Exclude
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private Set<Statistic> statistic;
 }

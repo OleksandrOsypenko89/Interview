@@ -13,10 +13,10 @@
     <div th:if="${session.user.getRole().toString()} == ADMIN">
         <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.questionInterview.getId()}"></span>
     </div>
-    <div class="text-bold big-text_3">
-        Вопрос по теме - <span th:utext="${session.questionInterview.getTopic()}"></span>
+    <div class="text-bold big-text_4">
+        Вопрос #<span th:utext="15 - ${session.listQuestion.size()} + 1"></span> по теме - <span th:utext="${session.questionInterview.getTopic()}"></span>
     </div>
-    <p class="text-bold big-text_2" th:utext="${session.questionInterview.getQuestion()}"></p>
+    <p class="text-bold big-text_1" th:utext="${session.questionInterview.getQuestion()}"></p>
     <br>
     <div class="container-buttons">
         <form th:action="@{/knowAnswer}" method="post" th:object="${session.questionInterview}">
@@ -39,7 +39,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel"><p th:utext="${session.questionInterview.getQuestion()}"></p></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
                 <p th:utext="${session.questionInterview.getAnswer()}"></p>

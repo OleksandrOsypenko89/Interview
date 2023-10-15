@@ -2,9 +2,11 @@ package com.osypenko.controllers.admin;
 
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.interview.testings.TestingInterview;
+import com.osypenko.model.users.User;
 import com.osypenko.services.admin.AdminService;
 import com.osypenko.services.interview.QuestionService;
 import com.osypenko.services.interview.TestingService;
+import com.osypenko.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,7 @@ public class AdminPageController {
     private final AdminService adminService;
     private final QuestionService questionService;
     private final TestingService testingService;
+    private final UserService userService;
     private final HttpSession session;
 
     @GetMapping(ADMIN_PAGE)
@@ -65,6 +68,17 @@ public class AdminPageController {
     public String adminNewQuestionTesting(TestingInterview testingInterview) {
         session.setAttribute(UPDATE_TESTING_INTERVIEW, testingInterview);
         return REDIRECT + CREATE_AND_UPDATE_TESTING;
+    }
+
+    @PostMapping(ADMIN_SEARCH_USER)
+    public String adminSearchUser(String email) {
+        Optional<User> userOptional = userService.findByEmail(email);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            session.setAttribute(USER_UPDATE, user);
+            return REDIRECT + UPDATE_OR_DELETE_USER;
+        }
+        return REDIRECT + ADMIN_PAGE;
     }
 
     @PostMapping(REDIRECT_ADMIN_PAGE)

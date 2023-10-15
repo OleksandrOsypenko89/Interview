@@ -17,6 +17,7 @@ public class NameMapping {
     public static final String STATISTIC = "/statistic";
     public static final String ADMIN_PAGE = "/adminpage";
     public static final String KNOW_ANSWER = "/knowAnswer";
+    public static final String DELETE_USER = "/deleteUser";
     public static final String TESTING_PAGE = "/testingpage";
     public static final String NEW_PASSWORD = "/newpassword";
     public static final String REGISTRATION = "/registration";
@@ -26,6 +27,7 @@ public class NameMapping {
     public static final String ANSWER_TESTING = "/answerTesting";
     public static final String SAVE_NEW_PASSWORD = "/savenewpassword";
     public static final String ADMIN_NEW_TESTING = "/adminnewtesting";
+    public static final String ADMIN_SEARCH_USER = "/adminsearchuser";
     public static final String PASSWORD_RECOVERY = "/passwordrecovery";
     public static final String CONFIRMATION_CODE = "/confirmationcode";
     public static final String ADMIN_NEW_QUESTION = "/adminnewquestion";
@@ -33,6 +35,7 @@ public class NameMapping {
     public static final String REDIRECT_ADMIN_PAGE = "/redirectadminpage";
     public static final String ADMIN_SEARCH_TESTING = "/adminsearchtesting";
     public static final String VIEW_CHANGES_TESTING = "/viewchangestesting";
+    public static final String UPDATE_OR_DELETE_USER = "/updateordeleteuser";
     public static final String GET_REGISTRATION_CODE = "/getregistrationcode";
     public static final String CODE_FOR_REGISTRATION = "/codeforregistration";
     public static final String ADMIN_SEARCH_QUESTION = "/adminsearchquestion";

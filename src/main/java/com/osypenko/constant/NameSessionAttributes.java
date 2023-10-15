@@ -7,6 +7,7 @@ public class NameSessionAttributes {
     public static final String EMAIL = "email";
     public static final String EXCEPTION = "exception";
     public static final String LOGIN_FLAG = "loginFlag";
+    public static final String USER_UPDATE = "userUpdate";
     public static final String LIST_TESTING = "listTesting";
     public static final String LIST_QUESTION = "listQuestion";
     public static final String PASSWORD_FLAG = "passwordFlag";
