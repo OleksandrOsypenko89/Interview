@@ -1,6 +1,7 @@
 body {
     background-color: #FAFAFA;
     margin: 0;
+    font: -apple-system-body;
 }
 
 .body_color {
@@ -17,6 +18,10 @@ body {
 
 .green_color {
     color: green;
+}
+
+.blue_color {
+    color: #0d6efd;
 }
 
 .container {

@@ -1,7 +1,6 @@
 package com.osypenko.services.interview;
 
 import com.osypenko.model.interview.testings.TestingInterview;
-import com.osypenko.model.users.User;
 import com.osypenko.repository.TestingInterviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,16 +40,6 @@ public class TestingService {
         return questionList;
     }
 
-    private void fillingInAListOfQuestions(Set<Integer> integerSet, Set<TestingInterview> questionList) {
-        for (Integer id : integerSet) {
-            Optional<TestingInterview> questionTesting = get(id);
-            if (questionTesting.isPresent()) {
-                TestingInterview interview = questionTesting.get();
-                questionList.add(interview);
-            }
-        }
-    }
-
     private void createRandomIdQuestions(int size, Set<Integer> integerSet) {
         do {
             Random random = new Random();
@@ -59,11 +48,14 @@ public class TestingService {
         } while (integerSet.size() < 15);
     }
 
-    public List<TestingInterview> sortTestingList(User user) {
-        Set<TestingInterview> questionTesting = user.getListQuestionTesting();
-        List<TestingInterview> list = new ArrayList<>(questionTesting);
-        list.sort(Comparator.comparing(TestingInterview::getId));
-        return list;
+    private void fillingInAListOfQuestions(Set<Integer> integerSet, Set<TestingInterview> questionList) {
+        for (Integer id : integerSet) {
+            Optional<TestingInterview> questionTesting = get(id);
+            if (questionTesting.isPresent()) {
+                TestingInterview interview = questionTesting.get();
+                questionList.add(interview);
+            }
+        }
     }
 
     public List<String> shuffleButtons(TestingInterview testingInterview) {

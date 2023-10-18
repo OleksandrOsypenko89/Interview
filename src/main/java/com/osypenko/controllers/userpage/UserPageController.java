@@ -54,7 +54,7 @@ public class UserPageController {
     ) {
         if (user.getListQuestionInterviews().isEmpty()) {
             user.setListQuestionInterviews(questionService.createListQuestion());
-            userService.createAndUpdateUser(user);
+            userService.flushUser(user);
         }
         List<QuestionInterview> listQuestionInterviews = questionService.sortQuestionList(user);
 
@@ -70,9 +70,10 @@ public class UserPageController {
     ) {
         if (user.getListQuestionTesting().isEmpty()) {
             user.setListQuestionTesting(testingService.createListQuestion());
-            userService.createAndUpdateUser(user);
+            userService.flushUser(user);
         }
-        List<TestingInterview> listQuestionTesting = testingService.sortTestingList(user);
+        Set<TestingInterview> userListQuestionTesting = user.getListQuestionTesting();
+        List<TestingInterview> listQuestionTesting = new ArrayList<>(userListQuestionTesting);
 
         session.setAttribute(SIZE_LIST_TESTING, listQuestionTesting.size());
         session.setAttribute(LIST_TESTING, listQuestionTesting);

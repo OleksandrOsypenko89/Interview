@@ -42,7 +42,7 @@ public class StatisticService {
     private Timestamp timeLimitForDeletion() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         LocalDateTime localDateTime = timestamp.toLocalDateTime();
-        LocalDateTime resultDateTime = localDateTime.minusDays(7);
+        LocalDateTime resultDateTime = localDateTime.minusDays(10);
         return Timestamp.valueOf(resultDateTime);
     }
 

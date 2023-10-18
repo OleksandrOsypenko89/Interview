@@ -41,7 +41,7 @@ public class QuestionController {
             statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, sizeListQuestion, Type.INTERVIEW);
 
             user.getListQuestionInterviews().removeAll(user.getListQuestionInterviews());
-            userService.createAndUpdateUser(user);
+            userService.flushUser(user);
 
             session.setAttribute(NEW_STATISTICS_ADDED, newStatisticsAdded);
             return REDIRECT + STATISTIC;
