@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
+import static com.osypenko.constant.Constant.END_RANDOM_MAIL_NUM;
+import static com.osypenko.constant.Constant.START_RANDOM_MAIL_NUM;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -26,6 +29,6 @@ public class MailService {
 
     public int generatedRandomCode() {
         Random random = new Random();
-        return random.nextInt((999999 - 100000) + 1) + 100000;
+        return random.nextInt(END_RANDOM_MAIL_NUM) + START_RANDOM_MAIL_NUM;
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.List;
 
+import static com.osypenko.constant.Constant.ZERO;
 import static com.osypenko.constant.NameMapping.*;
 import static com.osypenko.constant.NameSessionAttributes.*;
 
@@ -38,7 +39,7 @@ public class TestingController {
     ) {
         if (listTesting.isEmpty()) {
             int sizeListQuestion = (int) session.getAttribute(SIZE_LIST_TESTING);
-            int percentage = (know * 100) /  sizeListQuestion;
+            int percentage = testingService.getPercentage(know, sizeListQuestion);
 
             statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, sizeListQuestion, Type.TESTING);
 
@@ -48,8 +49,8 @@ public class TestingController {
             session.setAttribute(NEW_STATISTICS_ADDED, newStatisticsAdded);
             return REDIRECT + STATISTIC;
         }
-        session.setAttribute(RANDOM_BUTTON, testingService.shuffleButtons(listTesting.get(0)));
-        session.setAttribute(QUESTION_TESTING, listTesting.get(0));
+        session.setAttribute(RANDOM_BUTTON, testingService.shuffleButtons(listTesting.get(ZERO)));
+        session.setAttribute(QUESTION_TESTING, listTesting.get(ZERO));
         return DIRECTORY_USER_PAGES + TESTING;
     }
 

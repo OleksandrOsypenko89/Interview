@@ -15,6 +15,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
+import static com.osypenko.constant.Constant.MEMBER_STATISTIC_DAYS;
+import static com.osypenko.constant.Constant.ZERO;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -42,15 +45,14 @@ public class StatisticService {
     private Timestamp timeLimitForDeletion() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         LocalDateTime localDateTime = timestamp.toLocalDateTime();
-        LocalDateTime resultDateTime = localDateTime.minusDays(10);
+        LocalDateTime resultDateTime = localDateTime.minusDays(MEMBER_STATISTIC_DAYS);
         return Timestamp.valueOf(resultDateTime);
     }
 
     public List<Statistic> sortStatistic(User user) {
         Set<Statistic> statistic = user.getStatistic();
         List<Statistic> list = new ArrayList<>(statistic);
-        list.sort(Comparator
-                .comparing(Statistic::getDate));
+        list.sort(Comparator.comparing(Statistic::getDate));
         return list;
     }
 
@@ -70,16 +72,16 @@ public class StatisticService {
         addStatistic(statistic);
     }
 
-    public int result(User user) {
+    public double result(User user) {
         Set<Statistic> userStatistic = user.getStatistic();
         if (userStatistic.isEmpty()) {
-            return 0;
+            return ZERO;
         }
-        int size = userStatistic.size();
-        int general = 0;
+        double size = userStatistic.size();
+        double general = ZERO;
         for (Statistic statistic : userStatistic) {
             general += statistic.getResult();
         }
-        return  general / size;
+        return general / size;
     }
 }

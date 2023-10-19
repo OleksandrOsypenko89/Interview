@@ -1,6 +1,5 @@
 package com.osypenko.controllers.registration;
 
-import com.osypenko.config.SecurityConfig;
 import com.osypenko.model.users.User;
 import com.osypenko.services.admin.MailService;
 import com.osypenko.services.user.UserService;
@@ -27,7 +26,6 @@ public class RegistrationController {
 
     @GetMapping(REGISTRATION)
     public String registration() {
-        session.removeAttribute(LOGIN_FLAG);
         return DIRECTORY_REGISTRATION + REGISTRATION;
     }
 
@@ -44,13 +42,8 @@ public class RegistrationController {
             session.setAttribute(REGISTRATION_FLAG, false);
             return REDIRECT + REGISTRATION;
         }
-        String encode = SecurityConfig.PASSWORD_ENCODER.encode(password);
 
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        user.setPassword(encode);
-
+        userService.createNewUser(user, firstName, lastName, email, password);
         session.setAttribute(USER, user);
 
         int code = mailService.generatedRandomCode();

@@ -4,6 +4,7 @@ import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.statistic.Statistic;
 import com.osypenko.model.statistic.Type;
 import com.osypenko.model.users.User;
+import com.osypenko.services.interview.QuestionService;
 import com.osypenko.services.statistics.StatisticService;
 import com.osypenko.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -26,6 +27,7 @@ public class QuestionController {
     private final UserService userService;
     private final HttpSession session;
     private final StatisticService statisticService;
+    private final QuestionService questionService;
 
     @GetMapping(QUESTION)
     public String getInterview(
@@ -36,7 +38,7 @@ public class QuestionController {
     ) {
         if (listInterview.isEmpty()) {
             int sizeListQuestion = (int) session.getAttribute(SIZE_LIST_QUESTION);
-            int percentage = (know * 100) /  sizeListQuestion;
+            int percentage = questionService.getPercentage(know, sizeListQuestion);
 
             statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, sizeListQuestion, Type.INTERVIEW);
 

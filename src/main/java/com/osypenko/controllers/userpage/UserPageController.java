@@ -1,7 +1,6 @@
 package com.osypenko.controllers.userpage;
 
 import com.osypenko.model.interview.question.QuestionInterview;
-import com.osypenko.model.statistic.Statistic;
 import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.services.interview.QuestionService;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.*;
 
+import static com.osypenko.constant.Constant.ZERO;
 import static com.osypenko.constant.NameMapping.*;
 import static com.osypenko.constant.NameSessionAttributes.*;
 
@@ -44,6 +44,7 @@ public class UserPageController {
         User user = userOptional.get();
         session.setAttribute(USER, user);
         questionService.sortStudyQuestion(user);
+        statisticService.deletionOfOutdatedStatistics(user);
         session.removeAttribute(REGISTRATION_FLAG);
         return DIRECTORY_USER_PAGES + USER_PAGE;
     }
@@ -52,15 +53,10 @@ public class UserPageController {
     public String questionPage(
             @SessionAttribute(USER) User user
     ) {
-        if (user.getListQuestionInterviews().isEmpty()) {
-            user.setListQuestionInterviews(questionService.createListQuestion());
-            userService.flushUser(user);
-        }
-        List<QuestionInterview> listQuestionInterviews = questionService.sortQuestionList(user);
-
+        List<QuestionInterview> listQuestionInterviews = questionService.listFilling(user);
         session.setAttribute(SIZE_LIST_QUESTION, listQuestionInterviews.size());
         session.setAttribute(LIST_QUESTION, listQuestionInterviews);
-        session.setAttribute(KNOW, 0);
+        session.setAttribute(KNOW, ZERO);
         return REDIRECT + QUESTION;
     }
 
@@ -68,16 +64,10 @@ public class UserPageController {
     public String testingPage(
             @SessionAttribute(USER) User user
     ) {
-        if (user.getListQuestionTesting().isEmpty()) {
-            user.setListQuestionTesting(testingService.createListQuestion());
-            userService.flushUser(user);
-        }
-        Set<TestingInterview> userListQuestionTesting = user.getListQuestionTesting();
-        List<TestingInterview> listQuestionTesting = new ArrayList<>(userListQuestionTesting);
-
+        List<TestingInterview> listQuestionTesting = testingService.listFilling(user);
         session.setAttribute(SIZE_LIST_TESTING, listQuestionTesting.size());
         session.setAttribute(LIST_TESTING, listQuestionTesting);
-        session.setAttribute(KNOW, 0);
+        session.setAttribute(KNOW, ZERO);
         return REDIRECT + TESTING;
     }
 
@@ -85,10 +75,8 @@ public class UserPageController {
     public String allStatisticPage(
             @SessionAttribute(USER) User user
     ) {
-        statisticService.deletionOfOutdatedStatistics(user);
-        List<Statistic> list = statisticService.sortStatistic(user);
         session.setAttribute(GENERAL_RESULT, statisticService.result(user));
-        session.setAttribute(STATISTIC_LIST, list);
+        session.setAttribute(STATISTIC_LIST, statisticService.sortStatistic(user));
         return REDIRECT + ALL_STATISTICS;
     }
 

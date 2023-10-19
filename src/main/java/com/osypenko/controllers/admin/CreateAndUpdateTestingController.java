@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameModel.MODEL_UPDATE_TESTING_INTERVIEW;
 import static com.osypenko.constant.NameSessionAttributes.*;
 
 @Slf4j
@@ -26,7 +27,7 @@ public class CreateAndUpdateTestingController {
             @SessionAttribute(UPDATE_TESTING_INTERVIEW) TestingInterview testingInterview
             , Model model
     ) {
-        model.addAttribute("modelUpdateTestingInterview", testingInterview);
+        model.addAttribute(MODEL_UPDATE_TESTING_INTERVIEW, testingInterview);
         return DIRECTORY_ADMIN + CREATE_AND_UPDATE_TESTING;
     }
 

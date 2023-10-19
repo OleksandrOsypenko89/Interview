@@ -26,7 +26,6 @@ public class PasswordRecoveryController {
 
     @GetMapping(PASSWORD_RECOVERY)
     public String forgotPassword() {
-        session.removeAttribute(LOGIN_FLAG);
         return DIRECTORY_PASSWORD_RECOVERY + PASSWORD_RECOVERY;
     }
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import static com.osypenko.constant.Constant.OLEKSANDR_GMAIL_COM;
+import static com.osypenko.constant.Constant.SENDER;
 import static com.osypenko.constant.NameMapping.*;
 import static com.osypenko.constant.NameSessionAttributes.USER;
 
@@ -27,7 +28,7 @@ public class FeedbackController {
             @SessionAttribute(USER) User user
             , String text
     ) {
-        mailService.sendSimpleMessage(OLEKSANDR_GMAIL_COM, "Отправитель " + user.getEmail() + "\n" + text);
+        mailService.sendSimpleMessage(OLEKSANDR_GMAIL_COM, SENDER + user.getEmail() + "\n" + text);
         return REDIRECT + USER_PAGE;
     }
 }

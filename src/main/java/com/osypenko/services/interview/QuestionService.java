@@ -13,7 +13,7 @@ import java.util.*;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class QuestionService {
+public class QuestionService extends Interview {
     private final QuestionInterviewRepository questionInterviewRepository;
     private final UserService userService;
 
@@ -34,11 +34,28 @@ public class QuestionService {
         return getAll().size();
     }
 
+    public List<QuestionInterview> listFilling(User user) {
+        if (user.getListQuestionInterviews().isEmpty()) {
+            user.setListQuestionInterviews(createListQuestion());
+            userService.flushUser(user);
+        }
+        return sortQuestionList(user);
+    }
+
+    public List<QuestionInterview> sortQuestionList(User user) {
+        Set<QuestionInterview> questionInterviews = user.getListQuestionInterviews();
+        List<QuestionInterview> list = new ArrayList<>(questionInterviews);
+        list.sort(Comparator
+                .comparing(QuestionInterview::getTopic)
+                .thenComparing(QuestionInterview::getId));
+        return list;
+    }
+
     public Set<QuestionInterview> createListQuestion() {
         Set<Integer> integerSet = new HashSet<>();
         Set<QuestionInterview> questionList = new HashSet<>();
 
-        createRandomIdQuestions(sizeAllQuestion(), integerSet);
+        createRandomId(sizeAllQuestion(), integerSet);
         fillingInAListOfQuestions(integerSet, questionList);
         return questionList;
     }
@@ -53,14 +70,6 @@ public class QuestionService {
         }
     }
 
-    private void createRandomIdQuestions(int size, Set<Integer> integerSet) {
-        do {
-            Random random = new Random();
-            int randomNum = random.nextInt((size - 1) + 1) + 1;
-            integerSet.add(randomNum);
-        } while (integerSet.size() < 15);
-    }
-
     public void deleteStudyQuestions(User user, Integer id) {
         Set<QuestionInterview> listStudyQuestion = user.getListStudyQuestion();
         Optional<QuestionInterview> questionInterview = get(id);
@@ -69,15 +78,6 @@ public class QuestionService {
             listStudyQuestion.remove(question);
         }
         userService.createAndUpdateUser(user);
-    }
-
-    public List<QuestionInterview> sortQuestionList(User user) {
-        Set<QuestionInterview> questionInterviews = user.getListQuestionInterviews();
-        List<QuestionInterview> list = new ArrayList<>(questionInterviews);
-        list.sort(Comparator
-                .comparing(QuestionInterview::getTopic)
-                .thenComparing(QuestionInterview::getId));
-        return list;
     }
 
     public void sortStudyQuestion(User user) {

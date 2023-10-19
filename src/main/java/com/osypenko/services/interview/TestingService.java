@@ -1,7 +1,9 @@
 package com.osypenko.services.interview;
 
 import com.osypenko.model.interview.testings.TestingInterview;
+import com.osypenko.model.users.User;
 import com.osypenko.repository.TestingInterviewRepository;
+import com.osypenko.services.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -11,7 +13,8 @@ import java.util.*;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class TestingService {
+public class TestingService extends Interview {
+    private final UserService userService;
     private final TestingInterviewRepository testingInterviewRepository;
 
     public List<TestingInterview> getAll() {
@@ -23,29 +26,29 @@ public class TestingService {
     }
 
     public TestingInterview save(TestingInterview testingInterview) {
-        testingInterviewRepository.save(testingInterview);
-        return testingInterview;
+        return testingInterviewRepository.save(testingInterview);
     }
 
     public Integer sizeAllQuestion() {
         return getAll().size();
     }
 
+    public List<TestingInterview> listFilling(User user) {
+        if (user.getListQuestionTesting().isEmpty()) {
+            user.setListQuestionTesting(createListQuestion());
+            userService.flushUser(user);
+        }
+        Set<TestingInterview> userListQuestionTesting = user.getListQuestionTesting();
+        return new ArrayList<>(userListQuestionTesting);
+    }
+
     public Set<TestingInterview> createListQuestion() {
         Set<Integer> integerSet = new HashSet<>();
         Set<TestingInterview> questionList = new HashSet<>();
 
-        createRandomIdQuestions(sizeAllQuestion(), integerSet);
+        createRandomId(sizeAllQuestion(), integerSet);
         fillingInAListOfQuestions(integerSet, questionList);
         return questionList;
-    }
-
-    private void createRandomIdQuestions(int size, Set<Integer> integerSet) {
-        do {
-            Random random = new Random();
-            int randomNum = random.nextInt((size - 1) + 1) + 1;
-            integerSet.add(randomNum);
-        } while (integerSet.size() < 15);
     }
 
     private void fillingInAListOfQuestions(Set<Integer> integerSet, Set<TestingInterview> questionList) {

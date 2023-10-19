@@ -23,7 +23,6 @@ import static com.osypenko.constant.NameSessionAttributes.*;
 @Controller
 @RequiredArgsConstructor
 public class AdminPageController {
-
     private final AdminService adminService;
     private final QuestionService questionService;
     private final TestingService testingService;

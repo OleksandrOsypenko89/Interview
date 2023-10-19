@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.NameModel.ALL_TOPIC_INTERVIEW;
+import static com.osypenko.constant.NameModel.MODEL_UPDATE_QUESTION_INTERVIEW;
 import static com.osypenko.constant.NameSessionAttributes.*;
 
 @Slf4j
@@ -28,8 +30,8 @@ public class CreateAndUpdateQuestionController {
             @SessionAttribute(UPDATE_QUESTION_INTERVIEW) QuestionInterview questionInterview
             , Model model
     ) {
-        model.addAttribute("modelUpdateQuestionInterview", questionInterview);
-        model.addAttribute("allTopicInterview", Topic.values());
+        model.addAttribute(MODEL_UPDATE_QUESTION_INTERVIEW, questionInterview);
+        model.addAttribute(ALL_TOPIC_INTERVIEW, Topic.values());
         return DIRECTORY_ADMIN + CREATE_AND_UPDATE_QUESTION;
     }
 
