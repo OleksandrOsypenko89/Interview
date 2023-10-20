@@ -23,9 +23,7 @@
             <button class="buttonGreen">Знаю ответ</button>
         </form>
 
-        <button type="button" class="buttonGrey" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Посмотреть ответ
-        </button>
+        <button type="button" class="buttonGrey" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Посмотреть ответ</button>
 
         <form th:action="@{/noAnswer}" method="post" th:object="${session.questionInterview}">
             <button class="buttonRed">Не знаю ответ</button>

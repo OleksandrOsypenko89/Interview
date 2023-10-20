@@ -4,9 +4,8 @@ import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.services.interview.QuestionService;
-import com.osypenko.services.statistics.StatisticService;
 import com.osypenko.services.interview.TestingService;
-import com.osypenko.services.user.UserService;
+import com.osypenko.services.user.UserDetailsService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,30 +28,23 @@ import static com.osypenko.constant.NameSessionAttributes.*;
 public class UserPageController {
     private final QuestionService questionService;
     private final TestingService testingService;
-    private final UserService userService;
-    private final StatisticService statisticService;
+    private final UserDetailsService userDetailsService;
     private final HttpSession session;
 
     @GetMapping(USER_PAGE)
-    public String userPage(
-            @AuthenticationPrincipal UserDetails userDetails
-    ) {
-        Optional<User> userOptional = userService.findByEmail(userDetails.getUsername());
-        if (userOptional.isEmpty()) {
+    public String userPage(@AuthenticationPrincipal UserDetails userDetails) {
+        User user = userDetailsService.getUser(userDetails);
+        if (user == null) {
             return LOGIN;
         }
-        User user = userOptional.get();
         session.setAttribute(USER, user);
         questionService.sortStudyQuestion(user);
-        statisticService.deletionOfOutdatedStatistics(user);
         session.removeAttribute(REGISTRATION_FLAG);
         return DIRECTORY_USER_PAGES + USER_PAGE;
     }
 
     @GetMapping(QUESTION_PAGE)
-    public String questionPage(
-            @SessionAttribute(USER) User user
-    ) {
+    public String questionPage(@SessionAttribute(USER) User user) {
         List<QuestionInterview> listQuestionInterviews = questionService.listFilling(user);
         session.setAttribute(SIZE_LIST_QUESTION, listQuestionInterviews.size());
         session.setAttribute(LIST_QUESTION, listQuestionInterviews);
@@ -61,9 +53,7 @@ public class UserPageController {
     }
 
     @GetMapping(TESTING_PAGE)
-    public String testingPage(
-            @SessionAttribute(USER) User user
-    ) {
+    public String testingPage(@SessionAttribute(USER) User user) {
         List<TestingInterview> listQuestionTesting = testingService.listFilling(user);
         session.setAttribute(SIZE_LIST_TESTING, listQuestionTesting.size());
         session.setAttribute(LIST_TESTING, listQuestionTesting);
@@ -72,11 +62,7 @@ public class UserPageController {
     }
 
     @GetMapping(ALL_STATISTICS_PAGE)
-    public String allStatisticPage(
-            @SessionAttribute(USER) User user
-    ) {
-        session.setAttribute(GENERAL_RESULT, statisticService.result(user));
-        session.setAttribute(STATISTIC_LIST, statisticService.sortStatistic(user));
+    public String allStatisticPage() {
         return REDIRECT + ALL_STATISTICS;
     }
 

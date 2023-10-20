@@ -9,12 +9,12 @@
 <body>
 <th:block th:replace="~{layout/header}"/>
 <br>
-<div class="text-bold big-text_1 text-center">All statistics</div>
 <div th:if="${session.statisticList.isEmpty()}">
     <br>
     <h1 class="text-bold big-text_2 text-center">No statistics</h1>
     <br>
 </div>
+<div class="text-bold big-text_1 text-center">All statistics</div>
 <div th:if="${!session.statisticList.isEmpty()}">
     <div class="center">
         <table class="padding">

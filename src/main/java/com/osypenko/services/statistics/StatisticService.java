@@ -72,13 +72,13 @@ public class StatisticService {
         addStatistic(statistic);
     }
 
-    public double result(User user) {
+    public int result(User user) {
         Set<Statistic> userStatistic = user.getStatistic();
         if (userStatistic.isEmpty()) {
             return ZERO;
         }
-        double size = userStatistic.size();
-        double general = ZERO;
+        int size = userStatistic.size();
+        int general = ZERO;
         for (Statistic statistic : userStatistic) {
             general += statistic.getResult();
         }

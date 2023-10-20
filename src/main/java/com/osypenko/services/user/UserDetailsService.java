@@ -1,6 +1,7 @@
 package com.osypenko.services.user;
 
 import com.osypenko.model.users.User;
+import com.osypenko.services.statistics.StatisticService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +17,12 @@ import static com.osypenko.constant.NameLogs.UNKNOWN_USER;
 @RequiredArgsConstructor
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
     private final UserService userService;
+    private final StatisticService statisticService;
+
+    public User getUser(UserDetails userDetails) {
+        Optional<User> userOptional = userService.findByEmail(userDetails.getUsername());
+        return userOptional.orElse(null);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) {
@@ -24,6 +31,7 @@ public class UserDetailsService implements org.springframework.security.core.use
             throw new UsernameNotFoundException(UNKNOWN_USER + email);
         }
         User user = userOptional.get();
+        statisticService.deletionOfOutdatedStatistics(user);
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getEmail())
                 .password(user.getPassword())
