@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create and Update Testing</title>
-    <th:block th:replace="~{layout/linksstyles :: linksStylesBootstrap}"/>
+    <th:block th:replace="~{layout/linksstyles :: linksStylesAndBootstrap}"/>
 </head>
 
 <body>
@@ -14,27 +14,25 @@
         <table class="table_study_questions">
             <td class="td_red">
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea3" th:field="*{question}"></textarea>
+                <textarea class="textarea3" placeholder="Question" th:field="*{question}"></textarea>
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea3" th:field="*{picture}"></textarea>
+                <textarea class="textarea3" placeholder="Picture" th:field="*{picture}"></textarea>
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea3" th:field="*{answer}"></textarea>
-            </td>
-            <td class="td_red">
+                <textarea class="textarea3" placeholder="Answer" th:field="*{answer}"></textarea>
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea4 green_color" th:field="*{correctAnswer}"></textarea>
+                <textarea class="textarea4 green_color" placeholder="Correct Answer" th:field="*{correctAnswer}"></textarea>
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea4 red_color" th:field="*{firstFalseAnswer}"></textarea>
+                <textarea class="textarea4 red_color" placeholder="First False Answer" th:field="*{firstFalseAnswer}"></textarea>
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea4 red_color" th:field="*{secondFalseAnswer}"></textarea>
+                <textarea class="textarea4 red_color" placeholder="Second False Answer" th:field="*{secondFalseAnswer}"></textarea>
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea4 red_color" th:field="*{thirdFalseAnswer}"></textarea>
+                <textarea class="textarea4 red_color" placeholder="Third False Answer" th:field="*{thirdFalseAnswer}"></textarea>
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea4 red_color" th:field="*{fourthFalseAnswer}"></textarea>
+                <textarea class="textarea4 red_color" placeholder="Fourth False Answer" th:field="*{fourthFalseAnswer}"></textarea>
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <textarea class="textarea4 red_color" th:field="*{fifthFalseAnswer}"></textarea>
+                <textarea class="textarea4 red_color" placeholder="Fifth False Answer" th:field="*{fifthFalseAnswer}"></textarea>
                 <p>
-                    <button class="buttonGreen" type="submit">✅</button>
+                    <button class="buttonGreen" type="submit">Создать модель для сохранения.</button>
             </td>
         </table>
     </form>

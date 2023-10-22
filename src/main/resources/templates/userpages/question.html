@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Interview</title>
-    <th:block th:replace="~{layout/linksstyles :: linksStylesBootstrap}"/>
+    <th:block th:replace="~{layout/linksstyles :: linksStylesAndBootstrap}"/>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
         <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.questionInterview.getId()}"></span>
     </div>
     <div class="text-bold big-text_4">
-        Вопрос #<span th:utext="15 - ${session.listQuestion.size()} + 1"></span> по теме - <span th:utext="${session.questionInterview.getTopic()}"></span>
+        Вопрос # <span th:utext="15 - ${session.listQuestion.size()} + 1"></span> по теме - <span th:utext="${session.questionInterview.getTopic()}"></span>
     </div>
     <p class="text-bold big-text_1" th:utext="${session.questionInterview.getQuestion()}"></p>
     <br>

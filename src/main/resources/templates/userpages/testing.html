@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Testing</title>
-    <th:block th:replace="~{layout/linksstyles :: linksStylesBootstrap}"/>
+    <th:block th:replace="~{layout/linksstyles :: linksStylesAndBootstrap}"/>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
             <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.questionTesting.getId()}"></span>
         </div>
         <div class="text-bold big-text_4">
-            Вопрос #<span th:utext="15 - ${session.listTesting.size()} + 1"></span>
+            Вопрос # <span th:utext="15 - ${session.listTesting.size()} + 1"></span>
         </div>
         <p class="text-bold big-text_2" th:utext="${session.questionTesting.getQuestion()}"></p>
         <div>

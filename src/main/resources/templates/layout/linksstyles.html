@@ -19,22 +19,8 @@
     <link th:href="@{css/adaptiveheader.css}" rel="stylesheet"/>
 </th:block>
 
-<th:block th:fragment="linksStylesBootstrap">
-    <link rel="Website Icon" type="jpeg" th:href="@{images/view/image.png}">
-    <link th:href="@{css/buttons.css}" rel="stylesheet">
-    <link th:href="@{css/colors.css}" rel="stylesheet">
-    <link th:href="@{css/forms.css}" rel="stylesheet">
-    <link th:href="@{css/textsize.css}" rel="stylesheet">
-    <link th:href="@{css/split.css}" rel="stylesheet"/>
-    <link th:href="@{css/table.css}" rel="stylesheet"/>
-    <link th:href="@{css/responseinputstyle.css}" rel="stylesheet"/>
-    <link th:href="@{css/DBStyleText.css}" rel="stylesheet"/>
-    <link th:href="@{css/modal.css}" rel="stylesheet"/>
-    <link th:href="@{css/input.css}" rel="stylesheet"/>
-    <link th:href="@{css/textarea.css}" rel="stylesheet"/>
-    <link th:href="@{css/buttonTesting.css}" rel="stylesheet"/>
-    <link th:href="@{css/header.css}" rel="stylesheet"/>
-    <link th:href="@{css/adaptiveheader.css}" rel="stylesheet"/>
+<th:block th:fragment="linksStylesAndBootstrap">
+    <th:block th:replace="~{layout/linksstyles :: linksStyles}"/>
     <link th:href="@{css/bootstrap-5.3.0-dist/css/bootstrap.css}" rel="stylesheet"/>
     <link th:href="@{css/bootstrap-5.3.0-dist/css/bootstrap.rtl.css}" rel="stylesheet"/>
     <link th:href="@{css/bootstrap-5.3.0-dist/css/bootstrap-grid.css}" rel="stylesheet"/>
