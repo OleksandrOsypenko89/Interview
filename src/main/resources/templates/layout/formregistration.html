@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="formRegistration">
-  <form th:action="@{/getregistrationcode}" method="post">
+  <form th:action="@{/getregistrationcode}" method="post" id="registration">
     <div class="wave-group">
       <!--suppress HtmlFormInputWithoutLabel -->
       <input name="firstName" required type="text" class="input">
@@ -67,6 +67,6 @@
       </label>
     </div>
     <br>
-    <button type="submit" class="buttonDarkBlue">Submit</button>
+    <button type="submit" id="submit" class="buttonDarkBlue">Submit</button>
   </form>
 </th:block>

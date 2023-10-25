@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="testing">
+  <div th:if="${session.user.getRole().toString()} == ADMIN">
+                <span class="text-bold big-text_3 red_color"
+                      th:utext="'id - ' + ${session.questionTesting.getId()}"></span>
+  </div>
+  <div class="text-bold big-text_4">
+    Вопрос # <span th:utext="15 - ${session.listTesting.size()} + 1"></span>
+  </div>
+  <p class="text-bold big-text_2" th:utext="${session.questionTesting.getQuestion()}"></p>
+  <div>
+    <p th:utext="${session.questionTesting.getPicture()}"></p>
+  </div>
+  <br>
+  <div th:each="buttonAnswer : ${session.randomButton}">
+    <div th:if="*{!buttonAnswer.isEmpty()}">
+      <form th:action="@{/answerTesting}" method="post">
+        <div th:if="${session.questionTesting.getCorrectAnswer().equals(buttonAnswer)}">
+          <button class="buttonCorrectAnswer" th:value="*{buttonAnswer}" name="buttonAnswer"
+                  th:utext="*{buttonAnswer}"></button>
+          <p>
+        </div>
+        <div th:if="${!session.questionTesting.getCorrectAnswer().equals(buttonAnswer)}">
+          <button class="buttonNoCorrectAnswer" th:value="*{buttonAnswer}" name="buttonAnswer"
+                  th:utext="*{buttonAnswer}"></button>
+          <p>
+        </div>
+      </form>
+    </div>
+  </div>
+</th:block>

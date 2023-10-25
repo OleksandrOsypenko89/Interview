@@ -4,17 +4,20 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Interview</title>
     <th:block th:replace="~{layout/linksstyles :: linksStylesAndBootstrap}"/>
+    <th:block th:replace="~{layout/linksstyles :: background}"/>
 </head>
 
 <body>
 <th:block th:replace="~{layout/headerforinterview}"/>
 
-<div class="centered" style="padding:20px">
+<div class="centered">
     <div th:if="${session.user.getRole().toString()} == ADMIN">
-        <span class="text-bold big-text_3 red_color" th:utext="'id - ' + ${session.questionInterview.getId()}"></span>
+            <span class="text-bold big-text_3 red_color"
+                  th:utext="'id - ' + ${session.questionInterview.getId()}"></span>
     </div>
     <div class="text-bold big-text_4">
-        Вопрос # <span th:utext="15 - ${session.listQuestion.size()} + 1"></span> по теме - <span th:utext="${session.questionInterview.getTopic()}"></span>
+        Вопрос # <span th:utext="15 - ${session.listQuestion.size()} + 1"></span> по теме - <span
+            th:utext="${session.questionInterview.getTopic()}"></span>
     </div>
     <p class="text-bold big-text_1" th:utext="${session.questionInterview.getQuestion()}"></p>
     <br>
@@ -23,7 +26,9 @@
             <button class="buttonGreen">Знаю ответ</button>
         </form>
 
-        <button type="button" class="buttonGrey" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Посмотреть ответ</button>
+        <button type="button" class="buttonGrey" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Посмотреть
+            ответ
+        </button>
 
         <form th:action="@{/noAnswer}" method="post" th:object="${session.questionInterview}">
             <button class="buttonRed">Не знаю ответ</button>
@@ -32,11 +37,13 @@
     <br>
 </div>
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"><p th:utext="${session.questionInterview.getQuestion()}"></p></h5>
+                <h5 class="modal-title" id="staticBackdropLabel"><p
+                        th:utext="${session.questionInterview.getQuestion()}"></p></h5>
             </div>
             <div class="modal-body">
                 <p th:utext="${session.questionInterview.getAnswer()}"></p>
