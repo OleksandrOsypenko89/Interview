@@ -8,11 +8,11 @@
 </head>
 
 <body>
-<th:block th:replace="~{layout/header}"/>
+<th:block th:replace="~{layout/header :: header}"/>
 
 <div class="centered">
     <div class="big-text_3 text-bold">
-        <span class="big-text_1 title_color">An error has occurred</span>
+        <span class="big-text_1 title_color" th:utext="#{error.errorMessage}"></span>
         <div th:if="${session.exception} != null">
             <p th:text="${session.exception.getMessage()}"/>
         </div>

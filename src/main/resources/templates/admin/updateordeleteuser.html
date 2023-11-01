@@ -8,14 +8,16 @@
 </head>
 
 <body>
-<th:block th:replace="~{layout/header}"/>
+<th:block th:replace="~{layout/header :: header}"/>
 <br>
 <div class="center">
 <form method="post" th:action="@{/deleteUser}">
     <p class="text-bold big-text_2" th:text="${session.userUpdate.getFirstName()} + ' ' + ${session.userUpdate.getLastName()}"></p>
     <p class="text-bold big-text_3" th:text="${session.userUpdate.getEmail()}"></p>
     <br>
-    <button type="submit" class="buttonRed">Delete</button>
+    <button type="submit" class="buttonRed">
+        <span th:text="#{button.delete}"></span>
+    </button>
 </form>
 </div>
 </body>

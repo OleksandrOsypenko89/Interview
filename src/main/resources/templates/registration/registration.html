@@ -11,13 +11,15 @@
 <div class="split right">
     <div class="centered">
         <div th:if="${session.registrationFlag == false}">
-            <p class="text-bold red_color">This user is already registered!</p>
+            <p class="text-bold red_color" th:text="#{registration.alreadyRegistered}"></p>
             <br>
         </div>
         <th:block th:replace="~{layout/formregistration}"/>
         <br>
         <form method="post" th:action="@{/login}">
-            <button class="buttonDarkBlue" type="submit">Back</button>
+            <button class="buttonDarkBlue" type="submit">
+                <span th:text="#{button.back}"></span>
+            </button>
         </form>
     </div>
 </div>

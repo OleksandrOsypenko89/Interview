@@ -40,7 +40,7 @@ public class QuestionController {
             int sizeListQuestion = (int) session.getAttribute(SIZE_LIST_QUESTION);
             int percentage = questionService.getPercentage(know, sizeListQuestion);
 
-            statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, sizeListQuestion, Type.INTERVIEW);
+            statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, sizeListQuestion, Type.QUESTIONS);
 
             user.getListQuestionInterviews().removeAll(user.getListQuestionInterviews());
             userService.flushUser(user);

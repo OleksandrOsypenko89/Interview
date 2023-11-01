@@ -6,48 +6,98 @@
         <a th:href="@{/userpage}" class="text-bold orange_color"
            th:text="${session.user.getFirstName().toUpperCase()} + ' ' + ${session.user.getLastName().toUpperCase()}"/>
         <div class="header-right">
-            <a th:if="${session.user.listStudyQuestion.isEmpty()}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="orange_color">How service works?</span></a>
-            <a th:href="@{/userpage}">Home page</a>
-            <a th:if="${session.user.getRole().toString()} == ADMIN" th:href="@{/adminpage}">Admin page</a>
-            <a th:if="${session.user.listStudyQuestion.size() > 10}" class="btn" onclick="on()">Interview</a>
-            <a th:if="${session.user.listStudyQuestion.size() <= 10}" th:href="@{/questionpage}">Interview</a>
-            <a th:href="@{/testingpage}">Testing</a>
-            <a th:href="@{/allstatisticspage}">Statistic</a>
-            <a th:href="@{/feedback}">Feedback</a>
-            <a th:href="@{/logout}">Logout</a>
+            <a th:if="${session.user.listStudyQuestion.isEmpty()}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="orange_color" th:text="#{button.howServiceWorks}"></span></a>
+            <a th:href="@{/userpage}">
+                <span th:text="#{button.homePage}"></span>
+            </a>
+            <a th:if="${session.user.getRole().toString()} == ADMIN" th:href="@{/adminpage}">
+                <span th:text="#{button.adminPage}"></span>
+            </a>
+            <a th:if="${session.user.listStudyQuestion.size() > 10}" class="btn" onclick="on()">
+                <span th:text="#{button.question}"></span>
+            </a>
+            <a th:if="${session.user.listStudyQuestion.size() <= 10}" th:href="@{/questionpage}">
+                <span th:text="#{button.question}"></span>
+            </a>
+            <a th:href="@{/testingpage}">
+                <span th:text="#{button.testing}"></span>
+            </a>
+            <a th:href="@{/allstatisticspage}">
+                <span th:text="#{button.statistic}"></span>
+            </a>
+            <a th:href="@{/feedback}">
+                <span th:text="#{button.feedback}"></span>
+            </a>
+            <a th:href="@{/logout}">
+                <span th:text="#{button.logout}"></span>
+            </a>
         </div>
     </div>
 
     <th:block th:replace="~{layout/header :: message}"/>
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel"><p>Этот сервис поможет определить уровень знаний и подготовиться к собеседованию
-                        <br>В нем есть две основных функции — Interview и Testing.</p></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
-                    <p><span class="red_color text-bold">Interview</span> - выведет по очереди 15 вопросов. Отвечая вслух и более развернуто можно прокачать навык отвечать четко на вопрос и обрести уверенность в себе.
-                    <p>Так же в этом режиме есть три ключевых кнопки.
-                    <p><span class="green_color text-bold">Знаю ответ</span> - при нажатии на кнопку отображается следующий вопрос.
-                    <p><span class="green_color text-bold">Посмотреть ответ</span> - отобразит ответ на данный вопрос, чтобы убедится в правильности своих знаний.
-                    <p><span class="green_color text-bold">Не знаю ответ</span> - нажатие на кнопку приведет к следующему вопросу, при этом данный вопрос будет сохранен в список вопросов к изучению.
-                    <p>Список вопросов для изучения ограничен для того чтобы не накапливалось много материала для изучения. Если лимит превышен функция Interview будет не доступна, пока список не уменьшится.
-                    <p>Кнопки "Знаю ответ" и "Не знаю ответ" ведут подсчет статистики для того чтобы ты видел свою динамику
-                        прохождения собеседований. Статистика будет записана после ответов на все 15 данных вопросов. После чего будет сформирован новый список вопросов для нового собеседования.
-                    <p><span class="red_color text-bold">Testing</span> - тебе по очереди будут выведены 15 вопросов с вариантами ответов.
-                    <p>При нажатии на кнопку с вариантом ответа кнопка изменит цвет в соответствии правильный ответ был дан или нет. Результаты тестирования так же записываются в статистику.
-                    <p>Статистика записана более 10 дней назад будет удаляться.
-                    <p><span class="blue_color">Если Вы увидели ошибку или у Вас есть какие-то предложения воспользуйтесь функцией Feedback.</span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                </div>
-            </div>
+    <th:block th:replace="~{layout/texthowserviceworks}"/>
+
+    <script th:src="@{javascript/display.js}"></script>
+</th:block>
+
+<th:block th:fragment="headerInterview">
+    <div class="header shadow">
+        <a data-bs-toggle="modal" data-bs-target="#staticBackdropUserPage" th:href="@{/userpage}" class="text-bold orange_color" th:text="${session.user.getFirstName().toUpperCase()} + ' ' + ${session.user.getLastName().toUpperCase()}"/>
+        <div class="header-right">
+            <a th:if="${session.user.listStudyQuestion.isEmpty()}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="orange_color" th:text="#{button.howServiceWorks}"></span></a>
+            <a th:href="@{/userpage}" data-bs-toggle="modal" data-bs-target="#staticBackdropUserPage">
+                <span th:text="#{button.homePage}"></span>
+            </a>
+            <a th:if="${session.user.getRole().toString()} == ADMIN" th:href="@{/adminpage}" data-bs-toggle="modal" data-bs-target="#staticBackdropAdminPage">
+                <span th:text="#{button.adminPage}"></span>
+            </a>
+            <a th:if="${session.user.listStudyQuestion.size() > 10}" class="btn" onclick="on()">
+                <span th:text="#{button.question}"></span>
+            </a>
+            <a th:if="${session.user.listStudyQuestion.size() <= 10}" th:href="@{/questionpage}" data-bs-toggle="modal" data-bs-target="#staticBackdropInterview">
+                <span th:text="#{button.question}"></span>
+            </a>
+            <a th:href="@{/testingpage}" data-bs-toggle="modal" data-bs-target="#staticBackdropTesting">
+                <span th:text="#{button.testing}"></span>
+            </a>
+            <a th:href="@{/allstatisticspage}" data-bs-toggle="modal" data-bs-target="#staticBackdropStatistic">
+                <span th:text="#{button.statistic}"></span>
+            </a>
+            <a th:href="@{/feedback}" data-bs-toggle="modal" data-bs-target="#staticBackdropFeedback">
+                <span th:text="#{button.feedback}"></span>
+            </a>
+            <a th:href="@{/logout}" data-bs-toggle="modal" data-bs-target="#staticBackdropLogout">
+                <span th:text="#{button.logout}"></span>
+            </a>
         </div>
     </div>
+
+    <div class="modal fade" id="staticBackdropUserPage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modelForInterview :: formField(userpage)}"/>
+    </div>
+    <div class="modal fade" id="staticBackdropAdminPage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modelForInterview :: formField(adminpage)}"/>
+    </div>
+    <div class="modal fade" id="staticBackdropInterview" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modelForInterview :: formField(interview)}"/>
+    </div>
+    <div class="modal fade" id="staticBackdropTesting" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modelForInterview :: formField(testing)}"/>
+    </div>
+    <div class="modal fade" id="staticBackdropStatistic" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modelForInterview :: formField(allstatisticspage)}"/>
+    </div>
+    <div class="modal fade" id="staticBackdropFeedback" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modelForInterview :: formField(feedback)}"/>
+    </div>
+    <div class="modal fade" id="staticBackdropLogout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modelForInterview :: formField(logout)}"/>
+    </div>
+
+    <th:block th:replace="~{layout/header :: message}"/>
+
+    <th:block th:replace="~{layout/texthowserviceworks}"/>
 
     <script th:src="@{javascript/display.js}"></script>
 </th:block>
@@ -56,8 +106,7 @@
     <div id="overlay" onclick="off()">
         <div id="text">
             <div class="center text-bold big-text_2 red_color">
-                <p>Слишком много вопросов к изучению.
-                <p>Сначала изучите их чтобы снова продолжить проходить собеседования.
+                <span th:utext="#{howServiceWorks.paragraphTwelve}"></span>
             </div>
         </div>
     </div>

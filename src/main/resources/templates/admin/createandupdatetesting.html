@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<th:block th:replace="~{layout/header}"/>
+<th:block th:replace="~{layout/header :: header}"/>
 <br>
 <div class="center">
     <form method="post" th:action="@{/viewchangestesting}" th:object="${modelUpdateTestingInterview}">
@@ -33,7 +33,9 @@
                 <!--suppress HtmlFormInputWithoutLabel -->
                 <textarea class="textarea4 red_color" placeholder="Fifth False Answer" th:field="*{fifthFalseAnswer}"></textarea>
                 <p>
-                    <button class="buttonGreen" type="submit">Создать модель для сохранения.</button>
+                    <button class="buttonGreen" type="submit">
+                        <span th:text="#{button.saveModel}"></span>
+                    </button>
             </td>
         </table>
     </form>
@@ -62,11 +64,15 @@
 <br>
 <div class="container-buttons center">
     <form method="post" th:action="@{/savetestinginterview}">
-        <button class="buttonGreen center" type="submit">Save</button>
+        <button class="buttonGreen center" type="submit">
+            <span th:text="#{button.save}"></span>
+        </button>
     </form>
 
     <form method="post" th:action="@{/redirectadminpage}">
-        <button class="buttonDarkBlue center" type="submit">Back to admin page</button>
+        <button class="buttonDarkBlue center" type="submit">
+            <span th:text="#{button.backToAdminPanel}"></span>
+        </button>
     </form>
 </div>
 <br>

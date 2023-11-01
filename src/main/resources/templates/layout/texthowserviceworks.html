@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="HowServiceWorks">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">
+                        <p th:text="#{howServiceWorks.paragraphOne}"/>
+                        <p th:text="#{howServiceWorks.paragraphTwo}"/>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <p><span class="red_color text-bold" th:text="#{button.question}"/>
+                        <span th:text="#{howServiceWorks.howQuestionWork}"/>
+                    <p th:text="#{howServiceWorks.threeKeyButtons}"/>
+                    <p><span class="green_color text-bold" th:text="#{button.knowAnswer}"/>
+                        <span th:text="#{howServiceWorks.paragraphThree}"/>
+                    <p><span class="green_color text-bold" th:text="#{button.viewAnswer}"/>
+                    <span th:text="#{howServiceWorks.paragraphFour}"/>
+                    <p><span class="green_color text-bold" th:text="#{button.dontKnowAnswer}"/>
+                    <span th:text="#{howServiceWorks.paragraphFive}"/>
+                    <p><span th:text="#{howServiceWorks.paragraphSex}"/>
+                    <p><span th:text="#{howServiceWorks.paragraphSeven}"/>
+                    <p><span class="red_color text-bold" th:text="#{button.testing}"/>
+                    <span th:text="#{howServiceWorks.paragraphEight}"/>
+                    <p><span th:text="#{howServiceWorks.paragraphTen}"/>
+                    <p><span th:text="#{howServiceWorks.paragraphEleven}"/>
+                    <p><span class="blue_color" th:text="#{howServiceWorks.feedback}"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <span th:text="#{button.close}"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>

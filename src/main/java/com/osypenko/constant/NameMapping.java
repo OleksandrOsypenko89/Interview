@@ -4,7 +4,7 @@ public class NameMapping {
     public static final String SLASH = "/";
     public static final String REDIRECT = "redirect:";
 
-    public static final String ERROR = "error";
+    public static final String ERROR = "error.errorMessage";
     public static final String LOGIN = "/login";
     public static final String LOGOUT = "/logout";
     public static final String TEXT_ME = "/textme";

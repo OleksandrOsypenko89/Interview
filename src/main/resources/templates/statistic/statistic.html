@@ -8,16 +8,32 @@
 </head>
 
 <body>
-<th:block th:replace="~{layout/header}"/>
+<th:block th:replace="~{layout/header :: header}"/>
 
 <div class="centered">
-    <span class="text-bold title_color big-text_1" th:text="'Результат прохождения ' + ${session.newStatisticsAdded.getType()}"></span>
-    <p class="text-bold big-text_2" th:text="'Ответил на ' + ${session.newStatisticsAdded.getKnowAnswer()} + ' из ' + ${session.newStatisticsAdded.getQuestions()} + ' вопросов'"></p>
-    <p class="text-bold big-text_2" th:text="'Результат составляет ' + ${session.newStatisticsAdded.getResult()} + '%'"></p>
+    <div class="text-bold title_color big-text_1">
+        <span th:utext="#{statistic.passingResult}"></span>
+        <span th:text="${session.newStatisticsAdded.getType()}"></span>
+    </div>
+    <br>
+    <div class="text-bold big-text_2">
+        <span th:utext="#{statistic.answeredTo}"></span>
+        <span th:text="${session.newStatisticsAdded.getKnowAnswer()}"></span>
+        <span th:utext="#{statistic.from}"></span>
+        <span th:text="${session.newStatisticsAdded.getQuestions()}"></span>
+        <span th:utext="#{statistic.questions}"></span>
+    </div>
+    <br>
+    <div class="text-bold big-text_2">
+        <span th:utext="#{statistic.theResultIs}"></span>
+        <span th:text="${session.newStatisticsAdded.getResult()} + '%'"></span>
+    </div>
     <br>
     <form th:action="@{/userpage}" method="get">
         <div class="center">
-            <button type="submit" class="buttonDarkBlue">Home page</button>
+            <button type="submit" class="buttonDarkBlue">
+                <span th:utext="#{button.homePage}"></span>
+            </button>
         </div>
     </form>
 </div>

@@ -8,10 +8,12 @@
 </head>
 
 <body>
-<th:block th:replace="~{layout/header}"/>
+<th:block th:replace="~{layout/header :: header}"/>
 <div th:if="${!session.user.listStudyQuestion.isEmpty()}">
     <br>
-    <h1 class="text-bold title_color big-text_1 text-center">Study questions</h1>
+    <h1 class="text-bold title_color big-text_1 text-center">
+        <span th:utext="#{userPage.studyQuestion}"></span>
+    </h1>
     <br>
     <table class="table_study_questions">
         <tr th:each="question : ${session.user.getListStudyQuestion()}">

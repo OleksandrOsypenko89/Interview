@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<th:block th:replace="~{layout/header}"/>
+<th:block th:replace="~{layout/header :: header}"/>
 <br>
 <div class="center">
     <form method="post" th:action="@{/viewchangesquestion}" th:object="${modelUpdateQuestionInterview}">
@@ -48,11 +48,15 @@
 
 <div class="container-buttons center">
     <form method="post" th:action="@{/savequestioninterview}">
-        <button class="buttonGreen center" type="submit">Save</button>
+        <button class="buttonGreen center" type="submit">
+            <span th:text="#{button.save}"></span>
+        </button>
     </form>
     <p class="red_color text-bold" th:text="'id - ' + ${modelUpdateQuestionInterview.getId()}"/>
     <form method="post" th:action="@{/redirectadminpage}">
-        <button class="buttonDarkBlue center" type="submit">Back to admin page</button>
+        <button class="buttonDarkBlue center" type="submit">
+            <span th:text="#{button.backToAdminPanel}"></span>
+        </button>
     </form>
 </div>
 <br>

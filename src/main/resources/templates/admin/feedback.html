@@ -8,15 +8,17 @@
 </head>
 
 <body>
-<th:block th:replace="~{layout/header}"/>
+<th:block th:replace="~{layout/header :: header}"/>
 <br>
-<h1 class="text-bold title_color big-text_2 text-center">If you have any suggestions or comments text me.</h1>
+<h1 class="text-bold title_color big-text_2 text-center" th:utext="#{feedback.textMe}"></h1>
 <br>
 <form class="center" th:action="@{/textme}" method="post">
     <!--suppress HtmlFormInputWithoutLabel -->
     <textarea name="text" class="textarea5"></textarea>
     <br><br>
-    <button type="submit" class="buttonDarkBlue">Send</button>
+    <button type="submit" class="buttonDarkBlue">
+        <span th:text="#{button.send}"></span>
+    </button>
 </form>
 </body>
 </html>

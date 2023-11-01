@@ -32,9 +32,14 @@
             </label>
         </div>
         <br>
-        <button type="submit" class="buttonDarkBlue">Sing in</button>
+        <button type="submit" class="buttonDarkBlue">
+            <span th:utext="#{button.singIn}"></span>
+        </button>
     </form>
     <br>
-    <p>Don't have an account? <a th:href="registration">Sign up!</a></p>
-    <p><a th:href="passwordrecovery">Forgot password?</a></p>
+    <p>
+        <span th:utext="#{formLogin.dontHaveAnAccount}"></span>
+        <a th:href="registration" th:utext="#{button.singUp}"></a>
+    </p>
+    <p><a th:href="passwordrecovery" th:utext="#{button.forgotPassword}"></a></p>
 </th:block>
