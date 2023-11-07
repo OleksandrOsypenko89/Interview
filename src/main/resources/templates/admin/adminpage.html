@@ -15,6 +15,7 @@
         <span class="text-bold" th:utext="#{adminPage.questionsInTheDatabase}"></span>
         <span th:text="${session.sizeAllQuestionInterview}"></span>
         <br>
+        <br>
         <form th:action="@{/adminsearchquestion}" method="post">
             <div class="input-wrapper">
                 <!--suppress HtmlFormInputWithoutLabel -->
@@ -37,6 +38,7 @@
         <span class="text-bold" th:utext="#{adminPage.questionsInTheDatabase}"></span>
         <span th:text="${session.sizeAllTestingInterview}"></span>
         <br>
+        <br>
         <form th:action="@{/adminsearchtesting}" method="post">
             <div class="input-wrapper">
                 <!--suppress HtmlFormInputWithoutLabel -->
@@ -58,6 +60,7 @@
         <br><br>
         <span class="text-bold" th:utext="#{adminPage.registeredUsers}"></span>
         <span th:text="${session.sizeAllUsers}"></span>
+        <br>
         <br>
         <form th:action="@{/adminsearchuser}" method="post">
             <div class="input-wrapper">

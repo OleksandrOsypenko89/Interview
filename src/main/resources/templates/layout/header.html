@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="header">
-    <div class="header shadow">
+    <div class="header">
         <a th:href="@{/userpage}" class="text-bold orange_color"
            th:text="${session.user.getFirstName().toUpperCase()} + ' ' + ${session.user.getLastName().toUpperCase()}"/>
         <div class="header-right">
@@ -31,6 +31,7 @@
             <a th:href="@{/logout}">
                 <span th:text="#{button.logout}"></span>
             </a>
+            <a><th:block th:replace="~{layout/internalization}"></th:block></a>
         </div>
     </div>
 
@@ -42,7 +43,7 @@
 </th:block>
 
 <th:block th:fragment="headerInterview">
-    <div class="header shadow">
+    <div class="header">
         <a data-bs-toggle="modal" data-bs-target="#staticBackdropUserPage" th:href="@{/userpage}" class="text-bold orange_color" th:text="${session.user.getFirstName().toUpperCase()} + ' ' + ${session.user.getLastName().toUpperCase()}"/>
         <div class="header-right">
             <a th:if="${session.user.listStudyQuestion.isEmpty()}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="orange_color" th:text="#{button.howServiceWorks}"></span></a>
@@ -70,6 +71,7 @@
             <a th:href="@{/logout}" data-bs-toggle="modal" data-bs-target="#staticBackdropLogout">
                 <span th:text="#{button.logout}"></span>
             </a>
+            <a><th:block th:replace="~{layout/internalization}"></th:block></a>
         </div>
     </div>
 

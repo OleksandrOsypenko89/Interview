@@ -24,6 +24,10 @@ import static com.osypenko.constant.Constant.ZERO;
 public class StatisticService {
     private final StatisticRepository statisticRepository;
 
+    public List<Statistic> allStatistics() {
+        return statisticRepository.findAll();
+    }
+
     public void delete(Statistic statistic) {
         statisticRepository.delete(statistic);
     }
@@ -32,8 +36,8 @@ public class StatisticService {
         statisticRepository.save(statistic);
     }
 
-    public void deletionOfOutdatedStatistics(User user) {
-        Set<Statistic> statistics = user.getStatistic();
+    public void deletionOfOutdatedStatistics() {
+        List<Statistic> statistics = allStatistics();
         Timestamp limit = timeLimitForDeletion();
         for (Statistic statistic : statistics) {
             if (statistic.getDate().before(limit)) {
