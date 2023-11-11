@@ -1,4 +1,4 @@
-package com.osypenko.controllers.registration;
+package com.osypenko.controllers.ui.registration;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.admin.MailService;

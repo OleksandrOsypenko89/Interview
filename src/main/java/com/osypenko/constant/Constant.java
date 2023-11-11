@@ -12,5 +12,5 @@ public class Constant {
     public static final int ONE_HUNDRED = 100;
     public static final int START_RANDOM_MAIL_NUM = 100000;
     public static final int END_RANDOM_MAIL_NUM = 999999;
-
+    public static final long TWELVE_HOURS = 43200000L;
 }

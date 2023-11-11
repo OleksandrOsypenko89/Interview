@@ -1,4 +1,4 @@
-package com.osypenko.controllers.exception;
+package com.osypenko.controllers.ui.exception;
 
 import com.osypenko.exception.UserException;
 import jakarta.servlet.http.HttpSession;

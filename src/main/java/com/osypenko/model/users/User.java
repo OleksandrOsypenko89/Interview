@@ -38,7 +38,7 @@ public class User {
     @Column(nullable = false)
     private Role role = Role.USER;
 
-    private Timestamp registrationDate = new Timestamp(System.currentTimeMillis());
+    private Timestamp registrationDate;
 
     @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)

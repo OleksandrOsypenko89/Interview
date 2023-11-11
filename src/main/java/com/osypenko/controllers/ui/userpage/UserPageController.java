@@ -1,4 +1,4 @@
-package com.osypenko.controllers.userpage;
+package com.osypenko.controllers.ui.userpage;
 
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.interview.testings.TestingInterview;

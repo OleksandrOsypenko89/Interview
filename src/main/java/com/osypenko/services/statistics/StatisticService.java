@@ -15,13 +15,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import static com.osypenko.constant.Constant.MEMBER_STATISTIC_DAYS;
-import static com.osypenko.constant.Constant.ZERO;
+import static com.osypenko.constant.Constant.*;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class StatisticService {
+public class StatisticService implements Runnable {
+
     private final StatisticRepository statisticRepository;
 
     public List<Statistic> allStatistics() {
@@ -34,6 +34,20 @@ public class StatisticService {
 
     public void addStatistic(Statistic statistic) {
         statisticRepository.save(statistic);
+    }
+
+    @Override
+    public void run() {
+        //noinspection InfiniteLoopStatement
+        while (true) {
+            try {
+                //noinspection BusyWait
+                Thread.sleep(TWELVE_HOURS);
+                deletionOfOutdatedStatistics();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public void deletionOfOutdatedStatistics() {
@@ -73,6 +87,7 @@ public class StatisticService {
         statistic.setType(type);
         statistic.setKnowAnswer(knowAnswer);
         statistic.setQuestions(sizeListQuestion);
+        statistic.setDate(new Timestamp(System.currentTimeMillis()));
         addStatistic(statistic);
     }
 

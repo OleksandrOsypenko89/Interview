@@ -1,4 +1,4 @@
-package com.osypenko.controllers.admin;
+package com.osypenko.controllers.ui.admin;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.admin.MailService;

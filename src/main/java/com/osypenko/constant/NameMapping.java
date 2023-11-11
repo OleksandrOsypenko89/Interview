@@ -5,10 +5,12 @@ public class NameMapping {
     public static final String REDIRECT = "redirect:";
 
     public static final String ERROR = "error.errorMessage";
+    public static final String API = "/api";
     public static final String LOGIN = "/login";
     public static final String LOGOUT = "/logout";
     public static final String TEXT_ME = "/textme";
     public static final String TESTING = "/testing";
+    public static final String USER_API = "/userapi";
     public static final String NEW_USER = "/newuser";
     public static final String FEEDBACK = "/feedback";
     public static final String QUESTION = "/question";

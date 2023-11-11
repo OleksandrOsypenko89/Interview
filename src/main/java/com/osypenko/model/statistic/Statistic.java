@@ -18,7 +18,7 @@ public class Statistic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Timestamp date = new Timestamp(System.currentTimeMillis());
+    private Timestamp date;
 
     private Integer result;
 

@@ -1,6 +1,6 @@
 package com.osypenko.config;
 
-import com.osypenko.model.statistic.StatisticRun;
+import com.osypenko.services.statistics.StatisticService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,11 +8,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class Config {
-    private final StatisticRun statisticRun;
+
+    private final StatisticService statisticService;
 
     @Bean
     public void timeDeleteStatistics() {
-        Thread thread = new Thread(statisticRun);
+        Thread thread = new Thread(statisticService);
         thread.start();
     }
 }

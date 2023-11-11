@@ -8,16 +8,16 @@
         <option value="en" th:text="#{lang.en}"></option>
         <option value="pl" th:text="#{lang.pl}"></option>
         <option value="ru" th:text="#{lang.ru}"></option>
-        <option value="uk" th:text="#{lang.ua}"></option>
+        <option value="ua" th:text="#{lang.ua}"></option>
     </select>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!--suppress JSJQueryEfficiency -->
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#locales").change(function () {
                 var selectedOption = $('#locales').val();
-                if ($('#locales').val() !== ''){
+                if ($('#locales').val() !== '') {
                     window.location.replace('?lang=' + selectedOption);
                 }
             });

@@ -6,7 +6,9 @@
         <a th:href="@{/userpage}" class="text-bold orange_color"
            th:text="${session.user.getFirstName().toUpperCase()} + ' ' + ${session.user.getLastName().toUpperCase()}"/>
         <div class="header-right">
-            <a th:if="${session.user.listStudyQuestion.isEmpty()}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="orange_color" th:text="#{button.howServiceWorks}"></span></a>
+            <a th:if="${session.user.listStudyQuestion.isEmpty()}" data-bs-toggle="modal"
+               data-bs-target="#staticBackdrop"><span class="orange_color"
+                                                      th:text="#{button.howServiceWorks}"></span></a>
             <a th:href="@{/userpage}">
                 <span th:text="#{button.homePage}"></span>
             </a>
@@ -31,7 +33,9 @@
             <a th:href="@{/logout}">
                 <span th:text="#{button.logout}"></span>
             </a>
-            <a><th:block th:replace="~{layout/internalization}"></th:block></a>
+            <a>
+                <th:block th:replace="~{layout/internalization :: internalization}"/>
+            </a>
         </div>
     </div>
 
@@ -44,19 +48,26 @@
 
 <th:block th:fragment="headerInterview">
     <div class="header">
-        <a data-bs-toggle="modal" data-bs-target="#staticBackdropUserPage" th:href="@{/userpage}" class="text-bold orange_color" th:text="${session.user.getFirstName().toUpperCase()} + ' ' + ${session.user.getLastName().toUpperCase()}"/>
+        <a data-bs-toggle="modal" data-bs-target="#staticBackdropUserPage" th:href="@{/userpage}"
+           class="text-bold orange_color"
+           th:text="${session.user.getFirstName().toUpperCase()} + ' ' + ${session.user.getLastName().toUpperCase()}"/>
         <div class="header-right">
-            <a th:if="${session.user.listStudyQuestion.isEmpty()}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="orange_color" th:text="#{button.howServiceWorks}"></span></a>
+            <a th:if="${session.user.listStudyQuestion.isEmpty()}" data-bs-toggle="modal"
+               data-bs-target="#staticBackdrop"><span class="orange_color"
+                                                      th:text="#{button.howServiceWorks}"></span></a>
             <a th:href="@{/userpage}" data-bs-toggle="modal" data-bs-target="#staticBackdropUserPage">
                 <span th:text="#{button.homePage}"></span>
             </a>
-            <a th:if="${session.user.getRole().toString()} == ADMIN" th:href="@{/adminpage}" data-bs-toggle="modal" data-bs-target="#staticBackdropAdminPage">
+            <a th:if="${session.user.getRole().toString()} == ADMIN" th:href="@{/adminpage}" data-bs-toggle="modal"
+               data-bs-target="#staticBackdropAdminPage">
                 <span th:text="#{button.adminPage}"></span>
             </a>
             <a th:if="${session.user.listStudyQuestion.size() > 10}" class="btn" onclick="on()">
                 <span th:text="#{button.question}"></span>
             </a>
-            <a th:if="${session.user.listStudyQuestion.size() <= 10}" th:href="@{/questionpage}" data-bs-toggle="modal" data-bs-target="#staticBackdropInterview">
+            <a th:if="${session.user.listStudyQuestion.size() <= 10}" th:href="@{/questionpage}"
+               data-bs-toggle="modal"
+               data-bs-target="#staticBackdropInterview">
                 <span th:text="#{button.question}"></span>
             </a>
             <a th:href="@{/testingpage}" data-bs-toggle="modal" data-bs-target="#staticBackdropTesting">
@@ -71,29 +82,38 @@
             <a th:href="@{/logout}" data-bs-toggle="modal" data-bs-target="#staticBackdropLogout">
                 <span th:text="#{button.logout}"></span>
             </a>
-            <a><th:block th:replace="~{layout/internalization}"></th:block></a>
+            <a>
+                <th:block th:replace="~{layout/internalization :: internalization}"/>
+            </a>
         </div>
     </div>
 
-    <div class="modal fade" id="staticBackdropUserPage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdropUserPage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <th:block th:replace="~{layout/modelForInterview :: formField(userpage)}"/>
     </div>
-    <div class="modal fade" id="staticBackdropAdminPage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdropAdminPage" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <th:block th:replace="~{layout/modelForInterview :: formField(adminpage)}"/>
     </div>
-    <div class="modal fade" id="staticBackdropInterview" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdropInterview" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <th:block th:replace="~{layout/modelForInterview :: formField(interview)}"/>
     </div>
-    <div class="modal fade" id="staticBackdropTesting" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdropTesting" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <th:block th:replace="~{layout/modelForInterview :: formField(testing)}"/>
     </div>
-    <div class="modal fade" id="staticBackdropStatistic" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdropStatistic" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <th:block th:replace="~{layout/modelForInterview :: formField(allstatisticspage)}"/>
     </div>
-    <div class="modal fade" id="staticBackdropFeedback" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdropFeedback" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <th:block th:replace="~{layout/modelForInterview :: formField(feedback)}"/>
     </div>
-    <div class="modal fade" id="staticBackdropLogout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdropLogout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <th:block th:replace="~{layout/modelForInterview :: formField(logout)}"/>
     </div>
 

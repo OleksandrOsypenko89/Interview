@@ -1,4 +1,4 @@
-package com.osypenko.controllers.statistic;
+package com.osypenko.controllers.ui.statistic;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.statistics.StatisticService;

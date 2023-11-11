@@ -1,6 +1,7 @@
 package com.osypenko.services.user;
 
 import com.osypenko.model.users.User;
+import com.osypenko.services.admin.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static com.osypenko.constant.Constant.OLEKSANDR_GMAIL_COM;
 import static com.osypenko.constant.NameLogs.UNKNOWN_USER;
 
 @Slf4j
@@ -16,6 +18,7 @@ import static com.osypenko.constant.NameLogs.UNKNOWN_USER;
 @RequiredArgsConstructor
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
     private final UserService userService;
+    private final MailService mailService;
 
     public User getUser(UserDetails userDetails) {
         Optional<User> userOptional = userService.findByEmail(userDetails.getUsername());
@@ -29,6 +32,9 @@ public class UserDetailsService implements org.springframework.security.core.use
             throw new UsernameNotFoundException(UNKNOWN_USER + email);
         }
         User user = userOptional.get();
+        if (user.getEmail().equals("demo@gmail.com")) {
+            mailService.sendSimpleMessage(OLEKSANDR_GMAIL_COM, "Зафіксований вхід в аккаунт для рекрутерів");
+        }
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getEmail())
                 .password(user.getPassword())
