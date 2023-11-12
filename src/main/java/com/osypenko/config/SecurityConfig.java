@@ -10,7 +10,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static com.osypenko.constant.NameMapping.*;
+import static com.osypenko.constant.Endpoints.*;
 
 @Slf4j
 @Configuration
@@ -28,10 +28,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
+                .requestMatchers(API_REGISTRATIONS, "swagger-ui").permitAll()
                 .requestMatchers(REGISTRATION, GET_REGISTRATION_CODE, CODE_FOR_REGISTRATION, NEW_USER).permitAll()
                 .requestMatchers(PASSWORD_RECOVERY, CODE_PASSWORD_RECOVERY, NEW_PASSWORD, CONFIRMATION_CODE, SAVE_NEW_PASSWORD).permitAll()
                 .requestMatchers(DIRECTORY_CSS, DIRECTORY_JAVASCRIPT, DIRECTORY_IMAGES).permitAll()
                 .requestMatchers(USER_PAGE, QUESTION, TESTING, ALL_STATISTICS, STATISTIC, FEEDBACK).hasAnyRole(Role.USER.name(), Role.ADMIN.name())
+                .requestMatchers(USER_API).hasAnyRole(Role.USER.name(), Role.ADMIN.name())
                 .requestMatchers(ADMIN_PAGE, ADMIN_SEARCH_QUESTION, CREATE_AND_UPDATE_QUESTION, ADMIN_SEARCH_TESTING, CREATE_AND_UPDATE_TESTING, REDIRECT_ADMIN_PAGE).hasRole(Role.ADMIN.name())
                 .anyRequest().authenticated().and()
                 .formLogin().permitAll().loginPage(LOGIN).defaultSuccessUrl(USER_PAGE, true).and()

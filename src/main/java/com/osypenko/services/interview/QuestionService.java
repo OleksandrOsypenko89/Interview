@@ -77,7 +77,7 @@ public class QuestionService extends Interview {
             QuestionInterview question = questionInterview.get();
             listStudyQuestion.remove(question);
         }
-        userService.createAndUpdateUser(user);
+        userService.updateUser(user);
     }
 
     public void sortStudyQuestion(User user) {

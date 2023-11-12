@@ -8,11 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
-import static com.osypenko.constant.NameMapping.LOGIN;
-import static com.osypenko.constant.NameMapping.REDIRECT;
+import static com.osypenko.constant.Endpoints.LOGIN;
+import static com.osypenko.constant.Endpoints.REDIRECT;
 
 @Slf4j
 @Service
@@ -24,7 +25,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void createAndUpdateUser(User user) {
+    public void updateUser(User user) {
         userRepository.save(user);
     }
 
@@ -46,6 +47,10 @@ public class UserService {
         user.setLastName(lastName);
         user.setEmail(email);
         user.setRegistrationDate(new Timestamp(System.currentTimeMillis()));
+        user.setListQuestionInterviews(new HashSet<>());
+        user.setListQuestionTesting(new HashSet<>());
+        user.setListStudyQuestion(new HashSet<>());
+        user.setStatistic(new HashSet<>());
     }
 
     public void passwordEncoding(String password, User user) {
@@ -59,7 +64,7 @@ public class UserService {
             if (optionalUser.isPresent()) {
                 User user = optionalUser.get();
                 passwordEncoding(passwordOne, user);
-                createAndUpdateUser(user);
+                updateUser(user);
                 return REDIRECT + LOGIN;
             }
         }
