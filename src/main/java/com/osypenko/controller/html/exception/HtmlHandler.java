@@ -11,9 +11,9 @@ import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.*;
 
 @Slf4j
-@ControllerAdvice
+@ControllerAdvice(basePackages = "com/osypenko/controller/html")
 @RequiredArgsConstructor
-public class ErrorController {
+public class HtmlHandler {
     private final HttpSession session;
 
     @GetMapping(SLASH + ERROR)

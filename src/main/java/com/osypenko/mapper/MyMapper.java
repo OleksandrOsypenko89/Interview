@@ -1,9 +1,6 @@
 package com.osypenko.mapper;
 
-import com.osypenko.dto.QuestionInterviewDTO;
-import com.osypenko.dto.StatisticDTO;
-import com.osypenko.dto.TestingInterviewDTO;
-import com.osypenko.dto.UserDTO;
+import com.osypenko.dto.*;
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.model.statistic.Statistic;
@@ -97,5 +94,13 @@ public class MyMapper {
                 , getStudyQuestionInterviewDTOSet(user)
                 , getStatisticDTOSet(user)
         );
+    }
+
+    public UserDTO updateUser(User user, UpdateUserDTO updateUserDTO) {
+        UserDTO userDTO = getUserDTO(user);
+        userDTO.setFirstName(updateUserDTO.getFirstName());
+        userDTO.setLastName(updateUserDTO.getLastName());
+        userDTO.setEmail(updateUserDTO.getEmail());
+        return userDTO;
     }
 }

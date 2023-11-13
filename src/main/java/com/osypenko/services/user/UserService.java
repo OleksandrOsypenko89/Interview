@@ -41,6 +41,12 @@ public class UserService {
         userRepository.saveAndFlush(user);
     }
 
+    public void updateDate(User user, String firstName, String lastName, String email) {
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+    }
+
     public void createNewUser(User user, String firstName, String lastName, String email, String password) {
         passwordEncoding(password, user);
         user.setFirstName(firstName);

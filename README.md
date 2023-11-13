@@ -13,6 +13,7 @@
 * Spring Security
 * PostgreSQL
 * Thymeleaf
+* Rest API
 * Docker
 * Maven
 * HTML

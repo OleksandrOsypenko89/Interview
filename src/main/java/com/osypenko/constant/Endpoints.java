@@ -8,6 +8,7 @@ public class Endpoints {
     public static final String API = "/api";
     public static final String USER_API = "/user";
     public static final String LOGIN = "/login";
+    public static final String UPDATE = "update";
     public static final String LOGOUT = "/logout";
     public static final String TEXT_ME = "/textme";
     public static final String TESTING = "/testing";
