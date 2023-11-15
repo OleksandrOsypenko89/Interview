@@ -81,7 +81,7 @@ public class MyMapper {
         return listStatisticDTO;
     }
 
-    public UserDTO getUserDTO(User user) {
+    public UserDTO updateUserInUserDTO(User user) {
         return new UserDTO(
                 user.getId()
                 , user.getFirstName()
@@ -97,7 +97,7 @@ public class MyMapper {
     }
 
     public UserDTO updateUser(User user, UpdateUserDTO updateUserDTO) {
-        UserDTO userDTO = getUserDTO(user);
+        UserDTO userDTO = updateUserInUserDTO(user);
         userDTO.setFirstName(updateUserDTO.getFirstName());
         userDTO.setLastName(updateUserDTO.getLastName());
         userDTO.setEmail(updateUserDTO.getEmail());

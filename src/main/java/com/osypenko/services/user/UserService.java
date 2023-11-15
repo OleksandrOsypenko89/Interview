@@ -45,6 +45,7 @@ public class UserService {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
+        flushUser(user);
     }
 
     public void createNewUser(User user, String firstName, String lastName, String email, String password) {

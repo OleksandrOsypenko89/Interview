@@ -25,7 +25,7 @@ public class RegistrationRestController {
     ) {
         userDTOService.saveRegistrationData(registrationUserDTO, user);
 
-        UserDTO userDTO = myMapper.getUserDTO(user);
+        UserDTO userDTO = myMapper.updateUserInUserDTO(user);
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(userDTO);
