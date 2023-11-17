@@ -1,7 +1,5 @@
 package com.osypenko.services.user;
 
-import com.osypenko.dto.RegistrationUserDTO;
-import com.osypenko.dto.UpdateUserDTO;
 import com.osypenko.dto.UserDTO;
 import com.osypenko.mapper.MyMapper;
 import com.osypenko.model.interview.question.QuestionInterview;
@@ -21,9 +19,8 @@ public class UserDTOService {
     private final UserService userService;
     private final TestingService testingService;
     private final QuestionService questionService;
-    private final UserDetailsService userDetailsService;
 
-    public void saveRegistrationData(RegistrationUserDTO registrationUserDTO, User user) {
+    public void saveRegistrationData(UserDTO registrationUserDTO, User user) {
         userService.createNewUser(
                 user
                 , registrationUserDTO.getFirstName()
@@ -34,8 +31,8 @@ public class UserDTOService {
         userService.flushUser(user);
     }
 
-    public UserDTO updateDate(UserDetails userDetails, UpdateUserDTO updateUserDTO) {
-        User user = userDetailsService.getUser(userDetails);
+    public UserDTO updateDate(UserDetails userDetails, UserDTO updateUserDTO) {
+        User user = userService.getUser(userDetails);
         userService.updateDate(
                 user
                 , updateUserDTO.getFirstName()
@@ -46,14 +43,14 @@ public class UserDTOService {
     }
 
     public UserDTO getUserDTO(UserDetails userDetails) {
-        User user = userDetailsService.getUser(userDetails);
+        User user = userService.getUser(userDetails);
         questionService.listFilling(user);
         testingService.listFilling(user);
         return myMapper.updateUserInUserDTO(user);
     }
 
     public UserDTO deleteStudyQuestionUser(UserDetails userDetails, QuestionInterview questionInterviewId) {
-        User user = userDetailsService.getUser(userDetails);
+        User user = userService.getUser(userDetails);
         user.getListStudyQuestion().remove(questionInterviewId);
         userService.flushUser(user);
         return myMapper.updateUserInUserDTO(user);

@@ -1,6 +1,5 @@
 package com.osypenko.controller.rest.userpage;
 
-import com.osypenko.dto.UpdateUserDTO;
 import com.osypenko.dto.UserDTO;
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.services.user.UserDTOService;
@@ -30,7 +29,7 @@ public class UserRestController {
     @PutMapping(UPDATE)
     public ResponseEntity<UserDTO> updateUser(
             @AuthenticationPrincipal UserDetails userDetails
-            , @RequestBody UpdateUserDTO updateUserDTO
+            , @RequestBody UserDTO updateUserDTO
     ) {
         UserDTO userDTO = userDTOService.updateDate(userDetails, updateUserDTO);
         return ResponseEntity

@@ -5,6 +5,9 @@ public class Constant {
     public static final String REGISTRATION_NEW_USER = "Зареєстрований новий користувач ";
     public static final String PASSWORD_CHANGE_CODE = "Password change code - ";
     public static final String TO_COMPLETE_THE_REGISTRATION_ENTER_THE_CODE = "To complete the registration, enter the code - ";
+    public static final String NEW_USER_FROM_API = "Зареестрований новий користувач через API";
+    public static final String DEMO_GMAIL_COM = "demo@gmail.com";
+    public static final String FIXED_LOGIN_ACCOUNT_FOR_RECRUITERS = "Зафіксований вхід в аккаунт для рекрутерів";
     public static final String SENDER = "Отправитель ";
     public static final int ZERO = 0;
     public static final int MEMBER_STATISTIC_DAYS = 10;

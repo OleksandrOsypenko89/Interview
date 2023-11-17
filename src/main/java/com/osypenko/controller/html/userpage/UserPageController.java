@@ -5,7 +5,7 @@ import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.services.interview.QuestionService;
 import com.osypenko.services.interview.TestingService;
-import com.osypenko.services.user.UserDetailsService;
+import com.osypenko.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,12 +28,12 @@ import static com.osypenko.constant.NameSessionAttributes.*;
 public class UserPageController {
     private final QuestionService questionService;
     private final TestingService testingService;
-    private final UserDetailsService userDetailsService;
+    private final UserService userService;
     private final HttpSession session;
 
     @GetMapping(USER_PAGE)
     public String userPage(@AuthenticationPrincipal UserDetails userDetails) {
-        User user = userDetailsService.getUser(userDetails);
+        User user = userService.getUser(userDetails);
         if (user == null) {
             return LOGIN;
         }

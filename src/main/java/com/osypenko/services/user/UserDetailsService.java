@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import static com.osypenko.constant.Constant.OLEKSANDR_GMAIL_COM;
 import static com.osypenko.constant.NameLogs.UNKNOWN_USER;
 
 @Slf4j
@@ -20,10 +19,7 @@ public class UserDetailsService implements org.springframework.security.core.use
     private final UserService userService;
     private final MailService mailService;
 
-    public User getUser(UserDetails userDetails) {
-        Optional<User> userOptional = userService.findByEmail(userDetails.getUsername());
-        return userOptional.orElse(null);
-    }
+
 
     @Override
     public UserDetails loadUserByUsername(String email) {
@@ -32,9 +28,7 @@ public class UserDetailsService implements org.springframework.security.core.use
             throw new UsernameNotFoundException(UNKNOWN_USER + email);
         }
         User user = userOptional.get();
-        if (user.getEmail().equals("demo@gmail.com")) {
-            mailService.sendSimpleMessage(OLEKSANDR_GMAIL_COM, "Зафіксований вхід в аккаунт для рекрутерів");
-        }
+        mailService.informingAdmin(user);
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getEmail())
                 .password(user.getPassword())

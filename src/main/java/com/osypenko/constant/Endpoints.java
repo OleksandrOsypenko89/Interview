@@ -5,14 +5,13 @@ public class Endpoints {
     public static final String REDIRECT = "redirect:";
 
     public static final String ERROR = "error.errorMessage";
-    public static final String API = "/api";
-    public static final String USER_API = "/user";
     public static final String LOGIN = "/login";
     public static final String UPDATE = "update";
     public static final String LOGOUT = "/logout";
     public static final String TEXT_ME = "/textme";
     public static final String TESTING = "/testing";
     public static final String NEW_USER = "/newuser";
+    public static final String SWAGGER = "swagger-ui";
     public static final String FEEDBACK = "/feedback";
     public static final String QUESTION = "/question";
     public static final String NO_ANSWER = "/noAnswer";
@@ -28,7 +27,6 @@ public class Endpoints {
     public static final String ALL_STATISTICS = "/allstatistics";
     public static final String DELETE_STUDY_QUESTION = "/delete";
     public static final String ANSWER_TESTING = "/answerTesting";
-    public static final String API_REGISTRATIONS = "/registrations";
     public static final String SAVE_NEW_PASSWORD = "/savenewpassword";
     public static final String ADMIN_NEW_TESTING = "/adminnewtesting";
     public static final String ADMIN_SEARCH_USER = "/adminsearchuser";
@@ -59,4 +57,9 @@ public class Endpoints {
     public static final String DIRECTORY_CSS = "/css/**";
     public static final String DIRECTORY_IMAGES = "/images/**";
     public static final String DIRECTORY_JAVASCRIPT = "/javascript/**";
+
+    public static final String API = "/api";
+    public static final String INFO = "/info";
+    public static final String USER_API = "/user";
+    public static final String API_ADMIN_INFO = "/api/info";
 }

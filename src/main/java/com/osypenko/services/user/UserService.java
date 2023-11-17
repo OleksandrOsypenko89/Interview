@@ -5,6 +5,7 @@ import com.osypenko.model.users.User;
 import com.osypenko.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -39,6 +40,11 @@ public class UserService {
 
     public void flushUser(User user) {
         userRepository.saveAndFlush(user);
+    }
+
+    public User getUser(UserDetails userDetails) {
+        Optional<User> userOptional = findByEmail(userDetails.getUsername());
+        return userOptional.orElse(null);
     }
 
     public void updateDate(User user, String firstName, String lastName, String email) {

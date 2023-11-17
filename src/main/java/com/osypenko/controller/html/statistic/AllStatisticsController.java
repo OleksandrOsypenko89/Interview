@@ -2,7 +2,7 @@ package com.osypenko.controller.html.statistic;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.statistics.StatisticService;
-import com.osypenko.services.user.UserDetailsService;
+import com.osypenko.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,11 +20,11 @@ import static com.osypenko.constant.NameSessionAttributes.*;
 public class AllStatisticsController {
     private final HttpSession session;
     private final StatisticService statisticService;
-    private final UserDetailsService userDetailsService;
+    private final UserService userService;
 
     @GetMapping(ALL_STATISTICS)
     public String allStatistic(@AuthenticationPrincipal UserDetails userDetails) {
-        User user = userDetailsService.getUser(userDetails);
+        User user = userService.getUser(userDetails);
         if (user == null) {
             return LOGIN;
         }

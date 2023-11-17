@@ -87,6 +87,7 @@ public class MyMapper {
                 , user.getFirstName()
                 , user.getLastName()
                 , user.getEmail()
+                , user.getPassword()
                 , user.getRole()
                 , user.getRegistrationDate()
                 , getQuestionInterviewDTOSet(user)
@@ -96,7 +97,7 @@ public class MyMapper {
         );
     }
 
-    public UserDTO updateUser(User user, UpdateUserDTO updateUserDTO) {
+    public UserDTO updateUser(User user, UserDTO updateUserDTO) {
         UserDTO userDTO = updateUserInUserDTO(user);
         userDTO.setFirstName(updateUserDTO.getFirstName());
         userDTO.setLastName(updateUserDTO.getLastName());

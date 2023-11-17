@@ -1,5 +1,6 @@
 package com.osypenko.services.admin;
 
+import com.osypenko.model.users.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
@@ -8,8 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
-import static com.osypenko.constant.Constant.END_RANDOM_MAIL_NUM;
-import static com.osypenko.constant.Constant.START_RANDOM_MAIL_NUM;
+import static com.osypenko.constant.Constant.*;
 
 @Slf4j
 @Service
@@ -30,5 +30,11 @@ public class MailService {
     public int generatedRandomCode() {
         Random random = new Random();
         return random.nextInt(END_RANDOM_MAIL_NUM) + START_RANDOM_MAIL_NUM;
+    }
+
+    public void informingAdmin(User user) {
+        if (user.getEmail().equals(DEMO_GMAIL_COM)) {
+            sendSimpleMessage(OLEKSANDR_GMAIL_COM, FIXED_LOGIN_ACCOUNT_FOR_RECRUITERS);
+        }
     }
 }
