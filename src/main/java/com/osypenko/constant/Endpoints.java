@@ -5,9 +5,12 @@ public class Endpoints {
     public static final String REDIRECT = "redirect:";
 
     public static final String ERROR = "error.errorMessage";
+    public static final String API = "/api";
+    public static final String INFO = "/info";
     public static final String LOGIN = "/login";
     public static final String UPDATE = "update";
     public static final String LOGOUT = "/logout";
+    public static final String USER_API = "/user";
     public static final String TEXT_ME = "/textme";
     public static final String TESTING = "/testing";
     public static final String NEW_USER = "/newuser";
@@ -19,7 +22,7 @@ public class Endpoints {
     public static final String STATISTIC = "/statistic";
     public static final String ADMIN_PAGE = "/adminpage";
     public static final String KNOW_ANSWER = "/knowAnswer";
-    public static final String DELETE_USER = "/deleteUser";
+    public static final String DELETE_USER = "/deleteuser";
     public static final String TESTING_PAGE = "/testingpage";
     public static final String NEW_PASSWORD = "/newpassword";
     public static final String REGISTRATION = "/registration";
@@ -57,9 +60,4 @@ public class Endpoints {
     public static final String DIRECTORY_CSS = "/css/**";
     public static final String DIRECTORY_IMAGES = "/images/**";
     public static final String DIRECTORY_JAVASCRIPT = "/javascript/**";
-
-    public static final String API = "/api";
-    public static final String INFO = "/info";
-    public static final String USER_API = "/user";
-    public static final String API_ADMIN_INFO = "/api/info";
 }
