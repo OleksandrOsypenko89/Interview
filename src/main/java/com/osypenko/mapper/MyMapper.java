@@ -19,8 +19,8 @@ public class MyMapper {
         for (QuestionInterview question : listQuestionInterviews) {
             QuestionInterviewDTO questionInterviewDTO = new QuestionInterviewDTO(
                     question.getId()
-                    , question.getAnswer()
                     , question.getQuestion()
+                    , question.getAnswer()
                     , question.getTopic()
             );
             listQuestionInterviewDTO.add(questionInterviewDTO);
@@ -55,8 +55,8 @@ public class MyMapper {
         for (QuestionInterview study : listStudyQuestion) {
             QuestionInterviewDTO questionInterviewDTO = new QuestionInterviewDTO(
                     study.getId()
-                    , study.getAnswer()
                     , study.getQuestion()
+                    , study.getAnswer()
                     , study.getTopic()
             );
             listStudyQuestionDTO.add(questionInterviewDTO);
