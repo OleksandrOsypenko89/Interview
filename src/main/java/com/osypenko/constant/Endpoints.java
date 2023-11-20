@@ -53,6 +53,7 @@ public class Endpoints {
 
     public static final String DIRECTORY_ADMIN = "admin";
     public static final String DIRECTORY_STATISTIC = "statistic";
+    public static final String DIRECTORY_INTERVIEW = "interview";
     public static final String DIRECTORY_USER_PAGES = "userpages";
     public static final String DIRECTORY_REGISTRATION = "registration";
     public static final String DIRECTORY_PASSWORD_RECOVERY = "passwordrecovery";

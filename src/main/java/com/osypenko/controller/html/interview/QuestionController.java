@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.*;
 
+import static com.osypenko.constant.Constant.SIZE_QUESTION_INTERVIEW;
 import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.*;
 
@@ -37,10 +38,9 @@ public class QuestionController {
             , Statistic newStatisticsAdded
     ) {
         if (listInterview.isEmpty()) {
-            int sizeListQuestion = (int) session.getAttribute(SIZE_LIST_QUESTION);
-            int percentage = questionService.getPercentage(know, sizeListQuestion);
+            int percentage = questionService.getPercentage(know, SIZE_QUESTION_INTERVIEW);
 
-            statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, sizeListQuestion, Type.QUESTIONS);
+            statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, SIZE_QUESTION_INTERVIEW, Type.QUESTIONS);
 
             user.getListQuestionInterviews().removeAll(user.getListQuestionInterviews());
             userService.flushUser(user);
@@ -49,7 +49,7 @@ public class QuestionController {
             return REDIRECT + STATISTIC;
         }
         session.setAttribute(QUESTION_INTERVIEW, listInterview.get(0));
-        return DIRECTORY_USER_PAGES + QUESTION;
+        return DIRECTORY_INTERVIEW + QUESTION;
     }
 
     @PostMapping(KNOW_ANSWER)

@@ -29,7 +29,7 @@
             <a th:href="@{/feedback}">
                 <span th:text="#{button.feedback}"></span>
             </a>
-            <a th:href="@{/swagger-ui/index.html}">
+            <a th:href="@{/swagger-ui/4.15.5/index.html}">
                 <span th:text="#{button.swagger}"></span>
             </a>
             <a th:href="@{/logout}">
@@ -79,6 +79,9 @@
             <a th:href="@{/feedback}" data-bs-toggle="modal" data-bs-target="#staticBackdropFeedback">
                 <span th:text="#{button.feedback}"></span>
             </a>
+            <a th:href="@{/swagger-ui/4.15.5/index.html}" data-bs-toggle="modal" data-bs-target="#staticBackdropSwagger">
+                <span th:text="#{button.swagger}"></span>
+            </a>
             <a th:href="@{/logout}" data-bs-toggle="modal" data-bs-target="#staticBackdropLogout">
                 <span th:text="#{button.logout}"></span>
             </a>
@@ -88,33 +91,29 @@
         </div>
     </div>
 
-    <div class="modal fade" id="staticBackdropUserPage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modal :: formField(userpage)}"/>
+    <div class="modal fade" id="staticBackdropUserPage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modal :: formField('userpage')}"/>
     </div>
-    <div class="modal fade" id="staticBackdropAdminPage" data-bs-backdrop="static" data-bs-keyboard="false"
-         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modal :: formField(adminpage)}"/>
+    <div class="modal fade" id="staticBackdropAdminPage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modal :: formField('adminpage')}"/>
     </div>
-    <div class="modal fade" id="staticBackdropInterview" data-bs-backdrop="static" data-bs-keyboard="false"
-         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modal :: formField(interview)}"/>
+    <div class="modal fade" id="staticBackdropInterview" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modal :: formField('question')}"/>
     </div>
-    <div class="modal fade" id="staticBackdropTesting" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modal :: formField(testing)}"/>
+    <div class="modal fade" id="staticBackdropTesting" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modal :: formField('testing')}"/>
     </div>
-    <div class="modal fade" id="staticBackdropStatistic" data-bs-backdrop="static" data-bs-keyboard="false"
-         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modal :: formField(allstatisticspage)}"/>
+    <div class="modal fade" id="staticBackdropStatistic" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modal :: formField('allstatisticspage')}"/>
     </div>
-    <div class="modal fade" id="staticBackdropFeedback" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modal :: formField(feedback)}"/>
+    <div class="modal fade" id="staticBackdropFeedback" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modal :: formField('feedback')}"/>
     </div>
-    <div class="modal fade" id="staticBackdropLogout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modal :: formField(logout)}"/>
+    <div class="modal fade" id="staticBackdropSwagger" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modal :: formField('swagger-ui/4.15.5/index.html')}"/>
+    </div>
+    <div class="modal fade" id="staticBackdropLogout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <th:block th:replace="~{layout/modal :: formField('logout')}"/>
     </div>
 
     <th:block th:replace="~{layout/modal :: statisticModal}"/>

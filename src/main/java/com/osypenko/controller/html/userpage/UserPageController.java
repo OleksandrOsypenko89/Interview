@@ -42,20 +42,22 @@ public class UserPageController {
 
     @GetMapping(QUESTION_PAGE)
     public String questionPage(@SessionAttribute(USER) User user) {
-        List<QuestionInterview> listQuestionInterviews = questionService.listFilling(user);
-        session.setAttribute(SIZE_LIST_QUESTION, listQuestionInterviews.size());
-        session.setAttribute(LIST_QUESTION, listQuestionInterviews);
-        session.setAttribute(KNOW, ZERO);
+        interviewListsFiling(user);
         return REDIRECT + QUESTION;
     }
 
     @GetMapping(TESTING_PAGE)
     public String testingPage(@SessionAttribute(USER) User user) {
-        List<TestingInterview> listQuestionTesting = testingService.listFilling(user);
-        session.setAttribute(SIZE_LIST_TESTING, listQuestionTesting.size());
-        session.setAttribute(LIST_TESTING, listQuestionTesting);
-        session.setAttribute(KNOW, ZERO);
+        interviewListsFiling(user);
         return REDIRECT + TESTING;
+    }
+
+    private void interviewListsFiling(User user) {
+        List<TestingInterview> listQuestionTesting = testingService.listFilling(user);
+        List<QuestionInterview> listQuestionInterviews = questionService.listFilling(user);
+        session.setAttribute(LIST_TESTING, listQuestionTesting);
+        session.setAttribute(LIST_QUESTION, listQuestionInterviews);
+        session.setAttribute(KNOW, ZERO);
     }
 
     @GetMapping(ALL_STATISTICS_PAGE)
