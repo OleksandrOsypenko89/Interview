@@ -25,9 +25,6 @@ public class AllStatisticsController {
     @GetMapping(ALL_STATISTICS)
     public String allStatistic(@AuthenticationPrincipal UserDetails userDetails) {
         User user = userService.getUser(userDetails);
-        if (user == null) {
-            return LOGIN;
-        }
         session.setAttribute(GENERAL_RESULT, statisticService.result(user));
         session.setAttribute(STATISTIC_LIST, statisticService.sortStatistic(user));
         return DIRECTORY_STATISTIC + ALL_STATISTICS;

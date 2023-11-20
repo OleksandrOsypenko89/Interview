@@ -34,9 +34,6 @@ public class UserPageController {
     @GetMapping(USER_PAGE)
     public String userPage(@AuthenticationPrincipal UserDetails userDetails) {
         User user = userService.getUser(userDetails);
-        if (user == null) {
-            return LOGIN;
-        }
         session.setAttribute(USER, user);
         questionService.sortStudyQuestion(user);
         session.removeAttribute(REGISTRATION_FLAG);

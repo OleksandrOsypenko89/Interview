@@ -20,7 +20,10 @@
             <a th:href="@{/testingpage}">
                 <span th:text="#{button.testing}"></span>
             </a>
-            <a th:href="@{/allstatisticspage}">
+            <a th:if="${!session.user.getStatistic().isEmpty()}" th:href="@{/allstatisticspage}">
+                <span th:text="#{button.statistic}"></span>
+            </a>
+            <a th:if="${session.user.getStatistic().isEmpty()}" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <span th:text="#{button.statistic}"></span>
             </a>
             <a th:href="@{/feedback}">
@@ -37,6 +40,8 @@
             </a>
         </div>
     </div>
+
+    <th:block th:replace="~{layout/modal :: statisticModal}"/>
 
     <th:block th:replace="~{layout/header :: message}"/>
 
@@ -65,7 +70,10 @@
             <a th:href="@{/testingpage}" data-bs-toggle="modal" data-bs-target="#staticBackdropTesting">
                 <span th:text="#{button.testing}"></span>
             </a>
-            <a th:href="@{/allstatisticspage}" data-bs-toggle="modal" data-bs-target="#staticBackdropStatistic">
+            <a th:if="${!session.user.getStatistic().isEmpty()}" th:href="@{/allstatisticspage}" data-bs-toggle="modal" data-bs-target="#staticBackdropStatistic">
+                <span th:text="#{button.statistic}"></span>
+            </a>
+            <a th:if="${session.user.getStatistic().isEmpty()}" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <span th:text="#{button.statistic}"></span>
             </a>
             <a th:href="@{/feedback}" data-bs-toggle="modal" data-bs-target="#staticBackdropFeedback">
@@ -82,32 +90,34 @@
 
     <div class="modal fade" id="staticBackdropUserPage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modelForInterview :: formField(userpage)}"/>
+        <th:block th:replace="~{layout/modal :: formField(userpage)}"/>
     </div>
     <div class="modal fade" id="staticBackdropAdminPage" data-bs-backdrop="static" data-bs-keyboard="false"
          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modelForInterview :: formField(adminpage)}"/>
+        <th:block th:replace="~{layout/modal :: formField(adminpage)}"/>
     </div>
     <div class="modal fade" id="staticBackdropInterview" data-bs-backdrop="static" data-bs-keyboard="false"
          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modelForInterview :: formField(interview)}"/>
+        <th:block th:replace="~{layout/modal :: formField(interview)}"/>
     </div>
     <div class="modal fade" id="staticBackdropTesting" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modelForInterview :: formField(testing)}"/>
+        <th:block th:replace="~{layout/modal :: formField(testing)}"/>
     </div>
     <div class="modal fade" id="staticBackdropStatistic" data-bs-backdrop="static" data-bs-keyboard="false"
          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modelForInterview :: formField(allstatisticspage)}"/>
+        <th:block th:replace="~{layout/modal :: formField(allstatisticspage)}"/>
     </div>
     <div class="modal fade" id="staticBackdropFeedback" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modelForInterview :: formField(feedback)}"/>
+        <th:block th:replace="~{layout/modal :: formField(feedback)}"/>
     </div>
     <div class="modal fade" id="staticBackdropLogout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <th:block th:replace="~{layout/modelForInterview :: formField(logout)}"/>
+        <th:block th:replace="~{layout/modal :: formField(logout)}"/>
     </div>
+
+    <th:block th:replace="~{layout/modal :: statisticModal}"/>
 
     <th:block th:replace="~{layout/header :: message}"/>
 
