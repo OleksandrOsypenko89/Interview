@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 import static com.osypenko.constant.Constant.*;
+import static com.osypenko.constant.NameLogs.*;
 
 @Slf4j
 @Service
@@ -33,6 +34,7 @@ public class StatisticService implements Runnable {
     }
 
     public void addStatistic(Statistic statistic) {
+        log.info(CREATE_NEW_STATISTIC);
         statisticRepository.save(statistic);
     }
 
@@ -44,7 +46,9 @@ public class StatisticService implements Runnable {
                 //noinspection BusyWait
                 Thread.sleep(TWELVE_HOURS);
                 deletionOfOutdatedStatistics();
+                log.info(DELETION_OF_OUTDATED_STATISTICS);
             } catch (InterruptedException e) {
+                log.error(ERROR_IN_A_SEPARATE_STREAM_THAT_SERVES_FOR_SCHEDULED_CLEANING_OF_STATISTICS);
                 throw new RuntimeException(e);
             }
         }

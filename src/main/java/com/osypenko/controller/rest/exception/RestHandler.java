@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.nio.file.AccessDeniedException;
 
+import static com.osypenko.constant.NameLogs.HANDLE_ERROR;
+
 @Slf4j
 @RestControllerAdvice
 public class RestHandler {
@@ -23,7 +25,8 @@ public class RestHandler {
             }
     )
     protected ResponseEntity<Object> handleConflict(Exception ex) {
-        String bodyOfResponse = "Handle error: " + ex.getMessage();
+        String bodyOfResponse = HANDLE_ERROR + ex.getMessage();
+        log.error(bodyOfResponse);
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(bodyOfResponse);

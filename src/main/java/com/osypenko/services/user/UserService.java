@@ -15,11 +15,13 @@ import java.util.Optional;
 
 import static com.osypenko.constant.Endpoints.LOGIN;
 import static com.osypenko.constant.Endpoints.REDIRECT;
+import static com.osypenko.constant.NameLogs.*;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
     private final UserRepository userRepository;
 
     public List<User> getAll() {
@@ -35,6 +37,7 @@ public class UserService {
     }
 
     public void deleteUser(User user) {
+        log.info(DELETE_USER, user.getEmail());
         userRepository.delete(user);
     }
 
@@ -52,6 +55,7 @@ public class UserService {
         user.setLastName(lastName);
         user.setEmail(email);
         flushUser(user);
+        log.info(UPDATE_DATA_USER, user.getEmail());
     }
 
     public void createNewUser(User user, String firstName, String lastName, String email, String password) {
@@ -64,6 +68,7 @@ public class UserService {
         user.setListQuestionTesting(new HashSet<>());
         user.setListStudyQuestion(new HashSet<>());
         user.setStatistic(new HashSet<>());
+        log.info(REGISTRATION_NEW_USER, user.getEmail());
     }
 
     public void passwordEncoding(String password, User user) {
@@ -78,6 +83,7 @@ public class UserService {
                 User user = optionalUser.get();
                 passwordEncoding(passwordOne, user);
                 updateUser(user);
+                log.info(USER_UPDATE_PASSWORD, user.getEmail());
                 return REDIRECT + LOGIN;
             }
         }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.*;
 
 import static com.osypenko.constant.Endpoints.*;
+import static com.osypenko.constant.NameLogs.HANDLE_ERROR;
 import static com.osypenko.constant.NameSessionAttributes.*;
 
 @Slf4j
@@ -25,6 +26,7 @@ public class HtmlHandler {
     )
     public String getErrorPage(ServletRequestBindingException exception) {
         session.setAttribute(EXCEPTION, exception);
+        log.error(HANDLE_ERROR + exception);
         return ERROR;
     }
 }
