@@ -1,4 +1,4 @@
-package com.osypenko.controller.html;
+package com.osypenko.controller.template;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

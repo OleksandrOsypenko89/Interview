@@ -1,4 +1,4 @@
-package com.osypenko.controller.html.interview;
+package com.osypenko.controller.template.interview;
 
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.statistic.Statistic;

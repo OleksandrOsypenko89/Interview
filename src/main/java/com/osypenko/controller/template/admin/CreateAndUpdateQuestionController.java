@@ -1,4 +1,4 @@
-package com.osypenko.controller.html.admin;
+package com.osypenko.controller.template.admin;
 
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.interview.question.Topic;

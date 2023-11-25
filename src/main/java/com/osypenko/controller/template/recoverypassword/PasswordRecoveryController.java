@@ -1,4 +1,4 @@
-package com.osypenko.controller.html.recoverypassword;
+package com.osypenko.controller.template.recoverypassword;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.admin.MailService;

@@ -1,6 +1,5 @@
-package com.osypenko.controller.html.exception;
+package com.osypenko.controller.template.exception;
 
-import com.osypenko.exception.UserException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +19,6 @@ public class HtmlHandler {
     @ExceptionHandler(
             {
                     ServletRequestBindingException.class
-                    , UserException.class
                     , Exception.class
             }
     )

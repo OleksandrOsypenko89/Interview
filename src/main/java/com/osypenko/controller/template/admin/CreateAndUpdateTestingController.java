@@ -1,4 +1,4 @@
-package com.osypenko.controller.html.admin;
+package com.osypenko.controller.template.admin;
 
 import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.services.admin.AdminService;

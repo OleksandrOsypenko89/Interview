@@ -1,4 +1,4 @@
-package com.osypenko.controller.html.statistic;
+package com.osypenko.controller.template.statistic;
 
 import com.osypenko.model.users.User;
 import com.osypenko.services.statistics.StatisticService;

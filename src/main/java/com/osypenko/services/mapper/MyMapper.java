@@ -1,4 +1,4 @@
-package com.osypenko.mapper;
+package com.osypenko.services.mapper;
 
 import com.osypenko.dto.*;
 import com.osypenko.model.interview.question.QuestionInterview;

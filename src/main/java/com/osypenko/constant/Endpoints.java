@@ -4,7 +4,7 @@ public class Endpoints {
     public static final String SLASH = "/";
     public static final String REDIRECT = "redirect:";
 
-    public static final String ERROR = "error.errorMessage";
+    public static final String LOG = "/log";
     public static final String API = "/api";
     public static final String INFO = "/info";
     public static final String LOGIN = "/login";
@@ -23,9 +23,11 @@ public class Endpoints {
     public static final String ADMIN_PAGE = "/adminpage";
     public static final String KNOW_ANSWER = "/knowAnswer";
     public static final String DELETE_USER = "/deleteuser";
+    public static final String ERROR = "error.errorMessage";
     public static final String TESTING_PAGE = "/testingpage";
     public static final String NEW_PASSWORD = "/newpassword";
     public static final String REGISTRATION = "/registration";
+    public static final String GET_LOG_FILES = "/getLogFiles";
     public static final String QUESTION_PAGE = "/questionpage";
     public static final String ALL_STATISTICS = "/allstatistics";
     public static final String DELETE_STUDY_QUESTION = "/delete";

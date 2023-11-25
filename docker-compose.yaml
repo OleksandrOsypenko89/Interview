@@ -6,9 +6,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
-      POSTGRES_PASSWORD: Oleksandr14021989
+      POSTGRES_USER: ${spring.datasource.username}
+      POSTGRES_DB: ${spring.datasource.name}
+      POSTGRES_PASSWORD: ${spring.datasource.password}
     volumes:
       - postgres-data:/var/lib/postgresql/data
     restart: always
@@ -23,9 +23,9 @@ services:
       - db
     environment:
       DB_URL: jdbc:postgresql://db:5432/postgres
-      DB_USERNAME: postgres
-      DB_NAME: postgres
-      DB_PASSWORD: Oleksandr14021989
+      DB_USERNAME: ${spring.datasource.username}
+      DB_NAME: ${spring.datasource.name}
+      DB_PASSWORD: ${spring.datasource.password}
     restart: always
 
 volumes:

@@ -1,7 +1,7 @@
 package com.osypenko.controller.rest.registration;
 
 import com.osypenko.dto.UserDTO;
-import com.osypenko.mapper.MyMapper;
+import com.osypenko.services.mapper.MyMapper;
 import com.osypenko.model.users.User;
 import com.osypenko.services.admin.MailService;
 import com.osypenko.services.user.UserDTOService;

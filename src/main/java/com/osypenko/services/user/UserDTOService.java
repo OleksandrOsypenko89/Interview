@@ -1,7 +1,7 @@
 package com.osypenko.services.user;
 
 import com.osypenko.dto.UserDTO;
-import com.osypenko.mapper.MyMapper;
+import com.osypenko.services.mapper.MyMapper;
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.services.interview.QuestionService;

@@ -1,4 +1,4 @@
-package com.osypenko.controller.html.recoverypassword;
+package com.osypenko.controller.template.recoverypassword;
 
 import com.osypenko.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
