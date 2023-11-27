@@ -12,6 +12,7 @@ public class Constant {
     public static final String USER_EMAIL = "Кристувача з email ";
     public static final String NO_FIND = " не знайдено";
     public static final String SENDER = "Отправитель ";
+    public static final String FOLDER = "logs/";
     public static final int ZERO = 0;
     public static final int MEMBER_STATISTIC_DAYS = 10;
     public static final int SIZE_QUESTION_INTERVIEW = 15;

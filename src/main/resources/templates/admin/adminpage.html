@@ -10,72 +10,76 @@
 <body>
 <th:block th:replace="~{layout/header :: header}"/>
 <br>
-<div>
-    <div class="center">
-        <span class="text-bold" th:utext="#{adminPage.questionsInTheDatabase}"></span>
-        <span th:text="${session.sizeAllQuestionInterview}"></span>
-        <br>
-        <br>
-        <form th:action="@{/adminsearchquestion}" method="post">
-            <div class="input-wrapper">
-                <!--suppress HtmlFormInputWithoutLabel -->
-                <input name="interview" type="text" placeholder="Question Interview or ID" class="input">
-            </div>
-            <br>
-            <button type="submit" class="buttonDarkBlue">
+<div class="center">
+    <span class="text-bold" th:utext="#{adminPage.questionsInTheDatabase}"></span>
+    <span th:text="${session.sizeAllQuestionInterview}"></span>
+    <br>
+    <br>
+    <form th:action="@{/adminsearchquestion}" method="post">
+        <div class="input-group mb-3">
+            <input name="interview" type="text" class="form-control" placeholder="Question or ID Question"
+                   aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
                 <span th:text="#{button.question}"></span>
             </button>
-        </form>
-        <br><br>
-        <form th:action="@{/adminnewquestion}" method="post">
-            <button type="submit" class="buttonDarkBlue">
-                <span th:text="#{button.createNewQuestion}"></span>
-            </button>
-        </form>
+        </div>
+    </form>
+    <br>
 
-        <br><br>
-
-        <span class="text-bold" th:utext="#{adminPage.questionsInTheDatabase}"></span>
-        <span th:text="${session.sizeAllTestingInterview}"></span>
-        <br>
-        <br>
-        <form th:action="@{/adminsearchtesting}" method="post">
-            <div class="input-wrapper">
-                <!--suppress HtmlFormInputWithoutLabel -->
-                <input name="testing" type="text" placeholder="ID Testing" class="input">
-            </div>
-            <br>
-            <button type="submit" class="buttonDarkBlue">
+    <span class="text-bold" th:utext="#{adminPage.questionsInTheDatabase}"></span>
+    <span th:text="${session.sizeAllTestingInterview}"></span>
+    <br>
+    <br>
+    <form th:action="@{/adminsearchtesting}" method="post">
+        <div class="input-group mb-3">
+            <input name="testing" type="text" class="form-control" placeholder="ID Testing"
+                   aria-label="Recipient's username" aria-describedby="button-addon3">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon3">
                 <span th:text="#{button.testing}"></span>
             </button>
-        </form>
-        <br>
-        <br>
-        <form th:action="@{/adminnewtesting}" method="post">
-            <button type="submit" class="buttonDarkBlue">
-                <span th:text="#{button.createNewTesting}"></span>
-            </button>
-        </form>
+        </div>
+    </form>
+    <br>
 
-        <br><br>
-        <span class="text-bold" th:utext="#{adminPage.registeredUsers}"></span>
-        <span th:text="${session.sizeAllUsers}"></span>
-        <br>
-        <br>
-        <form th:action="@{/adminsearchuser}" method="post">
-            <div class="input-wrapper">
-                <!--suppress HtmlFormInputWithoutLabel -->
-                <input name="email" type="text" placeholder="user email" class="input">
-            </div>
-            <br>
-            <button type="submit" class="buttonDarkBlue">
+    <span class="text-bold" th:utext="#{adminPage.registeredUsers}"></span>
+    <span th:text="${session.sizeAllUsers}"></span>
+    <br>
+    <br>
+    <form th:action="@{/adminsearchuser}" method="post">
+        <div class="input-group mb-3">
+            <input name="email" type="text" class="form-control" placeholder="User email"
+                   aria-label="Recipient's username" aria-describedby="button-addon4">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon4">
                 <span th:text="#{button.searchUser}"></span>
             </button>
-            <br>
-        </form>
+        </div>
+    </form>
+    <br>
 
-        <br>
-    </div>
+    <form th:action="@{/log}" method="get">
+        <div class="input-group mb-3">
+            <!--suppress HtmlFormInputWithoutLabel -->
+            <select class="form-select" name="nameFile">
+                <option th:each="file : ${session.filesInDirectoryLogs}" th:value="${file}" th:text="${file}"/>
+            </select>
+            <button type="submit" class="btn btn-outline-secondary">View log</button>
+        </div>
+    </form>
+    <br>
+
+    <form th:action="@{/adminnewquestion}" method="post">
+        <button type="submit" class="btn btn-outline-secondary">
+            <span th:text="#{button.createNewQuestion}"></span>
+        </button>
+    </form>
+    <br>
+
+    <form th:action="@{/adminnewtesting}" method="post">
+        <button type="submit" class="btn btn-outline-secondary">
+            <span th:text="#{button.createNewTesting}"></span>
+        </button>
+    </form>
+    <br>
 </div>
 
 </body>

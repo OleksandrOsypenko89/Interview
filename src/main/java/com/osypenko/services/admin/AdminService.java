@@ -5,10 +5,20 @@ import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.services.user.UserService;
 import com.osypenko.services.interview.QuestionService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
+import static com.osypenko.constant.Constant.FOLDER;
+import static com.osypenko.constant.NameLogs.LOGS_FILE_NOT_FIND;
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AdminService {
@@ -45,5 +55,24 @@ public class AdminService {
         testingInterview.setFifthFalseAnswer(updateTestingInterview.getFifthFalseAnswer());
         testingInterview.setCorrectAnswer(updateTestingInterview.getCorrectAnswer());
         testingInterview.setAnswer(updateTestingInterview.getAnswer());
+    }
+
+    public File[] getFolder() {
+        File folder = new File(FOLDER);
+        if (folder.exists()) {
+            return folder.listFiles();
+        }
+        return null;
+    }
+
+    public String getDataLogsFile(String file) {
+        try {
+            Path path = Paths.get(file);
+            byte[] fileBytes = Files.readAllBytes(path);
+            return new String(fileBytes);
+        } catch (IOException e) {
+            log.error(LOGS_FILE_NOT_FIND);
+            throw new RuntimeException(e);
+        }
     }
 }

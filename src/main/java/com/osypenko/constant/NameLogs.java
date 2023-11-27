@@ -11,4 +11,5 @@ public class NameLogs {
     public static final String ERROR_IN_A_SEPARATE_STREAM_THAT_SERVES_FOR_SCHEDULED_CLEANING_OF_STATISTICS = "An error in a separate stream that serves for scheduled cleaning of statistics";
     public static final String CREATE_NEW_STATISTIC = "Create new statistic";
     public static final String HANDLE_ERROR = "Handle error: ";
+    public static final String LOGS_FILE_NOT_FIND = "logs file not find";
 }

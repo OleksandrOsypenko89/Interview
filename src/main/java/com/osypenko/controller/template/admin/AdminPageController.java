@@ -1,4 +1,4 @@
-package com.osypenko.controller.html.admin;
+package com.osypenko.controller.template.admin;
 
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.interview.testings.TestingInterview;
@@ -31,6 +31,7 @@ public class AdminPageController {
 
     @GetMapping(ADMIN_PAGE)
     public String getAdminPage() {
+        session.setAttribute(FILES_IN_DIRECTORY_LOGS, adminService.getFolder());
         session.setAttribute(SIZE_ALL_USERS, adminService.sizeUserList());
         session.setAttribute(SIZE_ALL_QUESTION_INTERVIEW, questionService.sizeAllQuestion());
         session.setAttribute(SIZE_ALL_TESTING_INTERVIEW, testingService.sizeAllQuestion());
