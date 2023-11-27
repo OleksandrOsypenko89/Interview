@@ -15,7 +15,7 @@
     <span th:text="${session.sizeAllQuestionInterview}"></span>
     <br>
     <br>
-    <form th:action="@{/adminsearchquestion}" method="post">
+    <form th:action="@{/adminsearchquestion}" method="post" class="formInAdminPanel">
         <div class="input-group mb-3">
             <input name="interview" type="text" class="form-control" placeholder="Question or ID Question"
                    aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -26,11 +26,11 @@
     </form>
     <br>
 
-    <span class="text-bold" th:utext="#{adminPage.questionsInTheDatabase}"></span>
+    <span class="text-bold" th:utext="#{adminPage.testsInTheDatabase}"></span>
     <span th:text="${session.sizeAllTestingInterview}"></span>
     <br>
     <br>
-    <form th:action="@{/adminsearchtesting}" method="post">
+    <form th:action="@{/adminsearchtesting}" method="post" class="formInAdminPanel">
         <div class="input-group mb-3">
             <input name="testing" type="text" class="form-control" placeholder="ID Testing"
                    aria-label="Recipient's username" aria-describedby="button-addon3">
@@ -45,7 +45,7 @@
     <span th:text="${session.sizeAllUsers}"></span>
     <br>
     <br>
-    <form th:action="@{/adminsearchuser}" method="post">
+    <form th:action="@{/adminsearchuser}" method="post" class="formInAdminPanel">
         <div class="input-group mb-3">
             <input name="email" type="text" class="form-control" placeholder="User email"
                    aria-label="Recipient's username" aria-describedby="button-addon4">
@@ -56,13 +56,15 @@
     </form>
     <br>
 
-    <form th:action="@{/log}" method="get">
+    <form th:action="@{/log}" method="get" class="formInAdminPanel">
         <div class="input-group mb-3">
             <!--suppress HtmlFormInputWithoutLabel -->
             <select class="form-select" name="nameFile">
                 <option th:each="file : ${session.filesInDirectoryLogs}" th:value="${file}" th:text="${file}"/>
             </select>
-            <button type="submit" class="btn btn-outline-secondary">View log</button>
+            <button type="submit" class="btn btn-outline-secondary">
+                <span th:text="#{button.viewLog}"></span>
+            </button>
         </div>
     </form>
     <br>
