@@ -5,12 +5,8 @@ import com.osypenko.services.admin.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
-import static com.osypenko.constant.NameLogs.UNKNOWN_USER;
 import static com.osypenko.constant.NameLogs.USER_LOGIN;
 
 @Slf4j
@@ -22,12 +18,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 
     @Override
     public UserDetails loadUserByUsername(String email) {
-        Optional<User> userOptional = userService.findByEmail(email);
-        if (userOptional.isEmpty()) {
-            log.error(UNKNOWN_USER + email);
-            throw new UsernameNotFoundException(UNKNOWN_USER + email);
-        }
-        User user = userOptional.get();
+        User user = userService.findByEmail(email).orElseThrow();
         log.info(USER_LOGIN, user.getEmail());
         mailService.informingAdmin(user);
         return org.springframework.security.core.userdetails.User.builder()

@@ -62,21 +62,15 @@ public class QuestionService extends Interview {
 
     private void fillingInAListOfQuestions(Set<Integer> integerSet, Set<QuestionInterview> questionList) {
         for (Integer id : integerSet) {
-            Optional<QuestionInterview> questionInterview = get(id);
-            if (questionInterview.isPresent()) {
-                QuestionInterview interview = questionInterview.get();
-                questionList.add(interview);
-            }
+            QuestionInterview questionInterview = get(id).orElseThrow();
+            questionList.add(questionInterview);
         }
     }
 
     public void deleteStudyQuestions(User user, Integer id) {
         Set<QuestionInterview> listStudyQuestion = user.getListStudyQuestion();
-        Optional<QuestionInterview> questionInterview = get(id);
-        if (questionInterview.isPresent()) {
-            QuestionInterview question = questionInterview.get();
-            listStudyQuestion.remove(question);
-        }
+        QuestionInterview questionInterview = get(id).orElseThrow();
+        listStudyQuestion.remove(questionInterview);
         userService.updateUser(user);
     }
 

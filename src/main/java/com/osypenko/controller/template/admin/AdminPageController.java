@@ -32,7 +32,7 @@ public class AdminPageController {
     @GetMapping(ADMIN_PAGE)
     public String getAdminPage() {
         session.setAttribute(FILES_IN_DIRECTORY_LOGS, adminService.getFolder());
-        session.setAttribute(SIZE_ALL_USERS, adminService.sizeUserList());
+        session.setAttribute(SIZE_ALL_USERS, userService.sizeUserList());
         session.setAttribute(SIZE_ALL_QUESTION_INTERVIEW, questionService.sizeAllQuestion());
         session.setAttribute(SIZE_ALL_TESTING_INTERVIEW, testingService.sizeAllQuestion());
         return DIRECTORY_ADMIN + ADMIN_PAGE;

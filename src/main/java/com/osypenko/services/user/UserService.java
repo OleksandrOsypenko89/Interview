@@ -28,6 +28,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public int sizeUserList() {
+        return getAll().size();
+    }
+
     public void updateUser(User user) {
         userRepository.save(user);
     }
@@ -37,8 +41,8 @@ public class UserService {
     }
 
     public void deleteUser(User user) {
-        log.info(DELETE_USER, user.getEmail());
         userRepository.delete(user);
+        log.info(DELETE_USER, user.getEmail());
     }
 
     public void flushUser(User user) {
@@ -46,8 +50,7 @@ public class UserService {
     }
 
     public User getUser(UserDetails userDetails) {
-        Optional<User> userOptional = findByEmail(userDetails.getUsername());
-        return userOptional.orElse(null);
+        return findByEmail(userDetails.getUsername()).orElseThrow();
     }
 
     public void updateDate(User user, String firstName, String lastName, String email) {
@@ -78,14 +81,11 @@ public class UserService {
 
     public String userPasswordChange(String email, String passwordOne, String passwordTwo) {
         if (passwordOne.equals(passwordTwo)) {
-            Optional<User> optionalUser = findByEmail(email);
-            if (optionalUser.isPresent()) {
-                User user = optionalUser.get();
-                passwordEncoding(passwordOne, user);
-                updateUser(user);
-                log.info(USER_UPDATE_PASSWORD, user.getEmail());
-                return REDIRECT + LOGIN;
-            }
+            User user = findByEmail(email).orElseThrow();
+            passwordEncoding(passwordOne, user);
+            updateUser(user);
+            log.info(USER_UPDATE_PASSWORD, user.getEmail());
+            return REDIRECT + LOGIN;
         }
         return null;
     }

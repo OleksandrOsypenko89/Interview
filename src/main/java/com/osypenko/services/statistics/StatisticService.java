@@ -34,8 +34,8 @@ public class StatisticService implements Runnable {
     }
 
     public void addStatistic(Statistic statistic) {
-        log.info(CREATE_NEW_STATISTIC);
         statisticRepository.save(statistic);
+        log.info(CREATE_NEW_STATISTIC);
     }
 
     @Override

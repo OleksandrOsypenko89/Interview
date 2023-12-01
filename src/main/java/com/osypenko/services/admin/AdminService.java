@@ -2,7 +2,6 @@ package com.osypenko.services.admin;
 
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.interview.testings.TestingInterview;
-import com.osypenko.services.user.UserService;
 import com.osypenko.services.interview.QuestionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,12 +21,7 @@ import static com.osypenko.constant.NameLogs.LOGS_FILE_NOT_FIND;
 @Service
 @RequiredArgsConstructor
 public class AdminService {
-    private final UserService userService;
     private final QuestionService questionService;
-
-    public int sizeUserList() {
-        return userService.getAll().size();
-    }
 
     public QuestionInterview searchQuestion(String text) {
         List<QuestionInterview> all = questionService.getAll();

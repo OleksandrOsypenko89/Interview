@@ -53,11 +53,8 @@ public class TestingService extends Interview {
 
     private void fillingInAListOfQuestions(Set<Integer> integerSet, Set<TestingInterview> questionList) {
         for (Integer id : integerSet) {
-            Optional<TestingInterview> questionTesting = get(id);
-            if (questionTesting.isPresent()) {
-                TestingInterview interview = questionTesting.get();
-                questionList.add(interview);
-            }
+            TestingInterview questionTesting = get(id).orElseThrow();
+            questionList.add(questionTesting);
         }
     }
 
