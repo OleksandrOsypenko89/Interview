@@ -43,8 +43,17 @@ CREATE TABLE public.testing_interview (
                                           answer character varying
 );
 
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+SELECT pg_catalog.setval('public.users_id_seq', 22, true);
+
 CREATE TABLE public.users (
-                              id bigint NOT NULL,
+                              id bigint DEFAULT nextval('public.users_id_seq'::regclass) NOT NULL,
                               first_name character varying NOT NULL,
                               last_name character varying NOT NULL,
                               email character varying NOT NULL,

@@ -3,6 +3,7 @@ package com.osypenko.services.user;
 import com.osypenko.config.SecurityConfig;
 import com.osypenko.model.users.User;
 import com.osypenko.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,16 +14,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
-import static com.osypenko.constant.Endpoints.LOGIN;
-import static com.osypenko.constant.Endpoints.REDIRECT;
+import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameLogs.*;
+import static com.osypenko.constant.NameLogs.DELETE_USER;
+import static com.osypenko.constant.NameSessionAttributes.NEW_PASSWORD_FLAG;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
     private final UserRepository userRepository;
+    private final HttpSession session;
 
     public List<User> getAll() {
         return userRepository.findAll();
@@ -80,6 +82,7 @@ public class UserService {
             log.info(USER_UPDATE_PASSWORD, user.getEmail());
             return REDIRECT + LOGIN;
         }
-        return null;
+        session.setAttribute(NEW_PASSWORD_FLAG, false);
+        return REDIRECT + NEW_PASSWORD;
     }
 }

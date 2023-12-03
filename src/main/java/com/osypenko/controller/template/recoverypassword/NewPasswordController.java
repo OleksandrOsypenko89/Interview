@@ -1,7 +1,6 @@
 package com.osypenko.controller.template.recoverypassword;
 
 import com.osypenko.services.user.UserService;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,6 @@ import static com.osypenko.constant.NameSessionAttributes.*;
 @Controller
 @RequiredArgsConstructor
 public class NewPasswordController {
-    private final HttpSession session;
     private final UserService userService;
 
     @GetMapping(NEW_PASSWORD)
@@ -30,11 +28,6 @@ public class NewPasswordController {
             , String passwordOne
             , String passwordTwo
     ) {
-        String newPasswordAccepted = userService.userPasswordChange(email, passwordOne, passwordTwo);
-        if (newPasswordAccepted != null) {
-            return newPasswordAccepted;
-        }
-        session.setAttribute(NEW_PASSWORD_FLAG, false);
-        return REDIRECT + NEW_PASSWORD;
+        return userService.userPasswordChange(email, passwordOne, passwordTwo);
     }
 }
