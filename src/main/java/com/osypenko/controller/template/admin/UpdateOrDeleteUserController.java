@@ -16,7 +16,6 @@ import static com.osypenko.constant.NameSessionAttributes.USER_UPDATE;
 @Controller
 @RequiredArgsConstructor
 public class UpdateOrDeleteUserController {
-
     private final UserService userService;
 
     @GetMapping(UPDATE_OR_DELETE_USER)

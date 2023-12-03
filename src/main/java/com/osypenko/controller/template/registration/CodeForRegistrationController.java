@@ -33,7 +33,7 @@ public class CodeForRegistrationController {
             , int codeUser
     ) {
         if (codeSystem == codeUser) {
-            userService.updateUser(user);
+            userService.saveAndFlushUser(user);
             session.setAttribute(NEW_USER_IS_REGISTERED, true);
             session.removeAttribute(CODE_NO_CORRECT);
             mailService.sendSimpleMessage(OLEKSANDR_GMAIL_COM, REGISTRATION_NEW_USER + user.getFirstName() + " " + user.getLastName());

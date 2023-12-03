@@ -28,14 +28,6 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public int sizeUserList() {
-        return getAll().size();
-    }
-
-    public void updateUser(User user) {
-        userRepository.save(user);
-    }
-
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -45,11 +37,11 @@ public class UserService {
         log.info(DELETE_USER, user.getEmail());
     }
 
-    public void flushUser(User user) {
+    public void saveAndFlushUser(User user) {
         userRepository.saveAndFlush(user);
     }
 
-    public User getUser(UserDetails userDetails) {
+    public User fromUserDetailsToUser(UserDetails userDetails) {
         return findByEmail(userDetails.getUsername()).orElseThrow();
     }
 
@@ -57,7 +49,7 @@ public class UserService {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
-        flushUser(user);
+        saveAndFlushUser(user);
         log.info(UPDATE_DATA_USER, user.getEmail());
     }
 
@@ -71,6 +63,7 @@ public class UserService {
         user.setListQuestionTesting(new HashSet<>());
         user.setListStudyQuestion(new HashSet<>());
         user.setStatistic(new HashSet<>());
+        saveAndFlushUser(user);
         log.info(REGISTRATION_NEW_USER, user.getEmail());
     }
 
@@ -83,7 +76,7 @@ public class UserService {
         if (passwordOne.equals(passwordTwo)) {
             User user = findByEmail(email).orElseThrow();
             passwordEncoding(passwordOne, user);
-            updateUser(user);
+            saveAndFlushUser(user);
             log.info(USER_UPDATE_PASSWORD, user.getEmail());
             return REDIRECT + LOGIN;
         }

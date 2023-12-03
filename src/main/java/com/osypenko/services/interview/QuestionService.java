@@ -37,7 +37,7 @@ public class QuestionService extends Interview {
     public List<QuestionInterview> listFilling(User user) {
         if (user.getListQuestionInterviews().isEmpty()) {
             user.setListQuestionInterviews(createListQuestion());
-            userService.flushUser(user);
+            userService.saveAndFlushUser(user);
         }
         return sortQuestionList(user);
     }
@@ -71,7 +71,7 @@ public class QuestionService extends Interview {
         Set<QuestionInterview> listStudyQuestion = user.getListStudyQuestion();
         QuestionInterview questionInterview = get(id).orElseThrow();
         listStudyQuestion.remove(questionInterview);
-        userService.updateUser(user);
+        userService.saveAndFlushUser(user);
     }
 
     public void sortStudyQuestion(User user) {

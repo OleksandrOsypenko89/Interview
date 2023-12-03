@@ -44,7 +44,7 @@ public class TestingController {
             statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, SIZE_QUESTION_INTERVIEW, Type.TESTING);
 
             user.getListQuestionTesting().removeAll(user.getListQuestionTesting());
-            userService.flushUser(user);
+            userService.saveAndFlushUser(user);
 
             session.setAttribute(NEW_STATISTICS_ADDED, newStatisticsAdded);
             return REDIRECT + STATISTIC;

@@ -33,7 +33,7 @@ public class UserPageController {
 
     @GetMapping(USER_PAGE)
     public String userPage(@AuthenticationPrincipal UserDetails userDetails) {
-        User user = userService.getUser(userDetails);
+        User user = userService.fromUserDetailsToUser(userDetails);
         session.setAttribute(USER, user);
         questionService.sortStudyQuestion(user);
         session.removeAttribute(REGISTRATION_FLAG);

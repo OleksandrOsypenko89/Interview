@@ -22,7 +22,7 @@ public class StatisticController {
 
     @GetMapping(STATISTIC)
     public String statistic(@AuthenticationPrincipal UserDetails userDetails) {
-        User user = userService.getUser(userDetails);
+        User user = userService.fromUserDetailsToUser(userDetails);
         session.setAttribute(USER, user);
         return DIRECTORY_STATISTIC + STATISTIC;
     }

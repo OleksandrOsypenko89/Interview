@@ -28,11 +28,10 @@ public class UserDTOService {
                 , registrationUserDTO.getEmail()
                 , registrationUserDTO.getPassword()
         );
-        userService.flushUser(user);
     }
 
     public UserDTO updateDate(UserDetails userDetails, UserDTO updateUserDTO) {
-        User user = userService.getUser(userDetails);
+        User user = userService.fromUserDetailsToUser(userDetails);
         userService.updateDate(
                 user
                 , updateUserDTO.getFirstName()
@@ -43,16 +42,16 @@ public class UserDTOService {
     }
 
     public UserDTO getUserDTO(UserDetails userDetails) {
-        User user = userService.getUser(userDetails);
+        User user = userService.fromUserDetailsToUser(userDetails);
         questionService.listFilling(user);
         testingService.listFilling(user);
         return myMapper.updateUserInUserDTO(user);
     }
 
     public UserDTO deleteStudyQuestionUser(UserDetails userDetails, QuestionInterview questionInterviewId) {
-        User user = userService.getUser(userDetails);
+        User user = userService.fromUserDetailsToUser(userDetails);
         user.getListStudyQuestion().remove(questionInterviewId);
-        userService.flushUser(user);
+        userService.saveAndFlushUser(user);
         return myMapper.updateUserInUserDTO(user);
     }
 }

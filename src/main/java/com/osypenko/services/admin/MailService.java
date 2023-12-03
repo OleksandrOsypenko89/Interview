@@ -1,7 +1,8 @@
 package com.osypenko.services.admin;
 
 import com.osypenko.model.users.User;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,9 +14,10 @@ import static com.osypenko.constant.Constant.*;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class MailService {
-    private final JavaMailSender emailSender;
+    private JavaMailSender emailSender;
 
     public void sendSimpleMessage(
             String to

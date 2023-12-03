@@ -36,7 +36,7 @@ public class TestingService extends Interview {
     public List<TestingInterview> listFilling(User user) {
         if (user.getListQuestionTesting().isEmpty()) {
             user.setListQuestionTesting(createListQuestion());
-            userService.flushUser(user);
+            userService.saveAndFlushUser(user);
         }
         Set<TestingInterview> userListQuestionTesting = user.getListQuestionTesting();
         return new ArrayList<>(userListQuestionTesting);
