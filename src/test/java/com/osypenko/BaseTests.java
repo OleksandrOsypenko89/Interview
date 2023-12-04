@@ -17,7 +17,7 @@ public class BaseTests {
     public User newUser;
     public User expectedUser;
     public UserDetails userDetails;
-    public UserDTO registrationUserDTO;
+    public UserDTO userDTO;
     public static final long EXPECTED_USER_ID = 4L;
     public static final String EXPECTED_USER_EMAIL = "demo@gmail.com";
     public static final String EXPECTED_USER_PASSWORD = "{bcrypt}$2a$10$f.WsRKXWASU.M.SCpM0NZuXpj2eQD2svJgipbrkn6AueOjy299WKq";
@@ -29,6 +29,9 @@ public class BaseTests {
     public static final String TEST_PASSWORD = "password";
 
     public static final int ALL_USERS_SIZE = 22;
+
+    public static final int ID_QUESTION_INTERVIEW = 275;
+    public static final int SIZE_LIST_STUDY_QUESTION_INTERVIEW_EXPECTED_USER = 3;
 
     @BeforeEach
     void setup() {
@@ -44,7 +47,7 @@ public class BaseTests {
                 .password(EXPECTED_USER_PASSWORD)
                 .roles(EXPECTED_USER_ROLE.name())
                 .build();
-        registrationUserDTO = UserDTO.builder()
+        userDTO = UserDTO.builder()
                 .firstName(TEST_FIRST_NAME)
                 .lastName(TEST_LAST_NAME)
                 .email(TEST_EMAIL)

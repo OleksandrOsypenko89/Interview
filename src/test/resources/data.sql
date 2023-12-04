@@ -71,6 +71,9 @@ INSERT INTO public.list_study_questions (user_id, question_id) VALUES (8, 275) O
 INSERT INTO public.list_study_questions (user_id, question_id) VALUES (8, 311) ON CONFLICT DO NOTHING;
 INSERT INTO public.list_study_questions (user_id, question_id) VALUES (8, 359) ON CONFLICT DO NOTHING;
 INSERT INTO public.list_study_questions (user_id, question_id) VALUES (8, 336) ON CONFLICT DO NOTHING;
+INSERT INTO public.list_study_questions (user_id, question_id) VALUES (4, 275) ON CONFLICT DO NOTHING;
+INSERT INTO public.list_study_questions (user_id, question_id) VALUES (4, 159) ON CONFLICT DO NOTHING;
+INSERT INTO public.list_study_questions (user_id, question_id) VALUES (4, 336) ON CONFLICT DO NOTHING;
 INSERT INTO public.list_study_questions (user_id, question_id) VALUES (14, 75) ON CONFLICT DO NOTHING;
 INSERT INTO public.list_study_questions (user_id, question_id) VALUES (14, 41) ON CONFLICT DO NOTHING;
 INSERT INTO public.list_study_questions (user_id, question_id) VALUES (14, 11) ON CONFLICT DO NOTHING;
