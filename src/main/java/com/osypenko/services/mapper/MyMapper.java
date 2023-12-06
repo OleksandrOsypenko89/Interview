@@ -74,7 +74,6 @@ public class MyMapper {
                     , stat.getResult()
                     , stat.getType()
                     , stat.getKnowAnswer()
-                    , stat.getQuestions()
             );
             listStatisticDTO.add(statisticDTO);
         }

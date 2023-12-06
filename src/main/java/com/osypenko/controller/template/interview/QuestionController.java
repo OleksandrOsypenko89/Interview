@@ -35,17 +35,16 @@ public class QuestionController {
             @SessionAttribute(USER) User user
             , @SessionAttribute(KNOW) Integer know
             , @SessionAttribute(LIST_QUESTION) List<QuestionInterview> listInterview
-            , Statistic newStatisticsAdded
     ) {
         if (listInterview.isEmpty()) {
             int percentage = questionService.getPercentage(know, SIZE_QUESTION_INTERVIEW);
 
-            statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, SIZE_QUESTION_INTERVIEW, Type.QUESTIONS);
+            Statistic newStatistic = statisticService.createNewStatistic(user, percentage, know, Type.QUESTIONS);
 
             user.getListQuestionInterviews().removeAll(user.getListQuestionInterviews());
             userService.saveAndFlushUser(user);
 
-            session.setAttribute(NEW_STATISTICS_ADDED, newStatisticsAdded);
+            session.setAttribute(NEW_STATISTICS_ADDED, newStatistic);
             return REDIRECT + STATISTIC;
         }
         session.setAttribute(QUESTION_INTERVIEW, listInterview.get(0));

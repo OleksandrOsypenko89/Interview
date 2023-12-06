@@ -1,6 +1,8 @@
 package com.osypenko;
 
 import com.osypenko.dto.UserDTO;
+import com.osypenko.model.statistic.Statistic;
+import com.osypenko.model.statistic.Type;
 import com.osypenko.model.users.Role;
 import com.osypenko.model.users.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,15 +11,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.TestConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+
+import static com.osypenko.constant.Constant.SIZE_QUESTION_INTERVIEW;
+
 @Transactional
 @SpringBootTest
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 public class BaseTests {
 
     public User newUser;
-    public User expectedUser;
-    public UserDetails userDetails;
     public UserDTO userDTO;
+    public User expectedUser;
+    public Statistic statistic;
+    public UserDetails userDetails;
     public static final long EXPECTED_USER_ID = 4L;
     public static final String EXPECTED_USER_EMAIL = "demo@gmail.com";
     public static final String EXPECTED_USER_PASSWORD = "{bcrypt}$2a$10$f.WsRKXWASU.M.SCpM0NZuXpj2eQD2svJgipbrkn6AueOjy299WKq";
@@ -32,6 +39,10 @@ public class BaseTests {
 
     public static final int ID_QUESTION_INTERVIEW = 275;
     public static final int SIZE_LIST_STUDY_QUESTION_INTERVIEW_EXPECTED_USER = 3;
+
+    public static final int ALL_STATISTIC_SIZE = 2;
+    public static final int TEST_RESULT_STATISTIC = 100;
+    public static final Timestamp TEST_STATISTIC_DATE = new Timestamp(System.currentTimeMillis());
 
     @BeforeEach
     void setup() {
@@ -52,6 +63,13 @@ public class BaseTests {
                 .lastName(TEST_LAST_NAME)
                 .email(TEST_EMAIL)
                 .password(TEST_PASSWORD)
+                .build();
+        statistic = Statistic.builder()
+                .date(TEST_STATISTIC_DATE)
+                .result(TEST_RESULT_STATISTIC)
+                .userId(EXPECTED_USER_ID)
+                .type(Type.QUESTIONS)
+                .knowAnswer(SIZE_QUESTION_INTERVIEW)
                 .build();
     }
 }

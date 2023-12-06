@@ -16,5 +16,4 @@ public class StatisticDTO {
     private Integer result;
     private Type type;
     private Integer knowAnswer;
-    private Integer questions;
 }

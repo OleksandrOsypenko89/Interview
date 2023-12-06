@@ -35,7 +35,7 @@
                     <p th:text="${#dates.format(statistic.getDate(), 'yyyy-MM-dd HH:mm')}"/>
                 </td>
                 <td>
-                    <p th:text="${statistic.getKnowAnswer()} + '/' + ${statistic.getQuestions()}"/>
+                    <p th:text="${statistic.getKnowAnswer()} + '/15'"/>
                 </td>
                 <td>
                     <div th:if="${statistic.getResult()} < 60">

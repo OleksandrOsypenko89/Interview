@@ -32,8 +32,6 @@ public class Statistic {
 
     private Integer knowAnswer;
 
-    private Integer questions;
-
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;

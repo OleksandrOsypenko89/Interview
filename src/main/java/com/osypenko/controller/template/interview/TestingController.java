@@ -36,17 +36,16 @@ public class TestingController {
             @SessionAttribute(USER) User user
             , @SessionAttribute(KNOW) Integer know
             , @SessionAttribute(LIST_TESTING) List<TestingInterview> listTesting
-            , Statistic newStatisticsAdded
     ) {
         if (listTesting.isEmpty()) {
             int percentage = testingService.getPercentage(know, SIZE_QUESTION_INTERVIEW);
 
-            statisticService.saveNewStatistic(user, newStatisticsAdded, percentage, know, SIZE_QUESTION_INTERVIEW, Type.TESTING);
+            Statistic newStatistic = statisticService.createNewStatistic(user, percentage, know, Type.TESTING);
 
             user.getListQuestionTesting().removeAll(user.getListQuestionTesting());
             userService.saveAndFlushUser(user);
 
-            session.setAttribute(NEW_STATISTICS_ADDED, newStatisticsAdded);
+            session.setAttribute(NEW_STATISTICS_ADDED, newStatistic);
             return REDIRECT + STATISTIC;
         }
         session.setAttribute(RANDOM_BUTTON, testingService.shuffleButtons(listTesting.get(ZERO)));

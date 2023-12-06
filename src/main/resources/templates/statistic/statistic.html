@@ -19,8 +19,7 @@
     <div class="text-bold big-text_2">
         <span th:utext="#{statistic.answeredTo}"></span>
         <span th:text="${session.newStatisticsAdded.getKnowAnswer()}"></span>
-        <span th:utext="#{statistic.from}"></span>
-        <span th:text="${session.newStatisticsAdded.getQuestions()}"></span>
+        <span th:utext="#{statistic.from} + ' 15'"></span>
         <span th:utext="#{statistic.questions}"></span>
     </div>
     <br>

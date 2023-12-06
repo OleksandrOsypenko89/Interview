@@ -22,7 +22,6 @@ import static com.osypenko.constant.NameLogs.*;
 @Service
 @RequiredArgsConstructor
 public class StatisticService implements Runnable {
-
     private final StatisticRepository statisticRepository;
 
     public List<Statistic> allStatistics() {
@@ -33,9 +32,57 @@ public class StatisticService implements Runnable {
         statisticRepository.delete(statistic);
     }
 
-    public void addStatistic(Statistic statistic) {
+    public void deletionOfOutdatedStatistics() {
+        List<Statistic> statistics = allStatistics();
+        Timestamp limit = timeLimitForDeletion();
+        for (Statistic statistic : statistics) {
+            if (statistic.getDate().before(limit)) {
+                delete(statistic);
+            }
+        }
+    }
+
+    public Timestamp timeLimitForDeletion() {
+        LocalDateTime newDateTime = new Timestamp(System.currentTimeMillis()).toLocalDateTime();
+        LocalDateTime resultDateTime = newDateTime.minusDays(MEMBER_STATISTIC_DAYS);
+        return Timestamp.valueOf(resultDateTime);
+    }
+
+    public List<Statistic> sortStatistic(User user) {
+        Set<Statistic> statistic = user.getStatistic();
+        List<Statistic> list = new ArrayList<>(statistic);
+        list.sort(Comparator.comparing(Statistic::getDate));
+        return list;
+    }
+
+    public Statistic createNewStatistic(
+            User user
+            , int percentage
+            , int knowAnswer
+            , Type type
+    ) {
+        Statistic statistic = new Statistic();
+        statistic.setResult(percentage);
+        statistic.setUserId(user.getId());
+        statistic.setType(type);
+        statistic.setKnowAnswer(knowAnswer);
+        statistic.setDate(new Timestamp(System.currentTimeMillis()));
         statisticRepository.save(statistic);
         log.info(CREATE_NEW_STATISTIC);
+        return statistic;
+    }
+
+    public int result(User user) {
+        Set<Statistic> userStatistic = user.getStatistic();
+        if (userStatistic.isEmpty()) {
+            return ZERO;
+        }
+        int size = userStatistic.size();
+        int general = ZERO;
+        for (Statistic statistic : userStatistic) {
+            general += statistic.getResult();
+        }
+        return general / size;
     }
 
     @Override
@@ -52,59 +99,5 @@ public class StatisticService implements Runnable {
                 throw new RuntimeException(e);
             }
         }
-    }
-
-    public void deletionOfOutdatedStatistics() {
-        List<Statistic> statistics = allStatistics();
-        Timestamp limit = timeLimitForDeletion();
-        for (Statistic statistic : statistics) {
-            if (statistic.getDate().before(limit)) {
-                delete(statistic);
-            }
-        }
-    }
-
-    private Timestamp timeLimitForDeletion() {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        LocalDateTime localDateTime = timestamp.toLocalDateTime();
-        LocalDateTime resultDateTime = localDateTime.minusDays(MEMBER_STATISTIC_DAYS);
-        return Timestamp.valueOf(resultDateTime);
-    }
-
-    public List<Statistic> sortStatistic(User user) {
-        Set<Statistic> statistic = user.getStatistic();
-        List<Statistic> list = new ArrayList<>(statistic);
-        list.sort(Comparator.comparing(Statistic::getDate));
-        return list;
-    }
-
-    public void saveNewStatistic(
-            User user
-            , Statistic statistic
-            , int percentage
-            , int knowAnswer
-            , int sizeListQuestion
-            , Type type
-    ) {
-        statistic.setResult(percentage);
-        statistic.setUserId(user.getId());
-        statistic.setType(type);
-        statistic.setKnowAnswer(knowAnswer);
-        statistic.setQuestions(sizeListQuestion);
-        statistic.setDate(new Timestamp(System.currentTimeMillis()));
-        addStatistic(statistic);
-    }
-
-    public int result(User user) {
-        Set<Statistic> userStatistic = user.getStatistic();
-        if (userStatistic.isEmpty()) {
-            return ZERO;
-        }
-        int size = userStatistic.size();
-        int general = ZERO;
-        for (Statistic statistic : userStatistic) {
-            general += statistic.getResult();
-        }
-        return general / size;
     }
 }

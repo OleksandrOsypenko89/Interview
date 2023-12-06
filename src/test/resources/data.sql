@@ -13,25 +13,47 @@ CREATE TABLE public.lists_testing_interview (
                                                 testing_id integer NOT NULL
 );
 
+CREATE SEQUENCE public.question_id_seq
+    START WITH 432
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
 CREATE TABLE public.question_interview (
-                                           id integer NOT NULL,
+                                           id integer DEFAULT nextval('public.question_id_seq'::regclass) NOT NULL,
                                            question character varying NOT NULL,
                                            answer character varying NOT NULL,
                                            topic character varying NOT NULL
 );
 
+CREATE SEQUENCE public.statistic_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
 CREATE TABLE public.statistic (
-                                  id bigint NOT NULL,
+                                  id bigint DEFAULT nextval('public.statistic_id_seq'::regclass) NOT NULL,
                                   date timestamp without time zone NOT NULL,
                                   result integer NOT NULL,
                                   user_id bigint,
                                   type character varying NOT NULL,
-                                  know_answer integer NOT NULL,
-                                  questions integer NOT NULL
+                                  know_answer integer NOT NULL
 );
 
+CREATE SEQUENCE public.testing_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
 CREATE TABLE public.testing_interview (
-                                          id integer NOT NULL,
+                                          id integer DEFAULT nextval('public.testing_id_seq'::regclass) NOT NULL,
                                           question character varying NOT NULL,
                                           picture character varying,
                                           first_false_answer character varying,
@@ -49,8 +71,6 @@ CREATE SEQUENCE public.users_id_seq
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
-
-SELECT pg_catalog.setval('public.users_id_seq', 22, true);
 
 CREATE TABLE public.users (
                               id bigint DEFAULT nextval('public.users_id_seq'::regclass) NOT NULL,
@@ -1023,6 +1043,17 @@ INSERT INTO public.users (id, first_name, last_name, email, password, role, regi
 INSERT INTO public.users (id, first_name, last_name, email, password, role, registration_date) VALUES (20, 'Hugh', 'Jackman', 'Hugh_Jackman@ukr.net', '{bcrypt}$2a$10$xZVCX6Ny8WIepPJ9xN90nelC0u35nKucp7hTNMHgVTGlgG/2dXtLe', 'USER', '2023-10-20 05:51:53.641') ON CONFLICT DO NOTHING;
 INSERT INTO public.users (id, first_name, last_name, email, password, role, registration_date) VALUES (21, 'Edward', 'Norton', 'Edward_Norton@gmail.com', '{bcrypt}$2a$10$uPsr/Gus4m3fHuJ8UljfzOubElmK25B1Hpiy2VrTPT6BApEQmRqF.', 'USER', '2023-10-21 16:34:28.374') ON CONFLICT DO NOTHING;
 INSERT INTO public.users (id, first_name, last_name, email, password, role, registration_date) VALUES (22, 'Bruce', 'Willis', 'Bruce_Willis@gmail.com', '{bcrypt}$2a$10$Fh6J.TPQBH2UoSYzf2ijkeTB4SEi2bbNSKWxbzukJSncAW6nmkFKq', 'USER', '2023-10-26 20:23:15.869') ON CONFLICT DO NOTHING;
+
+INSERT INTO public.statistic (id, date, result, user_id, type, know_answer) VALUES (1, '2023-10-04 17:58:57.223000', 40, 4, 'TESTING', 6) ON CONFLICT DO NOTHING;
+INSERT INTO public.statistic (id, date, result, user_id, type, know_answer) VALUES (2, '2023-11-20 17:59:25.368000', 80, 4, 'QUESTIONS', 12) ON CONFLICT DO NOTHING;
+
+SELECT pg_catalog.setval('public.question_id_seq', 432, true);
+
+SELECT pg_catalog.setval('public.statistic_id_seq', 2, true);
+
+SELECT pg_catalog.setval('public.testing_id_seq', 53, true);
+
+SELECT pg_catalog.setval('public.users_id_seq', 22, true);
 
 ALTER TABLE ONLY public.question_interview ADD CONSTRAINT question_interview_pk PRIMARY KEY (id);
 
