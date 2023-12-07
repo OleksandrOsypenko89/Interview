@@ -13,6 +13,30 @@ import java.util.Set;
 @Component
 public class MyMapper {
 
+    public UserDTO createUserInUserDTO(User user) {
+        return new UserDTO(
+                user.getId()
+                , user.getFirstName()
+                , user.getLastName()
+                , user.getEmail()
+                , user.getPassword()
+                , user.getRole()
+                , user.getRegistrationDate()
+                , getQuestionInterviewDTOSet(user)
+                , getTestingInterviewDTOSet(user)
+                , getStudyQuestionInterviewDTOSet(user)
+                , getStatisticDTOSet(user)
+        );
+    }
+
+    public UserDTO updateUser(User user, UserDTO updateUserDTO) {
+        UserDTO userDTO = createUserInUserDTO(user);
+        userDTO.setFirstName(updateUserDTO.getFirstName());
+        userDTO.setLastName(updateUserDTO.getLastName());
+        userDTO.setEmail(updateUserDTO.getEmail());
+        return userDTO;
+    }
+
     private Set<QuestionInterviewDTO> getQuestionInterviewDTOSet(User user) {
         Set<QuestionInterviewDTO> listQuestionInterviewDTO = new HashSet<>();
         Set<QuestionInterview> listQuestionInterviews = user.getListQuestionInterviews();
@@ -78,29 +102,5 @@ public class MyMapper {
             listStatisticDTO.add(statisticDTO);
         }
         return listStatisticDTO;
-    }
-
-    public UserDTO updateUserInUserDTO(User user) {
-        return new UserDTO(
-                user.getId()
-                , user.getFirstName()
-                , user.getLastName()
-                , user.getEmail()
-                , user.getPassword()
-                , user.getRole()
-                , user.getRegistrationDate()
-                , getQuestionInterviewDTOSet(user)
-                , getTestingInterviewDTOSet(user)
-                , getStudyQuestionInterviewDTOSet(user)
-                , getStatisticDTOSet(user)
-        );
-    }
-
-    public UserDTO updateUser(User user, UserDTO updateUserDTO) {
-        UserDTO userDTO = updateUserInUserDTO(user);
-        userDTO.setFirstName(updateUserDTO.getFirstName());
-        userDTO.setLastName(updateUserDTO.getLastName());
-        userDTO.setEmail(updateUserDTO.getEmail());
-        return userDTO;
     }
 }

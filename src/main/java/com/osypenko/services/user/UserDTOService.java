@@ -45,13 +45,13 @@ public class UserDTOService {
         User user = userService.fromUserDetailsToUser(userDetails);
         questionService.listFilling(user);
         testingService.listFilling(user);
-        return myMapper.updateUserInUserDTO(user);
+        return myMapper.createUserInUserDTO(user);
     }
 
     public UserDTO deleteStudyQuestionUser(UserDetails userDetails, QuestionInterview questionInterviewId) {
         User user = userService.fromUserDetailsToUser(userDetails);
         user.getListStudyQuestion().remove(questionInterviewId);
         userService.saveAndFlushUser(user);
-        return myMapper.updateUserInUserDTO(user);
+        return myMapper.createUserInUserDTO(user);
     }
 }

@@ -42,12 +42,6 @@ public class StatisticService implements Runnable {
         }
     }
 
-    public Timestamp timeLimitForDeletion() {
-        LocalDateTime newDateTime = new Timestamp(System.currentTimeMillis()).toLocalDateTime();
-        LocalDateTime resultDateTime = newDateTime.minusDays(MEMBER_STATISTIC_DAYS);
-        return Timestamp.valueOf(resultDateTime);
-    }
-
     public List<Statistic> sortStatistic(User user) {
         Set<Statistic> statistic = user.getStatistic();
         List<Statistic> list = new ArrayList<>(statistic);
@@ -99,5 +93,11 @@ public class StatisticService implements Runnable {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    private Timestamp timeLimitForDeletion() {
+        LocalDateTime newDateTime = new Timestamp(System.currentTimeMillis()).toLocalDateTime();
+        LocalDateTime resultDateTime = newDateTime.minusDays(MEMBER_STATISTIC_DAYS);
+        return Timestamp.valueOf(resultDateTime);
     }
 }

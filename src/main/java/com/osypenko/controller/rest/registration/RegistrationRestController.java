@@ -29,7 +29,7 @@ public class RegistrationRestController {
     ) {
         userDTOService.saveRegistrationData(registrationUserDTO, user);
         mailService.sendSimpleMessage(OLEKSANDR_GMAIL_COM, NEW_USER_FROM_API);
-        UserDTO userDTO = myMapper.updateUserInUserDTO(user);
+        UserDTO userDTO = myMapper.createUserInUserDTO(user);
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(userDTO);

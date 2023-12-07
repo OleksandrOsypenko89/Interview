@@ -8,11 +8,8 @@ import com.osypenko.services.user.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.osypenko.constant.Constant.MEMBER_STATISTIC_DAYS;
 import static com.osypenko.constant.Constant.SIZE_QUESTION_INTERVIEW;
 
 class StatisticServiceTest extends BaseTests {
@@ -44,13 +41,6 @@ class StatisticServiceTest extends BaseTests {
         statisticService.deletionOfOutdatedStatistics();
         List<Statistic> statistics = statisticService.allStatistics();
         Assertions.assertEquals(0, statistics.size());
-    }
-
-    @Test
-    void timeLimitForDeletion() {
-        LocalDateTime oldDateTime = statisticService.timeLimitForDeletion().toLocalDateTime();
-        LocalDateTime newDateTime = new Timestamp(System.currentTimeMillis()).toLocalDateTime();
-        Assertions.assertEquals(newDateTime.getDayOfYear(), oldDateTime.plusDays(MEMBER_STATISTIC_DAYS).getDayOfYear());
     }
 
     @Test
