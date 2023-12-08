@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static com.osypenko.constant.Constant.SIZE_QUESTION_INTERVIEW;
+import static com.osypenko.constant.Constant.SIZE_QUESTION;
 
 class StatisticServiceTest extends BaseTests {
     private final StatisticService statisticService;
@@ -54,7 +54,7 @@ class StatisticServiceTest extends BaseTests {
     @Test
     void createNewStatistic() {
         User user = userService.findByEmail(EXPECTED_USER_EMAIL).orElseThrow();
-        statisticService.createNewStatistic(user, TEST_RESULT_STATISTIC, SIZE_QUESTION_INTERVIEW, Type.QUESTIONS);
+        statisticService.createNewStatistic(user, TEST_RESULT_STATISTIC, SIZE_QUESTION, Type.QUESTIONS);
         Assertions.assertEquals(3, statisticService.allStatistics().size());
     }
 

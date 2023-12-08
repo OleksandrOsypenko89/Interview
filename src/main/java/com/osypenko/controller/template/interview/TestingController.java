@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.List;
 
-import static com.osypenko.constant.Constant.SIZE_QUESTION_INTERVIEW;
+import static com.osypenko.constant.Constant.SIZE_QUESTION;
 import static com.osypenko.constant.Constant.ZERO;
 import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.*;
@@ -38,7 +38,7 @@ public class TestingController {
             , @SessionAttribute(LIST_TESTING) List<TestingInterview> listTesting
     ) {
         if (listTesting.isEmpty()) {
-            int percentage = testingService.getPercentage(know, SIZE_QUESTION_INTERVIEW);
+            int percentage = testingService.getPercentage(know, SIZE_QUESTION);
 
             Statistic newStatistic = statisticService.createNewStatistic(user, percentage, know, Type.TESTING);
 

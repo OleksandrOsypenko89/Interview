@@ -15,7 +15,7 @@ public class Constant {
     public static final String FOLDER = "logs/";
     public static final int ZERO = 0;
     public static final int MEMBER_STATISTIC_DAYS = 10;
-    public static final int SIZE_QUESTION_INTERVIEW = 15;
+    public static final int SIZE_QUESTION = 15;
     public static final int ONE_HUNDRED = 100;
     public static final int START_RANDOM_MAIL_NUM = 100000;
     public static final int END_RANDOM_MAIL_NUM = 999999;

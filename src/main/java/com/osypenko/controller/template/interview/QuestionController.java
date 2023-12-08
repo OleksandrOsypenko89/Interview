@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.*;
 
-import static com.osypenko.constant.Constant.SIZE_QUESTION_INTERVIEW;
+import static com.osypenko.constant.Constant.SIZE_QUESTION;
 import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.*;
 
@@ -37,7 +37,7 @@ public class QuestionController {
             , @SessionAttribute(LIST_QUESTION) List<QuestionInterview> listInterview
     ) {
         if (listInterview.isEmpty()) {
-            int percentage = questionService.getPercentage(know, SIZE_QUESTION_INTERVIEW);
+            int percentage = questionService.getPercentage(know, SIZE_QUESTION);
 
             Statistic newStatistic = statisticService.createNewStatistic(user, percentage, know, Type.QUESTIONS);
 

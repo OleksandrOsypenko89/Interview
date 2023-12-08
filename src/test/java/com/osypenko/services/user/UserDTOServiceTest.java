@@ -47,8 +47,8 @@ class UserDTOServiceTest extends BaseTests {
         UserDTO user = userDTOService.getUserDTO(userDetails);
         Assertions.assertFalse(user.getListQuestionInterviews().isEmpty());
         Assertions.assertFalse(user.getListQuestionTesting().isEmpty());
-        Assertions.assertEquals(Constant.SIZE_QUESTION_INTERVIEW, user.getListQuestionInterviews().size());
-        Assertions.assertEquals(Constant.SIZE_QUESTION_INTERVIEW, user.getListQuestionTesting().size());
+        Assertions.assertEquals(Constant.SIZE_QUESTION, user.getListQuestionInterviews().size());
+        Assertions.assertEquals(Constant.SIZE_QUESTION, user.getListQuestionTesting().size());
     }
 
     @Test

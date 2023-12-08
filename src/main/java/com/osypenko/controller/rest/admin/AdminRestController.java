@@ -26,8 +26,8 @@ public class AdminRestController {
     @GetMapping(INFO)
     public ResponseEntity<InfoForAdmin> getAllInfoUser(InfoForAdmin infoForAdmin) {
         infoForAdmin.setRegisteredUsers(userService.getAll().size());
-        infoForAdmin.setQuestionSize(questionService.sizeAllQuestion());
-        infoForAdmin.setTestingSize(testingService.sizeAllQuestion());
+        infoForAdmin.setQuestionSize(questionService.getAll().size());
+        infoForAdmin.setTestingSize(testingService.getAll().size());
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(infoForAdmin);

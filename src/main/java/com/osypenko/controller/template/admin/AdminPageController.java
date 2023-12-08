@@ -33,8 +33,8 @@ public class AdminPageController {
     public String getAdminPage() {
         session.setAttribute(FILES_IN_DIRECTORY_LOGS, adminService.getFolder());
         session.setAttribute(SIZE_ALL_USERS, userService.getAll().size());
-        session.setAttribute(SIZE_ALL_QUESTION_INTERVIEW, questionService.sizeAllQuestion());
-        session.setAttribute(SIZE_ALL_TESTING_INTERVIEW, testingService.sizeAllQuestion());
+        session.setAttribute(SIZE_ALL_QUESTION_INTERVIEW, questionService.getAll().size());
+        session.setAttribute(SIZE_ALL_TESTING_INTERVIEW, testingService.getAll().size());
         return DIRECTORY_ADMIN + ADMIN_PAGE;
     }
 

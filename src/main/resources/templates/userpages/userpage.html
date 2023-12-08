@@ -16,7 +16,7 @@
     </h1>
     <br>
     <table class="table_study_questions">
-        <tr th:each="question : ${session.user.getListStudyQuestion()}">
+        <tr th:each="question : ${session.listStudyQuestions}">
             <td>
                 <p class="text-bold" th:utext="${question.getQuestion()}"></p>
             </td>

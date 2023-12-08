@@ -30,8 +30,19 @@ public class QuestionService extends Interview {
         return questionInterview;
     }
 
-    public Integer sizeAllQuestion() {
-        return getAll().size();
+    public void deleteStudyQuestions(User user, Integer id) {
+        Set<QuestionInterview> listStudyQuestion = user.getListStudyQuestion();
+        QuestionInterview questionInterview = get(id).orElseThrow();
+        listStudyQuestion.remove(questionInterview);
+        userService.saveAndFlushUser(user);
+    }
+
+    public List<QuestionInterview> sortStudyQuestion(User user) {
+        Set<QuestionInterview> listStudyQuestionInterview = user.getListStudyQuestion();
+        List<QuestionInterview> list = new ArrayList<>(listStudyQuestionInterview);
+        list.sort(Comparator
+                .comparing(QuestionInterview::getId));
+        return list;
     }
 
     public List<QuestionInterview> listFilling(User user) {
@@ -42,7 +53,7 @@ public class QuestionService extends Interview {
         return sortQuestionList(user);
     }
 
-    public List<QuestionInterview> sortQuestionList(User user) {
+    private List<QuestionInterview> sortQuestionList(User user) {
         Set<QuestionInterview> questionInterviews = user.getListQuestionInterviews();
         List<QuestionInterview> list = new ArrayList<>(questionInterviews);
         list.sort(Comparator
@@ -51,11 +62,11 @@ public class QuestionService extends Interview {
         return list;
     }
 
-    public Set<QuestionInterview> createListQuestion() {
+    private Set<QuestionInterview> createListQuestion() {
         Set<Integer> integerSet = new HashSet<>();
         Set<QuestionInterview> questionList = new HashSet<>();
 
-        createRandomId(sizeAllQuestion(), integerSet);
+        createRandomId(getAll().size(), integerSet);
         fillingInAListOfQuestions(integerSet, questionList);
         return questionList;
     }
@@ -65,19 +76,5 @@ public class QuestionService extends Interview {
             QuestionInterview questionInterview = get(id).orElseThrow();
             questionList.add(questionInterview);
         }
-    }
-
-    public void deleteStudyQuestions(User user, Integer id) {
-        Set<QuestionInterview> listStudyQuestion = user.getListStudyQuestion();
-        QuestionInterview questionInterview = get(id).orElseThrow();
-        listStudyQuestion.remove(questionInterview);
-        userService.saveAndFlushUser(user);
-    }
-
-    public void sortStudyQuestion(User user) {
-        Set<QuestionInterview> listStudyQuestionInterview = user.getListStudyQuestion();
-        List<QuestionInterview> list = new ArrayList<>(listStudyQuestionInterview);
-        list.sort(Comparator
-                .comparing(QuestionInterview::getId));
     }
 }

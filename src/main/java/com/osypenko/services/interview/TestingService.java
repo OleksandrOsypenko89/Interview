@@ -29,10 +29,6 @@ public class TestingService extends Interview {
         return testingInterviewRepository.save(testingInterview);
     }
 
-    public Integer sizeAllQuestion() {
-        return getAll().size();
-    }
-
     public List<TestingInterview> listFilling(User user) {
         if (user.getListQuestionTesting().isEmpty()) {
             user.setListQuestionTesting(createListQuestion());
@@ -46,7 +42,7 @@ public class TestingService extends Interview {
         Set<Integer> integerSet = new HashSet<>();
         Set<TestingInterview> questionList = new HashSet<>();
 
-        createRandomId(sizeAllQuestion(), integerSet);
+        createRandomId(getAll().size(), integerSet);
         fillingInAListOfQuestions(integerSet, questionList);
         return questionList;
     }

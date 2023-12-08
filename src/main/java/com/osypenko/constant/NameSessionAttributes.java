@@ -22,6 +22,7 @@ public class NameSessionAttributes {
     public static final String CODE_REGISTRATION = "codeRegistration";
     public static final String QUESTION_INTERVIEW = "questionInterview";
     public static final String NEW_STATISTICS_ADDED = "newStatisticsAdded";
+    public static final String LIST_STUDY_QUESTIONS = "listStudyQuestions";
     public static final String NEW_USER_IS_REGISTERED = "newUserIsRegistered";
     public static final String FILES_IN_DIRECTORY_LOGS = "filesInDirectoryLogs";
     public static final String UPDATE_TESTING_INTERVIEW = "updateTestingInterview";

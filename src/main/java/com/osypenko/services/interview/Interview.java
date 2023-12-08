@@ -18,6 +18,6 @@ public abstract class Interview {
             if (randomNum != ZERO) {
                 integerSet.add(randomNum);
             }
-        } while (integerSet.size() < SIZE_QUESTION_INTERVIEW);
+        } while (integerSet.size() < SIZE_QUESTION);
     }
 }

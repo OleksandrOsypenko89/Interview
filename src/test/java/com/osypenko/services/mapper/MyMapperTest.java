@@ -11,7 +11,6 @@ class MyMapperTest extends BaseTests {
     private final MyMapper myMapper;
     private final UserService userService;
 
-
     public MyMapperTest(MyMapper myMapper, UserService userService) {
         this.myMapper = myMapper;
         this.userService = userService;
