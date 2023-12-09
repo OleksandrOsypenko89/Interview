@@ -29,6 +29,18 @@ public class TestingService extends Interview {
         return testingInterviewRepository.save(testingInterview);
     }
 
+    public List<String> shuffleButtons(TestingInterview testingInterview) {
+        List<String> randomButton = new ArrayList<>();
+        randomButton.add(testingInterview.getCorrectAnswer());
+        randomButton.add(testingInterview.getFirstFalseAnswer());
+        randomButton.add(testingInterview.getSecondFalseAnswer());
+        randomButton.add(testingInterview.getThirdFalseAnswer());
+        randomButton.add(testingInterview.getFourthFalseAnswer());
+        randomButton.add(testingInterview.getFifthFalseAnswer());
+        Collections.shuffle(randomButton);
+        return randomButton;
+    }
+
     public List<TestingInterview> listFilling(User user) {
         if (user.getListQuestionTesting().isEmpty()) {
             user.setListQuestionTesting(createListQuestion());
@@ -38,7 +50,7 @@ public class TestingService extends Interview {
         return new ArrayList<>(userListQuestionTesting);
     }
 
-    public Set<TestingInterview> createListQuestion() {
+    private Set<TestingInterview> createListQuestion() {
         Set<Integer> integerSet = new HashSet<>();
         Set<TestingInterview> questionList = new HashSet<>();
 
@@ -52,17 +64,5 @@ public class TestingService extends Interview {
             TestingInterview questionTesting = get(id).orElseThrow();
             questionList.add(questionTesting);
         }
-    }
-
-    public List<String> shuffleButtons(TestingInterview testingInterview) {
-        List<String> randomButton = new ArrayList<>();
-        randomButton.add(testingInterview.getCorrectAnswer());
-        randomButton.add(testingInterview.getFirstFalseAnswer());
-        randomButton.add(testingInterview.getSecondFalseAnswer());
-        randomButton.add(testingInterview.getThirdFalseAnswer());
-        randomButton.add(testingInterview.getFourthFalseAnswer());
-        randomButton.add(testingInterview.getFifthFalseAnswer());
-        Collections.shuffle(randomButton);
-        return randomButton;
     }
 }

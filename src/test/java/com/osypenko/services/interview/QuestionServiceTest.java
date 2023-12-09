@@ -30,8 +30,8 @@ class QuestionServiceTest extends BaseTests {
     @Test
     void get() {
         QuestionInterview questionInterview = questionService.get(ID_QUESTION_INTERVIEW).orElseThrow();
-        Assertions.assertEquals(QUESTION_INTERVIEW, questionInterview.getQuestion());
-        Assertions.assertEquals(ANSWER_INTERVIEW, questionInterview.getAnswer());
+        Assertions.assertEquals(QUESTION_INTERVIEW_QUESTION, questionInterview.getQuestion());
+        Assertions.assertEquals(QUESTION_INTERVIEW_ANSWER, questionInterview.getAnswer());
         Assertions.assertEquals(Topic.SQL, questionInterview.getTopic());
     }
 
@@ -53,9 +53,9 @@ class QuestionServiceTest extends BaseTests {
     void sortStudyQuestion() {
         User user = userService.findByEmail(EXPECTED_USER_EMAIL).orElseThrow();
         List<QuestionInterview> questionInterviews = questionService.sortStudyQuestion(user);
-        Assertions.assertEquals(159, questionInterviews.get(0).getId());
-        Assertions.assertEquals(275, questionInterviews.get(1).getId());
-        Assertions.assertEquals(336, questionInterviews.get(2).getId());
+        Assertions.assertEquals(STUDY_QUESTION_ID_159, questionInterviews.get(0).getId());
+        Assertions.assertEquals(STUDY_QUESTION_ID_275, questionInterviews.get(1).getId());
+        Assertions.assertEquals(STUDY_QUESTION_ID_336, questionInterviews.get(2).getId());
     }
 
     @Test
