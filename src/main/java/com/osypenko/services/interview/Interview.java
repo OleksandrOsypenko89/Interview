@@ -1,5 +1,6 @@
 package com.osypenko.services.interview;
 
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -7,11 +8,12 @@ import static com.osypenko.constant.Constant.*;
 
 public abstract class Interview {
 
-    public int getPercentage(Integer know, int sizeListQuestion) {
+    public int getPercentage(int know, int sizeListQuestion) {
         return (know * ONE_HUNDRED) / sizeListQuestion;
     }
 
-    public void createRandomId(int size, Set<Integer> integerSet) {
+    public Set<Integer> createRandomId(int size) {
+        Set<Integer> integerSet = new HashSet<>();
         do {
             Random random = new Random();
             int randomNum = random.nextInt(size);
@@ -19,5 +21,6 @@ public abstract class Interview {
                 integerSet.add(randomNum);
             }
         } while (integerSet.size() < SIZE_QUESTION);
+        return integerSet;
     }
 }

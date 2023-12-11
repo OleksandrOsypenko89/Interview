@@ -63,10 +63,8 @@ public class QuestionService extends Interview {
     }
 
     private Set<QuestionInterview> createListQuestion() {
-        Set<Integer> integerSet = new HashSet<>();
         Set<QuestionInterview> questionList = new HashSet<>();
-
-        createRandomId(getAll().size(), integerSet);
+        Set<Integer> integerSet = createRandomId(getAll().size());
         fillingInAListOfQuestions(integerSet, questionList);
         return questionList;
     }

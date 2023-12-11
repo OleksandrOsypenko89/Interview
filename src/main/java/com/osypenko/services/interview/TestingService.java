@@ -51,10 +51,8 @@ public class TestingService extends Interview {
     }
 
     private Set<TestingInterview> createListQuestion() {
-        Set<Integer> integerSet = new HashSet<>();
         Set<TestingInterview> questionList = new HashSet<>();
-
-        createRandomId(getAll().size(), integerSet);
+        Set<Integer> integerSet = createRandomId(getAll().size());
         fillingInAListOfQuestions(integerSet, questionList);
         return questionList;
     }

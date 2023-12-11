@@ -1,7 +1,6 @@
 package com.osypenko.constant;
 
 public class NameLogs {
-    public static final String UNKNOWN_USER = "Unknown user: ";
     public static final String DELETE_USER = "Delete user {}";
     public static final String UPDATE_DATA_USER = "Update data user {}";
     public static final String REGISTRATION_NEW_USER = "Registration new user {}";
@@ -12,4 +11,5 @@ public class NameLogs {
     public static final String CREATE_NEW_STATISTIC = "Create new statistic";
     public static final String HANDLE_ERROR = "Handle error: ";
     public static final String LOGS_FILE_NOT_FIND = "logs file not find";
+    public static final String ERROR_OCCURRED_WHILE_SENDING_EMAIL = "Error occurred while sending email..";
 }

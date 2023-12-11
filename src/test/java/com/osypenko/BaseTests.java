@@ -4,8 +4,6 @@ import com.osypenko.dto.UserDTO;
 import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.interview.question.Topic;
 import com.osypenko.model.interview.testings.TestingInterview;
-import com.osypenko.model.statistic.Statistic;
-import com.osypenko.model.statistic.Type;
 import com.osypenko.model.users.Role;
 import com.osypenko.model.users.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,10 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.TestConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
-
-import static com.osypenko.constant.Constant.SIZE_QUESTION;
-
 @Transactional
 @SpringBootTest
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
@@ -25,7 +19,6 @@ public class BaseTests {
     public User newUser;
     public UserDTO userDTO;
     public User expectedUser;
-    public Statistic statistic;
     public UserDetails userDetails;
     public TestingInterview testingInterview;
     public QuestionInterview questionInterview;
@@ -46,6 +39,16 @@ public class BaseTests {
     public static final String TEST_THIRD_FALSE_ANSWER = "test third false answer";
     public static final String TEST_FOURTH_FALSE_ANSWER = "test fourth false answer";
     public static final String TEST_FIFTH_FALSE_ANSWER = "test fifth false answer";
+    public static final String UPDATE_TEST_QUESTION = "update test question";
+    public static final String UPDATE_TEST_CORRECT_ANSWER = "update test correct answer";
+    public static final String UPDATE_TEST_FIRST_FALSE_ANSWER = "update test first false answer";
+    public static final String UPDATE_TEST_SECOND_FALSE_ANSWER = "update test second false answer";
+    public static final String UPDATE_TEST_THIRD_FALSE_ANSWER = "update test third false answer";
+    public static final String UPDATE_TEST_FOURTH_FALSE_ANSWER = "update test fourth false answer";
+    public static final String UPDATE_TEST_FIFTH_FALSE_ANSWER = "update test fifth false answer";
+
+    public static final String TEST_FILE_LOG = "src/test/resources/logs/log-file.log";
+    public static final String TEST_STR_LOG = "2023-12-08 11:32:02 [main] INFO  com.zaxxer.hikari.HikariDataSource - postgres - Start completed.";
 
     public static final int ALL_USERS_SIZE = 22;
     public static final int ALL_STATISTIC_SIZE = 2;
@@ -57,6 +60,7 @@ public class BaseTests {
     public static final String TESTING_INTERVIEW_QUESTION = "Можем ли мы иметь два main-метода в классе в языке программирования Java?";
     public static final String TESTING_INTERVIEW_FIRST_FALSE_ANSWER = "Нет";
     public static final String TESTING_INTERVIEW_CORRECT_ANSWER = "Да";
+
     public static final int ID_QUESTION_INTERVIEW = 275;
     public static final String QUESTION_INTERVIEW_QUESTION = "Что такое TCL? Какие операции в него входят? Рассказать про них.";
     public static final String QUESTION_INTERVIEW_ANSWER = "Операторы управления транзакциями (Transaction Control Language, TCL): <br><span class=\"selected_text color_selected_text\">BEGIN</span> служит для определения начала транзакции. <br><span class=\"selected_text color_selected_text\">COMMIT</span> применяет транзакцию. <br><span class=\"selected_text color_selected_text\">ROLLBACK</span> откатывает все изменения, сделанные в контексте текущей транзакции. <br><span class=\"selected_text color_selected_text\">SAVEPOINT</span> разбивает транзакцию на более мелкие.";
@@ -64,8 +68,8 @@ public class BaseTests {
     public static final int STUDY_QUESTION_ID_159 = 159;
     public static final int STUDY_QUESTION_ID_275 = 275;
     public static final int STUDY_QUESTION_ID_336 = 336;
+
     public static final int TEST_RESULT_STATISTIC = 100;
-    public static final Timestamp TEST_STATISTIC_DATE = new Timestamp(System.currentTimeMillis());
 
     @BeforeEach
     void setup() {
@@ -86,13 +90,6 @@ public class BaseTests {
                 .lastName(TEST_LAST_NAME)
                 .email(TEST_EMAIL)
                 .password(TEST_PASSWORD)
-                .build();
-        statistic = Statistic.builder()
-                .date(TEST_STATISTIC_DATE)
-                .result(TEST_RESULT_STATISTIC)
-                .userId(EXPECTED_USER_ID)
-                .type(Type.QUESTIONS)
-                .knowAnswer(SIZE_QUESTION)
                 .build();
         testingInterview = TestingInterview.builder()
                 .question(TEST_QUESTION)
