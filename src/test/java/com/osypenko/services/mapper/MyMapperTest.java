@@ -1,6 +1,6 @@
 package com.osypenko.services.mapper;
 
-import com.osypenko.BaseTests;
+import com.osypenko.services.BaseTests;
 import com.osypenko.dto.UserDTO;
 import com.osypenko.model.users.User;
 import com.osypenko.services.user.UserService;

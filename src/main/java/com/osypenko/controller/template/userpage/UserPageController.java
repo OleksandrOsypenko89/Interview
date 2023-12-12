@@ -53,14 +53,6 @@ public class UserPageController {
         return REDIRECT + TESTING;
     }
 
-    private void interviewListsFiling(User user) {
-        List<TestingInterview> listQuestionTesting = testingService.listFilling(user);
-        List<QuestionInterview> listQuestionInterviews = questionService.listFilling(user);
-        session.setAttribute(LIST_TESTING, listQuestionTesting);
-        session.setAttribute(LIST_QUESTION, listQuestionInterviews);
-        session.setAttribute(KNOW, ZERO);
-    }
-
     @GetMapping(ALL_STATISTICS_PAGE)
     public String allStatisticPage() {
         return REDIRECT + ALL_STATISTICS;
@@ -84,5 +76,13 @@ public class UserPageController {
     ) {
         questionService.deleteStudyQuestions(user, idQuestion);
         return REDIRECT + USER_PAGE;
+    }
+
+    private void interviewListsFiling(User user) {
+        List<TestingInterview> listQuestionTesting = testingService.listFilling(user);
+        List<QuestionInterview> listQuestionInterviews = questionService.listFilling(user);
+        session.setAttribute(LIST_TESTING, listQuestionTesting);
+        session.setAttribute(LIST_QUESTION, listQuestionInterviews);
+        session.setAttribute(KNOW, ZERO);
     }
 }

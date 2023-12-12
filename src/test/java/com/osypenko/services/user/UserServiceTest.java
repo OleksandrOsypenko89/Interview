@@ -1,6 +1,6 @@
 package com.osypenko.services.user;
 
-import com.osypenko.BaseTests;
+import com.osypenko.services.BaseTests;
 import com.osypenko.model.users.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

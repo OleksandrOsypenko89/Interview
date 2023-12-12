@@ -1,6 +1,6 @@
 package com.osypenko.services.statistics;
 
-import com.osypenko.BaseTests;
+import com.osypenko.services.BaseTests;
 import com.osypenko.model.statistic.Statistic;
 import com.osypenko.model.statistic.Type;
 import com.osypenko.model.users.User;

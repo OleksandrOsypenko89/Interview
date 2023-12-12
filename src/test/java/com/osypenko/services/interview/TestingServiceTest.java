@@ -1,6 +1,6 @@
 package com.osypenko.services.interview;
 
-import com.osypenko.BaseTests;
+import com.osypenko.services.BaseTests;
 import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.model.users.User;
 import com.osypenko.services.user.UserService;

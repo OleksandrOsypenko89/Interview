@@ -1,4 +1,4 @@
-package com.osypenko;
+package com.osypenko.services;
 
 import com.osypenko.dto.UserDTO;
 import com.osypenko.model.interview.question.QuestionInterview;
@@ -8,12 +8,14 @@ import com.osypenko.model.users.Role;
 import com.osypenko.model.users.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.TestConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @SpringBootTest
+@TestConfiguration
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 public class BaseTests {
     public User newUser;
