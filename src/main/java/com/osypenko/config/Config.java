@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class Config {
-
     private final StatisticService statisticService;
 
     @Bean
