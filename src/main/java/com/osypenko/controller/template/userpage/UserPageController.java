@@ -34,8 +34,7 @@ public class UserPageController {
     @GetMapping(USER_PAGE)
     public String userPage(@AuthenticationPrincipal UserDetails userDetails) {
         User user = userService.fromUserDetailsToUser(userDetails);
-        List<QuestionInterview> questionInterviews = questionService.sortStudyQuestion(user);
-        session.setAttribute(LIST_STUDY_QUESTIONS, questionInterviews);
+        session.setAttribute(LIST_STUDY_QUESTIONS, questionService.sortStudyQuestion(user));
         session.setAttribute(USER, user);
         session.removeAttribute(REGISTRATION_FLAG);
         return DIRECTORY_USER_PAGES + USER_PAGE;

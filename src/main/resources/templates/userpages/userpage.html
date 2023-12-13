@@ -9,7 +9,8 @@
 
 <body>
 <th:block th:replace="~{layout/header :: header}"/>
-<div th:if="${!session.user.listStudyQuestion.isEmpty()}">
+
+<div th:if="${!session.user.getListStudyQuestion().isEmpty()}">
     <br>
     <h1 class="text-bold title_color big-text_1 text-center">
         <span th:utext="#{userPage.studyQuestion}"></span>
@@ -34,7 +35,7 @@
     <br>
 </div>
 
-<div th:if="${session.user.listStudyQuestion.isEmpty()}">
+<div th:if="${session.user.getListStudyQuestion().isEmpty()}">
     <img class="centered" th:src="@{images/view/image.png}" height="700" width="700" alt="image">
 </div>
 

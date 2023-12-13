@@ -9,7 +9,7 @@
 
 <body>
 <th:block th:replace="~{layout/header :: header}"/>
-<br>
+
 <div th:if="${session.statisticList.isEmpty()}">
     <br>
     <h1 class="text-bold big-text_2 text-center">
@@ -17,7 +17,9 @@
     </h1>
     <br>
 </div>
+
 <div th:if="${!session.statisticList.isEmpty()}">
+    <br>
     <div class="text-bold big-text_1 text-center">
         <span th:utext="#{allStatistics.allStatistics}"></span>
     </div>
@@ -79,5 +81,6 @@
     </div>
 </form>
 <br>
+
 </body>
 </html>

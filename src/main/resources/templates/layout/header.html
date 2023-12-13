@@ -4,7 +4,9 @@
 <th:block th:fragment="header">
     <div class="header">
         <div class="header-right">
-            <a th:if="${session.user.listStudyQuestion.isEmpty()}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="orange_color" th:text="#{button.howServiceWorks}"></span></a>
+            <a th:if="${session.user.getListStudyQuestion().isEmpty()}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <span class="orange_color" th:text="#{button.howServiceWorks}"></span>
+            </a>
             <a th:href="@{/userpage}">
                 <span th:text="#{button.homePage}"></span>
             </a>
@@ -53,7 +55,7 @@
 <th:block th:fragment="headerInterview">
     <div class="header">
         <div class="header-right">
-            <a th:if="${session.user.listStudyQuestion.isEmpty()}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="orange_color" th:text="#{button.howServiceWorks}"></span></a>
+            <a th:if="${session.user.getListStudyQuestion().isEmpty()}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="orange_color" th:text="#{button.howServiceWorks}"></span></a>
             <a th:href="@{/userpage}" data-bs-toggle="modal" data-bs-target="#staticBackdropUserPage">
                 <span th:text="#{button.homePage}"></span>
             </a>

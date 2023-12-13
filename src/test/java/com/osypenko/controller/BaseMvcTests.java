@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @SpringBootTest
 @AutoConfigureMockMvc
-public class BaseMvcTest {
+public class BaseMvcTests {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
@@ -25,6 +25,7 @@ public class BaseMvcTest {
 
     public final String USER_MAIL = "demo@gmail.com";
     public final String ADMIN_MAIL = "Johnny_Depp@gmail.com";
+    public static final int ALL_STATISTIC_SIZE = 2;
     public static final int SIZE_LIST_STUDY_QUESTION_INTERVIEW_USER = 3;
     public static final int STUDY_QUESTION_ID_159 = 159;
 

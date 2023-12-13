@@ -1,6 +1,6 @@
 package com.osypenko.controller.template.userpage;
 
-import com.osypenko.controller.BaseMvcTest;
+import com.osypenko.controller.BaseMvcTests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.test.context.support.WithUserDetails;
@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-class UserPageControllerTest extends BaseMvcTest {
+class UserPageControllerTests extends BaseMvcTests {
 
     @Test
     @WithUserDetails(value = USER_MAIL)
