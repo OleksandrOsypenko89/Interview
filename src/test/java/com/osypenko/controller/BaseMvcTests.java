@@ -22,8 +22,6 @@ public class BaseMvcTests {
 
     public User user;
     public User admin;
-    public User newUser;
-    public int getAllUserSize;
 
     public final String USER_MAIL = "demo@gmail.com";
     public final String ADMIN_MAIL = "Johnny_Depp@gmail.com";
@@ -37,13 +35,13 @@ public class BaseMvcTests {
     public static final String TEST_LAST_NAME = "test_last_name";
     public static final String TEST_EMAIL = "test_mail@gmail.com";
     public static final String TEST_PASSWORD = "test_password";
+    public static final String PASSWORD_ONE = "passwordOne";
+    public static final String PASSWORD_TWO = "passwordTwo";
 
     @BeforeEach
     void setup() {
         user = userService.findByEmail(USER_MAIL).orElseThrow();
         admin = userService.findByEmail(ADMIN_MAIL).orElseThrow();
-        newUser = userService.createNewUser(new User(), TEST_FIRST_NAME, TEST_LAST_NAME, TEST_EMAIL, TEST_PASSWORD);
-        getAllUserSize = userService.getAll().size();
     }
 
     public ResultActions perform(MockHttpServletRequestBuilder builder) throws Exception {

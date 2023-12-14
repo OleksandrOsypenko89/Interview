@@ -1,8 +1,11 @@
 package com.osypenko.controller.template.registration;
 
 import com.osypenko.controller.BaseMvcTests;
+import com.osypenko.model.users.User;
+import com.osypenko.services.user.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.CODE_REGISTRATION;
@@ -12,6 +15,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 class CodeForRegistrationControllerTest extends BaseMvcTests {
+    @Autowired
+    private UserService userService;
 
     @Test
     void codeUser() throws Exception {
@@ -22,6 +27,7 @@ class CodeForRegistrationControllerTest extends BaseMvcTests {
 
     @Test
     void createNewUserCorrect() throws Exception {
+        User newUser = userService.createNewUser(new User(), TEST_FIRST_NAME, TEST_LAST_NAME, TEST_EMAIL, TEST_PASSWORD);
         perform(post(NEW_USER)
                 .sessionAttr(USER, newUser)
                 .sessionAttr(CODE_REGISTRATION, REGISTRATION_CODE)
@@ -30,11 +36,12 @@ class CodeForRegistrationControllerTest extends BaseMvcTests {
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(LOGIN))
                 .andExpect(view().name(REDIRECT + LOGIN));
-        Assertions.assertEquals(ALL_USERS_FINAL_SIZE + 1, getAllUserSize);
+        Assertions.assertEquals(ALL_USERS_FINAL_SIZE + 1, userService.getAll().size());
     }
 
     @Test
     void createNewUserWrong() throws Exception {
+        User newUser = userService.createNewUser(new User(), TEST_FIRST_NAME, TEST_LAST_NAME, TEST_EMAIL, TEST_PASSWORD);
         perform(post(NEW_USER)
                 .sessionAttr(USER, newUser)
                 .sessionAttr(CODE_REGISTRATION, REGISTRATION_CODE)
@@ -43,6 +50,6 @@ class CodeForRegistrationControllerTest extends BaseMvcTests {
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(CODE_FOR_REGISTRATION))
                 .andExpect(view().name(REDIRECT + CODE_FOR_REGISTRATION));
-        Assertions.assertEquals(ALL_USERS_FINAL_SIZE, getAllUserSize);
+        Assertions.assertEquals(ALL_USERS_FINAL_SIZE, userService.getAll().size());
     }
 }
