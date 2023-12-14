@@ -67,8 +67,7 @@ class UserServiceTest extends BaseTests {
 
     @Test
     void createNewUser() {
-        userService.createNewUser(newUser, TEST_FIRST_NAME, TEST_LAST_NAME, TEST_EMAIL, TEST_PASSWORD);
-        User user = userService.findByEmail(TEST_EMAIL).orElseThrow();
+        User user = userService.createNewUser(newUser, TEST_FIRST_NAME, TEST_LAST_NAME, TEST_EMAIL, TEST_PASSWORD);
         Assertions.assertEquals(TEST_FIRST_NAME, user.getFirstName());
         Assertions.assertEquals(TEST_LAST_NAME, user.getLastName());
         Assertions.assertEquals(TEST_EMAIL, user.getEmail());

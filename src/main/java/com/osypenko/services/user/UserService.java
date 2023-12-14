@@ -55,7 +55,7 @@ public class UserService {
         log.info(UPDATE_DATA_USER, user.getEmail());
     }
 
-    public void createNewUser(User user, String firstName, String lastName, String email, String password) {
+    public User createNewUser(User user, String firstName, String lastName, String email, String password) {
         passwordEncoding(password, user);
         user.setFirstName(firstName);
         user.setLastName(lastName);
@@ -65,8 +65,8 @@ public class UserService {
         user.setListQuestionTesting(new HashSet<>());
         user.setListStudyQuestion(new HashSet<>());
         user.setStatistic(new HashSet<>());
-        saveAndFlushUser(user);
         log.info(REGISTRATION_NEW_USER, user.getEmail());
+        return user;
     }
 
     public void passwordEncoding(String password, User user) {

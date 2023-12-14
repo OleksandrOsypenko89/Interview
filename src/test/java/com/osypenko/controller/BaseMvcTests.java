@@ -28,6 +28,9 @@ public class BaseMvcTests {
     public static final int ALL_STATISTIC_SIZE = 2;
     public static final int SIZE_LIST_STUDY_QUESTION_INTERVIEW_USER = 3;
     public static final int STUDY_QUESTION_ID_159 = 159;
+    public static final String TEST_FIRST_NAME = "test_first_name";
+    public static final String TEST_LAST_NAME = "test_last_name";
+    public static final String TEST_PASSWORD = "test_password";
 
     @BeforeEach
     void setup() {

@@ -15,7 +15,6 @@ class AllStatisticsControllerTest extends BaseMvcTests {
     @Test
     @WithUserDetails(value = USER_MAIL)
     void allStatistic() throws Exception {
-
         perform(get(ALL_STATISTICS)
                 .sessionAttr(USER, user)
         )

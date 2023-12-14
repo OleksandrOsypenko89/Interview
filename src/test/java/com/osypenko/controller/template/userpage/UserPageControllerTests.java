@@ -34,6 +34,7 @@ class UserPageControllerTests extends BaseMvcTests {
                 .sessionAttr(USER, user)
         )
                 .andExpect(status().isFound())
+                .andExpect(redirectedUrl(QUESTION))
                 .andExpect(view().name(REDIRECT + QUESTION));
     }
 
@@ -44,6 +45,7 @@ class UserPageControllerTests extends BaseMvcTests {
                 .sessionAttr(USER, user)
         )
                 .andExpect(status().isFound())
+                .andExpect(redirectedUrl(TESTING))
                 .andExpect(view().name(REDIRECT + TESTING));
     }
 
@@ -52,6 +54,7 @@ class UserPageControllerTests extends BaseMvcTests {
     void allStatisticPage() throws Exception {
         perform(get(ALL_STATISTICS_PAGE))
                 .andExpect(status().isFound())
+                .andExpect(redirectedUrl(ALL_STATISTICS))
                 .andExpect(view().name(REDIRECT + ALL_STATISTICS));
     }
 
@@ -68,6 +71,7 @@ class UserPageControllerTests extends BaseMvcTests {
                 .sessionAttr(USER, admin)
         )
                 .andExpect(status().isFound())
+                .andExpect(redirectedUrl(ADMIN_PAGE))
                 .andExpect(view().name(REDIRECT + ADMIN_PAGE));
     }
 
@@ -79,6 +83,7 @@ class UserPageControllerTests extends BaseMvcTests {
                 .param("idQuestion", String.valueOf(STUDY_QUESTION_ID_159))
         )
                 .andExpect(status().isFound())
+                .andExpect(redirectedUrl(USER_PAGE))
                 .andExpect(view().name(REDIRECT + USER_PAGE));
         Assertions.assertEquals(SIZE_LIST_STUDY_QUESTION_INTERVIEW_USER - 1, user.getListStudyQuestion().size());
     }

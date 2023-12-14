@@ -20,14 +20,15 @@ public class UserDTOService {
     private final TestingService testingService;
     private final QuestionService questionService;
 
-    public void saveRegistrationData(UserDTO registrationUserDTO, User user) {
-        userService.createNewUser(
-                user
+    public void saveRegistrationData(UserDTO registrationUserDTO, User newUser) {
+        User user = userService.createNewUser(
+                newUser
                 , registrationUserDTO.getFirstName()
                 , registrationUserDTO.getLastName()
                 , registrationUserDTO.getEmail()
                 , registrationUserDTO.getPassword()
         );
+        userService.saveAndFlushUser(user);
     }
 
     public UserDTO updateDate(UserDetails userDetails, UserDTO updateUserDTO) {
