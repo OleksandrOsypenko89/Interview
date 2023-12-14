@@ -22,20 +22,28 @@ public class BaseMvcTests {
 
     public User user;
     public User admin;
+    public User newUser;
+    public int getAllUserSize;
 
     public final String USER_MAIL = "demo@gmail.com";
     public final String ADMIN_MAIL = "Johnny_Depp@gmail.com";
     public static final int ALL_STATISTIC_SIZE = 2;
     public static final int SIZE_LIST_STUDY_QUESTION_INTERVIEW_USER = 3;
     public static final int STUDY_QUESTION_ID_159 = 159;
+    public static final int ALL_USERS_FINAL_SIZE = 22;
+    public static final int REGISTRATION_CODE = 123456;
+    public static final int WRONG_REGISTRATION_CODE = 654321;
     public static final String TEST_FIRST_NAME = "test_first_name";
     public static final String TEST_LAST_NAME = "test_last_name";
+    public static final String TEST_EMAIL = "test_mail@gmail.com";
     public static final String TEST_PASSWORD = "test_password";
 
     @BeforeEach
     void setup() {
         user = userService.findByEmail(USER_MAIL).orElseThrow();
         admin = userService.findByEmail(ADMIN_MAIL).orElseThrow();
+        newUser = userService.createNewUser(new User(), TEST_FIRST_NAME, TEST_LAST_NAME, TEST_EMAIL, TEST_PASSWORD);
+        getAllUserSize = userService.getAll().size();
     }
 
     public ResultActions perform(MockHttpServletRequestBuilder builder) throws Exception {
