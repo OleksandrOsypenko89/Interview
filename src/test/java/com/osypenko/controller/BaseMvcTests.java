@@ -37,8 +37,8 @@ public class BaseMvcTests {
     public static final String TEST_PASSWORD = "test_password";
     public static final String PASSWORD_ONE = "passwordOne";
     public static final String PASSWORD_TWO = "passwordTwo";
-    public static final String BUTTON_ANSWER = "Да";
-    public static final int ID_TESTING_INTERVIEW = 1;
+    public static final String BUTTON_ANSWER = "YES";
+    public static final int SIZE_LIST_STUDY_QUESTION_INTERVIEW_EXPECTED_USER = 3;
 
     @BeforeEach
     void setup() {

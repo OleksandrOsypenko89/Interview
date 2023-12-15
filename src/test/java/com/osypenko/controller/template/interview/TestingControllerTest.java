@@ -3,6 +3,8 @@ package com.osypenko.controller.template.interview;
 import com.osypenko.controller.BaseMvcTests;
 import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.services.interview.TestingService;
+import com.osypenko.services.statistics.StatisticService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithUserDetails;
@@ -19,11 +21,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class TestingControllerTest extends BaseMvcTests {
     @Autowired
     private TestingService testingService;
+    @Autowired
+    private StatisticService statisticService;
 
 
     @Test
     @WithUserDetails(value = USER_MAIL)
-    void getTestingCorrect() throws Exception {
+    void getTesting() throws Exception {
         List<TestingInterview> listTesting = testingService.listFilling(user);
         perform(get(TESTING)
                 .sessionAttr(USER, user)
@@ -36,7 +40,7 @@ class TestingControllerTest extends BaseMvcTests {
 
     @Test
     @WithUserDetails(value = USER_MAIL)
-    void getTestingWrong() throws Exception {
+    void getTestingListIsEmpty() throws Exception {
         List<TestingInterview> listTesting = List.of();
         perform(get(TESTING)
                 .sessionAttr(USER, user)
@@ -46,6 +50,7 @@ class TestingControllerTest extends BaseMvcTests {
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(STATISTIC))
                 .andExpect(view().name(REDIRECT + STATISTIC));
+        Assertions.assertEquals(ALL_STATISTIC_SIZE + 1, statisticService.allStatistics().size());
     }
 
     @Test
@@ -57,8 +62,8 @@ class TestingControllerTest extends BaseMvcTests {
     @Test
     @WithUserDetails(value = USER_MAIL)
     void answerTesting() throws Exception {
-        TestingInterview testingInterview = testingService.get(ID_TESTING_INTERVIEW).orElseThrow();
         List<TestingInterview> listTesting = testingService.listFilling(user);
+        TestingInterview testingInterview = listTesting.get(0);
         perform(post(ANSWER_TESTING)
                 .sessionAttr(KNOW, 0)
                 .sessionAttr(QUESTION_TESTING, testingInterview)
@@ -66,6 +71,7 @@ class TestingControllerTest extends BaseMvcTests {
                 .param("buttonAnswer", BUTTON_ANSWER)
         )
                 .andExpect(status().isFound())
+                .andExpect(redirectedUrl(TESTING))
                 .andExpect(view().name(REDIRECT + TESTING));
     }
 }
