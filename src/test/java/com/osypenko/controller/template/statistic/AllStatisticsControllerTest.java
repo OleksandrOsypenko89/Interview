@@ -21,4 +21,10 @@ class AllStatisticsControllerTest extends BaseMvcTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name(DIRECTORY_STATISTIC + ALL_STATISTICS));
     }
+
+    @Test
+    void allStatisticPageUserUnauthorized() throws Exception {
+        perform(get(ALL_STATISTICS))
+                .andExpect(status().isUnauthorized());
+    }
 }

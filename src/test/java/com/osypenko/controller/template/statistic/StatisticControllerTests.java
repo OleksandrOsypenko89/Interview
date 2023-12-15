@@ -30,4 +30,10 @@ class StatisticControllerTests extends BaseMvcTests {
                 .andExpect(view().name(DIRECTORY_STATISTIC + STATISTIC));
         Assertions.assertEquals(ALL_STATISTIC_SIZE + 1, statisticService.allStatistics().size());
     }
+
+    @Test
+    void statisticPageUserUnauthorized() throws Exception {
+        perform(get(STATISTIC))
+                .andExpect(status().isUnauthorized());
+    }
 }
