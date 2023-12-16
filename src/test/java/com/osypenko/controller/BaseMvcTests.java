@@ -23,7 +23,7 @@ public class BaseMvcTests {
     public User user;
     public User admin;
 
-    public final String USER_MAIL = "demo@gmail.com";
+    public final String USER_MAIL = "Al_Pacino@gmail.com";
     public final String ADMIN_MAIL = "Johnny_Depp@gmail.com";
     public static final int ALL_STATISTIC_SIZE = 2;
     public static final int SIZE_LIST_STUDY_QUESTION_INTERVIEW_USER = 3;
@@ -39,6 +39,7 @@ public class BaseMvcTests {
     public static final String PASSWORD_TWO = "passwordTwo";
     public static final String BUTTON_ANSWER = "YES";
     public static final int SIZE_LIST_STUDY_QUESTION_INTERVIEW_EXPECTED_USER = 3;
+    public static final String LOG_FILE_ADDRESS = "src/test/resources/logs/log-file.log";
 
     @BeforeEach
     void setup() {
