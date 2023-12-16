@@ -19,7 +19,7 @@ public class UpdateOrDeleteUserController {
     private final UserService userService;
 
     @GetMapping(UPDATE_OR_DELETE_USER)
-    public String feedback() {
+    public String foundUser() {
         return DIRECTORY_ADMIN + UPDATE_OR_DELETE_USER;
     }
 

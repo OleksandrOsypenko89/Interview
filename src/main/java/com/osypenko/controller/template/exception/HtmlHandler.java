@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.*;
 
-import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameLogs.HANDLE_ERROR;
 import static com.osypenko.constant.NameSessionAttributes.*;
 
@@ -15,7 +14,6 @@ import static com.osypenko.constant.NameSessionAttributes.*;
 public class HtmlHandler {
     private final HttpSession session;
 
-    @GetMapping(SLASH + ERROR)
     @ExceptionHandler(
             {
                     ServletRequestBindingException.class
@@ -25,6 +23,6 @@ public class HtmlHandler {
     public String getErrorPage(ServletRequestBindingException exception) {
         session.setAttribute(EXCEPTION, exception);
         log.error(HANDLE_ERROR + exception);
-        return ERROR;
+        return "/error";
     }
 }

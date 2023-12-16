@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .requestMatchers(PASSWORD_RECOVERY, CODE_PASSWORD_RECOVERY, NEW_PASSWORD, CONFIRMATION_CODE, SAVE_NEW_PASSWORD).permitAll()
                 .requestMatchers(DIRECTORY_CSS, DIRECTORY_JAVASCRIPT, DIRECTORY_IMAGES).permitAll()
                 .requestMatchers(USER_PAGE, QUESTION, TESTING, ALL_STATISTICS, STATISTIC, SWAGGER, FEEDBACK).hasAnyRole(Role.USER.name(), Role.ADMIN.name())
-                .requestMatchers(ADMIN_PAGE, ADMIN_SEARCH_QUESTION, CREATE_AND_UPDATE_QUESTION, ADMIN_SEARCH_TESTING, CREATE_AND_UPDATE_TESTING, REDIRECT_ADMIN_PAGE, LOG).hasRole(Role.ADMIN.name())
+                .requestMatchers(ADMIN_PAGE, ADMIN_SEARCH_QUESTION, CREATE_AND_UPDATE_QUESTION, ADMIN_SEARCH_TESTING, CREATE_AND_UPDATE_TESTING, REDIRECT_ADMIN_PAGE, UPDATE_OR_DELETE_USER, LOG).hasRole(Role.ADMIN.name())
                 .requestMatchers(USER_API).hasAnyRole(Role.USER.name(), Role.ADMIN.name())
                 .requestMatchers(API + INFO, API + DELETE_USER).hasRole(Role.ADMIN.name())
                 .anyRequest().authenticated()

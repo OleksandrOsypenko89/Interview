@@ -1,7 +1,6 @@
 package com.osypenko.constant;
 
 public class Endpoints {
-    public static final String SLASH = "/";
     public static final String REDIRECT = "redirect:";
 
     public static final String LOG = "/log";
@@ -23,7 +22,6 @@ public class Endpoints {
     public static final String ADMIN_PAGE = "/adminpage";
     public static final String KNOW_ANSWER = "/knowAnswer";
     public static final String DELETE_USER = "/deleteuser";
-    public static final String ERROR = "error.errorMessage";
     public static final String TESTING_PAGE = "/testingpage";
     public static final String NEW_PASSWORD = "/newpassword";
     public static final String REGISTRATION = "/registration";
