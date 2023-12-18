@@ -26,7 +26,7 @@ public class BaseTests {
     public QuestionInterview questionInterview;
 
     public static final long EXPECTED_USER_ID = 4L;
-    public static final String EXPECTED_USER_EMAIL = "demo@gmail.com";
+    public static final String EXPECTED_USER_EMAIL = "demo_test@gmail.com";
     public static final String EXPECTED_USER_PASSWORD = "{bcrypt}$2a$10$f.WsRKXWASU.M.SCpM0NZuXpj2eQD2svJgipbrkn6AueOjy299WKq";
     public static final Role EXPECTED_USER_ROLE = Role.USER;
 
