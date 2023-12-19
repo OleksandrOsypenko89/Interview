@@ -1,6 +1,8 @@
 package com.osypenko.controller;
 
+import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.model.users.User;
+import com.osypenko.services.interview.TestingService;
 import com.osypenko.services.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +21,12 @@ public class BaseMvcTests {
     private MockMvc mockMvc;
     @Autowired
     private UserService userService;
+    @Autowired
+    private TestingService testingService;
 
     public User user;
     public User admin;
+    public TestingInterview testingInterview;
 
     public final String USER_MAIL = "demo_test@gmail.com";
     public final String ADMIN_MAIL = "Johnny_Depp@gmail.com";
@@ -46,6 +51,7 @@ public class BaseMvcTests {
     void setup() {
         user = userService.findByEmail(USER_MAIL).orElseThrow();
         admin = userService.findByEmail(ADMIN_MAIL).orElseThrow();
+        testingInterview = testingService.get(1).orElseThrow();
     }
 
     public ResultActions perform(MockHttpServletRequestBuilder builder) throws Exception {

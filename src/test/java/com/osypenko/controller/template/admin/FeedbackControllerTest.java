@@ -16,9 +16,18 @@ class FeedbackControllerTest extends BaseMvcTests {
     @WithUserDetails(value = USER_MAIL)
     void feedback() throws Exception {
         perform(get(FEEDBACK)
-                .sessionAttr(USER, user))
+                .sessionAttr(USER, user)
+        )
                 .andExpect(status().isOk())
                 .andExpect(view().name(DIRECTORY_ADMIN + FEEDBACK));
+    }
+
+    @Test
+    void feedbackUserUnauthorized() throws Exception {
+        perform(get(FEEDBACK)
+                .sessionAttr(USER, user)
+        )
+                .andExpect(status().isUnauthorized());
     }
 
     @Test
