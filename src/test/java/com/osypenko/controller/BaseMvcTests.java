@@ -1,7 +1,9 @@
 package com.osypenko.controller;
 
+import com.osypenko.model.interview.question.QuestionInterview;
 import com.osypenko.model.interview.testings.TestingInterview;
 import com.osypenko.model.users.User;
+import com.osypenko.services.interview.QuestionService;
 import com.osypenko.services.interview.TestingService;
 import com.osypenko.services.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,10 +25,13 @@ public class BaseMvcTests {
     private UserService userService;
     @Autowired
     private TestingService testingService;
+    @Autowired
+    private QuestionService questionService;
 
     public User user;
     public User admin;
     public TestingInterview testingInterview;
+    public QuestionInterview questionInterview;
 
     public final String USER_MAIL = "demo_test@gmail.com";
     public final String ADMIN_MAIL = "Johnny_Depp@gmail.com";
@@ -52,6 +57,7 @@ public class BaseMvcTests {
         user = userService.findByEmail(USER_MAIL).orElseThrow();
         admin = userService.findByEmail(ADMIN_MAIL).orElseThrow();
         testingInterview = testingService.get(1).orElseThrow();
+        questionInterview = questionService.get(1).orElseThrow();
     }
 
     public ResultActions perform(MockHttpServletRequestBuilder builder) throws Exception {
