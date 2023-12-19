@@ -24,9 +24,7 @@ class FeedbackControllerTest extends BaseMvcTests {
 
     @Test
     void feedbackUserUnauthorized() throws Exception {
-        perform(get(FEEDBACK)
-                .sessionAttr(USER, user)
-        )
+        perform(get(FEEDBACK))
                 .andExpect(status().isUnauthorized());
     }
 

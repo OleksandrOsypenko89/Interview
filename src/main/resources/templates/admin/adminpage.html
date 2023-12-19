@@ -32,7 +32,7 @@
     <br>
     <form th:action="@{/adminsearchtesting}" method="post" class="formInAdminPanel">
         <div class="input-group mb-3">
-            <input name="testing" type="text" class="form-control" placeholder="ID Testing"
+            <input name="id" type="number" class="form-control" placeholder="ID Testing"
                    aria-label="Recipient's username" aria-describedby="button-addon3">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon3">
                 <span th:text="#{button.testing}"></span>
@@ -47,7 +47,7 @@
     <br>
     <form th:action="@{/adminsearchuser}" method="post" class="formInAdminPanel">
         <div class="input-group mb-3">
-            <input name="email" type="text" class="form-control" placeholder="User email"
+            <input name="email" type="email" class="form-control" placeholder="User email"
                    aria-label="Recipient's username" aria-describedby="button-addon4">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon4">
                 <span th:text="#{button.searchUser}"></span>

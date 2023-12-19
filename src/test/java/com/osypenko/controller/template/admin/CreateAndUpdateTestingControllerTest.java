@@ -36,10 +36,7 @@ class CreateAndUpdateTestingControllerTest extends BaseMvcTests {
 
     @Test
     void createAndUpdateQuestionUserUnauthorized() throws Exception {
-        perform(get(CREATE_AND_UPDATE_TESTING)
-                .sessionAttr(USER, admin)
-                .sessionAttr(UPDATE_TESTING_INTERVIEW, testingInterview)
-        )
+        perform(get(CREATE_AND_UPDATE_TESTING))
                 .andExpect(status().isUnauthorized());
     }
 

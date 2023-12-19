@@ -35,10 +35,7 @@ class CreateAndUpdateQuestionControllerTest extends BaseMvcTests {
 
     @Test
     void createAndUpdateQuestionUserUnauthorized() throws Exception {
-        perform(get(CREATE_AND_UPDATE_QUESTION)
-                .sessionAttr(USER, admin)
-                .sessionAttr(UPDATE_QUESTION_INTERVIEW, questionInterview)
-        )
+        perform(get(CREATE_AND_UPDATE_QUESTION))
                 .andExpect(status().isUnauthorized());
     }
 

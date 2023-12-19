@@ -54,14 +54,14 @@ public class AdminPageController {
     }
 
     @PostMapping(ADMIN_SEARCH_TESTING)
-    public String adminQuestionTesting(String testing) {
-        int id = Integer.parseInt(testing);
+    public String adminQuestionTesting(Integer id) {
         Optional<TestingInterview> optionalTestingInterview = testingService.get(id);
         if (optionalTestingInterview.isPresent()) {
             TestingInterview testingInterview = optionalTestingInterview.get();
             session.setAttribute(UPDATE_TESTING_INTERVIEW, testingInterview);
+            return REDIRECT + CREATE_AND_UPDATE_TESTING;
         }
-        return REDIRECT + CREATE_AND_UPDATE_TESTING;
+        return REDIRECT + ADMIN_PAGE;
     }
 
     @PostMapping(ADMIN_NEW_TESTING)
