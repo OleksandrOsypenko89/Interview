@@ -6,9 +6,13 @@ Its working version is available at http://95.164.35.118:8080/login
 <hr>
 
 #### If you want to watch the project without registering, then use a demo account.
+Login
 ```
-     login - demo@gmail.com 
-     password - password
+     demo@gmail.com
+```
+Password
+```
+     password
 ```
 
 <hr>
