@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import static com.osypenko.TestConstants.*;
+
 class UserDetailsServiceTest extends BaseTests {
     private final UserDetailsService userDetailsService;
 

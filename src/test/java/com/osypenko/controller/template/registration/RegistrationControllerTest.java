@@ -3,6 +3,7 @@ package com.osypenko.controller.template.registration;
 import com.osypenko.controller.BaseMvcTests;
 import org.junit.jupiter.api.Test;
 
+import static com.osypenko.TestConstants.*;
 import static com.osypenko.constant.Constant.OLEKSANDR_GMAIL_COM;
 import static com.osypenko.constant.Endpoints.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -36,7 +37,7 @@ class RegistrationControllerTest extends BaseMvcTests {
         perform(post(GET_REGISTRATION_CODE)
                 .param("firstName", TEST_FIRST_NAME)
                 .param("lastName", TEST_LAST_NAME)
-                .param("email", USER_MAIL)
+                .param("email", EXPECTED_USER_EMAIL)
                 .param("password", TEST_PASSWORD)
         )
                 .andExpect(status().isFound())

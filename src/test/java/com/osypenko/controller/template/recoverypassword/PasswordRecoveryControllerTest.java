@@ -3,6 +3,8 @@ package com.osypenko.controller.template.recoverypassword;
 import com.osypenko.controller.BaseMvcTests;
 import org.junit.jupiter.api.Test;
 
+import static com.osypenko.TestConstants.EXPECTED_USER_EMAIL;
+import static com.osypenko.TestConstants.TEST_EMAIL;
 import static com.osypenko.constant.Endpoints.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -20,7 +22,7 @@ class PasswordRecoveryControllerTest extends BaseMvcTests {
     @Test
     void newPasswordCorrect() throws Exception {
         perform(post(CONFIRMATION_CODE)
-                .param("email", USER_MAIL)
+                .param("email", EXPECTED_USER_EMAIL)
         )
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(CODE_PASSWORD_RECOVERY))

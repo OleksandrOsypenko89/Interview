@@ -7,6 +7,8 @@ import com.osypenko.services.user.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static com.osypenko.TestConstants.*;
+
 class MyMapperTest extends BaseTests {
     private final MyMapper myMapper;
     private final UserService userService;

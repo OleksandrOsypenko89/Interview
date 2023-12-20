@@ -4,6 +4,8 @@ import com.osypenko.controller.BaseMvcTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.test.context.support.WithUserDetails;
 
+import static com.osypenko.TestConstants.EXPECTED_ADMIN_MAIL;
+import static com.osypenko.TestConstants.EXPECTED_USER_EMAIL;
 import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.UPDATE_TESTING_INTERVIEW;
 import static com.osypenko.constant.NameSessionAttributes.USER;
@@ -14,10 +16,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class CreateAndUpdateTestingControllerTest extends BaseMvcTests {
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void createAndUpdateQuestion() throws Exception {
         perform(get(CREATE_AND_UPDATE_TESTING)
-                .sessionAttr(USER, admin)
+                .sessionAttr(USER, expectedAdmin)
                 .sessionAttr(UPDATE_TESTING_INTERVIEW, testingInterview)
         )
                 .andExpect(status().isOk())
@@ -25,10 +27,10 @@ class CreateAndUpdateTestingControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = USER_MAIL)
+    @WithUserDetails(value = EXPECTED_USER_EMAIL)
     void createAndUpdateQuestionNoAdmin() throws Exception {
         perform(get(CREATE_AND_UPDATE_TESTING)
-                .sessionAttr(USER, admin)
+                .sessionAttr(USER, expectedAdmin)
                 .sessionAttr(UPDATE_TESTING_INTERVIEW, testingInterview)
         )
                 .andExpect(status().isForbidden());
@@ -41,10 +43,10 @@ class CreateAndUpdateTestingControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void updateTestingInterview() throws Exception {
         perform(post(VIEW_CHANGES_TESTING)
-                .sessionAttr(USER, admin)
+                .sessionAttr(USER, expectedAdmin)
                 .sessionAttr(UPDATE_TESTING_INTERVIEW, testingInterview)
         )
                 .andExpect(status().isFound())
@@ -53,10 +55,10 @@ class CreateAndUpdateTestingControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void saveTestingInterviewUpdate() throws Exception {
         perform(post(SAVE_TESTING_INTERVIEW)
-                .sessionAttr(USER, admin)
+                .sessionAttr(USER, expectedAdmin)
                 .sessionAttr(UPDATE_TESTING_INTERVIEW, testingInterview)
         )
                 .andExpect(status().isFound())
@@ -65,10 +67,10 @@ class CreateAndUpdateTestingControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void saveTestingInterviewCreate() throws Exception {
         perform(post(SAVE_TESTING_INTERVIEW)
-                .sessionAttr(USER, admin)
+                .sessionAttr(USER, expectedAdmin)
                 .sessionAttr(UPDATE_TESTING_INTERVIEW, testingInterview)
         )
                 .andExpect(status().isFound())

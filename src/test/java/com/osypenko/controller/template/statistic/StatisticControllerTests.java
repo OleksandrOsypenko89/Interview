@@ -6,9 +6,10 @@ import com.osypenko.model.statistic.Type;
 import com.osypenko.services.statistics.StatisticService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithUserDetails;
 
+import static com.osypenko.TestConstants.ALL_STATISTIC_SIZE;
+import static com.osypenko.TestConstants.EXPECTED_USER_EMAIL;
 import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.NEW_STATISTICS_ADDED;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -16,13 +17,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 class StatisticControllerTests extends BaseMvcTests {
-    @Autowired
-    private StatisticService statisticService;
+    private final StatisticService statisticService;
+
+    public StatisticControllerTests(StatisticService statisticService) {
+        this.statisticService = statisticService;
+    }
 
     @Test
-    @WithUserDetails(value = USER_MAIL)
+    @WithUserDetails(value = EXPECTED_USER_EMAIL)
     void statistic() throws Exception {
-        Statistic newStatistic = statisticService.createNewStatistic(user, 100, 15, Type.QUESTIONS);
+        Statistic newStatistic = statisticService.createNewStatistic(expectedUser, 100, 15, Type.QUESTIONS);
         perform(get(STATISTIC)
                 .sessionAttr(NEW_STATISTICS_ADDED, newStatistic)
         )

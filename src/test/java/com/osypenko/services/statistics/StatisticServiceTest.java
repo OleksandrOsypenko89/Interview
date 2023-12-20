@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static com.osypenko.constant.Constant.SIZE_QUESTION;
+import static com.osypenko.TestConstants.*;
 
 class StatisticServiceTest extends BaseTests {
     private final StatisticService statisticService;

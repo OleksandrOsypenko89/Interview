@@ -4,6 +4,7 @@ import com.osypenko.controller.BaseMvcTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.test.context.support.WithUserDetails;
 
+import static com.osypenko.TestConstants.*;
 import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -13,21 +14,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class AdminPageControllerTest extends BaseMvcTests {
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void getAdminPage() throws Exception {
         perform(get(ADMIN_PAGE)
-                .sessionAttr(USER, admin)
+                .sessionAttr(USER, expectedAdmin)
                 .sessionAttr(FILES_IN_DIRECTORY_LOGS, LOG_DIRECTORY)
-                .sessionAttr(SIZE_ALL_USERS, ALL_USERS_FINAL_SIZE)
-                .sessionAttr(SIZE_ALL_QUESTION_INTERVIEW, ALL_QUESTIONS_FINAL_SIZE)
-                .sessionAttr(SIZE_ALL_TESTING_INTERVIEW, ALL_TESTING_FINAL_SIZE)
+                .sessionAttr(SIZE_ALL_USERS, ALL_USERS_SIZE)
+                .sessionAttr(SIZE_ALL_QUESTION_INTERVIEW, ALL_QUESTION_INTERVIEW_SIZE)
+                .sessionAttr(SIZE_ALL_TESTING_INTERVIEW, ALL_TESTING_INTERVIEW_SIZE)
         )
                 .andExpect(status().isOk())
                 .andExpect(view().name(DIRECTORY_ADMIN + ADMIN_PAGE));
     }
 
     @Test
-    @WithUserDetails(value = USER_MAIL)
+    @WithUserDetails(value = EXPECTED_USER_EMAIL)
     void getAdminPageNoAdmin() throws Exception {
         perform(get(ADMIN_PAGE))
                 .andExpect(status().isForbidden());
@@ -40,7 +41,7 @@ class AdminPageControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void adminQuestionInterviewIsFoundNameQuestion() throws Exception {
         perform(post(ADMIN_SEARCH_QUESTION)
                 .param("interview", "Что такое ООП?")
@@ -51,7 +52,7 @@ class AdminPageControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void adminQuestionInterviewIsFoundIdQuestion() throws Exception {
         perform(post(ADMIN_SEARCH_QUESTION)
                 .param("interview", "1")
@@ -62,7 +63,7 @@ class AdminPageControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void adminQuestionInterviewNotFound() throws Exception {
         perform(post(ADMIN_SEARCH_QUESTION)
                 .param("interview", "Что такое")
@@ -73,7 +74,7 @@ class AdminPageControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void adminNewQuestionInterview() throws Exception {
         perform(post(ADMIN_NEW_QUESTION))
                 .andExpect(status().isFound())
@@ -82,7 +83,7 @@ class AdminPageControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void adminQuestionTestingIsFound() throws Exception {
         perform(post(ADMIN_SEARCH_TESTING)
                 .param("id", "1")
@@ -93,7 +94,7 @@ class AdminPageControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void adminQuestionTestingNotFound() throws Exception {
         perform(post(ADMIN_SEARCH_TESTING)
                 .param("id", "88")
@@ -104,7 +105,7 @@ class AdminPageControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void adminNewQuestionTesting() throws Exception {
         perform(post(ADMIN_NEW_TESTING))
                 .andExpect(status().isFound())
@@ -113,10 +114,10 @@ class AdminPageControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void adminSearchUserIsFound() throws Exception {
         perform(post(ADMIN_SEARCH_USER)
-                .param("email", USER_MAIL)
+                .param("email", EXPECTED_USER_EMAIL)
         )
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(UPDATE_OR_DELETE_USER))
@@ -124,7 +125,7 @@ class AdminPageControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void adminSearchUserNotFound() throws Exception {
         perform(post(ADMIN_SEARCH_USER)
                 .param("email", TEST_EMAIL)
@@ -135,7 +136,7 @@ class AdminPageControllerTest extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void redirectAdminPage() throws Exception {
         perform(post(REDIRECT_ADMIN_PAGE))
                 .andExpect(status().isFound())

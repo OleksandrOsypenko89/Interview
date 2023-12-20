@@ -3,6 +3,8 @@ package com.osypenko.controller.template.recoverypassword;
 import com.osypenko.controller.BaseMvcTests;
 import org.junit.jupiter.api.Test;
 
+import static com.osypenko.TestConstants.REGISTRATION_CODE;
+import static com.osypenko.TestConstants.WRONG_REGISTRATION_CODE;
 import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.CODE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

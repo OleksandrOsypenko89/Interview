@@ -3,6 +3,7 @@ package com.osypenko.controller.template.recoverypassword;
 import com.osypenko.controller.BaseMvcTests;
 import org.junit.jupiter.api.Test;
 
+import static com.osypenko.TestConstants.*;
 import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.EMAIL;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -21,7 +22,7 @@ class NewPasswordControllerTest extends BaseMvcTests {
     @Test
     void redirectLoginCorrect() throws Exception {
         perform(post(SAVE_NEW_PASSWORD)
-                .sessionAttr(EMAIL, USER_MAIL)
+                .sessionAttr(EMAIL, EXPECTED_USER_EMAIL)
                 .param("passwordOne", PASSWORD_ONE)
                 .param("passwordTwo", PASSWORD_ONE)
         )
@@ -33,7 +34,7 @@ class NewPasswordControllerTest extends BaseMvcTests {
     @Test
     void redirectLoginWrong() throws Exception {
         perform(post(SAVE_NEW_PASSWORD)
-                .sessionAttr(EMAIL, USER_MAIL)
+                .sessionAttr(EMAIL, EXPECTED_USER_EMAIL)
                 .param("passwordOne", PASSWORD_ONE)
                 .param("passwordTwo", PASSWORD_TWO)
         )

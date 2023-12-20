@@ -5,8 +5,8 @@ import com.osypenko.model.users.User;
 import com.osypenko.services.user.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import static com.osypenko.TestConstants.*;
 import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.CODE_REGISTRATION;
 import static com.osypenko.constant.NameSessionAttributes.USER;
@@ -15,8 +15,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 class CodeForRegistrationControllerTest extends BaseMvcTests {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public CodeForRegistrationControllerTest(UserService userService) {
+        this.userService = userService;
+    }
 
     @Test
     void codeUser() throws Exception {
@@ -36,7 +39,7 @@ class CodeForRegistrationControllerTest extends BaseMvcTests {
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(LOGIN))
                 .andExpect(view().name(REDIRECT + LOGIN));
-        Assertions.assertEquals(ALL_USERS_FINAL_SIZE + 1, userService.getAll().size());
+        Assertions.assertEquals(ALL_USERS_SIZE + 1, userService.getAll().size());
     }
 
     @Test
@@ -50,6 +53,6 @@ class CodeForRegistrationControllerTest extends BaseMvcTests {
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(CODE_FOR_REGISTRATION))
                 .andExpect(view().name(REDIRECT + CODE_FOR_REGISTRATION));
-        Assertions.assertEquals(ALL_USERS_FINAL_SIZE, userService.getAll().size());
+        Assertions.assertEquals(ALL_USERS_SIZE, userService.getAll().size());
     }
 }

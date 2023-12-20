@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.test.context.support.WithUserDetails;
 
+import static com.osypenko.TestConstants.*;
 import static com.osypenko.constant.Endpoints.*;
 import static com.osypenko.constant.NameSessionAttributes.USER;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -14,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class UserPageControllerTests extends BaseMvcTests {
 
     @Test
-    @WithUserDetails(value = USER_MAIL)
+    @WithUserDetails(value = EXPECTED_USER_EMAIL)
     void userPageAuthorized() throws Exception {
         perform(get(USER_PAGE))
                 .andExpect(status().isOk())
@@ -28,10 +29,10 @@ class UserPageControllerTests extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = USER_MAIL)
+    @WithUserDetails(value = EXPECTED_USER_EMAIL)
     void questionPage() throws Exception {
         perform(get(QUESTION_PAGE)
-                .sessionAttr(USER, user)
+                .sessionAttr(USER, expectedUser)
         )
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(QUESTION))
@@ -39,10 +40,10 @@ class UserPageControllerTests extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = USER_MAIL)
+    @WithUserDetails(value = EXPECTED_USER_EMAIL)
     void testingPage() throws Exception {
         perform(get(TESTING_PAGE)
-                .sessionAttr(USER, user)
+                .sessionAttr(USER, expectedUser)
         )
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(TESTING))
@@ -50,7 +51,7 @@ class UserPageControllerTests extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = USER_MAIL)
+    @WithUserDetails(value = EXPECTED_USER_EMAIL)
     void allStatisticPage() throws Exception {
         perform(get(ALL_STATISTICS_PAGE))
                 .andExpect(status().isFound())
@@ -65,10 +66,10 @@ class UserPageControllerTests extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = ADMIN_MAIL)
+    @WithUserDetails(value = EXPECTED_ADMIN_MAIL)
     void adminPage() throws Exception {
         perform(post(ADMIN_PAGE)
-                .sessionAttr(USER, admin)
+                .sessionAttr(USER, expectedAdmin)
         )
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(ADMIN_PAGE))
@@ -76,15 +77,15 @@ class UserPageControllerTests extends BaseMvcTests {
     }
 
     @Test
-    @WithUserDetails(value = USER_MAIL)
+    @WithUserDetails(value = EXPECTED_USER_EMAIL)
     void deleteStudyQuestion() throws Exception{
         perform(post(DELETE_STUDY_QUESTION)
-                .sessionAttr(USER, user)
+                .sessionAttr(USER, expectedUser)
                 .param("idQuestion", String.valueOf(STUDY_QUESTION_ID_159))
         )
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl(USER_PAGE))
                 .andExpect(view().name(REDIRECT + USER_PAGE));
-        Assertions.assertEquals(SIZE_LIST_STUDY_QUESTION_INTERVIEW_USER - 1, user.getListStudyQuestion().size());
+        Assertions.assertEquals(SIZE_LIST_STUDY_QUESTION_INTERVIEW_EXPECTED_USER - 1, expectedUser.getListStudyQuestion().size());
     }
 }

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static com.osypenko.constant.Endpoints.*;
+import static com.osypenko.TestConstants.*;
 
 class UserServiceTest extends BaseTests {
     private final UserService userService;

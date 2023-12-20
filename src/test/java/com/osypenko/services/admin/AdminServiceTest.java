@@ -7,6 +7,8 @@ import com.osypenko.model.interview.testings.TestingInterview;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static com.osypenko.TestConstants.*;
+
 import java.io.File;
 
 class AdminServiceTest extends BaseTests {
@@ -74,7 +76,7 @@ class AdminServiceTest extends BaseTests {
 
     @Test
     void getDataLogsFile() {
-        String dataLogsFile = adminService.getDataLogsFile(TEST_FILE_LOG);
+        String dataLogsFile = adminService.getDataLogsFile(LOG_FILE_ADDRESS);
         Assertions.assertNotNull(dataLogsFile);
         Assertions.assertEquals(TEST_STR_LOG, dataLogsFile);
     }
