@@ -40,10 +40,10 @@
                     <p th:text="${statistic.getKnowAnswer()} + '/15'"/>
                 </td>
                 <td>
-                    <div th:if="${statistic.getResult()} < 60">
+                    <div th:if="${statistic.getResult()} <= 60">
                         <p class="red_color text-bold" th:text="${statistic.getResult()} + '%'"/>
                     </div>
-                    <div th:if="${statistic.getResult()} > 90">
+                    <div th:if="${statistic.getResult()} >= 90">
                         <p class="green_color text-bold" th:text="${statistic.getResult()} + '%'"/>
                     </div>
                     <div th:if="${statistic.getResult()} < 90 AND ${statistic.getResult()} > 60">

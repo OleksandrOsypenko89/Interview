@@ -2,7 +2,7 @@
 
 #### The project was created to improve interview skills. At the moment, it contains 432 questions. There are also tests with examples of codes with answer options for the result of the code. <br> The service can be used by anyone, you just need to register.
 
-Its working version is available at http://95.164.35.118:8080/login
+Its working version is available at [osypenko.site]()
 
 <hr>
 
@@ -33,7 +33,9 @@ Password
 * HTML
 * CSS
 * JS
-* Tests
+* Integration Testing
+* Mvc Testing
+* Unit Testing
 
 ### Tools used in development
 
