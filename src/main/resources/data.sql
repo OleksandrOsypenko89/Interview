@@ -1,3 +1,26 @@
+drop table if exists list_study_questions;
+
+drop table if exists lists_question_interview;
+
+drop table if exists lists_testing_interview;
+
+drop table if exists question_interview;
+
+drop table if exists statistic;
+
+drop table if exists testing_interview;
+
+drop table if exists users;
+
+drop sequence if exists question_id_seq;
+
+drop sequence if exists statistic_id_seq;
+
+drop sequence if exists testing_id_seq;
+
+drop sequence if exists users_id_seq;
+
+
 CREATE TABLE public.list_study_questions (
                                              user_id bigint NOT NULL,
                                              question_id integer NOT NULL
@@ -1006,7 +1029,7 @@ INSERT INTO public.testing_interview (id, question, picture, first_false_answer,
 INSERT INTO public.testing_interview (id, question, picture, first_false_answer, second_false_answer, third_false_answer, fourth_false_answer, fifth_false_answer, correct_answer, answer) VALUES (52, 'Какой будет результат выполнения кода?', '<img class="center" src="images/DBImageInterview/testing/52.png" width="550" height="700" alt="image"/>', '13', '112', '0123', '03', '', '012', '') ON CONFLICT DO NOTHING;
 INSERT INTO public.testing_interview (id, question, picture, first_false_answer, second_false_answer, third_false_answer, fourth_false_answer, fifth_false_answer, correct_answer, answer) VALUES (53, 'Какую задачу выполняет CsrfFilter в Spring Security?', '', 'Для кастомной фильтрации реквестов', 'Для кросс серверной авторизации', '', '', '', 'Для идентификации подделки межсайтового запроса', '') ON CONFLICT DO NOTHING;
 
-INSERT INTO public.users (id, first_name, last_name, email, password, role, registration_date) VALUES (1, 'Johnny', 'Depp', 'Johnny_Depp@gmail.com', '{bcrypt}$2a$10$tzXyDKmg76XuD6/KsX26TebZQFQ62tNleOtwjMTcOyY/3ThLQo8la', 'ADMIN', '2023-10-08 09:44:41.632801') ON CONFLICT DO NOTHING;
+INSERT INTO public.users (id, first_name, last_name, email, password, role, registration_date) VALUES (1, 'Johnny', 'Depp', 'Johnny_Depp@gmail.com', '{bcrypt}$2a$10$f.WsRKXWASU.M.SCpM0NZuXpj2eQD2svJgipbrkn6AueOjy299WKq', 'ADMIN', '2023-10-08 09:44:41.632801') ON CONFLICT DO NOTHING;
 INSERT INTO public.users (id, first_name, last_name, email, password, role, registration_date) VALUES (2, 'Al', 'Pacino', 'Al_Pacino@gmail.com', '{bcrypt}$2a$10$dNzZ97RjEFjYNmpozxDAPuCkVg2IdUKNPPZ5tz295sXBJdvStGMay', 'USER', '2023-10-16 19:26:25.096') ON CONFLICT DO NOTHING;
 INSERT INTO public.users (id, first_name, last_name, email, password, role, registration_date) VALUES (3, 'Robert', 'De Niro', 'Robert_De_Niro@mail.ru', '{bcrypt}$2a$10$ek9cl097lSU6UCCN7nr0UejAyf8tnpaRxjiQx.i8jNu66Z8.jVysO', 'USER', '2023-10-08 09:44:41.632801') ON CONFLICT DO NOTHING;
 INSERT INTO public.users (id, first_name, last_name, email, password, role, registration_date) VALUES (4, 'Demo', 'User', 'demo_test@gmail.com', '{bcrypt}$2a$10$f.WsRKXWASU.M.SCpM0NZuXpj2eQD2svJgipbrkn6AueOjy299WKq', 'USER', '2023-10-08 09:44:41.632801') ON CONFLICT DO NOTHING;

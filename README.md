@@ -29,4 +29,20 @@
 * GitHub
 * Git
 
-<hr>
+### Run the project
+You need to download it. </br>
+Then create a docker container using the command 
+
+> docker run --name Interview_simulator -p5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+
+Now you can run the project in your code editor and open the http://localhost:8080 tab in your browser
+
+<p>To log in without registration, you can use one of the following accounts:
+
+|          | ADMIN                 | User                |
+|----------|-----------------------|---------------------|
+| login    | Johnny_Depp@gmail.com | demo_test@gmail.com |
+| password | password              | password            |
+
+
+You can also register yourself. In order for the account to be saved on a permanent basis, you need to enter your account data into the `data.sql` file

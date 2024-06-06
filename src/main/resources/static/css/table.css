@@ -23,11 +23,6 @@ table td {
     padding-right: 30%;
 }
 
-.padding {
-    padding-left: 30%;
-    padding-right: 30%;
-}
-
 .td_red {
     border: 1px dashed red;
     padding: 5px;

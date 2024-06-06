@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:latest
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
@@ -16,9 +16,9 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-app
     ports:
-      - 8080:8080
+      - "80:8080"
     depends_on:
       - db
     environment:
@@ -27,6 +27,16 @@ services:
       DB_NAME: ${POSTGRES_DB}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
     restart: always
+#
+#  nginx:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile-nginx
+#    ports:
+#      - "80:80"
+#    depends_on:
+#      - app
+#    restart: always
 
 volumes:
   postgres-data:
