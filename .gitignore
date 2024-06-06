@@ -7,7 +7,6 @@ target/
 !**/src/test/**/target/
 .mvn/
 logs/**
-.env
 
 ### STS ###
 .apt_generated
