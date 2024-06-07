@@ -34,14 +34,28 @@ All questions to which the user does not know the answer will be recorded in the
 * Git
 
 ### Run the project
-You need to download it. </br>
-Then create a docker container using the command 
 
-> docker run --name InterviewSimulator -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+- Clone the project to your computer.
+- Start the database server locally (PostgreSQL). I recommend doing this through docker.
 
-Now you can run the project in your code editor and open the http://localhost:8080 tab in your browser
+Related command:
 
-<p>To log in without registration, you can use one of the following accounts:
+```
+  docker run --name InterviewSimulator -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres 
+```
+
+Connecting to DB
+```
+  url: jdbc:postgresql://localhost:5432/postgres
+  username: postgres
+  password: postgres
+```
+
+- Now you can run the project in your code editor and open the http://localhost:8080 tab in your browser
+
+
+
+### To log in without registration, you can use one of the following accounts:
 
 | Role     | ADMIN                 | USER                |
 |----------|-----------------------|---------------------|
