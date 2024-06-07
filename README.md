@@ -37,7 +37,7 @@ All questions to which the user does not know the answer will be recorded in the
 You need to download it. </br>
 Then create a docker container using the command 
 
-> docker run --name Interview_simulator -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+> docker run --name InterviewSimulator -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
 
 Now you can run the project in your code editor and open the http://localhost:8080 tab in your browser
 
