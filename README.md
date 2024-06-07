@@ -1,4 +1,4 @@
-# My project - INTERVIEW SIMULATOR
+# INTERVIEW SIMULATOR
 
 The project was created to improve interviewing skills. 
 At the moment, it contains 432 questions. There are also tests with sample codes and answer options for the result of the code. 
