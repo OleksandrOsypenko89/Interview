@@ -1,7 +1,7 @@
 # INTERVIEW SIMULATOR
 
-The project was created to improve interviewing skills. 
-At the moment, it contains 432 questions. There are also tests with sample codes and answer options for the result of the code. 
+The project was created to improve interview skills. 
+At the moment, it contains 432 questions. There are also tests with sample codes and answer options for the result of code execution. 
 The project envisages that the user enters the section with questions for the interview and will be presented with 15 questions in turn, 
 to which he must verbally give answers and click on the “know”, “don't know” button. 
 You can also see the correct answer if you are in doubt about your answer. 
