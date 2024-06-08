@@ -61,8 +61,5 @@ Connecting to DB
 | Login    | Johnny_Depp@gmail.com | demo_test@gmail.com |
 | Password | password              | password            |
 
-
-You can also register yourself. In order for your account to be saved on a permanent basis,
-you need to add your account details to the `data.sql` file or remove the `spring.sql.init.mode=always` 
-parameter in the `application.properties`file so that the data in your docker container is not overwritten 
-after each program restart.
+You can also register yourself. In order to save your account permanently, you need to change the parameter `spring.sql.init.mode` in the `application.properties` 
+file to `never` so that the data in your docker container is not overwritten after each restart of the program or manually add account data to the `data.sql` file.
