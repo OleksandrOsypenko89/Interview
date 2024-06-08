@@ -50,8 +50,7 @@ Connecting to DB
   username: postgres
   password: postgres
 ```
-
-- Now you can run the project in your code editor and open the http://localhost:8080 tab in your browser
+- Start the Spring Boot application `InterviewSimulatorApplication`
 
 
 
