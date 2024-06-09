@@ -65,4 +65,4 @@ Connecting to DB
 
 To save your account permanently:
 - You need to change the `spring.sql.init.mode` parameter in the `application.properties` file to `never`, so that the data in your docker container is not overwritten after each program startup. 
-- You can also manually add account data to the data.sql file.
+- You can also manually add account data to the `data.sql` file. Even after overwriting the data in the docker container, the data will not be lost.
